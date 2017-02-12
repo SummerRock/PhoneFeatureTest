@@ -22,6 +22,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
+import com.example.yanxia.phonefeaturetest.testactivity.CameraTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.VersionTestActivity;
 
 import java.util.ArrayList;
@@ -79,6 +80,9 @@ public class MainActivity extends AppCompatActivity
         switch (id) {
             case R.drawable.ic_developer_board_black_48dp:
                 startActivityWithAnim(VersionTestActivity.class);
+                break;
+            case R.drawable.ic_camera_black_48dp:
+                startActivityWithAnim(CameraTestActivity.class);
                 break;
             default:
                 Toast.makeText(MainActivity.this, "you clicked image " + id, Toast.LENGTH_SHORT).show();
