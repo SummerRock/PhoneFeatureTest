@@ -13,9 +13,17 @@ import com.example.yanxia.phonefeaturetest.R;
  */
 
 public class BaseActivity extends AppCompatActivity {
+    public static final String TAG = "BaseActivity";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("BaseActivity",getClass().getSimpleName());
+        Log.d(TAG, getClass().getSimpleName());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume");
     }
 }

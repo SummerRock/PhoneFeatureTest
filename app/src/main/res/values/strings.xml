@@ -9,4 +9,5 @@
     <string name="touchScreen">TouchScreen</string>
     <string name="version">Version</string>
     <string name="title_activity_version_test">VersionTestActivity</string>
+    <string name="versionnum">Build Version:</string>
 </resources>
