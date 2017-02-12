@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">PhoneFeatureTest</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="testAll">All</string>
+    <string name="touchScreen">TouchScreen</string>
+    <string name="version">Version</string>
+    <string name="title_activity_version_test">VersionTestActivity</string>
+</resources>
