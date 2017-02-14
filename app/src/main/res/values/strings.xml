@@ -10,4 +10,9 @@
     <string name="version">Version</string>
     <string name="title_activity_version_test">VersionTestActivity</string>
     <string name="versionnum">Build Version:</string>
+    <string name="buildtime">Build Time:</string>
+    <string name="dialogtitle">Is test over?</string>
+    <string name="dialogmessage">Please check carefully.</string>
+    <string name="dialogposbtn">Success</string>
+    <string name="dialognavbtn">Fail</string>
 </resources>

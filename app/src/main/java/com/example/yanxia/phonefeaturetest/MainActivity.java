@@ -130,6 +130,8 @@ public class MainActivity extends AppCompatActivity
         testItemList.add(brightnessTest);
         TestItem romTest = new TestItem("ROM",R.drawable.ic_disc_full_black_48dp);
         testItemList.add(romTest);
+        TestItem ramTest = new TestItem("RAM",R.drawable.ic_receipt_black_48dp);
+        testItemList.add(ramTest);
         TestItem gravityTest = new TestItem("Gravity",R.drawable.ic_screen_rotation_black_48dp);
         testItemList.add(gravityTest);
         TestItem lightTest = new TestItem("Light",R.drawable.ic_lightbulb_outline_black_48dp);
@@ -140,8 +142,8 @@ public class MainActivity extends AppCompatActivity
         testItemList.add(tfcardTest);
         TestItem cameraTest = new TestItem("Camera",R.drawable.ic_camera_black_48dp);
         testItemList.add(cameraTest);
-        TestItem frontcameraTest = new TestItem("FrontCamera",R.drawable.ic_camera_front_black_48dp);
-        testItemList.add(frontcameraTest);
+        //TestItem frontcameraTest = new TestItem("FrontCamera",R.drawable.ic_camera_front_black_48dp);
+        //testItemList.add(frontcameraTest);
         TestItem fmradioTest = new TestItem("FMRadio",R.drawable.ic_radio_black_48dp);
         testItemList.add(fmradioTest);
         TestItem dialTest = new TestItem("Dial",R.drawable.ic_dialpad_black_48dp);

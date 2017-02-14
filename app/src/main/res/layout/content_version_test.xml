@@ -18,12 +18,26 @@
         android:layout_height="wrap_content"
         android:id="@+id/versiontv"
         android:text="@string/versionnum"
+        android:textStyle="italic"
         android:textSize="25sp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/phoneversiontv"
-        android:layout_toRightOf="@+id/versiontv"
-        android:textSize="25sp"
-        />
+        android:layout_below="@+id/versiontv"
+        android:textSize="20sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phoneversiontv"
+        android:textStyle="italic"
+        android:id="@+id/buildtimetv"
+        android:text="@string/buildtime"
+        android:textSize="25sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/phonebuildtimetv"
+        android:layout_below="@+id/buildtimetv"
+        android:textSize="20sp" />
 </RelativeLayout>
