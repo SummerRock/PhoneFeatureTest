@@ -5,10 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,18 +15,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.Toast;
 
 import com.example.yanxia.phonefeaturetest.testactivity.CameraTestActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.TouchTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.VersionTestActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.R.attr.data;
-import static android.R.attr.name;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -83,6 +76,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.drawable.ic_camera_black_48dp:
                 startActivityWithAnim(CameraTestActivity.class);
+                break;
+            case R.drawable.ic_smartphone_black_48dp:
+                startActivityWithAnim(TouchTestActivity.class);
                 break;
             default:
                 Toast.makeText(MainActivity.this, "you clicked image " + id, Toast.LENGTH_SHORT).show();

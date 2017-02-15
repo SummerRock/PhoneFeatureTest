@@ -15,4 +15,8 @@
     <string name="dialogmessage">Please check carefully.</string>
     <string name="dialogposbtn">Success</string>
     <string name="dialognavbtn">Fail</string>
+
+    <string name="title_activity_touch_test">TouchTestActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

@@ -28,7 +28,8 @@
             android:name=".testactivity.VersionTestActivity"
             android:label="@string/title_activity_version_test"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".testactivity.CameraTestActivity"></activity>
+        <activity android:name=".testactivity.CameraTestActivity" />
+        <activity android:name=".testactivity.TouchTestActivity"></activity>
     </application>
 
 </manifest>
