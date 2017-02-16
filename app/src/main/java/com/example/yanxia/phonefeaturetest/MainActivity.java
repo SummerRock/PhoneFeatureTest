@@ -19,11 +19,14 @@ import android.widget.Toast;
 
 import com.example.yanxia.phonefeaturetest.testactivity.CameraTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.GpsTestActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.QRScanTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.TouchTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.VersionTestActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.bingoogolapple.qrcode.core.QRCodeView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -84,6 +87,9 @@ public class MainActivity extends AppCompatActivity
             case R.drawable.ic_gps_fixed_black_48dp:
                 startActivityWithAnim(GpsTestActivity.class);
                 break;
+            case R.drawable.ic_blur_on_black_48dp:
+                startActivityWithAnim(QRScanTestActivity.class);
+                break;
             default:
                 Toast.makeText(MainActivity.this, "you clicked image " + id, Toast.LENGTH_SHORT).show();
         }
@@ -104,6 +110,8 @@ public class MainActivity extends AppCompatActivity
         testItemList.add(touchTest);
         //TestItem lcdTest = new TestItem("Color",R.drawable.ic_color_lens_black_48dp);
         //testItemList.add(lcdTest);
+        TestItem qrscanTest = new TestItem("QRScan",R.drawable.ic_blur_on_black_48dp);
+        testItemList.add(qrscanTest);
         TestItem gpsTest = new TestItem("GPS",R.drawable.ic_gps_fixed_black_48dp);
         testItemList.add(gpsTest);
         TestItem powerTest = new TestItem("Battery",R.drawable.ic_battery_charging_full_black_48dp);
