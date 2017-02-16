@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.yanxia.phonefeaturetest.testactivity.CameraTestActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.GpsTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.TouchTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.VersionTestActivity;
 
@@ -80,6 +81,9 @@ public class MainActivity extends AppCompatActivity
             case R.drawable.ic_smartphone_black_48dp:
                 startActivityWithAnim(TouchTestActivity.class);
                 break;
+            case R.drawable.ic_gps_fixed_black_48dp:
+                startActivityWithAnim(GpsTestActivity.class);
+                break;
             default:
                 Toast.makeText(MainActivity.this, "you clicked image " + id, Toast.LENGTH_SHORT).show();
         }
@@ -98,11 +102,11 @@ public class MainActivity extends AppCompatActivity
     private void initTestItems(){
         TestItem touchTest = new TestItem(getResources().getString(R.string.touchScreen),R.drawable.ic_smartphone_black_48dp);
         testItemList.add(touchTest);
-        TestItem lcdTest = new TestItem("Color",R.drawable.ic_color_lens_black_48dp);
-        testItemList.add(lcdTest);
+        //TestItem lcdTest = new TestItem("Color",R.drawable.ic_color_lens_black_48dp);
+        //testItemList.add(lcdTest);
         TestItem gpsTest = new TestItem("GPS",R.drawable.ic_gps_fixed_black_48dp);
         testItemList.add(gpsTest);
-        TestItem powerTest = new TestItem("Power",R.drawable.ic_battery_charging_full_black_48dp);
+        TestItem powerTest = new TestItem("Battery",R.drawable.ic_battery_charging_full_black_48dp);
         testItemList.add(powerTest);
         TestItem keyTest = new TestItem("Keyboard",R.drawable.ic_keyboard_black_48dp);
         testItemList.add(keyTest);
