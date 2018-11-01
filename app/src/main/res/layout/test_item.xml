@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp">
+    android:layout_gravity="center_horizontal"
+    android:layout_margin="5dp"
+    android:orientation="vertical">
 
-    <ImageView
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/test_image"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:scaleType="fitXY"
         android:layout_gravity="center_horizontal" />
 
-    <TextView
+    <android.support.v7.widget.AppCompatTextView
         android:id="@+id/test_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp"
+        android:text="test"
+        tools:ignore="HardcodedText" />
 
 </LinearLayout>

@@ -6,8 +6,6 @@
 
     <string name="action_settings">Settings</string>
     <string name="testAll">All</string>
-    <string name="touchScreen">TouchScreen</string>
-    <string name="version">Version</string>
     <string name="title_activity_version_test">VersionTestActivity</string>
     <string name="versionnum">Build Version:</string>
     <string name="buildtime">Build Time:</string>

@@ -45,7 +45,10 @@
         <activity
             android:name=".testactivity.QRScanTestActivity"
             android:label="@string/title_activity_qrscan_test"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".recyclerviewtest.RecyclerViewTestActivity"
+            android:launchMode="singleTask" />
     </application>
 
 </manifest>
