@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.example.yanxia.phonefeaturetest.recyclerviewtest.RecyclerViewTestActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.HandlerThreadActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.VersionTestActivity;
 import com.example.yanxia.phonefeaturetest.utils.Constant;
 
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private void initTestItems() {
         testItemList.add(new TestItem(Constant.TEST_RECYCLER, R.drawable.ic_menu_gallery));
         testItemList.add(new TestItem(Constant.TEST_DIALOG, R.drawable.ic_blur_on_black_48dp));
+        testItemList.add(new TestItem(Constant.TEST_HANDLER_THREAD, R.drawable.ic_lock_24dp));
     }
 
     private void startTestActivity(String testName) {
@@ -50,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case Constant.TEST_DIALOG:
                 startActivityWithNoAnim(VersionTestActivity.class);
+                break;
+            case Constant.TEST_HANDLER_THREAD:
+                startActivityWithNoAnim(HandlerThreadActivity.class);
                 break;
             default:
                 Toast.makeText(MainActivity.this, "you clicked testName " + testName, Toast.LENGTH_SHORT).show();

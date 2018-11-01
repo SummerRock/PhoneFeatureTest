@@ -49,6 +49,10 @@
         <activity
             android:name=".recyclerviewtest.RecyclerViewTestActivity"
             android:launchMode="singleTop" />
+        <activity
+            android:name=".testactivity.HandlerThreadActivity"
+            android:label="@string/title_activity_handler_thread"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
