@@ -38,7 +38,7 @@ public final class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestView
         if (payloads.isEmpty()) {
             holder.editText.setText("position: " + position);
         } else {
-            holder.editText.setText("QQ");
+            holder.editText.setText("payloads is not empty!");
         }
     }
 

@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.example.yanxia.phonefeaturetest.recyclerviewtest.RecyclerViewTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.VersionTestActivity;
 import com.example.yanxia.phonefeaturetest.utils.Constant;
 
@@ -26,8 +27,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initTestItems();
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        //LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
         ItemAdapter adapter = new ItemAdapter(testItemList, new ItemAdapter.OnTestItemClickListener() {
             @Override
@@ -46,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
     private void startTestActivity(String testName) {
         switch (testName) {
             case Constant.TEST_RECYCLER:
-                startActivityWithAnim(VersionTestActivity.class);
+                startActivityWithNoAnim(RecyclerViewTestActivity.class);
                 break;
             case Constant.TEST_DIALOG:
-                startActivityWithAnim(VersionTestActivity.class);
+                startActivityWithNoAnim(VersionTestActivity.class);
                 break;
             default:
                 Toast.makeText(MainActivity.this, "you clicked testName " + testName, Toast.LENGTH_SHORT).show();
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 根据传入的类(class)打开指定的activity
      */
-    private void startActivityWithAnim(Class<?> pClass) {
+    private void startActivityWithNoAnim(Class<?> pClass) {
         Intent intent = new Intent();
         intent.setClass(this, pClass);
         startActivity(intent);
