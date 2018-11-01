@@ -1,7 +1,8 @@
 package com.example.yanxia.phonefeaturetest;
 
 /**
- * Created by yanxia on 2017/2/10.
+ * @author yanxia
+ * @date 2017/2/10
  */
 
 public class TestItem {

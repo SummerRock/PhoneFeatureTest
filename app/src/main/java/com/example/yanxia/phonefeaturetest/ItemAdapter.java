@@ -1,8 +1,6 @@
 package com.example.yanxia.phonefeaturetest;
 
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,12 +8,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.yanxia.phonefeaturetest.Util.TestUtil;
-import com.example.yanxia.phonefeaturetest.testactivity.VersionTestActivity;
-
 import java.util.List;
 
-import static java.security.AccessController.getContext;
 
 /**
  * Created by yanxia on 2017/2/10.
@@ -27,7 +21,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
     //define interface
     public static interface OnRecyclerViewItemClickListener {
-        void onItemClick(View view , int imageID);
+        void onItemClick(View view, int imageID);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -65,7 +59,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
                 int position = holder.getAdapterPosition();
                 TestItem testItem = mTestList.get(position);
                 if (mOnItemClickListener != null) {
-                    mOnItemClickListener.onItemClick(v,testItem.getImageId());
+                    mOnItemClickListener.onItemClick(v, testItem.getImageId());
                 }
             }
         });

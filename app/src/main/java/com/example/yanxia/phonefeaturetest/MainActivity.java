@@ -28,6 +28,9 @@ import java.util.List;
 
 import cn.bingoogolapple.qrcode.core.QRCodeView;
 
+/**
+ * @author yanxia-Mac
+ */
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -37,10 +40,10 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,19 +52,19 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         initTestItems();
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
         //LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        GridLayoutManager layoutManager = new GridLayoutManager(this,3);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(layoutManager);
         ItemAdapter adapter = new ItemAdapter(testItemList);
         recyclerView.setAdapter(adapter);
@@ -94,77 +97,78 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(MainActivity.this, "you clicked image " + id, Toast.LENGTH_SHORT).show();
         }
     }
+
     /**
      * 根据传入的类(class)打开指定的activity
+     *
      * @param pClass
      */
     protected void startActivityWithAnim(Class<?> pClass) {
         Intent intent = new Intent();
         intent.setClass(this, pClass);
         startActivity(intent);
-        overridePendingTransition(R.anim.trans_next_in, R.anim.trans_next_out);
     }
 
-    private void initTestItems(){
-        TestItem touchTest = new TestItem(getResources().getString(R.string.touchScreen),R.drawable.ic_smartphone_black_48dp);
+    private void initTestItems() {
+        TestItem touchTest = new TestItem(getResources().getString(R.string.touchScreen), R.drawable.ic_smartphone_black_48dp);
         testItemList.add(touchTest);
         //TestItem lcdTest = new TestItem("Color",R.drawable.ic_color_lens_black_48dp);
         //testItemList.add(lcdTest);
-        TestItem qrscanTest = new TestItem("QRScan",R.drawable.ic_blur_on_black_48dp);
+        TestItem qrscanTest = new TestItem("QRScan", R.drawable.ic_blur_on_black_48dp);
         testItemList.add(qrscanTest);
-        TestItem gpsTest = new TestItem("GPS",R.drawable.ic_gps_fixed_black_48dp);
+        TestItem gpsTest = new TestItem("GPS", R.drawable.ic_gps_fixed_black_48dp);
         testItemList.add(gpsTest);
-        TestItem powerTest = new TestItem("Battery",R.drawable.ic_battery_charging_full_black_48dp);
+        TestItem powerTest = new TestItem("Battery", R.drawable.ic_battery_charging_full_black_48dp);
         testItemList.add(powerTest);
-        TestItem keyTest = new TestItem("Keyboard",R.drawable.ic_keyboard_black_48dp);
+        TestItem keyTest = new TestItem("Keyboard", R.drawable.ic_keyboard_black_48dp);
         testItemList.add(keyTest);
-        TestItem speakerTest = new TestItem("Speaker",R.drawable.ic_speaker_black_48dp);
+        TestItem speakerTest = new TestItem("Speaker", R.drawable.ic_speaker_black_48dp);
         testItemList.add(speakerTest);
-        TestItem headsetTest = new TestItem("Headset",R.drawable.ic_headset_black_48dp);
+        TestItem headsetTest = new TestItem("Headset", R.drawable.ic_headset_black_48dp);
         testItemList.add(headsetTest);
-        TestItem microphoneTest = new TestItem("Microphone",R.drawable.ic_headset_mic_black_48dp);
+        TestItem microphoneTest = new TestItem("Microphone", R.drawable.ic_headset_mic_black_48dp);
         testItemList.add(microphoneTest);
-        TestItem receiverTest = new TestItem("Receiver",R.drawable.ic_phone_forwarded_black_48dp);
+        TestItem receiverTest = new TestItem("Receiver", R.drawable.ic_phone_forwarded_black_48dp);
         testItemList.add(receiverTest);
-        TestItem wifiTest = new TestItem("Wifi",R.drawable.ic_wifi_black_48dp);
+        TestItem wifiTest = new TestItem("Wifi", R.drawable.ic_wifi_black_48dp);
         testItemList.add(wifiTest);
-        TestItem bluetoothTest = new TestItem("Bluetooth",R.drawable.ic_bluetooth_black_48dp);
+        TestItem bluetoothTest = new TestItem("Bluetooth", R.drawable.ic_bluetooth_black_48dp);
         testItemList.add(bluetoothTest);
-        TestItem vibratorTest = new TestItem("Vibrator",R.drawable.ic_vibration_black_48dp);
+        TestItem vibratorTest = new TestItem("Vibrator", R.drawable.ic_vibration_black_48dp);
         testItemList.add(vibratorTest);
-        TestItem simcardTest = new TestItem("Simcard",R.drawable.ic_sim_card_black_48dp);
+        TestItem simcardTest = new TestItem("Simcard", R.drawable.ic_sim_card_black_48dp);
         testItemList.add(simcardTest);
-        TestItem brightnessTest = new TestItem("Brightness",R.drawable.ic_brightness_auto_black_48dp);
+        TestItem brightnessTest = new TestItem("Brightness", R.drawable.ic_brightness_auto_black_48dp);
         testItemList.add(brightnessTest);
-        TestItem romTest = new TestItem("ROM",R.drawable.ic_disc_full_black_48dp);
+        TestItem romTest = new TestItem("ROM", R.drawable.ic_disc_full_black_48dp);
         testItemList.add(romTest);
-        TestItem ramTest = new TestItem("RAM",R.drawable.ic_receipt_black_48dp);
+        TestItem ramTest = new TestItem("RAM", R.drawable.ic_receipt_black_48dp);
         testItemList.add(ramTest);
-        TestItem gravityTest = new TestItem("Gravity",R.drawable.ic_screen_rotation_black_48dp);
+        TestItem gravityTest = new TestItem("Gravity", R.drawable.ic_screen_rotation_black_48dp);
         testItemList.add(gravityTest);
-        TestItem lightTest = new TestItem("Light",R.drawable.ic_lightbulb_outline_black_48dp);
+        TestItem lightTest = new TestItem("Light", R.drawable.ic_lightbulb_outline_black_48dp);
         testItemList.add(lightTest);
-        TestItem rangeTest = new TestItem("Range",R.drawable.ic_vertical_align_top_black_48dp);
+        TestItem rangeTest = new TestItem("Range", R.drawable.ic_vertical_align_top_black_48dp);
         testItemList.add(rangeTest);
-        TestItem tfcardTest = new TestItem("TFCard",R.drawable.ic_storage_black_48dp);
+        TestItem tfcardTest = new TestItem("TFCard", R.drawable.ic_storage_black_48dp);
         testItemList.add(tfcardTest);
-        TestItem cameraTest = new TestItem("Camera",R.drawable.ic_camera_black_48dp);
+        TestItem cameraTest = new TestItem("Camera", R.drawable.ic_camera_black_48dp);
         testItemList.add(cameraTest);
         //TestItem frontcameraTest = new TestItem("FrontCamera",R.drawable.ic_camera_front_black_48dp);
         //testItemList.add(frontcameraTest);
-        TestItem fmradioTest = new TestItem("FMRadio",R.drawable.ic_radio_black_48dp);
+        TestItem fmradioTest = new TestItem("FMRadio", R.drawable.ic_radio_black_48dp);
         testItemList.add(fmradioTest);
-        TestItem dialTest = new TestItem("Dial",R.drawable.ic_dialpad_black_48dp);
+        TestItem dialTest = new TestItem("Dial", R.drawable.ic_dialpad_black_48dp);
         testItemList.add(dialTest);
-        TestItem flashlightTest = new TestItem("Flashlight",R.drawable.ic_highlight_black_48dp);
+        TestItem flashlightTest = new TestItem("Flashlight", R.drawable.ic_highlight_black_48dp);
         testItemList.add(flashlightTest);
-        TestItem versionTest = new TestItem(getResources().getString(R.string.version),R.drawable.ic_developer_board_black_48dp);
+        TestItem versionTest = new TestItem(getResources().getString(R.string.version), R.drawable.ic_developer_board_black_48dp);
         testItemList.add(versionTest);
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -214,7 +218,7 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

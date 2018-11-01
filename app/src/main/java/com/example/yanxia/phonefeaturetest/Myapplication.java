@@ -1,17 +1,21 @@
 package com.example.yanxia.phonefeaturetest;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 
 /**
- * Created by yanxia on 2017/2/10.
+ * @author yanxia
+ * @date 2017/2/10
  */
 
 public class Myapplication extends Application {
+    @SuppressLint("StaticFieldLeak")
     private static Context context;
 
     @Override
     public void onCreate() {
+        super.onCreate();
         context = getApplicationContext();
     }
 

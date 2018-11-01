@@ -10,6 +10,9 @@ import android.widget.Toast;
 import com.clock.scratch.ScratchView;
 import com.example.yanxia.phonefeaturetest.R;
 
+/**
+ * @author yanxia-Mac
+ */
 public class TouchTestActivity extends AppCompatActivity {
 
     private final static String TAG = "TouchTestActivity";
@@ -20,7 +23,7 @@ public class TouchTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_touch_test);
 
-        mScratchView = (ScratchView) findViewById(R.id.scratch_view);
+        mScratchView = findViewById(R.id.scratch_view);
         mScratchView.setMaxPercent(90);
         mScratchView.setEraseStatusListener(new ScratchView.EraseStatusListener() {
             @Override
