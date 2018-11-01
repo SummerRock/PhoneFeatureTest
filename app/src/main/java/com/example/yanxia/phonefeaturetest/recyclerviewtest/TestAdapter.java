@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.yanxia.phonefeaturetest.R;
-import com.example.yanxia.phonefeaturetest.utils.HSLog;
+import com.example.yanxia.phonefeaturetest.utils.CommonLog;
 
 import java.util.List;
 
@@ -44,13 +44,13 @@ public final class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestView
 
     @Override
     public void onViewRecycled(@NonNull TestViewHolder holder) {
-        HSLog.d("onViewRecycled holder: " + holder.getAdapterPosition());
+        CommonLog.d("onViewRecycled holder: " + holder.getAdapterPosition());
         super.onViewRecycled(holder);
     }
 
     @Override
     public boolean onFailedToRecycleView(@NonNull TestViewHolder holder) {
-        HSLog.d("onFailedToRecycleView holder: " + holder.getAdapterPosition());
+        CommonLog.d("onFailedToRecycleView holder: " + holder.getAdapterPosition());
         return super.onFailedToRecycleView(holder);
     }
 

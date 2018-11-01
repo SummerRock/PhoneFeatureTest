@@ -8,6 +8,9 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.FrameLayout;
 
+/**
+ * @author yanxia-Mac
+ */
 public final class CustomViewGroup extends FrameLayout {
     private static final String TAG = CustomViewGroup.class.getSimpleName();
 

@@ -16,7 +16,7 @@ import java.util.List;
  * @date 2017/2/10
  */
 
-public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.SimpleViewHolder> {
+public class TestItemAdapter extends RecyclerView.Adapter<TestItemAdapter.SimpleViewHolder> {
     private List<TestItem> mTestList;
     private OnTestItemClickListener testItemClickListener;
 
@@ -24,7 +24,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.SimpleViewHold
         void onItemClick(TestItem testItem);
     }
 
-    ItemAdapter(@NonNull List<TestItem> testList, @Nullable OnTestItemClickListener listener) {
+    TestItemAdapter(@NonNull List<TestItem> testList, @Nullable OnTestItemClickListener listener) {
         mTestList = testList;
         testItemClickListener = listener;
     }

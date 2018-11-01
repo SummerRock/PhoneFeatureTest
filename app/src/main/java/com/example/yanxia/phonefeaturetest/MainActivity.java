@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
-        ItemAdapter adapter = new ItemAdapter(testItemList, new ItemAdapter.OnTestItemClickListener() {
+        TestItemAdapter adapter = new TestItemAdapter(testItemList, new TestItemAdapter.OnTestItemClickListener() {
             @Override
             public void onItemClick(TestItem testItem) {
                 startTestActivity(testItem.getName());
