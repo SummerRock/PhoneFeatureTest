@@ -13,6 +13,7 @@ public class Constant {
     public static final String TEST_RECYCLER = "test_recycler";
     public static final String TEST_DIALOG = "test_dialog";
     public static final String TEST_HANDLER_THREAD = "test_handler_thread";
+    public static final String TEST_LAUNCH_ORDER = "test_launch_order";
 
     private static List<TestItem> initTestItems() {
         List<TestItem> testItemList = new ArrayList<>();
