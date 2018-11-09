@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         testItemList.add(new TestItem(Constant.TEST_DIALOG, R.drawable.ic_blur_on_black_48dp));
         testItemList.add(new TestItem(Constant.TEST_HANDLER_THREAD, R.drawable.ic_lock_24dp));
         testItemList.add(new TestItem(Constant.TEST_LAUNCH_ORDER, R.drawable.ic_lock_24dp));
+        testItemList.add(new TestItem(Constant.TEST_AUTO_PACKAGE, R.drawable.ic_lock_24dp));
     }
 
     private void startTestActivity(String testName) {
@@ -60,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case Constant.TEST_LAUNCH_ORDER:
                 startActivityWithNoAnim(LaunchOrderTestActivity.class);
+                break;
+            case Constant.TEST_AUTO_PACKAGE:
+                TestClass.mainTest();
                 break;
             default:
                 Toast.makeText(MainActivity.this, "you clicked testName " + testName, Toast.LENGTH_SHORT).show();

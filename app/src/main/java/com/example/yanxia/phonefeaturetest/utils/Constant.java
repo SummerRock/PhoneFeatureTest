@@ -14,6 +14,7 @@ public class Constant {
     public static final String TEST_DIALOG = "test_dialog";
     public static final String TEST_HANDLER_THREAD = "test_handler_thread";
     public static final String TEST_LAUNCH_ORDER = "test_launch_order";
+    public static final String TEST_AUTO_PACKAGE = "test_auto_package";
 
     private static List<TestItem> initTestItems() {
         List<TestItem> testItemList = new ArrayList<>();
