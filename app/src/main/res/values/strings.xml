@@ -21,4 +21,6 @@
     <string name="gpslocation">Gps Location:</string>
     <string name="title_activity_qrscan_test">QRScanTestActivity</string>
     <string name="title_activity_handler_thread">HandlerThreadActivity</string>
+
+    <string name="test_string_format">Enable %1$s to find your way!!!</string>
 </resources>
