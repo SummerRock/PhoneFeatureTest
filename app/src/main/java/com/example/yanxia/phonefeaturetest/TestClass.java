@@ -21,6 +21,18 @@ public class TestClass {
         Integer b = 2;
         Integer c = 3;
         Integer d = 3;
-        CommonLog.d(c == d ? "true" : "false");
+        Integer e = 321;
+        Integer f = 321;
+        Long g = 3L;
+        printBoolean(c == d);
+        printBoolean(e == f);
+        printBoolean(c == (a + b));
+        printBoolean(c.equals(a + b));
+        printBoolean(g == (a + b));
+        printBoolean(g.equals(a + b));
+    }
+
+    private static void printBoolean(boolean b) {
+        CommonLog.d(String.valueOf(b));
     }
 }
