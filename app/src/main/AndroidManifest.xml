@@ -58,6 +58,7 @@
         <activity
             android:name=".testactivity.LaunchOrderTestActivity"
             android:launchMode="singleTop" />
+        <activity android:name=".viewpager.ViewPagerActivity"/>
     </application>
 
 </manifest>
