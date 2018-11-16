@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.yanxia.phonefeaturetest.R;
+import com.example.yanxia.phonefeaturetest.utils.CommonLog;
 
 public class ViewPagerFragment extends Fragment {
 
@@ -40,9 +41,33 @@ public class ViewPagerFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.view_pager_fragment, container, false);
         TextView textView = rootView.findViewById(R.id.test_fragment_position_tv);
         textView.setText("position: " + String.valueOf(groupPosition));
-        RecyclerView recyclerView = rootView.findViewById(R.id.test_fragment_position_rv);
+        final RecyclerView recyclerView = rootView.findViewById(R.id.test_fragment_position_rv);
         recyclerView.setAdapter(new ViewPagerTestRvAdapter());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayout.HORIZONTAL, false));
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                CommonLog.d("onScrolled dx: " + dx +
+                        " dy: " + dy +
+                        " canScrollLeft: " + recyclerView.canScrollHorizontally(-1) +
+                        " canScrollRight: " + recyclerView.canScrollHorizontally(1));
+            }
+
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                CommonLog.d("onScrollStateChanged newState: " + newState +
+                        " canScrollLeft: " + recyclerView.canScrollHorizontally(-1) +
+                        " canScrollRight: " + recyclerView.canScrollHorizontally(1));
+            }
+        });
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recyclerView.smoothScrollToPosition(0);
+            }
+        });
         return rootView;
     }
 

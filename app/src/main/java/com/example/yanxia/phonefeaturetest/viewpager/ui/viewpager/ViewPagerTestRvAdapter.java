@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.TestItem;
+import com.example.yanxia.phonefeaturetest.utils.CommonLog;
 
 import java.util.List;
 
@@ -34,6 +35,12 @@ public class ViewPagerTestRvAdapter extends RecyclerView.Adapter<ViewPagerTestRv
     @Override
     public void onBindViewHolder(@NonNull RoundViewHolder holder, int position) {
         holder.testName.setText(String.valueOf(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CommonLog.d("click!!!");
+            }
+        });
     }
 
     @Override
