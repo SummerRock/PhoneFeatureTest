@@ -58,7 +58,8 @@
         <activity
             android:name=".testactivity.LaunchOrderTestActivity"
             android:launchMode="singleTop" />
-        <activity android:name=".viewpager.ViewPagerActivity"/>
+        <activity android:name=".viewpager.ViewPagerActivity" />
+        <activity android:name=".testactivity.ProgressBarTestActivity" />
     </application>
 
 </manifest>

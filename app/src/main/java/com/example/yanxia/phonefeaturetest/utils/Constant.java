@@ -16,6 +16,7 @@ public class Constant {
     public static final String TEST_LAUNCH_ORDER = "test_launch_order";
     public static final String TEST_AUTO_PACKAGE = "test_auto_package";
     public static final String TEST_STRING_FORMAT = "test_string_format";
+    public static final String TEST_PROGRESS_BAR = "test_progress_bar";
 
     private static List<TestItem> initTestItems() {
         List<TestItem> testItemList = new ArrayList<>();
