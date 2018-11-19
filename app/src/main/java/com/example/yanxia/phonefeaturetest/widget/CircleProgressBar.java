@@ -160,7 +160,7 @@ public class CircleProgressBar extends View {
         final int width = getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec);
         final int min = Math.min(width, height);
         setMeasuredDimension(min, min);
-        rectF.set(0 + strokeWidth / 2, 0 + strokeWidth / 2, min - strokeWidth / 2, min - strokeWidth / 2);
+        rectF.set(0 + strokeWidth / 2 + getPaddingLeft(), 0 + strokeWidth / 2 + getPaddingTop(), min - strokeWidth / 2 - getPaddingRight(), min - strokeWidth / 2 - getPaddingBottom());
     }
 
     /**
