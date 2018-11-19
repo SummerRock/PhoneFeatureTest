@@ -7,4 +7,24 @@
     tools:context=".testactivity.ProgressBarTestActivity">
 
 
+    <com.example.yanxia.phonefeaturetest.widget.CircleProgressBar
+        android:id="@+id/custom_progress_bar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        app:max="100"
+        app:min="0"
+        app:progressBarThickness="2dp"
+        app:progressbarColor="@android:color/holo_green_light" />
+
+    <android.support.v7.widget.AppCompatSeekBar
+        android:id="@+id/test_seek_bar"
+        style="@android:style/Widget.Holo.SeekBar"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/custom_progress_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:max="100"
+        android:min="0" />
 </RelativeLayout>
