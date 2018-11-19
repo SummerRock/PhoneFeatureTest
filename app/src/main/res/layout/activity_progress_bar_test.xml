@@ -15,6 +15,7 @@
         app:max="100"
         app:min="0"
         app:progressBarThickness="2dp"
+        app:progressbarBackgroundColor="@android:color/holo_purple"
         app:progressbarColor="@android:color/holo_green_light" />
 
     <android.support.v7.widget.AppCompatSeekBar

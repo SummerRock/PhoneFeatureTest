@@ -14,6 +14,7 @@
         <attr name="max" format="integer" />
         <attr name="progress" format="integer" />
         <attr name="progressbarColor" format="color" />
+        <attr name="progressbarBackgroundColor" format="color" />
         <attr name="progressBarThickness" format="dimension" />
 
     </declare-styleable>
