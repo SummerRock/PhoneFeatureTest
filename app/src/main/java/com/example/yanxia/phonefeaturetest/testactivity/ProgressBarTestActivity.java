@@ -1,5 +1,6 @@
 package com.example.yanxia.phonefeaturetest.testactivity;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -47,6 +48,8 @@ public class ProgressBarTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 progressButton.initState();
+                progressButton.setText("Wait");
+                progressButton.setBackgroundResource(R.drawable.button_bg_selector);
             }
         });
     }

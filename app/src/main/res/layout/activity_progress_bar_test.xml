@@ -15,7 +15,6 @@
         android:layout_marginBottom="10dp"
         android:background="@android:color/holo_purple"
         android:gravity="center"
-        app:backgroundBorderWidth="6dp"
         app:buttonCornerRadius="7dp"
         app:downloadingShowType="text"
         app:progressButtonDownloadingText="Downloading"

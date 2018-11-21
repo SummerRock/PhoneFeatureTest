@@ -13,7 +13,6 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.FloatRange;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
 
@@ -45,7 +44,6 @@ public class ProgressButton extends AppCompatButton {
     private Bitmap pgBitmap; //进度条 bitmap
     private Canvas pgCanvas;
     private int progressColor;
-    private int borderWidth;
     private RectF bgRectF;
     private BitmapShader bitmapShader;
 
@@ -91,8 +89,7 @@ public class ProgressButton extends AppCompatButton {
         try {
             cornerRadius = attr.getDimension(R.styleable.ProgressButton_buttonCornerRadius, density * 4);
 
-            int defTextColor = ContextCompat.getColor(context, R.color.colorPrimary);
-            textColor = attr.getColor(R.styleable.ProgressButton_finishColor, defTextColor);
+            textColor = attr.getColor(R.styleable.ProgressButton_textOriginColor, Color.BLUE);
 
             textSize = attr.getDimension(R.styleable.ProgressButton_progressTextSize, density * 10);
 
@@ -100,7 +97,6 @@ public class ProgressButton extends AppCompatButton {
 
             progressColor = attr.getColor(R.styleable.ProgressButton_progressColor, getResources().getColor(R.color.colorPrimary));
             backgroundColor = attr.getColor(R.styleable.ProgressButton_progressButtonBgColor, Color.LTGRAY);
-            borderWidth = (int) attr.getDimension(R.styleable.ProgressButton_backgroundBorderWidth, density * 3);
 
             downloadingText = attr.getString(R.styleable.ProgressButton_progressButtonDownloadingText);
         } finally {
@@ -116,6 +112,7 @@ public class ProgressButton extends AppCompatButton {
     @Override
     protected void onDraw(Canvas canvas) {
         if (isDownloading) {
+            setBackgroundColor(Color.TRANSPARENT);
             canvas.drawRoundRect(getBgRectF(), cornerRadius, cornerRadius, backgroundPaint);
         }
         if (mProgress >= MIN_PROGRESS && mProgress <= MAX_PROGRESS && isDownloading) {
@@ -126,9 +123,6 @@ public class ProgressButton extends AppCompatButton {
             }
             if (downloadShowType == TYPE_DOWNLOADING_SHOW_TEXT) {
                 setText(downloadingText);
-            }
-            if (mProgress >= MAX_PROGRESS) {
-                isDownloading = false;
             }
         }
         super.onDraw(canvas);
@@ -158,7 +152,7 @@ public class ProgressButton extends AppCompatButton {
 
     private Bitmap getPgBitmap() {
         if (pgBitmap == null) {
-            pgBitmap = Bitmap.createBitmap(getMeasuredWidth() - borderWidth, getMeasuredHeight() - borderWidth, Bitmap.Config.ARGB_8888);
+            pgBitmap = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
             pgCanvas = new Canvas(pgBitmap);
         }
         return pgBitmap;
