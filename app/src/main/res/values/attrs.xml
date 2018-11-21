@@ -28,9 +28,6 @@
         <attr name="showProgressNum" format="boolean" />
         <attr name="backgroundBorderWidth" format="dimension" />
         <attr name="progressButtonBgColor" format="color" />
-        <attr name="backgroundType" format="enum">
-            <enum name="stroke" value="0" />
-            <enum name="fill" value="1" />
-        </attr>
+        <attr name="progressButtonDownloadingText" format="string" />
     </declare-styleable>
 </resources>

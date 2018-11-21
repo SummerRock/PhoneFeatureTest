@@ -13,8 +13,9 @@
         android:layout_above="@+id/custom_progress_bar"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
+        android:background="@android:color/holo_purple"
+        android:gravity="center"
         app:backgroundBorderWidth="6dp"
-        app:backgroundType="fill"
         app:buttonCornerRadius="7dp"
         app:progressColor="@android:color/holo_red_light"
         app:progressTextSize="12sp"
@@ -44,4 +45,14 @@
         android:layout_marginTop="10dp"
         android:max="100"
         android:min="0" />
+
+    <Button
+        android:id="@+id/test_reset_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/test_seek_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Reset Button"
+        tools:ignore="HardcodedText" />
 </RelativeLayout>

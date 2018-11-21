@@ -2,6 +2,8 @@ package com.example.yanxia.phonefeaturetest.testactivity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.SeekBar;
 
 import com.example.yanxia.phonefeaturetest.R;
@@ -20,6 +22,7 @@ public class ProgressBarTestActivity extends AppCompatActivity {
 
         final CircleProgressBar circleProgressBar = findViewById(R.id.custom_progress_bar);
         final ProgressButton progressButton = findViewById(R.id.custom_progress_button);
+        progressButton.setText("ddd");
 
         SeekBar seekBar = findViewById(R.id.test_seek_bar);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -37,6 +40,14 @@ public class ProgressBarTestActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
+            }
+        });
+
+        Button button = findViewById(R.id.test_reset_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                progressButton.initState();
             }
         });
     }

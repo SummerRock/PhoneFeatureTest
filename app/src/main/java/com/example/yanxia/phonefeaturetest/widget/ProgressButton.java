@@ -12,6 +12,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.GradientDrawable;
+import android.support.annotation.FloatRange;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
@@ -32,7 +33,7 @@ public class ProgressButton extends AppCompatButton {
     @SuppressWarnings("FieldCanBeLocal")
     private static float MIN_PROGRESS = 0f;//最小进度：默认为0
     private boolean isShowProgress;  //是否展示进度
-    private boolean isFinish = true; //状态是否结束
+    private boolean isDownloading = false;
     private float cornerRadius;
 
     private String progressText; //进度提示文本
@@ -52,11 +53,6 @@ public class ProgressButton extends AppCompatButton {
     private Paint backgroundPaint;
 
     private int backgroundColor = Color.LTGRAY;
-
-    private static final int BACKGROUND_TYPE_STROKE = 0;
-    private static final int BACKGROUND_TYPE_FILL = 1;
-
-    private int backgroundType = BACKGROUND_TYPE_FILL;
 
     public ProgressButton(Context context) {
         this(context, null);
@@ -100,40 +96,29 @@ public class ProgressButton extends AppCompatButton {
             backgroundColor = attr.getColor(R.styleable.ProgressButton_progressButtonBgColor, Color.LTGRAY);
             borderWidth = (int) attr.getDimension(R.styleable.ProgressButton_backgroundBorderWidth, density * 3);
 
-            backgroundType = attr.getInt(R.styleable.ProgressButton_backgroundType, BACKGROUND_TYPE_FILL);
-
         } finally {
             attr.recycle();
         }
-        isFinish = true;
 
         backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
         backgroundPaint.setColor(backgroundColor);
-        if (backgroundType == BACKGROUND_TYPE_FILL) {
-            backgroundPaint.setStyle(Paint.Style.FILL);
-        } else if (backgroundType == BACKGROUND_TYPE_STROKE) {
-            backgroundPaint.setStyle(Paint.Style.STROKE);
-            backgroundPaint.setStrokeWidth(borderWidth);
-            backgroundPaint.setStrokeJoin(Paint.Join.ROUND);
-        }
+        backgroundPaint.setStyle(Paint.Style.FILL);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if (backgroundType == BACKGROUND_TYPE_STROKE) {
-            canvas.drawRect(getBgRectF(), backgroundPaint);
-        } else {
+        if (isDownloading) {
             canvas.drawRoundRect(getBgRectF(), cornerRadius, cornerRadius, backgroundPaint);
         }
-        if (mProgress >= MIN_PROGRESS && mProgress <= MAX_PROGRESS && !isFinish) {
+        if (mProgress >= MIN_PROGRESS && mProgress <= MAX_PROGRESS && isDownloading) {
             drawProgress(canvas);
             if (isShowProgress) {
                 drawProgressText(canvas);
                 drawColorProgressText(canvas);
             }
             if (mProgress >= MAX_PROGRESS) {
-                isFinish = true;
+                isDownloading = false;
             }
         }
         super.onDraw(canvas);
@@ -221,15 +206,15 @@ public class ProgressButton extends AppCompatButton {
         return String.format(Locale.getDefault(), "%3.0f %%", mProgress);
     }
 
-    public void setProgress(float progress) {
-        isFinish = false;
+    public void setProgress(@FloatRange(from = 0f, to = 100f) float progress) {
+        isDownloading = true;
         setText("");
         mProgress = progress;
         invalidate();
     }
 
     public void initState() {
-        isFinish = true;
+        isDownloading = false;
         mProgress = MIN_PROGRESS;
         invalidate();
     }
