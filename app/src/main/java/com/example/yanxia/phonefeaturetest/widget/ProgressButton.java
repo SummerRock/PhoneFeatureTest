@@ -51,6 +51,13 @@ public class ProgressButton extends AppCompatButton {
 
     private Paint backgroundPaint;
 
+    private int backgroundColor = Color.LTGRAY;
+
+    private static final int BACKGROUND_TYPE_STROKE = 0;
+    private static final int BACKGROUND_TYPE_FILL = 1;
+
+    private int backgroundType = BACKGROUND_TYPE_FILL;
+
     public ProgressButton(Context context) {
         this(context, null);
     }
@@ -89,10 +96,11 @@ public class ProgressButton extends AppCompatButton {
 
             isShowProgress = attr.getBoolean(R.styleable.ProgressButton_showProgressNum, true);
 
-            int defaultProgressColor = getResources().getColor(R.color.colorPrimary);
-            progressColor = attr.getColor(R.styleable.ProgressButton_progressColor, defaultProgressColor);
-
+            progressColor = attr.getColor(R.styleable.ProgressButton_progressColor, getResources().getColor(R.color.colorPrimary));
+            backgroundColor = attr.getColor(R.styleable.ProgressButton_progressButtonBgColor, Color.LTGRAY);
             borderWidth = (int) attr.getDimension(R.styleable.ProgressButton_backgroundBorderWidth, density * 3);
+
+            backgroundType = attr.getInt(R.styleable.ProgressButton_backgroundType, BACKGROUND_TYPE_FILL);
 
         } finally {
             attr.recycle();
@@ -100,12 +108,24 @@ public class ProgressButton extends AppCompatButton {
         isFinish = true;
 
         backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        backgroundPaint.setColor(Color.GREEN);
+
+        backgroundPaint.setColor(backgroundColor);
+        if (backgroundType == BACKGROUND_TYPE_FILL) {
+            backgroundPaint.setStyle(Paint.Style.FILL);
+        } else if (backgroundType == BACKGROUND_TYPE_STROKE) {
+            backgroundPaint.setStyle(Paint.Style.STROKE);
+            backgroundPaint.setStrokeWidth(borderWidth);
+            backgroundPaint.setStrokeJoin(Paint.Join.ROUND);
+        }
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawRoundRect(getBgRectF(), cornerRadius, cornerRadius, backgroundPaint);
+        if (backgroundType == BACKGROUND_TYPE_STROKE) {
+            canvas.drawRect(getBgRectF(), backgroundPaint);
+        } else {
+            canvas.drawRoundRect(getBgRectF(), cornerRadius, cornerRadius, backgroundPaint);
+        }
         if (mProgress >= MIN_PROGRESS && mProgress <= MAX_PROGRESS && !isFinish) {
             drawProgress(canvas);
             if (isShowProgress) {
