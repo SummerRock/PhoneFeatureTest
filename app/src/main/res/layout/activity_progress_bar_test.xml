@@ -17,9 +17,10 @@
         android:gravity="center"
         app:backgroundBorderWidth="6dp"
         app:buttonCornerRadius="7dp"
+        app:downloadingShowType="text"
+        app:progressButtonDownloadingText="Downloading"
         app:progressColor="@android:color/holo_red_light"
         app:progressTextSize="12sp"
-        app:showProgressNum="true"
         app:textColor="@android:color/white" />
 
     <com.example.yanxia.phonefeaturetest.widget.CircleProgressBar

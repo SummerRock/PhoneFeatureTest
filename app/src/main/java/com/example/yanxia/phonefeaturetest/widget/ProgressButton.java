@@ -32,7 +32,6 @@ public class ProgressButton extends AppCompatButton {
     private static float MAX_PROGRESS = 100f; //最大进度：默认为100
     @SuppressWarnings("FieldCanBeLocal")
     private static float MIN_PROGRESS = 0f;//最小进度：默认为0
-    private boolean isShowProgress;  //是否展示进度
     private boolean isDownloading = false;
     private float cornerRadius;
 
@@ -52,7 +51,13 @@ public class ProgressButton extends AppCompatButton {
 
     private Paint backgroundPaint;
 
-    private int backgroundColor = Color.LTGRAY;
+    private static final int TYPE_DOWNLOADING_SHOW_NONE = 0;
+    private static final int TYPE_DOWNLOADING_SHOW_NUMBER = 1;
+    private static final int TYPE_DOWNLOADING_SHOW_TEXT = 2;
+
+    private int downloadShowType = TYPE_DOWNLOADING_SHOW_NONE;
+
+    private String downloadingText = "";
 
     public ProgressButton(Context context) {
         this(context, null);
@@ -82,6 +87,7 @@ public class ProgressButton extends AppCompatButton {
 
         TypedArray attr = context.obtainStyledAttributes(attributeSet, R.styleable.ProgressButton);
 
+        int backgroundColor;
         try {
             cornerRadius = attr.getDimension(R.styleable.ProgressButton_buttonCornerRadius, density * 4);
 
@@ -90,12 +96,13 @@ public class ProgressButton extends AppCompatButton {
 
             textSize = attr.getDimension(R.styleable.ProgressButton_progressTextSize, density * 10);
 
-            isShowProgress = attr.getBoolean(R.styleable.ProgressButton_showProgressNum, true);
+            downloadShowType = attr.getInt(R.styleable.ProgressButton_downloadingShowType, TYPE_DOWNLOADING_SHOW_NONE);
 
             progressColor = attr.getColor(R.styleable.ProgressButton_progressColor, getResources().getColor(R.color.colorPrimary));
             backgroundColor = attr.getColor(R.styleable.ProgressButton_progressButtonBgColor, Color.LTGRAY);
             borderWidth = (int) attr.getDimension(R.styleable.ProgressButton_backgroundBorderWidth, density * 3);
 
+            downloadingText = attr.getString(R.styleable.ProgressButton_progressButtonDownloadingText);
         } finally {
             attr.recycle();
         }
@@ -113,9 +120,12 @@ public class ProgressButton extends AppCompatButton {
         }
         if (mProgress >= MIN_PROGRESS && mProgress <= MAX_PROGRESS && isDownloading) {
             drawProgress(canvas);
-            if (isShowProgress) {
+            if (downloadShowType == TYPE_DOWNLOADING_SHOW_NUMBER) {
                 drawProgressText(canvas);
                 drawColorProgressText(canvas);
+            }
+            if (downloadShowType == TYPE_DOWNLOADING_SHOW_TEXT) {
+                setText(downloadingText);
             }
             if (mProgress >= MAX_PROGRESS) {
                 isDownloading = false;

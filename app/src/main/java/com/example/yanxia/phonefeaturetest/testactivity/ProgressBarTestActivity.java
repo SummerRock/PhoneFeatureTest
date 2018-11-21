@@ -22,7 +22,6 @@ public class ProgressBarTestActivity extends AppCompatActivity {
 
         final CircleProgressBar circleProgressBar = findViewById(R.id.custom_progress_bar);
         final ProgressButton progressButton = findViewById(R.id.custom_progress_button);
-        progressButton.setText("ddd");
 
         SeekBar seekBar = findViewById(R.id.test_seek_bar);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
