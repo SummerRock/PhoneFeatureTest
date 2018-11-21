@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".testactivity.ProgressBarTestActivity">
 
+    <com.example.yanxia.phonefeaturetest.widget.ProgressButton
+        android:id="@+id/custom_progress_button"
+        android:layout_width="90dp"
+        android:layout_height="48dp"
+        android:layout_above="@+id/custom_progress_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        app:backgroundBorderWidth="6dp"
+        app:buttonCornerRadius="7dp"
+        app:progressColor="@android:color/holo_red_light"
+        app:progressTextSize="12sp"
+        app:showProgressNum="true"
+        app:textColor="@android:color/white" />
+
     <com.example.yanxia.phonefeaturetest.widget.CircleProgressBar
         android:id="@+id/custom_progress_bar"
         android:layout_width="60dp"
