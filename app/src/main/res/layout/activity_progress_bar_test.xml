@@ -6,15 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".testactivity.ProgressBarTestActivity">
 
-
     <com.example.yanxia.phonefeaturetest.widget.CircleProgressBar
         android:id="@+id/custom_progress_bar"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_centerInParent="true"
+        android:background="@android:color/holo_blue_dark"
+        android:padding="8dp"
         app:max="100"
         app:min="0"
-        app:progressBarThickness="2dp"
+        app:progressBarThickness="6dp"
         app:progressbarBackgroundColor="@android:color/holo_purple"
         app:progressbarColor="@android:color/holo_green_light" />
 

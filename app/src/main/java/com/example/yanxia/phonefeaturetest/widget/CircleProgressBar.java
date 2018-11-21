@@ -59,6 +59,8 @@ public class CircleProgressBar extends View {
     private Paint backgroundPaint;
     private Paint foregroundPaint;
 
+    private Paint.Cap cap = Paint.Cap.ROUND;
+
     public float getStrokeWidth() {
         return strokeWidth;
     }
@@ -69,6 +71,11 @@ public class CircleProgressBar extends View {
         foregroundPaint.setStrokeWidth(strokeWidth);
         invalidate();
         requestLayout();//Because it should recalculate its bounds
+    }
+
+    public void setCap(Paint.Cap cap) {
+        this.cap = cap;
+        invalidate();
     }
 
     public float getProgress() {
@@ -141,6 +148,7 @@ public class CircleProgressBar extends View {
         foregroundPaint.setColor(foregroundColor);
         foregroundPaint.setStyle(Paint.Style.STROKE);
         foregroundPaint.setStrokeWidth(strokeWidth);
+        foregroundPaint.setStrokeCap(cap);
     }
 
     @Override
@@ -212,23 +220,3 @@ public class CircleProgressBar extends View {
         objectAnimator.start();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
