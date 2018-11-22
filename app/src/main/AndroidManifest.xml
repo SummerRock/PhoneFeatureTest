@@ -60,6 +60,10 @@
             android:launchMode="singleTop" />
         <activity android:name=".viewpager.ViewPagerActivity" />
         <activity android:name=".testactivity.ProgressBarTestActivity" />
+        <activity
+            android:name=".horizonRv.HorizonRvTestActivity"
+            android:label="@string/title_activity_horizon_rv_test"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
