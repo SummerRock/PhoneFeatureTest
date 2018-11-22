@@ -49,7 +49,7 @@
             android:label="@string/title_activity_qrscan_test"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".recyclerviewtest.RecyclerViewTestActivity"
+            android:name=".notifyitemtest.RecyclerViewTestActivity"
             android:launchMode="singleTop" />
         <activity
             android:name=".testactivity.HandlerThreadActivity"
