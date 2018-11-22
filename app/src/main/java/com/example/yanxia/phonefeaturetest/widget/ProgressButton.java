@@ -112,7 +112,7 @@ public class ProgressButton extends AppCompatButton {
     @Override
     protected void onDraw(Canvas canvas) {
         if (isDownloading) {
-            setBackgroundColor(Color.TRANSPARENT);
+            // setBackgroundColor(Color.TRANSPARENT);
             canvas.drawRoundRect(getBgRectF(), cornerRadius, cornerRadius, backgroundPaint);
         }
         if (mProgress >= MIN_PROGRESS && mProgress <= MAX_PROGRESS && isDownloading) {
