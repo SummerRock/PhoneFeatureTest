@@ -14,6 +14,7 @@ import com.example.yanxia.phonefeaturetest.testactivity.LaunchOrderTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ProgressBarTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.VersionTestActivity;
 import com.example.yanxia.phonefeaturetest.utils.Constant;
+import com.example.yanxia.phonefeaturetest.viewpager.ViewPagerActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         testItemList.add(new TestItem(Constant.TEST_STRING_FORMAT, R.drawable.ic_lock_24dp));
         testItemList.add(new TestItem(Constant.TEST_PROGRESS_BAR, R.drawable.ic_lock_24dp));
         testItemList.add(new TestItem(Constant.TEST_HORIZONTAL_RV, R.drawable.ic_lock_24dp));
+        testItemList.add(new TestItem(Constant.TEST_RV_INSIDE_VIEW_PAGER, R.drawable.ic_lock_24dp));
     }
 
     private void startTestActivity(String testName) {
@@ -78,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case Constant.TEST_HORIZONTAL_RV:
                 startActivityWithNoAnim(HorizonRvTestActivity.class);
+                break;
+            case Constant.TEST_RV_INSIDE_VIEW_PAGER:
+                startActivityWithNoAnim(ViewPagerActivity.class);
                 break;
             default:
                 Toast.makeText(MainActivity.this, "you clicked testName " + testName, Toast.LENGTH_SHORT).show();
