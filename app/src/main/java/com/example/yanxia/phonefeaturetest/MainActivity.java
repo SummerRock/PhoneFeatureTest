@@ -12,8 +12,8 @@ import com.example.yanxia.phonefeaturetest.notifyitemtest.RecyclerViewTestActivi
 import com.example.yanxia.phonefeaturetest.testactivity.HandlerThreadActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.LaunchOrderTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ProgressBarTestActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.VersionTestActivity;
 import com.example.yanxia.phonefeaturetest.utils.Constant;
-import com.example.yanxia.phonefeaturetest.viewpager.ViewPagerActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivityWithNoAnim(RecyclerViewTestActivity.class);
                 break;
             case Constant.TEST_DIALOG:
-                startActivityWithNoAnim(ViewPagerActivity.class);
+                startActivityWithNoAnim(VersionTestActivity.class);
                 break;
             case Constant.TEST_HANDLER_THREAD:
                 startActivityWithNoAnim(HandlerThreadActivity.class);

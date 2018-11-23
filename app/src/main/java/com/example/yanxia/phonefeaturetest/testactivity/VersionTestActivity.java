@@ -2,11 +2,11 @@ package com.example.yanxia.phonefeaturetest.testactivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
@@ -14,8 +14,6 @@ import android.widget.TextView;
 import java.util.Date;
 
 import com.example.yanxia.phonefeaturetest.R;
-
-import static com.example.yanxia.phonefeaturetest.R.id.fab;
 
 public class VersionTestActivity extends BaseActivity {
 
@@ -34,7 +32,8 @@ public class VersionTestActivity extends BaseActivity {
         Date d = new Date(Build.TIME);
         phoneBuildTimeTv.setText(d.toString());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setBackgroundTintList(getButtonTintList());
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,6 +57,29 @@ public class VersionTestActivity extends BaseActivity {
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
+    }
+
+    private ColorStateList getButtonTintList() {
+        //noinspection ConstantConditions
+        int normalColor = ContextCompat.getColor(this, R.color.design_default_color_primary);
+        return new ColorStateList(
+                new int[][]
+                        {
+                                new int[]{android.R.attr.state_pressed},
+                                new int[]{android.R.attr.state_focused},
+                                new int[]{android.R.attr.state_activated},
+                                new int[]{android.R.attr.state_checked},
+                                new int[]{}
+                        },
+                new int[]
+                        {
+                                normalColor,
+                                normalColor,
+                                normalColor,
+                                normalColor,
+                                normalColor
+                        }
+        );
     }
 
 }
