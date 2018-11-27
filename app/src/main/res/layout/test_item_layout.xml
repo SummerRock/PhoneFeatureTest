@@ -5,11 +5,14 @@
     android:layout_height="wrap_content"
     android:padding="8dp">
 
-    <EditText
-        android:id="@+id/test_item_edit_text"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/test_item_text_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:ellipsize="end"
+        android:gravity="center"
         android:hint="input"
+        android:maxLines="1"
         tools:ignore="HardcodedText" />
 </com.example.yanxia.phonefeaturetest.widget.CustomViewGroup>

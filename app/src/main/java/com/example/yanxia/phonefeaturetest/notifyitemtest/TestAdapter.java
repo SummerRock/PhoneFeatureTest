@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.utils.CommonLog;
@@ -36,9 +36,9 @@ public final class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestView
     @Override
     public void onBindViewHolder(@NonNull TestViewHolder holder, int position, @NonNull List<Object> payloads) {
         if (payloads.isEmpty()) {
-            holder.editText.setText("position: " + position);
+            holder.textView.setText("position: " + position);
         } else {
-            holder.editText.setText("payloads is not empty!");
+            holder.textView.setText("payloads is not empty!");
         }
     }
 
@@ -60,11 +60,11 @@ public final class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestView
     }
 
     class TestViewHolder extends RecyclerView.ViewHolder {
-        private EditText editText;
+        private TextView textView;
 
         TestViewHolder(View itemView) {
             super(itemView);
-            editText = itemView.findViewById(R.id.test_item_edit_text);
+            textView = itemView.findViewById(R.id.test_item_text_view);
             // setIsRecyclable(false);
         }
     }
