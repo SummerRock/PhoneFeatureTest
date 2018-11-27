@@ -22,14 +22,14 @@ public class RecyclerViewTestActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.test_rv);
         GridLayoutManager layout = new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layout);
-        final TestAdapter adapter = new TestAdapter();
+        final TestSelectAdapter adapter = new TestSelectAdapter();
         recyclerView.setAdapter(adapter);
 
         Button button = findViewById(R.id.test_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                adapter.notifyItemChanged(0, TestAdapter.PAYLOADS);
+                adapter.changeSelectPosition(20);
             }
         });
     }

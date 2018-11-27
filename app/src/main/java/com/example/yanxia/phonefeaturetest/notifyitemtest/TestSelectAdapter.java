@@ -16,9 +16,10 @@ import java.util.List;
 /**
  * @author yanxia-Mac
  */
-public final class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestViewHolder> {
+public final class TestSelectAdapter extends RecyclerView.Adapter<TestSelectAdapter.TestViewHolder> {
 
     static final String PAYLOADS = "payloads";
+    private int selectPosition = RecyclerView.NO_POSITION;
 
     @NonNull
     @Override
@@ -34,12 +35,33 @@ public final class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestView
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull TestViewHolder holder, int position, @NonNull List<Object> payloads) {
-        if (payloads.isEmpty()) {
-            holder.textView.setText("position: " + position);
-        } else {
-            holder.textView.setText("payloads is not empty!");
+    public void onBindViewHolder(@NonNull final TestViewHolder holder, int position, @NonNull List<Object> payloads) {
+        if (payloads.contains(PAYLOADS)) {
+            if (position == selectPosition) {
+                holder.textView.setSelected(true);
+            } else {
+                holder.textView.setSelected(false);
+            }
+            return;
         }
+        holder.textView.setText("position: " + position);
+        if (position == selectPosition) {
+            holder.textView.setSelected(true);
+        } else {
+            holder.textView.setSelected(false);
+        }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeSelectPosition(holder.getAdapterPosition());
+            }
+        });
+    }
+
+    public void changeSelectPosition(int position) {
+        notifyItemChanged(selectPosition, PAYLOADS);
+        selectPosition = position;
+        notifyItemChanged(selectPosition, PAYLOADS);
     }
 
     @Override
