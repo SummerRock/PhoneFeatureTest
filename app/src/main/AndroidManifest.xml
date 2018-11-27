@@ -64,7 +64,11 @@
             android:name=".horizonRv.HorizonRvTestActivity"
             android:label="@string/title_activity_horizon_rv_test"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".testactivity.StorageTestActivity"></activity>
+        <activity android:name=".testactivity.StorageTestActivity" />
+        <activity
+            android:name=".testactivity.SensorTestActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

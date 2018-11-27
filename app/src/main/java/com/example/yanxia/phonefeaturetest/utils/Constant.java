@@ -20,6 +20,7 @@ public class Constant {
     public static final String TEST_HORIZONTAL_RV = "test_horizontal_rv";
     public static final String TEST_RV_INSIDE_VIEW_PAGER = "test_rv_inside_view_pager";
     public static final String TEST_GPS = "test_gps";
+    public static final String TEST_SENSOR = "test_sensor";
 
     private static List<TestItem> initTestItems() {
         List<TestItem> testItemList = new ArrayList<>();
