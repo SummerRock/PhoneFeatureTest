@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.example.yanxia.phonefeaturetest.R;
-import com.example.yanxia.phonefeaturetest.utils.CommonLog;
 
 public class HorizonRvTestActivity extends AppCompatActivity {
     private static final String TAG = "HorizonRvTestActivity";

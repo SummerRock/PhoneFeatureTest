@@ -11,24 +11,18 @@ import android.location.LocationProvider;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yanxia.phonefeaturetest.R;
 
-import static com.example.yanxia.phonefeaturetest.R.id.fab;
-import static com.example.yanxia.phonefeaturetest.R.id.phonetvgps;
-import static com.example.yanxia.phonefeaturetest.R.id.textView;
-
 public class GpsTestActivity extends AppCompatActivity {
+    private static final String TAG = "GpsTestActivity";
 
     private LocationManager locationManager;
     private TextView textGPSView;
@@ -42,15 +36,15 @@ public class GpsTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gps_test);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Acquire a reference to the system Location Manager
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        textGPSView = (TextView) findViewById(R.id.phonetvgps);
+        textGPSView = findViewById(R.id.phone_tv_gps);
         LocationProvider gpsProvider = locationManager.getProvider(LocationManager.GPS_PROVIDER);
         LocationProvider netProvider = locationManager.getProvider(LocationManager.NETWORK_PROVIDER);
         locationManager.getAllProviders();
-        Log.d("GpsTestActivity","available location provider = "+locationManager.getAllProviders());
+        Log.d(TAG, "available location provider = " + locationManager.getAllProviders());
         // Define a listener that responds to location updates
         locationListener = new LocationListener() {
             @Override
@@ -81,10 +75,10 @@ public class GpsTestActivity extends AppCompatActivity {
             }
         };
 
-        if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
-            try{
+        if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            try {
                 locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 100, 0, locationListener);
-            }catch (SecurityException se){
+            } catch (SecurityException se) {
                 Toast.makeText(this, "permission error!", Toast.LENGTH_SHORT).show();
             }
         } else {
@@ -94,22 +88,13 @@ public class GpsTestActivity extends AppCompatActivity {
             startActivity(i);
         }
 
-        /*if (ContextCompat.checkSelfPermission(GpsTestActivity.this,
+        if (ContextCompat.checkSelfPermission(GpsTestActivity.this,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(GpsTestActivity.this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         } else {
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-        }*/
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        }
     }
 
     @Override
@@ -118,9 +103,9 @@ public class GpsTestActivity extends AppCompatActivity {
         switch (requestCode) {
             case 1:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    try{
+                    try {
                         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-                    }catch (SecurityException se){
+                    } catch (SecurityException se) {
                         Toast.makeText(this, "permission error!", Toast.LENGTH_SHORT).show();
                     }
                 } else {

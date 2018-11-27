@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.yanxia.phonefeaturetest.horizonRv.HorizonRvTestActivity;
 import com.example.yanxia.phonefeaturetest.notifyitemtest.RecyclerViewTestActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.GpsTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.HandlerThreadActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.LaunchOrderTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ProgressBarTestActivity;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         testItemList.add(new TestItem(Constant.TEST_PROGRESS_BAR, R.drawable.ic_lock_24dp));
         testItemList.add(new TestItem(Constant.TEST_HORIZONTAL_RV, R.drawable.ic_lock_24dp));
         testItemList.add(new TestItem(Constant.TEST_RV_INSIDE_VIEW_PAGER, R.drawable.ic_lock_24dp));
+        testItemList.add(new TestItem(Constant.TEST_GPS, R.drawable.ic_lock_24dp));
     }
 
     private void startTestActivity(String testName) {
@@ -83,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case Constant.TEST_RV_INSIDE_VIEW_PAGER:
                 startActivityWithNoAnim(ViewPagerActivity.class);
+                break;
+            case Constant.TEST_GPS:
+                startActivityWithNoAnim(GpsTestActivity.class);
                 break;
             default:
                 Toast.makeText(MainActivity.this, "you clicked testName " + testName, Toast.LENGTH_SHORT).show();
