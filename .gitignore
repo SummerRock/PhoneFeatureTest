@@ -9,3 +9,9 @@
 .externalNativeBuild
 .idea/gradle.xml
 .idea/modules.xml
+
+# Intellij specific files
+*.iml
+*.ipr
+*.iws
+.idea/

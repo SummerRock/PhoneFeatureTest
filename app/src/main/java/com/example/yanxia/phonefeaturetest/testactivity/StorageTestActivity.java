@@ -20,40 +20,31 @@ public class StorageTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_storage_test);
 
         Button button1 = findViewById(R.id.storage_test_button_1);
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    createFile1();
-                } catch (IOException e) {
-                    Toast.makeText(StorageTestActivity.this, "create file1 failed!", Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                }
+        button1.setOnClickListener(v -> {
+            try {
+                createFile1();
+            } catch (IOException e) {
+                Toast.makeText(StorageTestActivity.this, "create file1 failed!", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
             }
         });
         Button button2 = findViewById(R.id.storage_test_button_2);
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    createNewFile(getFilesDir() + File.separator + "testDirectory" + File.separator + "testDir2.zip");
-                } catch (IOException e) {
-                    Toast.makeText(StorageTestActivity.this, "create file2 failed!", Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                }
+        button2.setOnClickListener(v -> {
+            try {
+                createNewFile(getFilesDir() + File.separator + "testDirectory" + File.separator + "testDir2.zip");
+            } catch (IOException e) {
+                Toast.makeText(StorageTestActivity.this, "create file2 failed!", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
             }
         });
 
         Button button3 = findViewById(R.id.storage_test_button_3);
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    createFile3();
-                } catch (IOException e) {
-                    Toast.makeText(StorageTestActivity.this, "rename file3 failed!", Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                }
+        button3.setOnClickListener(v -> {
+            try {
+                createFile3();
+            } catch (IOException e) {
+                Toast.makeText(StorageTestActivity.this, "rename file3 failed!", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
             }
         });
     }
@@ -67,9 +58,10 @@ public class StorageTestActivity extends AppCompatActivity {
     private File createNewFile(String path) throws IOException {
         File file = new File(path);
         if (!file.exists()) {
-            file.getParentFile().mkdirs();
-            boolean result = file.createNewFile();
-            CommonLog.d("createNewFile result: " + result);
+            if (file.getParentFile().mkdirs()) {
+                boolean result = file.createNewFile();
+                CommonLog.d("createNewFile result: " + result);
+            }
         }
         return file;
     }
