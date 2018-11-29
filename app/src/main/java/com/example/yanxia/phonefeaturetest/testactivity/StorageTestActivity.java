@@ -2,8 +2,15 @@ package com.example.yanxia.phonefeaturetest.testactivity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.yanxia.phonefeaturetest.R;
+import com.example.yanxia.phonefeaturetest.utils.CommonLog;
+
+import java.io.File;
+import java.io.IOException;
 
 public class StorageTestActivity extends AppCompatActivity {
 
@@ -11,5 +18,46 @@ public class StorageTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storage_test);
+
+        Button button1 = findViewById(R.id.storage_test_button_1);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    createFile1();
+                } catch (IOException e) {
+                    Toast.makeText(StorageTestActivity.this, "create file1 failed!", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        });
+        Button button2 = findViewById(R.id.storage_test_button_2);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    createNewFile(getFilesDir() + File.separator + "testDirectory" + File.separator + "testDir2.zip");
+                } catch (IOException e) {
+                    Toast.makeText(StorageTestActivity.this, "create file2 failed!", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void createFile1() throws IOException {
+        File file = new File(getFilesDir() + File.separator + "test.zip");
+        boolean result = file.createNewFile();
+        CommonLog.d("create file result: " + result);
+    }
+
+    private File createNewFile(String path) throws IOException {
+        File file = new File(path);
+        if (!file.exists()) {
+            file.getParentFile().mkdirs();
+            boolean result = file.createNewFile();
+            CommonLog.d("createNewFile result: " + result);
+        }
+        return file;
     }
 }

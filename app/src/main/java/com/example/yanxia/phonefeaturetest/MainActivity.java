@@ -14,6 +14,7 @@ import com.example.yanxia.phonefeaturetest.testactivity.HandlerThreadActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.LaunchOrderTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ProgressBarTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SensorTestActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.StorageTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.VersionTestActivity;
 import com.example.yanxia.phonefeaturetest.utils.Constant;
 import com.example.yanxia.phonefeaturetest.viewpager.ViewPagerActivity;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         testItemList.add(new TestItem(Constant.TEST_RV_INSIDE_VIEW_PAGER, R.drawable.ic_lock_24dp));
         testItemList.add(new TestItem(Constant.TEST_GPS, R.drawable.ic_lock_24dp));
         testItemList.add(new TestItem(Constant.TEST_SENSOR, R.drawable.ic_lock_24dp));
+        testItemList.add(new TestItem(Constant.TEST_STORAGE, R.drawable.ic_lock_24dp));
     }
 
     private void startTestActivity(String testName) {
@@ -93,6 +95,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case Constant.TEST_SENSOR:
                 startActivityWithNoAnim(SensorTestActivity.class);
+                break;
+            case Constant.TEST_STORAGE:
+                startActivityWithNoAnim(StorageTestActivity.class);
                 break;
             default:
                 Toast.makeText(MainActivity.this, "you clicked testName " + testName, Toast.LENGTH_SHORT).show();
