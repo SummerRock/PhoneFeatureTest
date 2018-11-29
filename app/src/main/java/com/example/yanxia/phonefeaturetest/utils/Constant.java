@@ -22,6 +22,7 @@ public class Constant {
     public static final String TEST_GPS = "test_gps";
     public static final String TEST_SENSOR = "test_sensor";
     public static final String TEST_STORAGE = "test_storage";
+    public static final String TEST_CAMERA = "test_camera";
 
     private static List<TestItem> initTestItems() {
         List<TestItem> testItemList = new ArrayList<>();

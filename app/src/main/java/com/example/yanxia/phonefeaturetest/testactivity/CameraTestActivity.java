@@ -1,7 +1,5 @@
 package com.example.yanxia.phonefeaturetest.testactivity;
 
-import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
@@ -11,7 +9,6 @@ import android.os.Bundle;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.Button;
 
 import com.example.yanxia.phonefeaturetest.R;
 
@@ -22,9 +19,6 @@ import java.io.IOException;
 public class CameraTestActivity extends AppCompatActivity implements SurfaceHolder.Callback {
 
     private Camera mCamera = null;
-    private Button buttonSwitch;
-    private Button buttonCapture;
-    private SurfaceView mCameraPreview;
     private SurfaceHolder mSurfaceHolder;
     private boolean isBackCameraOn = true;
 
@@ -36,9 +30,7 @@ public class CameraTestActivity extends AppCompatActivity implements SurfaceHold
     }
 
     private void initViews() {
-        buttonSwitch = (Button) findViewById(R.id.btn_switch_camera);
-        buttonCapture = (Button) findViewById(R.id.btn_capture);
-        mCameraPreview = (SurfaceView) findViewById(R.id.sv_camera);
+        SurfaceView mCameraPreview = findViewById(R.id.sv_camera);
         mSurfaceHolder = mCameraPreview.getHolder();
         mSurfaceHolder.addCallback(this);
         mCameraPreview.setOnClickListener(new View.OnClickListener() {
