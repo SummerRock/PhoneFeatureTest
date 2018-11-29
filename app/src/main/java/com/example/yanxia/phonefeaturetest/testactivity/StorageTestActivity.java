@@ -43,6 +43,19 @@ public class StorageTestActivity extends AppCompatActivity {
                 }
             }
         });
+
+        Button button3 = findViewById(R.id.storage_test_button_3);
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    createFile3();
+                } catch (IOException e) {
+                    Toast.makeText(StorageTestActivity.this, "rename file3 failed!", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void createFile1() throws IOException {
@@ -59,5 +72,12 @@ public class StorageTestActivity extends AppCompatActivity {
             CommonLog.d("createNewFile result: " + result);
         }
         return file;
+    }
+
+    private void createFile3() throws IOException {
+        File file = createNewFile(getFilesDir() + File.separator + "testDirectoryTemp");
+        File dstFile = new File(getFilesDir() + File.separator + "testDirectory");
+        boolean result = file.renameTo(dstFile);
+        CommonLog.d("rename file result: " + result);
     }
 }
