@@ -10,19 +10,19 @@ import java.util.List;
  * @author yanxia-Mac
  */
 public class Constant {
-    public static final String TEST_RECYCLER = "test_recycler";
-    public static final String TEST_DIALOG = "test_dialog";
-    public static final String TEST_HANDLER_THREAD = "test_handler_thread";
-    public static final String TEST_LAUNCH_ORDER = "test_launch_order";
-    public static final String TEST_AUTO_PACKAGE = "test_auto_package";
-    public static final String TEST_STRING_FORMAT = "test_string_format";
-    public static final String TEST_PROGRESS_BAR = "test_progress_bar";
-    public static final String TEST_HORIZONTAL_RV = "test_horizontal_rv";
-    public static final String TEST_RV_INSIDE_VIEW_PAGER = "test_rv_inside_view_pager";
-    public static final String TEST_GPS = "test_gps";
-    public static final String TEST_SENSOR = "test_sensor";
-    public static final String TEST_STORAGE = "test_storage";
-    public static final String TEST_CAMERA = "test_camera";
+    public static final String TEST_RECYCLER = "RV选中状态";
+    public static final String TEST_DIALOG = "Dialog样式";
+    public static final String TEST_HANDLER_THREAD = "HandlerThread测试";
+    public static final String TEST_LAUNCH_ORDER = "Activity启动方法顺序";
+    public static final String TEST_AUTO_PACKAGE = "自动装箱";
+    public static final String TEST_STRING_FORMAT = "String格式";
+    public static final String TEST_PROGRESS_BAR = "进度条";
+    public static final String TEST_HORIZONTAL_RV = "横向RV";
+    public static final String TEST_RV_INSIDE_VIEW_PAGER = "ViewPager嵌套横向RV";
+    public static final String TEST_GPS = "GPS测试";
+    public static final String TEST_SENSOR = "Sensor传感器";
+    public static final String TEST_STORAGE = "Storage测试";
+    public static final String TEST_CAMERA = "Camera测试";
 
     private static List<TestItem> initTestItems() {
         List<TestItem> testItemList = new ArrayList<>();
