@@ -2,6 +2,7 @@ package com.example.yanxia.phonefeaturetest;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,7 @@ import com.example.yanxia.phonefeaturetest.testactivity.GpsTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.HandlerThreadActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.LaunchOrderTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ProgressBarTestActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.SecondTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SensorTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.StorageTestActivity;
 import com.example.yanxia.phonefeaturetest.utils.Constant;
@@ -30,6 +32,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private List<TestItem> testItemList = new ArrayList<>();
+    private static final int REQUEST_CODE = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         testItemList.add(new TestItem(Constant.TEST_STORAGE, R.drawable.ic_lock_24dp));
         testItemList.add(new TestItem(Constant.TEST_CAMERA, R.drawable.ic_lock_24dp));
         testItemList.add(new TestItem(Constant.TEST_EASY_DRAWABLE, R.drawable.ic_lock_24dp));
+        testItemList.add(new TestItem(Constant.TEST_START_ACTIVITY_FOR_RESULT, R.drawable.ic_lock_24dp));
     }
 
     private void startTestActivity(String testName) {
@@ -109,6 +113,9 @@ public class MainActivity extends AppCompatActivity {
             case Constant.TEST_EASY_DRAWABLE:
                 startActivityWithNoAnim(EasyDrawableActivity.class);
                 break;
+            case Constant.TEST_START_ACTIVITY_FOR_RESULT:
+                startSecondActivityForResult();
+                break;
             default:
                 Toast.makeText(MainActivity.this, "you clicked testName " + testName, Toast.LENGTH_SHORT).show();
         }
@@ -121,5 +128,18 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setClass(this, pClass);
         startActivity(intent);
+    }
+
+    private void startSecondActivityForResult() {
+        Intent intent = new Intent(this, SecondTestActivity.class);
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE) {
+            Toast.makeText(this, "result: " + resultCode, Toast.LENGTH_SHORT).show();
+        }
     }
 }
