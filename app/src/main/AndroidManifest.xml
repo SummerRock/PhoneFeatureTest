@@ -69,6 +69,7 @@
             android:name=".testactivity.SensorTestActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
+        <activity android:name=".testactivity.DialogStyleActivity"></activity>
     </application>
 
 </manifest>

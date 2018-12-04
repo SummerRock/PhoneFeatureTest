@@ -2,21 +2,21 @@ package com.example.yanxia.phonefeaturetest;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.example.yanxia.phonefeaturetest.horizonRv.HorizonRvTestActivity;
 import com.example.yanxia.phonefeaturetest.notifyitemtest.RecyclerViewTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.CameraTestActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.DialogStyleActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.GpsTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.HandlerThreadActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.LaunchOrderTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ProgressBarTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SensorTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.StorageTestActivity;
-import com.example.yanxia.phonefeaturetest.testactivity.VersionTestActivity;
 import com.example.yanxia.phonefeaturetest.utils.Constant;
 import com.example.yanxia.phonefeaturetest.viewpager.ViewPagerActivity;
 
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivityWithNoAnim(RecyclerViewTestActivity.class);
                 break;
             case Constant.TEST_DIALOG:
-                startActivityWithNoAnim(VersionTestActivity.class);
+                startActivityWithNoAnim(DialogStyleActivity.class);
                 break;
             case Constant.TEST_HANDLER_THREAD:
                 startActivityWithNoAnim(HandlerThreadActivity.class);
