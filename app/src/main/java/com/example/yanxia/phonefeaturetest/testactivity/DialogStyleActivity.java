@@ -33,7 +33,7 @@ public class DialogStyleActivity extends AppCompatActivity implements View.OnCli
     }
 
     public void showCustomDialog(View view) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.customTransparentDialog);
         View dialogView = LayoutInflater.from(this).inflate(R.layout.layout_dialog, null);
         builder.setView(dialogView).setTitle("Message hello!").setCancelable(false).setPositiveButton("Got it", (dialog, which) -> dialog.dismiss()).show();
     }
