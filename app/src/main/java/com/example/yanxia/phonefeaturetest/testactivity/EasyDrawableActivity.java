@@ -10,6 +10,7 @@ public class EasyDrawableActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //https://github.com/JavaNoober/BackgroundLibrary
         BackgroundLibrary.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_easy_drawable);

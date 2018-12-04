@@ -35,8 +35,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".testactivity.VersionTestActivity"
-            android:label="@string/title_activity_version_test"
+            android:name=".testactivity.SecondTestActivity"
+            android:label="@string/title_activity_second"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".testactivity.CameraTestActivity" />
         <activity android:name=".testactivity.TouchTestActivity" />
