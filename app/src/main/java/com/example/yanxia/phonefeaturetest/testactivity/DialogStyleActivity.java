@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import com.example.yanxia.phonefeaturetest.R;
@@ -29,5 +30,11 @@ public class DialogStyleActivity extends AppCompatActivity implements View.OnCli
                 dialog.dismiss();
             }
         }).show();
+    }
+
+    public void showCustomDialog(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.layout_dialog, null);
+        builder.setView(dialogView).setTitle("Message hello!").setCancelable(false).setPositiveButton("Got it", (dialog, which) -> dialog.dismiss()).show();
     }
 }
