@@ -2,6 +2,7 @@ package com.example.yanxia.phonefeaturetest;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -40,20 +41,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initTestItems();
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(layoutManager);
-        TestItemAdapter adapter = new TestItemAdapter(testItemList, new TestItemAdapter.OnTestItemClickListener() {
-            @Override
-            public void onItemClick(TestItem testItem) {
-                startTestActivity(testItem.getName());
-            }
-        });
+        TestItemAdapter adapter = new TestItemAdapter(testItemList, testItem -> startTest(testItem.getName()));
         recyclerView.setAdapter(adapter);
     }
 
     private void initTestItems() {
-        testItemList.add(new TestItem(Constant.TEST_RECYCLER, R.drawable.ic_menu_gallery));
-        testItemList.add(new TestItem(Constant.TEST_DIALOG, R.drawable.ic_blur_on_black_48dp));
+        testItemList.add(new TestItem(Constant.TEST_RECYCLER, R.drawable.ic_lock_24dp));
+        testItemList.add(new TestItem(Constant.TEST_DIALOG, R.drawable.ic_lock_24dp));
         testItemList.add(new TestItem(Constant.TEST_HANDLER_THREAD, R.drawable.ic_lock_24dp));
         testItemList.add(new TestItem(Constant.TEST_LAUNCH_ORDER, R.drawable.ic_lock_24dp));
         testItemList.add(new TestItem(Constant.TEST_AUTO_PACKAGE, R.drawable.ic_lock_24dp));
@@ -69,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         testItemList.add(new TestItem(Constant.TEST_START_ACTIVITY_FOR_RESULT, R.drawable.ic_lock_24dp));
     }
 
-    private void startTestActivity(String testName) {
+    private void startTest(@NonNull String testName) {
         switch (testName) {
             case Constant.TEST_RECYCLER:
                 startActivityWithNoAnim(RecyclerViewTestActivity.class);
