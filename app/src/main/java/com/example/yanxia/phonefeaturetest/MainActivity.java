@@ -11,6 +11,7 @@ import com.example.yanxia.phonefeaturetest.horizonRv.HorizonRvTestActivity;
 import com.example.yanxia.phonefeaturetest.notifyitemtest.RecyclerViewTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.CameraTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.DialogStyleActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.EasyDrawableActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.GpsTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.HandlerThreadActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.LaunchOrderTestActivity;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         testItemList.add(new TestItem(Constant.TEST_SENSOR, R.drawable.ic_lock_24dp));
         testItemList.add(new TestItem(Constant.TEST_STORAGE, R.drawable.ic_lock_24dp));
         testItemList.add(new TestItem(Constant.TEST_CAMERA, R.drawable.ic_lock_24dp));
+        testItemList.add(new TestItem(Constant.TEST_EASY_DRAWABLE, R.drawable.ic_lock_24dp));
     }
 
     private void startTestActivity(String testName) {
@@ -103,6 +105,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case Constant.TEST_CAMERA:
                 startActivityWithNoAnim(CameraTestActivity.class);
+                break;
+            case Constant.TEST_EASY_DRAWABLE:
+                startActivityWithNoAnim(EasyDrawableActivity.class);
                 break;
             default:
                 Toast.makeText(MainActivity.this, "you clicked testName " + testName, Toast.LENGTH_SHORT).show();
