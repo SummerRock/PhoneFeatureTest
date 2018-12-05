@@ -9,6 +9,7 @@
 .externalNativeBuild
 .idea/gradle.xml
 .idea/modules.xml
+.idea/caches/build_file_checksums.ser
 
 # Intellij specific files
 *.iml

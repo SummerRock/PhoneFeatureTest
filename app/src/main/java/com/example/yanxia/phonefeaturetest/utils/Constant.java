@@ -25,6 +25,7 @@ public class Constant {
     public static final String TEST_CAMERA = "Camera测试";
     public static final String TEST_EASY_DRAWABLE = "背景测试";
     public static final String TEST_START_ACTIVITY_FOR_RESULT = "启动Activity";
+    public static final String TEST_THREAD_POOL = "线程池";
 
     private static List<TestItem> initTestItems() {
         List<TestItem> testItemList = new ArrayList<>();

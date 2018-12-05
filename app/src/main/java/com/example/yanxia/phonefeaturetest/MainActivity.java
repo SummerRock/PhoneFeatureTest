@@ -21,6 +21,7 @@ import com.example.yanxia.phonefeaturetest.testactivity.ProgressBarTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SecondTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SensorTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.StorageTestActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.ThreadPoolActivity;
 import com.example.yanxia.phonefeaturetest.utils.Constant;
 import com.example.yanxia.phonefeaturetest.viewpager.ViewPagerActivity;
 
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         testItemList.add(new TestItem(Constant.TEST_CAMERA, R.drawable.ic_lock_24dp));
         testItemList.add(new TestItem(Constant.TEST_EASY_DRAWABLE, R.drawable.ic_lock_24dp));
         testItemList.add(new TestItem(Constant.TEST_START_ACTIVITY_FOR_RESULT, R.drawable.ic_lock_24dp));
+        testItemList.add(new TestItem(Constant.TEST_THREAD_POOL, R.drawable.ic_lock_24dp));
     }
 
     private void startTest(@NonNull String testName) {
@@ -111,6 +113,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case Constant.TEST_START_ACTIVITY_FOR_RESULT:
                 startSecondActivityForResult();
+                break;
+            case Constant.TEST_THREAD_POOL:
+                startActivityWithNoAnim(ThreadPoolActivity.class);
                 break;
             default:
                 Toast.makeText(MainActivity.this, "you clicked testName " + testName, Toast.LENGTH_SHORT).show();
