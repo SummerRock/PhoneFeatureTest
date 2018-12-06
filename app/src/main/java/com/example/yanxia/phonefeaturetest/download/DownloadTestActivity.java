@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.yanxia.phonefeaturetest.R;
+import com.example.yanxia.phonefeaturetest.utils.CommonLog;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -33,22 +34,7 @@ public class DownloadTestActivity extends AppCompatActivity implements View.OnCl
     }
 
     public void startDownload(View view) {
-        download("http://e.hiphotos.baidu.com/image/pic/item/b151f8198618367afe76969623738bd4b21ce5fa.jpg", getFilesDir() + File.separator + "testPic", "test.jpg", new OnDownloadListener() {
-            @Override
-            public void onDownloadSuccess(File file) {
-
-            }
-
-            @Override
-            public void onDownloading(int progress) {
-
-            }
-
-            @Override
-            public void onDownloadFailed(Exception e) {
-
-            }
-        });
+        download("http://e.hiphotos.baidu.com/image/pic/item/b151f8198618367afe76969623738bd4b21ce5fa.jpg", getFilesDir() + File.separator + "testPic", "test.jpg", null);
     }
 
     /**
@@ -57,7 +43,7 @@ public class DownloadTestActivity extends AppCompatActivity implements View.OnCl
      * @param destFileName 下载文件名称
      * @param listener     下载监听
      */
-    public void download(final String url, final String destFileDir, final String destFileName, final OnDownloadListener listener) {
+    public void download(final String url, final String destFileDir, final String destFileName, final OnDownloadUpdateListener listener) {
         Request request = new Request.Builder().url(url).build();
 
         OkHttpClient client = new OkHttpClient();
@@ -67,21 +53,29 @@ public class DownloadTestActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 // 下载失败监听回调
-                listener.onDownloadFailed(e);
+                if (listener != null) {
+                    listener.onDownloadFailure(null);
+                }
             }
 
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) {
 
+                CommonLog.d("mark111");
                 InputStream is = null;
                 byte[] buf = new byte[2048];
-                int len = 0;
+                int len;
                 FileOutputStream fos = null;
 
                 //储存下载文件的目录
                 File dir = new File(destFileDir);
                 if (!dir.exists()) {
-                    dir.mkdirs();
+                    if (!dir.mkdirs()) {
+                        if (listener != null) {
+                            listener.onDownloadFailure(null);
+                        }
+                        return;
+                    }
                 }
                 File file = new File(dir, destFileName);
 
@@ -93,15 +87,22 @@ public class DownloadTestActivity extends AppCompatActivity implements View.OnCl
                     while ((len = is.read(buf)) != -1) {
                         fos.write(buf, 0, len);
                         sum += len;
-                        int progress = (int) (sum * 1.0f / total * 100);
+                        float progress = (sum * 1.0f / total * 100);
                         //下载中更新进度条
-                        listener.onDownloading(progress);
+                        CommonLog.d("mark222");
+                        if (listener != null) {
+                            listener.onDownloadProgressUpdate(null, progress);
+                        }
                     }
                     fos.flush();
                     //下载完成
-                    listener.onDownloadSuccess(file);
+                    if (listener != null) {
+                        listener.onDownloadSuccess(null, 0);
+                    }
                 } catch (Exception e) {
-                    listener.onDownloadFailed(e);
+                    if (listener != null) {
+                        listener.onDownloadFailure(null);
+                    }
                 } finally {
                     try {
                         if (is != null) {
