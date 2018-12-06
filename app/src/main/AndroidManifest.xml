@@ -70,7 +70,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".testactivity.DialogStyleActivity" />
         <activity android:name=".testactivity.EasyDrawableActivity" />
-        <activity android:name=".testactivity.ThreadPoolActivity"></activity>
+        <activity android:name=".testactivity.ThreadPoolActivity" />
+        <activity android:name=".download.DownloadTestActivity"/>
     </application>
 
 </manifest>
