@@ -3,6 +3,7 @@ package com.example.yanxia.phonefeaturetest.download;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.example.yanxia.phonefeaturetest.R;
 
@@ -17,7 +18,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class DownloadTestActivity extends AppCompatActivity {
+public class DownloadTestActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     @Override
@@ -26,8 +27,28 @@ public class DownloadTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_download_test);
     }
 
-    private void download() {
+    @Override
+    public void onClick(View v) {
 
+    }
+
+    public void startDownload(View view) {
+        download("http://e.hiphotos.baidu.com/image/pic/item/b151f8198618367afe76969623738bd4b21ce5fa.jpg", getFilesDir() + File.separator + "testPic", "test.jpg", new OnDownloadListener() {
+            @Override
+            public void onDownloadSuccess(File file) {
+
+            }
+
+            @Override
+            public void onDownloading(int progress) {
+
+            }
+
+            @Override
+            public void onDownloadFailed(Exception e) {
+
+            }
+        });
     }
 
     /**

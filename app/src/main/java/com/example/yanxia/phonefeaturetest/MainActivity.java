@@ -9,6 +9,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
+import com.example.yanxia.phonefeaturetest.download.DownloadTestActivity;
 import com.example.yanxia.phonefeaturetest.horizonRv.HorizonRvTestActivity;
 import com.example.yanxia.phonefeaturetest.notifyitemtest.RecyclerViewTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.CameraTestActivity;
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         testItemList.add(new TestItem(Constant.TEST_EASY_DRAWABLE, R.drawable.ic_lock_24dp));
         testItemList.add(new TestItem(Constant.TEST_START_ACTIVITY_FOR_RESULT, R.drawable.ic_lock_24dp));
         testItemList.add(new TestItem(Constant.TEST_THREAD_POOL, R.drawable.ic_lock_24dp));
+        testItemList.add(new TestItem(Constant.TEST_DOWNLOAD_FILE, R.drawable.ic_lock_24dp));
     }
 
     private void startTest(@NonNull String testName) {
@@ -116,6 +118,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case Constant.TEST_THREAD_POOL:
                 startActivityWithNoAnim(ThreadPoolActivity.class);
+                break;
+            case Constant.TEST_DOWNLOAD_FILE:
+                startActivityWithNoAnim(DownloadTestActivity.class);
                 break;
             default:
                 Toast.makeText(MainActivity.this, "you clicked testName " + testName, Toast.LENGTH_SHORT).show();
