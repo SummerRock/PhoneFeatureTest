@@ -71,7 +71,10 @@
         <activity android:name=".testactivity.DialogStyleActivity" />
         <activity android:name=".testactivity.EasyDrawableActivity" />
         <activity android:name=".testactivity.ThreadPoolActivity" />
-        <activity android:name=".download.DownloadTestActivity"/>
+        <activity android:name=".download.DownloadTestActivity" />
+        <activity
+            android:name=".testactivity.SettingsActivity"
+            android:label="@string/title_activity_settings"/>
     </application>
 
 </manifest>
