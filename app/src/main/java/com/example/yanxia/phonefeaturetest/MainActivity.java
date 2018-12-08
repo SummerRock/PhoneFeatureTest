@@ -18,6 +18,7 @@ import com.example.yanxia.phonefeaturetest.notifyitemtest.RecyclerViewTestActivi
 import com.example.yanxia.phonefeaturetest.testactivity.CameraTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.DialogStyleActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.EasyDrawableActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.FullscreenActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.GpsTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.HandlerThreadActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.LaunchOrderTestActivity;
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         testItemList.add(new TestItem(Constant.TEST_START_ACTIVITY_FOR_RESULT, R.drawable.ic_lock_24dp));
         testItemList.add(new TestItem(Constant.TEST_THREAD_POOL, R.drawable.ic_lock_24dp));
         testItemList.add(new TestItem(Constant.TEST_DOWNLOAD_FILE, R.drawable.ic_lock_24dp));
+        testItemList.add(new TestItem(Constant.TEST_ACTIVITY_THEME, R.drawable.ic_lock_24dp));
     }
 
     private void startTest(@NonNull String testName) {
@@ -143,6 +145,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case Constant.TEST_DOWNLOAD_FILE:
                 startActivityWithNoAnim(DownloadTestActivity.class);
+                break;
+            case Constant.TEST_ACTIVITY_THEME:
+                startActivityWithNoAnim(FullscreenActivity.class);
                 break;
             default:
                 Toast.makeText(MainActivity.this, "you clicked testName " + testName, Toast.LENGTH_SHORT).show();

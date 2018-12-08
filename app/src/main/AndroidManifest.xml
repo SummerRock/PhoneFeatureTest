@@ -74,7 +74,12 @@
         <activity android:name=".download.DownloadTestActivity" />
         <activity
             android:name=".testactivity.SettingsActivity"
-            android:label="@string/title_activity_settings"/>
+            android:label="@string/title_activity_settings" />
+        <activity
+            android:name=".testactivity.FullscreenActivity"
+            android:label="@string/title_activity_fullscreen"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullscreenTheme" />
     </application>
 
 </manifest>
