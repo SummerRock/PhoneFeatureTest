@@ -79,7 +79,7 @@
             android:name=".testactivity.FullscreenActivity"
             android:label="@string/title_activity_fullscreen"
             android:screenOrientation="portrait"
-            android:theme="@style/FullscreenTheme" />
+            android:theme="@style/FullscreenActivityTheme" />
     </application>
 
 </manifest>

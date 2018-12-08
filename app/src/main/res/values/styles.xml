@@ -30,7 +30,7 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
-    <style name="FullscreenTheme" parent="AppTheme">
+    <style name="FullscreenActivityTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowActionBarOverlay">false</item>
         <item name="android:windowBackground">@null</item>
         <item name="android:windowActionBar">false</item>
