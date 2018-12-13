@@ -28,6 +28,7 @@ public class Constant {
     public static final String TEST_THREAD_POOL = "线程池";
     public static final String TEST_DOWNLOAD_FILE = "下载测试";
     public static final String TEST_ACTIVITY_THEME = "主题测试";
+    public static final String TEST_ANIMATION = "动画测试";
 
     private static List<TestItem> initTestItems() {
         List<TestItem> testItemList = new ArrayList<>();
