@@ -1,5 +1,7 @@
 package com.example.yanxia.phonefeaturetest;
 
+import android.support.annotation.Nullable;
+
 /**
  * @author yanxia
  * @date 2017/2/10
@@ -7,12 +9,17 @@ package com.example.yanxia.phonefeaturetest;
 
 public class TestItem {
     private String name;
-
     private int imageId;
+    private Class activityClass;
 
     public TestItem(String name, int imageId) {
+        this(name, imageId, null);
+    }
+
+    public TestItem(String name, int imageId, @Nullable Class activityClass) {
         this.name = name;
         this.imageId = imageId;
+        this.activityClass = activityClass;
     }
 
     public String getName() {
@@ -21,5 +28,10 @@ public class TestItem {
 
     public int getImageId() {
         return imageId;
+    }
+
+    @Nullable
+    public Class getActivityClass() {
+        return activityClass;
     }
 }

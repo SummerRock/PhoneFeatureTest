@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(layoutManager);
-        TestItemAdapter adapter = new TestItemAdapter(testItemList, testItem -> startTest(testItem.getName()));
+        TestItemAdapter adapter = new TestItemAdapter(testItemList, this::startTest);
         recyclerView.setAdapter(adapter);
     }
 
@@ -74,88 +74,44 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initTestItems() {
-        testItemList.add(new TestItem(Constant.TEST_RECYCLER, R.drawable.ic_lock_24dp));
-        testItemList.add(new TestItem(Constant.TEST_DIALOG, R.drawable.ic_lock_24dp));
-        testItemList.add(new TestItem(Constant.TEST_HANDLER_THREAD, R.drawable.ic_lock_24dp));
-        testItemList.add(new TestItem(Constant.TEST_LAUNCH_ORDER, R.drawable.ic_lock_24dp));
+        testItemList.add(new TestItem(Constant.TEST_RECYCLER, R.drawable.ic_lock_24dp, RecyclerViewTestActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_DIALOG, R.drawable.ic_lock_24dp, DialogStyleActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_HANDLER_THREAD, R.drawable.ic_lock_24dp, HandlerThreadActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_LAUNCH_ORDER, R.drawable.ic_lock_24dp, LaunchOrderTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_AUTO_PACKAGE, R.drawable.ic_lock_24dp));
         testItemList.add(new TestItem(Constant.TEST_STRING_FORMAT, R.drawable.ic_lock_24dp));
-        testItemList.add(new TestItem(Constant.TEST_PROGRESS_BAR, R.drawable.ic_lock_24dp));
-        testItemList.add(new TestItem(Constant.TEST_HORIZONTAL_RV, R.drawable.ic_lock_24dp));
-        testItemList.add(new TestItem(Constant.TEST_RV_INSIDE_VIEW_PAGER, R.drawable.ic_lock_24dp));
-        testItemList.add(new TestItem(Constant.TEST_GPS, R.drawable.ic_lock_24dp));
-        testItemList.add(new TestItem(Constant.TEST_SENSOR, R.drawable.ic_lock_24dp));
-        testItemList.add(new TestItem(Constant.TEST_STORAGE, R.drawable.ic_lock_24dp));
-        testItemList.add(new TestItem(Constant.TEST_CAMERA, R.drawable.ic_lock_24dp));
-        testItemList.add(new TestItem(Constant.TEST_EASY_DRAWABLE, R.drawable.ic_lock_24dp));
+        testItemList.add(new TestItem(Constant.TEST_PROGRESS_BAR, R.drawable.ic_lock_24dp, ProgressBarTestActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_HORIZONTAL_RV, R.drawable.ic_lock_24dp, HorizonRvTestActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_RV_INSIDE_VIEW_PAGER, R.drawable.ic_lock_24dp, ViewPagerActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_GPS, R.drawable.ic_lock_24dp, GpsTestActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_SENSOR, R.drawable.ic_lock_24dp, SensorTestActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_STORAGE, R.drawable.ic_lock_24dp, StorageTestActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_CAMERA, R.drawable.ic_lock_24dp, CameraTestActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_EASY_DRAWABLE, R.drawable.ic_lock_24dp, EasyDrawableActivity.class));
         testItemList.add(new TestItem(Constant.TEST_START_ACTIVITY_FOR_RESULT, R.drawable.ic_lock_24dp));
-        testItemList.add(new TestItem(Constant.TEST_THREAD_POOL, R.drawable.ic_lock_24dp));
-        testItemList.add(new TestItem(Constant.TEST_DOWNLOAD_FILE, R.drawable.ic_lock_24dp));
-        testItemList.add(new TestItem(Constant.TEST_ACTIVITY_THEME, R.drawable.ic_lock_24dp));
-        testItemList.add(new TestItem(Constant.TEST_ANIMATION, R.drawable.ic_lock_24dp));
+        testItemList.add(new TestItem(Constant.TEST_THREAD_POOL, R.drawable.ic_lock_24dp, ThreadPoolActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_DOWNLOAD_FILE, R.drawable.ic_lock_24dp, DownloadTestActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_ACTIVITY_THEME, R.drawable.ic_lock_24dp, FullscreenActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_ANIMATION, R.drawable.ic_lock_24dp, AnimationTestActivity.class));
     }
 
-    private void startTest(@NonNull String testName) {
-        switch (testName) {
-            case Constant.TEST_RECYCLER:
-                startActivityWithNoAnim(RecyclerViewTestActivity.class);
-                break;
-            case Constant.TEST_DIALOG:
-                startActivityWithNoAnim(DialogStyleActivity.class);
-                break;
-            case Constant.TEST_HANDLER_THREAD:
-                startActivityWithNoAnim(HandlerThreadActivity.class);
-                break;
-            case Constant.TEST_LAUNCH_ORDER:
-                startActivityWithNoAnim(LaunchOrderTestActivity.class);
-                break;
+    private void startTest(@NonNull TestItem testItem) {
+        if (testItem.getActivityClass() != null) {
+            startActivityWithNoAnim(testItem.getActivityClass());
+            return;
+        }
+        switch (testItem.getName()) {
             case Constant.TEST_AUTO_PACKAGE:
                 TestClass.mainTest();
                 break;
             case Constant.TEST_STRING_FORMAT:
                 TestString.testStringFormat();
                 break;
-            case Constant.TEST_PROGRESS_BAR:
-                startActivityWithNoAnim(ProgressBarTestActivity.class);
-                break;
-            case Constant.TEST_HORIZONTAL_RV:
-                startActivityWithNoAnim(HorizonRvTestActivity.class);
-                break;
-            case Constant.TEST_RV_INSIDE_VIEW_PAGER:
-                startActivityWithNoAnim(ViewPagerActivity.class);
-                break;
-            case Constant.TEST_GPS:
-                startActivityWithNoAnim(GpsTestActivity.class);
-                break;
-            case Constant.TEST_SENSOR:
-                startActivityWithNoAnim(SensorTestActivity.class);
-                break;
-            case Constant.TEST_STORAGE:
-                startActivityWithNoAnim(StorageTestActivity.class);
-                break;
-            case Constant.TEST_CAMERA:
-                startActivityWithNoAnim(CameraTestActivity.class);
-                break;
-            case Constant.TEST_EASY_DRAWABLE:
-                startActivityWithNoAnim(EasyDrawableActivity.class);
-                break;
             case Constant.TEST_START_ACTIVITY_FOR_RESULT:
                 startSecondActivityForResult();
                 break;
-            case Constant.TEST_THREAD_POOL:
-                startActivityWithNoAnim(ThreadPoolActivity.class);
-                break;
-            case Constant.TEST_DOWNLOAD_FILE:
-                startActivityWithNoAnim(DownloadTestActivity.class);
-                break;
-            case Constant.TEST_ACTIVITY_THEME:
-                startActivityWithNoAnim(FullscreenActivity.class);
-                break;
-            case Constant.TEST_ANIMATION:
-                startActivityWithNoAnim(AnimationTestActivity.class);
-                break;
             default:
-                Toast.makeText(MainActivity.this, "you clicked testName " + testName, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "you clicked testName " + testItem.getName(), Toast.LENGTH_SHORT).show();
         }
     }
 
