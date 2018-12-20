@@ -1,23 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/holo_purple"
-    android:orientation="vertical">
+    android:background="@android:color/white">
 
-    <Button
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/exit_dialog_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_green_light"
-        android:text="TEST1" />
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="23dp"
+        android:fontFamily="sans-serif"
+        android:text="Leave without saving?"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
 
-    <Button
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/exit_dialog_subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/exit_dialog_title"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="sans-serif"
+        android:text="All of your work on the app will be deleted."
+        android:textColor="#b3000000"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        tools:ignore="HardcodedText" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/exit_dialog_ok_btn"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TEST2" />
+        android:layout_below="@+id/exit_dialog_subtitle"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="sans-serif"
+        android:padding="4dp"
+        android:text="@android:string/ok"
+        android:textColor="#139ef9"
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
-    <Button
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/exit_dialog_cancel_btn"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TEST3" />
-</LinearLayout>
+        android:layout_alignTop="@+id/exit_dialog_ok_btn"
+        android:layout_marginEnd="12dp"
+        android:layout_toStartOf="@+id/exit_dialog_ok_btn"
+        android:fontFamily="sans-serif"
+        android:padding="4dp"
+        android:text="@android:string/cancel"
+        android:textColor="#139ef9"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_below="@+id/exit_dialog_ok_btn" />
+</RelativeLayout>

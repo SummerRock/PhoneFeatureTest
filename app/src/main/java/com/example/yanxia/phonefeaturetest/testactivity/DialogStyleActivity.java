@@ -1,6 +1,7 @@
 package com.example.yanxia.phonefeaturetest.testactivity;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -35,6 +36,11 @@ public class DialogStyleActivity extends AppCompatActivity implements View.OnCli
     public void showCustomDialog(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.customTransparentDialog);
         View dialogView = LayoutInflater.from(this).inflate(R.layout.layout_dialog, null);
-        builder.setView(dialogView).setTitle("Message hello!").setCancelable(false).setPositiveButton("Got it", (dialog, which) -> dialog.dismiss()).show();
+        builder.setView(dialogView).setCancelable(true);
+        Dialog dialog = builder.show();
+        View okButton = dialogView.findViewById(R.id.exit_dialog_ok_btn);
+        okButton.setOnClickListener(v -> dialog.dismiss());
+        View cancelButton = dialogView.findViewById(R.id.exit_dialog_cancel_btn);
+        cancelButton.setOnClickListener(v -> dialog.dismiss());
     }
 }
