@@ -3,10 +3,10 @@ package com.example.yanxia.phonefeaturetest.download;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 
 import com.example.yanxia.phonefeaturetest.R;
-import com.example.yanxia.phonefeaturetest.utils.CommonLog;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -21,6 +21,9 @@ import okhttp3.Response;
 
 public class DownloadTestActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final String TAG = DownloadTestActivity.class.getSimpleName();
+
+    private OkHttpClient client = new OkHttpClient();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,12 @@ public class DownloadTestActivity extends AppCompatActivity implements View.OnCl
     }
 
     public void startDownload(View view) {
-        download("http://e.hiphotos.baidu.com/image/pic/item/b151f8198618367afe76969623738bd4b21ce5fa.jpg", getFilesDir() + File.separator + "testPic", "test.jpg", null);
+        File file = new File(getFilesDir() + File.separator + "testBigFile" + File.separator + "bigFile.bin");
+        if (file.exists()) {
+            //noinspection ResultOfMethodCallIgnored
+            file.delete();
+        }
+        download("http://speedtest.tokyo.linode.com/100MB-tokyo.bin", getFilesDir() + File.separator + "testBigFile", "bigFile.bin", null);
     }
 
     /**
@@ -45,11 +53,9 @@ public class DownloadTestActivity extends AppCompatActivity implements View.OnCl
      */
     public void download(final String url, final String destFileDir, final String destFileName, final OnDownloadUpdateListener listener) {
         Request request = new Request.Builder().url(url).build();
-
-        OkHttpClient client = new OkHttpClient();
-
         //异步请求
-        client.newCall(request).enqueue(new Callback() {
+        Call call = client.newCall(request);
+        call.enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 // 下载失败监听回调
@@ -60,8 +66,7 @@ public class DownloadTestActivity extends AppCompatActivity implements View.OnCl
 
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) {
-
-                CommonLog.d("mark111");
+                Log.d(TAG, "onResponse start response: " + response.message());
                 InputStream is = null;
                 byte[] buf = new byte[2048];
                 int len;
@@ -89,7 +94,7 @@ public class DownloadTestActivity extends AppCompatActivity implements View.OnCl
                         sum += len;
                         float progress = (sum * 1.0f / total * 100);
                         //下载中更新进度条
-                        CommonLog.d("mark222");
+                        Log.d(TAG, "update progress: " + String.valueOf(progress));
                         if (listener != null) {
                             listener.onDownloadProgressUpdate(null, progress);
                         }
@@ -112,7 +117,7 @@ public class DownloadTestActivity extends AppCompatActivity implements View.OnCl
                             fos.close();
                         }
                     } catch (IOException e) {
-
+                        e.printStackTrace();
                     }
 
                 }
