@@ -8,6 +8,7 @@
     tools:context=".testactivity.EasyDrawableActivity">
 
     <Button
+        android:id="@+id/easy_drawable_test_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -16,5 +17,5 @@
         app:bl_solid_color="#E3B666"
         app:bl_stroke_color="#8c6822"
         app:bl_stroke_width="2dp"
-        tools:ignore="MissingPrefix" />
+        tools:ignore="HardcodedText,MissingPrefix" />
 </LinearLayout>

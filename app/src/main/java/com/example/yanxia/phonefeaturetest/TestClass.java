@@ -2,19 +2,7 @@ package com.example.yanxia.phonefeaturetest;
 
 import com.example.yanxia.phonefeaturetest.utils.CommonLog;
 
-import java.util.List;
-
 public class TestClass {
-
-    // public static String method(List<String> list) {
-    //     CommonLog.d("string list");
-    //     return "";
-    // }
-    //
-    // public static int method(List<Integer> list) {
-    //     CommonLog.d("string list");
-    //     return 0;
-    // }
 
     /**
      * https://www.cnblogs.com/dolphin0520/p/3780005.html
@@ -38,4 +26,27 @@ public class TestClass {
     private static void printBoolean(boolean b) {
         CommonLog.d(String.valueOf(b));
     }
+
+    private Integer test() {
+        Integer result;
+        try {
+            result = 10 / 0;
+            return result;
+        } catch (Exception e) {
+            result = 35;
+            return result;
+        } finally {
+            result = 46;
+            // return result;
+        }
+    }
+
+    public void throwException() throws Exception {
+        CommonLog.d("haha");
+    }
+
+    public void noException() {
+        CommonLog.d("haha");
+    }
+
 }
