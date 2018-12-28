@@ -45,8 +45,9 @@ public class TestClass {
         CommonLog.d("haha");
     }
 
-    public void noException() {
-        CommonLog.d("haha");
+    public void noException(int a) {
+        int b = a + 2;
+        CommonLog.d("haha" + b);
     }
 
 }

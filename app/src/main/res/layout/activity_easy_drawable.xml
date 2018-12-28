@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".testactivity.EasyDrawableActivity">
 
     <Button
@@ -12,10 +13,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="TEST DRAWABLE"
+        android:onClick="testOne"
+        android:text="TEST ONE"
         app:bl_corners_radius="4dp"
         app:bl_solid_color="#E3B666"
         app:bl_stroke_color="#8c6822"
         app:bl_stroke_width="2dp"
         tools:ignore="HardcodedText,MissingPrefix" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="testTwo"
+        android:text="TEST TWO"
+        tools:ignore="HardcodedText" />
 </LinearLayout>

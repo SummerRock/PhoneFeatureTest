@@ -7,6 +7,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.yanxia.phonefeaturetest.utils.SingletonDemo;
+
 /**
  * @author yanxia
  * @date 2017/2/10
@@ -59,6 +61,7 @@ public class Myapplication extends Application {
         super.onCreate();
         context = getApplicationContext();
         registerActivityLifecycleCallbacks(activityLifecycleCallbacks);
+        SingletonDemo.getInstance();
     }
 
     public static Context getContext() {
