@@ -2,9 +2,15 @@ package com.example.yanxia.phonefeaturetest.utils;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class SingletonDemo {
     private static final String TAG = SingletonDemo.class.getSimpleName();
     private static volatile SingletonDemo ourInstance;
+    private List<String> stringList;
+    private volatile boolean isUpdating;
 
     public static SingletonDemo getInstance() {
         if (ourInstance == null) {
@@ -19,25 +25,42 @@ public class SingletonDemo {
 
     private SingletonDemo() {
         Log.d(TAG, "init!");
+        stringList = new ArrayList<>();
     }
 
-    public synchronized void function1() {
-        Log.d(TAG, "function1 start!");
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    public void updateList() {
+        if (isUpdating) {
+            Log.d(TAG, "updateList is update! return!");
+            return;
         }
-        Log.d(TAG, "function1 end!");
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                Log.d(TAG, "updateList start!");
+                isUpdating = true;
+                List<String> tempList = new ArrayList<>();
+                for (int i = 0; i < 6; i++) {
+                    tempList.add("test item " + String.valueOf(i));
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                stringList.clear();
+                stringList.addAll(tempList);
+                Log.d(TAG, "updateList end!");
+                isUpdating = false;
+            }
+        }.start();
     }
 
-    public synchronized void function2() {
-        Log.d(TAG, "function2 start!");
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    public List<String> getList() {
+        if (isUpdating) {
+            return Collections.emptyList();
+        } else {
+            return new ArrayList<>(stringList);
         }
-        Log.d(TAG, "function2 end!");
     }
 }

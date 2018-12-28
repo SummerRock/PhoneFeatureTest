@@ -3,6 +3,7 @@ package com.example.yanxia.phonefeaturetest.testactivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.utils.SingletonDemo;
@@ -24,10 +25,10 @@ public class EasyDrawableActivity extends AppCompatActivity implements View.OnCl
     }
 
     public void testOne(View view) {
-        SingletonDemo.getInstance().function1();
+        SingletonDemo.getInstance().updateList();
     }
 
     public void testTwo(View view) {
-        SingletonDemo.getInstance().function2();
+        Toast.makeText(this, "item size: " + String.valueOf(SingletonDemo.getInstance().getList().size()), Toast.LENGTH_SHORT).show();
     }
 }
