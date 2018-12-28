@@ -57,8 +57,15 @@ public class Myapplication extends Application {
     };
 
     @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        Log.d(TAG, "attachBaseContext");
+    }
+
+    @Override
     public void onCreate() {
         super.onCreate();
+        Log.d(TAG, "onCreate");
         context = getApplicationContext();
         registerActivityLifecycleCallbacks(activityLifecycleCallbacks);
         SingletonDemo.getInstance();
