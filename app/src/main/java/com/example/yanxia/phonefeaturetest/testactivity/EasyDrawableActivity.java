@@ -9,6 +9,8 @@ import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.utils.SingletonDemo;
 import com.noober.background.BackgroundLibrary;
 
+import java.util.List;
+
 public class EasyDrawableActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
@@ -29,6 +31,8 @@ public class EasyDrawableActivity extends AppCompatActivity implements View.OnCl
     }
 
     public void testTwo(View view) {
-        Toast.makeText(this, "item size: " + String.valueOf(SingletonDemo.getInstance().getList().size()), Toast.LENGTH_SHORT).show();
+        List<String> list = SingletonDemo.getInstance().getList();
+        Toast.makeText(this, "item size: " + String.valueOf(list.size()), Toast.LENGTH_SHORT).show();
+        list.add("temp new one!");
     }
 }

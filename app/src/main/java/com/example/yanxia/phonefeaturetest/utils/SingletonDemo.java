@@ -3,7 +3,6 @@ package com.example.yanxia.phonefeaturetest.utils;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -28,6 +27,7 @@ public class SingletonDemo {
     private SingletonDemo() {
         Log.d(TAG, "init!");
         stringList = new ArrayList<>();
+        updateList();
     }
 
     public void updateList() {
@@ -61,10 +61,6 @@ public class SingletonDemo {
     }
 
     public List<String> getList() {
-        if (isUpdating) {
-            return Collections.emptyList();
-        } else {
-            return new ArrayList<>(stringList);
-        }
+        return new ArrayList<>(stringList);
     }
 }
