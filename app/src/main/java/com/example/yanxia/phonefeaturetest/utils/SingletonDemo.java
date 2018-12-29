@@ -5,12 +5,14 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class SingletonDemo {
     private static final String TAG = SingletonDemo.class.getSimpleName();
     private static volatile SingletonDemo ourInstance;
     private List<String> stringList;
     private volatile boolean isUpdating;
+    private Random random = new Random();
 
     public static SingletonDemo getInstance() {
         if (ourInstance == null) {
@@ -40,7 +42,9 @@ public class SingletonDemo {
                 Log.d(TAG, "updateList start!");
                 isUpdating = true;
                 List<String> tempList = new ArrayList<>();
-                for (int i = 0; i < 6; i++) {
+                int length = random.nextInt(4) + 3;
+                Log.d(TAG, "updateList length: " + length);
+                for (int i = 0; i < length; i++) {
                     tempList.add("test item " + String.valueOf(i));
                     try {
                         Thread.sleep(1000);
