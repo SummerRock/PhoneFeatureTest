@@ -4,6 +4,14 @@ import com.example.yanxia.phonefeaturetest.utils.CommonLog;
 
 public class TestClass {
 
+    static {
+        CommonLog.d("TestClass static init!");
+    }
+
+    {
+        CommonLog.d("TestClass common init!");
+    }
+
     /**
      * https://www.cnblogs.com/dolphin0520/p/3780005.html
      */
