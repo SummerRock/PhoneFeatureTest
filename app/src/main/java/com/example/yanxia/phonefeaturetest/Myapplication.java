@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Process;
 import android.util.Log;
 
 import com.example.yanxia.phonefeaturetest.utils.SingletonDemo;
@@ -69,9 +70,22 @@ public class Myapplication extends Application {
         context = getApplicationContext();
         registerActivityLifecycleCallbacks(activityLifecycleCallbacks);
         SingletonDemo.getInstance();
+        initThirdService();
     }
 
     public static Context getContext() {
         return context;
     }
+
+    public void initThirdService() {
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                Process.setThreadPriority(Process.THREAD_PRIORITY_LOWEST);
+                Log.d(TAG, "initThirdService start!");
+            }
+        }.start();
+    }
+
 }
