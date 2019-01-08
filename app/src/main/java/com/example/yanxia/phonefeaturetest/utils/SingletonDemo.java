@@ -1,5 +1,6 @@
 package com.example.yanxia.phonefeaturetest.utils;
 
+import android.os.Handler;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -7,11 +8,17 @@ import java.util.List;
 import java.util.Random;
 
 public class SingletonDemo {
+    public interface OnDataLoadedInterface {
+        void onDataLoadFinish();
+    }
+
     private static final String TAG = SingletonDemo.class.getSimpleName();
     private static volatile SingletonDemo ourInstance;
     private List<String> stringList;
     private volatile boolean isUpdating;
     private Random random = new Random();
+    private Handler handler = new Handler();
+    private List<OnDataLoadedInterface> dataLoadedInterfaceList;
 
     public static SingletonDemo getInstance() {
         if (ourInstance == null) {
@@ -27,6 +34,7 @@ public class SingletonDemo {
     private SingletonDemo() {
         Log.d(TAG, "init!");
         stringList = new ArrayList<>();
+        dataLoadedInterfaceList = new ArrayList<>();
         updateList();
     }
 
@@ -56,6 +64,11 @@ public class SingletonDemo {
                 stringList.addAll(tempList);
                 Log.d(TAG, "updateList end!");
                 isUpdating = false;
+                handler.post(() -> {
+                    for (OnDataLoadedInterface dataLoadedInterface : dataLoadedInterfaceList) {
+                        dataLoadedInterface.onDataLoadFinish();
+                    }
+                });
             }
         }.start();
     }
