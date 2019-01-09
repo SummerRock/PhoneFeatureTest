@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     private List<TestItem> testItemList = new ArrayList<>();
     private static final int REQUEST_CODE = 10;
 
+    private static final String MAIN_STRING = TestClass.TEST_STRING;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

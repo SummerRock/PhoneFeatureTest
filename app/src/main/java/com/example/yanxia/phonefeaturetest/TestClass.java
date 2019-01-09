@@ -4,8 +4,17 @@ import com.example.yanxia.phonefeaturetest.utils.CommonLog;
 
 public class TestClass {
 
+    static final String TEST_STRING;
+
     static {
         CommonLog.d("TestClass static init!");
+        // try {
+        //     Thread.sleep(2000);
+        // } catch (InterruptedException e) {
+        //     e.printStackTrace();
+        // }
+        TEST_STRING = "testOne";
+        CommonLog.d("TestClass static end!");
     }
 
     {
