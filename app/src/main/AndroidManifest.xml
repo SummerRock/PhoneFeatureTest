@@ -85,6 +85,13 @@
             android:name=".testactivity.AnimationTestActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
+
+        <provider
+            android:name=".multiProcess.MyContentProvider"
+            android:authorities="otherwork"
+            android:enabled="true"
+            android:exported="true"
+            android:process=".secondProcess" />
     </application>
 
 </manifest>

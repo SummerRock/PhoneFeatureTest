@@ -1,6 +1,7 @@
 package com.example.yanxia.phonefeaturetest;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,12 +18,12 @@ import com.example.yanxia.phonefeaturetest.horizonRv.HorizonRvTestActivity;
 import com.example.yanxia.phonefeaturetest.notifyitemtest.RecyclerViewTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.AnimationTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.CameraTestActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.ColorMatrixTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.DialogStyleActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.EasyDrawableActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.FullscreenActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.GpsTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.HandlerThreadActivity;
-import com.example.yanxia.phonefeaturetest.testactivity.ColorMatrixTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ProgressBarTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SecondTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SensorTestActivity;
@@ -107,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
         testItemList.add(new TestItem(Constant.TEST_DOWNLOAD_FILE, R.drawable.ic_lock_24dp, DownloadTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_ACTIVITY_THEME, R.drawable.ic_lock_24dp, FullscreenActivity.class));
         testItemList.add(new TestItem(Constant.TEST_ANIMATION, R.drawable.ic_lock_24dp, AnimationTestActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_CONTENT_PROVIDER, R.drawable.ic_lock_24dp, null));
     }
 
     private void startTest(@NonNull TestItem testItem) {
@@ -123,6 +125,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case Constant.TEST_START_ACTIVITY_FOR_RESULT:
                 startSecondActivityForResult();
+                break;
+            case Constant.TEST_CONTENT_PROVIDER:
+                testContentProvider();
                 break;
             default:
                 Toast.makeText(MainActivity.this, "you clicked testName " + testItem.getName(), Toast.LENGTH_SHORT).show();
@@ -149,5 +154,14 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == REQUEST_CODE) {
             Toast.makeText(this, "result: " + resultCode, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void testContentProvider() {
+        CommonLog.d("contentProvider test start!");
+        String method = "isSuccess";
+        String uri = "content://otherwork/abc.txt";
+        Bundle bundle = getContentResolver().call(Uri.parse(uri), method, null, null);
+        boolean result = bundle != null && bundle.getBoolean(method);
+        CommonLog.d("contentProvider test end with result: " + result);
     }
 }
