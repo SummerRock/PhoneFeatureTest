@@ -20,4 +20,10 @@
         android:layout_marginTop="10dp"
         android:onClick="setFail"
         android:text="@android:string/cancel" />
+
+    <Button
+        android:id="@+id/test_tv_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@android:string/copy" />
 </LinearLayout>

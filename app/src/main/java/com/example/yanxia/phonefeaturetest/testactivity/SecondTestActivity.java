@@ -1,7 +1,6 @@
 package com.example.yanxia.phonefeaturetest.testactivity;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
@@ -10,15 +9,39 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import com.example.yanxia.phonefeaturetest.R;
+import com.example.yanxia.phonefeaturetest.utils.ScreenStatusManager;
 
 public class SecondTestActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private Button button;
+
+    private ScreenStatusManager.OnScreenStateChangeListener listener = new ScreenStatusManager.OnScreenStateChangeListener() {
+        @Override
+        public void onScreenOn() {
+
+        }
+
+        @Override
+        public void onScreenOff() {
+            button.setText("OFF");
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+        button = findViewById(R.id.test_tv_one);
+        ScreenStatusManager.getInstance().addListener(listener);
+    }
+
+    @Override
+    protected void onDestroy() {
+        ScreenStatusManager.getInstance().removeListener(listener);
+        super.onDestroy();
     }
 
     @Override

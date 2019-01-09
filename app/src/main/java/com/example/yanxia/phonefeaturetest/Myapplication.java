@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Process;
 import android.util.Log;
 
+import com.example.yanxia.phonefeaturetest.utils.ScreenStatusManager;
 import com.example.yanxia.phonefeaturetest.utils.SingletonDemo;
 
 /**
@@ -71,6 +72,7 @@ public class Myapplication extends Application {
         registerActivityLifecycleCallbacks(activityLifecycleCallbacks);
         SingletonDemo.getInstance();
         initThirdService();
+        ScreenStatusManager.getInstance();
     }
 
     public static Context getContext() {
