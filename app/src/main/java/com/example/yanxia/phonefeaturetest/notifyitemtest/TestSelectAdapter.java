@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.utils.CommonLog;
+import com.example.yanxia.phonefeaturetest.utils.DisplayUtils;
 
 import java.util.List;
 
@@ -18,13 +19,14 @@ import java.util.List;
  */
 public final class TestSelectAdapter extends RecyclerView.Adapter<TestSelectAdapter.TestViewHolder> {
 
-    static final String PAYLOADS = "payloads";
+    private static final String PAYLOADS = "payloads";
     private int selectPosition = RecyclerView.NO_POSITION;
 
     @NonNull
     @Override
     public TestViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.test_item_layout, parent, false);
+        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, DisplayUtils.dpToPx(44)));
         return new TestViewHolder(view);
     }
 

@@ -43,6 +43,7 @@ public class RecyclerViewTestActivity extends AppCompatActivity {
 
         @Override
         public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+            // int position = parent.getChildAdapterPosition(view);
             outRect.set(gap, gap, gap, gap);
         }
     }
