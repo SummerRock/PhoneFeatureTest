@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.yanxia.phonefeaturetest.R;
+import com.example.yanxia.phonefeaturetest.ThreadTest;
 
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -42,5 +43,9 @@ public class ThreadPoolActivity extends AppCompatActivity implements View.OnClic
             };
             poolExecutor.execute(runnable);
         }
+    }
+
+    public void startThreadPriorityTest(View view) {
+        ThreadTest.startThreadPriorityTest();
     }
 }
