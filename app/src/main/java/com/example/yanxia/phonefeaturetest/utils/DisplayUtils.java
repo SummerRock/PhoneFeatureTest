@@ -11,7 +11,7 @@ public class DisplayUtils {
         return resources.getDisplayMetrics().widthPixels;
     }
 
-    public static int dpToPx(int dp) {
+    public static int dpToPx(float dp) {
         float density = Myapplication.getContext().getResources().getDisplayMetrics().density;
         return Math.round(dp * density);
     }

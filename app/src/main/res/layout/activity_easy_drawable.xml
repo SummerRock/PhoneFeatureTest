@@ -28,4 +28,10 @@
         android:onClick="testTwo"
         android:text="TEST TWO"
         tools:ignore="HardcodedText" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/drawable_image_view"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerInside" />
 </LinearLayout>
