@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@android:color/holo_green_light"
     tools:context=".testactivity.FullscreenActivity">
 
     <android.support.v7.widget.AppCompatImageView
@@ -12,4 +13,22 @@
         android:layout_height="250dp"
         android:layout_centerInParent="true"
         android:background="@android:color/holo_purple" />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_above="@+id/glide_test_image_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:foreground="?selectableItemBackgroundBorderless"
+        app:cardCornerRadius="4dp"
+        app:contentPadding="2dp">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/glide_test_image_view_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray"
+            android:scaleType="center" />
+    </android.support.v7.widget.CardView>
 </RelativeLayout>
