@@ -30,7 +30,7 @@ public class CameraModeLayout extends FrameLayout {
     public CameraModeLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         LayoutInflater.from(context).inflate(R.layout.layout_camera_mode, this, true);
-        final float[] roundedCorners = new float[] { 5, 5, 5, 5, 5, 5, 5, 5 };
+        final float[] roundedCorners = new float[]{5, 5, 5, 5, 5, 5, 5, 5};
         cameraModeButtonIndicatorDrawable = new ShapeDrawable(new RoundRectShape(roundedCorners, null, null));
         DrawableCompat.setTint(cameraModeButtonIndicatorDrawable, Color.WHITE);
         cameraModeButtonIndicatorDrawable.setBounds(0, 0, DisplayUtils.dpToPx(4), DisplayUtils.dpToPx(4));

@@ -1,6 +1,8 @@
 package com.example.yanxia.phonefeaturetest.testactivity;
 
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
@@ -10,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.content.res.AppCompatResources;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yanxia.phonefeaturetest.R;
@@ -28,8 +31,9 @@ public class EasyDrawableActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_easy_drawable);
         ImageView imageView = findViewById(R.id.drawable_image_view);
-        imageView.setImageDrawable(getDrawableFromRes());
-        // imageView.setImageResource(R.drawable.shake_round_corner_rect);
+        imageView.setBackground(createNewDrawable());
+        TextView textView = findViewById(R.id.drawable_text_view);
+        textView.setCompoundDrawables(null, null, null, createNewDrawable());
     }
 
     @Override
@@ -54,6 +58,23 @@ public class EasyDrawableActivity extends AppCompatActivity implements View.OnCl
         DrawableCompat.setTint(shapeDrawable, Color.YELLOW);
         shapeDrawable.setBounds(0, 0, DisplayUtils.dpToPx(12.7f), DisplayUtils.dpToPx(3.3f));
         return shapeDrawable;
+    }
+
+    private Drawable createBorderlessDrawable() {
+        // 外部矩形弧度
+        float[] outerR = new float[]{8, 8, 8, 8, 8, 8, 8, 8};
+        // 内部矩形与外部矩形的距离
+        RectF inset = new RectF(100, 100, 50, 50);
+        // 内部矩形弧度
+        float[] innerRadii = new float[]{20, 20, 20, 20, 20, 20, 20, 20};
+
+        RoundRectShape rr = new RoundRectShape(outerR, null, null);
+        ShapeDrawable drawable = new ShapeDrawable(rr);
+        //指定填充颜色
+        drawable.getPaint().setColor(Color.YELLOW);
+        // 指定填充模式
+        drawable.getPaint().setStyle(Paint.Style.FILL);
+        return drawable;
     }
 
     public Drawable getDrawableFromRes() {
