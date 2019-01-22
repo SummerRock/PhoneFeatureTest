@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/holo_purple"
-        android:drawableBottom="@drawable/shake_round_corner_rect"
+        android:drawableBottom="@drawable/shape_round_corner_rect"
         android:drawablePadding="4dp"
         android:padding="8dp"
         android:text="PHOTO"

@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.Bundle;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.content.res.AppCompatResources;
 import android.view.View;
@@ -33,7 +32,7 @@ public class EasyDrawableActivity extends AppCompatActivity implements View.OnCl
         ImageView imageView = findViewById(R.id.drawable_image_view);
         imageView.setBackground(createNewDrawable());
         TextView textView = findViewById(R.id.drawable_text_view);
-        textView.setCompoundDrawables(null, null, null, createNewDrawable());
+        textView.setCompoundDrawables(null, null, null, getDrawableFromRes());
     }
 
     @Override
@@ -55,7 +54,10 @@ public class EasyDrawableActivity extends AppCompatActivity implements View.OnCl
         float radius = DisplayUtils.dpToPx(1.7f);
         final float[] roundedCorners = new float[]{radius, radius, radius, radius, radius, radius, radius, radius};
         ShapeDrawable shapeDrawable = new ShapeDrawable(new RoundRectShape(roundedCorners, null, null));
-        DrawableCompat.setTint(shapeDrawable, Color.YELLOW);
+        //指定填充颜色
+        shapeDrawable.getPaint().setColor(Color.YELLOW);
+        // 指定填充模式
+        shapeDrawable.getPaint().setStyle(Paint.Style.FILL);
         shapeDrawable.setBounds(0, 0, DisplayUtils.dpToPx(12.7f), DisplayUtils.dpToPx(3.3f));
         return shapeDrawable;
     }
@@ -78,6 +80,6 @@ public class EasyDrawableActivity extends AppCompatActivity implements View.OnCl
     }
 
     public Drawable getDrawableFromRes() {
-        return AppCompatResources.getDrawable(this, R.drawable.shake_round_corner_rect);
+        return AppCompatResources.getDrawable(this, R.drawable.shape_round_corner_rect);
     }
 }
