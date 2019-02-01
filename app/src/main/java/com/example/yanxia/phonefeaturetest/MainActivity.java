@@ -30,6 +30,7 @@ import com.example.yanxia.phonefeaturetest.testactivity.SensorTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SettingsActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.StorageTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ThreadPoolActivity;
+import com.example.yanxia.phonefeaturetest.testjava.Person;
 import com.example.yanxia.phonefeaturetest.utils.CommonLog;
 import com.example.yanxia.phonefeaturetest.utils.Constant;
 import com.example.yanxia.phonefeaturetest.viewpager.ViewPagerActivity;
@@ -46,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 10;
 
     private static final String MAIN_STRING = TestClass.TEST_STRING;
+
+    private Person person = new Person(25, "Summer", "BJ", "none");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void startSecondActivityForResult() {
         Intent intent = new Intent(this, SecondTestActivity.class);
+        intent.putExtra(SecondTestActivity.EXTRA, person);
         startActivityForResult(intent, REQUEST_CODE);
     }
 
@@ -154,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE) {
-            Toast.makeText(this, "result: " + resultCode, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Person age: " + person.getAge(), Toast.LENGTH_SHORT).show();
         }
     }
 

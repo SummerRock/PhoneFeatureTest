@@ -9,38 +9,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 
 import com.example.yanxia.phonefeaturetest.R;
-import com.example.yanxia.phonefeaturetest.utils.ScreenStatusManager;
+import com.example.yanxia.phonefeaturetest.testjava.Person;
 
 public class SecondTestActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button button;
+    public static final String EXTRA = "extra";
 
-    private ScreenStatusManager.OnScreenStateChangeListener listener = new ScreenStatusManager.OnScreenStateChangeListener() {
-        @Override
-        public void onScreenOn() {
-
-        }
-
-        @Override
-        public void onScreenOff() {
-            button.setText("OFF");
-        }
-    };
+    private Person person;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
-        button = findViewById(R.id.test_tv_one);
-        ScreenStatusManager.getInstance().addListener(listener);
+        person = getIntent().getParcelableExtra(EXTRA);
     }
 
     @Override
     protected void onDestroy() {
-        ScreenStatusManager.getInstance().removeListener(listener);
         super.onDestroy();
     }
 
@@ -50,6 +37,7 @@ public class SecondTestActivity extends AppCompatActivity implements View.OnClic
     }
 
     public void setOK(View view) {
+        person.setAge(30);
         setResult(Activity.RESULT_OK);
         finish();
     }
