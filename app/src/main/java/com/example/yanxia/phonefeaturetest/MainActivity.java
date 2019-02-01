@@ -41,7 +41,7 @@ import java.util.List;
 /**
  * @author yanxia-Mac
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainFragment.OnFragmentInteractionListener {
 
     private List<TestItem> testItemList = new ArrayList<>();
     private static final int REQUEST_CODE = 10;
@@ -93,6 +93,11 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onFragmentInteraction() {
+        Toast.makeText(this, "Person age: " + person.getAge(), Toast.LENGTH_SHORT).show();
+    }
+
     private void initTestItems() {
         testItemList.add(new TestItem(Constant.TEST_RECYCLER, R.drawable.ic_lock_24dp, RecyclerViewTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_DIALOG, R.drawable.ic_lock_24dp, DialogStyleActivity.class));
@@ -114,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
         testItemList.add(new TestItem(Constant.TEST_ACTIVITY_THEME, R.drawable.ic_lock_24dp, FullscreenActivity.class));
         testItemList.add(new TestItem(Constant.TEST_ANIMATION, R.drawable.ic_lock_24dp, AnimationTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_CONTENT_PROVIDER, R.drawable.ic_lock_24dp, null));
+        testItemList.add(new TestItem(Constant.TEST_DIALOG_FRAGMENT, R.drawable.ic_lock_24dp, null));
     }
 
     private void startTest(@NonNull TestItem testItem) {
@@ -133,6 +139,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case Constant.TEST_CONTENT_PROVIDER:
                 testContentProvider();
+                break;
+            case Constant.TEST_DIALOG_FRAGMENT:
+                MainFragment.newInstance(person).show(getSupportFragmentManager(), MainFragment.class.getSimpleName());
                 break;
             default:
                 Toast.makeText(MainActivity.this, "you clicked testName " + testItem.getName(), Toast.LENGTH_SHORT).show();
