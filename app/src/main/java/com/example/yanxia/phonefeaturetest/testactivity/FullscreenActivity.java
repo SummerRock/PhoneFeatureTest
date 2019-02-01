@@ -1,20 +1,13 @@
 package com.example.yanxia.phonefeaturetest.testactivity;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.Target;
 import com.example.yanxia.phonefeaturetest.R;
-import com.example.yanxia.phonefeaturetest.utils.DisplayUtils;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -30,20 +23,20 @@ public class FullscreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fullscreen);
-        ImageView imageView = findViewById(R.id.glide_test_image_view);
-        Glide.with(this).load(GIF_URL).listener(new RequestListener<Drawable>() {
-            @Override
-            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                return false;
-            }
-
-            @Override
-            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                return false;
-            }
-        }).into(imageView);
+        ImageView imageView = findViewById(R.id.glide_test_image_view_0);
+        Glide.with(this).load(GIF_URL).into(imageView);
         ImageView imageView1 = findViewById(R.id.glide_test_image_view_1);
-        Glide.with(this).load(PIC_URL).apply(RequestOptions.bitmapTransform(new RoundedCorners(DisplayUtils.dpToPx(10)))).into(imageView1);
+        // Glide.with(this).load(PIC_URL).apply(RequestOptions.bitmapTransform(new RoundedCorners(DisplayUtils.dpToPx(10)))).into(imageView1);
+        Glide.with(this).load(PIC_URL).into(imageView1);
+        ImageView imageView2 = findViewById(R.id.glide_test_image_view_2);
+
+        Button button = findViewById(R.id.glide_test_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Glide.with(FullscreenActivity.this).load(PIC_URL).into(imageView2);
+            }
+        });
     }
 
 }
