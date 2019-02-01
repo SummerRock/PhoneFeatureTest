@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.example.annotation.BindView;
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.utils.CommonLog;
 
@@ -22,6 +23,7 @@ public final class ColorMatrixTestActivity extends AppCompatActivity {
 
     private ColorMatrix mColorMatrix = new ColorMatrix();
     private ImageView testImageView;
+    @BindView(R.id.color_matrix_test_saturation_tv)
     private TextView saturationText;
 
     public ColorMatrixTestActivity() {
