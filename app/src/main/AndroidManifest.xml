@@ -86,6 +86,16 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
 
+        <service
+            android:name=".AIDLService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="leavesc.hello.server.action" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
         <provider
             android:name=".multiProcess.MyContentProvider"
             android:authorities="otherwork"
