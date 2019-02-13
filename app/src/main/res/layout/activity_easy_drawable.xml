@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_bright"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".testactivity.EasyDrawableActivity">
@@ -45,4 +46,12 @@
         android:padding="8dp"
         android:text="PHOTO"
         android:textColor="@android:color/black" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/gradient_shape"
+        android:padding="10dp"
+        android:src="@drawable/ic_dialpad_black_48dp" />
 </LinearLayout>
