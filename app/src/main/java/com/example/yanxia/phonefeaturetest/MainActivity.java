@@ -30,6 +30,7 @@ import com.example.yanxia.phonefeaturetest.testactivity.SensorTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SettingsActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.StorageTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ThreadPoolActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.ViewFeatureActivity;
 import com.example.yanxia.phonefeaturetest.testjava.Person;
 import com.example.yanxia.phonefeaturetest.utils.CommonLog;
 import com.example.yanxia.phonefeaturetest.utils.Constant;
@@ -120,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         testItemList.add(new TestItem(Constant.TEST_ANIMATION, R.drawable.ic_lock_24dp, AnimationTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_CONTENT_PROVIDER, R.drawable.ic_lock_24dp, null));
         testItemList.add(new TestItem(Constant.TEST_DIALOG_FRAGMENT, R.drawable.ic_lock_24dp, null));
+        testItemList.add(new TestItem(Constant.TEST_VIEW_FEATURE, R.drawable.ic_lock_24dp, ViewFeatureActivity.class));
     }
 
     private void startTest(@NonNull TestItem testItem) {

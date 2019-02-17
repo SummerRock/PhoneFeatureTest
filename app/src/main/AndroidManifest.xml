@@ -25,6 +25,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".testactivity.ViewFeatureActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/MainTheme">
@@ -92,6 +95,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="leavesc.hello.server.action" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </service>

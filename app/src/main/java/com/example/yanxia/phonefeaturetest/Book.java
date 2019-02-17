@@ -12,6 +12,10 @@ public class Book implements Parcelable {
 
     private String name;
 
+    public Book() {
+        this("unknown");
+    }
+
     public Book(String name) {
         this.name = name;
     }
