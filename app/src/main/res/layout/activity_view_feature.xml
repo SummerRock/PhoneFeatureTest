@@ -10,9 +10,6 @@
         android:id="@+id/imageView_01"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
-        android:scaleType="center"
-        android:scaleX="2"
-        android:scaleY="2"
         android:src="@drawable/full_screen_bg"
         app:layout_aspectRatio="100%"
         app:layout_widthPercent="100%" />

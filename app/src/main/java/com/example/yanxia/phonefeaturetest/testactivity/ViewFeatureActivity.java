@@ -18,6 +18,8 @@ public class ViewFeatureActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_feature);
 
         imageView = findViewById(R.id.imageView_01);
+        imageView.post(() -> imageView.setPivotX(imageView.getWidth() / 2f));
+        imageView.setPivotY(1);
         seekBar = findViewById(R.id.seekBar_01);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
