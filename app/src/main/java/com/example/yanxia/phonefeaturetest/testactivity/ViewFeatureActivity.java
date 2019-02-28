@@ -1,8 +1,7 @@
 package com.example.yanxia.phonefeaturetest.testactivity;
 
-import android.graphics.Matrix;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 
@@ -23,7 +22,7 @@ public class ViewFeatureActivity extends AppCompatActivity {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                float f = progress / 100f;
+                float f = 1 + progress / 100f;
                 imageView.setScaleX(f);
                 imageView.setScaleY(f);
             }
