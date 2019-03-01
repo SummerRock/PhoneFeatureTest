@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -28,6 +29,22 @@ public class RecyclerViewTestActivity extends AppCompatActivity {
         final TestSelectAdapter adapter = new TestSelectAdapter();
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new CustomItemDecoration(DisplayUtils.dpToPx(4)));
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                Log.d("rv_test_scroll_state", "newState: " + newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                Log.d("rv_test_scrolling", "dx: " + dx + " dy: " + dy + " canScrollVerticalUp: " + recyclerView.canScrollVertically(-1)
+                        + " VerticalScrollOffset: " + recyclerView.computeVerticalScrollOffset()
+                        + " VerticalScrollExtent: " + recyclerView.computeVerticalScrollExtent()
+                        + " VerticalScrollRange: " + recyclerView.computeVerticalScrollRange());
+            }
+        });
 
         Button button = findViewById(R.id.test_button);
         button.setOnClickListener(v -> adapter.changeSelectPosition(20));
