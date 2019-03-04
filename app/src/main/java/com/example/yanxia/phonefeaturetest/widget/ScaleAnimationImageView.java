@@ -1,10 +1,10 @@
 package com.example.yanxia.phonefeaturetest.widget;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.view.animation.LinearInterpolator;
-import android.view.animation.ScaleAnimation;
 
 public class ScaleAnimationImageView extends AppCompatImageView {
     private static final float BACKGROUND_ORIGIN_SCALE = 1f;
@@ -22,7 +22,7 @@ public class ScaleAnimationImageView extends AppCompatImageView {
 
     public ScaleAnimationImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        setPivotY(1f);
+        // setPivotY(1f);
     }
 
     public void expand() {
@@ -43,26 +43,30 @@ public class ScaleAnimationImageView extends AppCompatImageView {
 
     public void expandWithAnimation() {
         if (!expanded) {
-            clearAnimation();
-            ScaleAnimation animExpand = new ScaleAnimation(BACKGROUND_ORIGIN_SCALE, BACKGROUND_EXPAND_SCALE, BACKGROUND_ORIGIN_SCALE, BACKGROUND_EXPAND_SCALE);
-            animExpand.setDuration(300);
-            animExpand.setFillAfter(true);
-            animExpand.setInterpolator(new LinearInterpolator());
-            startAnimation(animExpand);
+            ValueAnimator valueAnimator = ValueAnimator.ofFloat(BACKGROUND_ORIGIN_SCALE, BACKGROUND_EXPAND_SCALE);
+            valueAnimator.addUpdateListener(animation -> {
+                float progress = animation.getAnimatedFraction();
+                setScaleX(progress);
+                setScaleY(progress);
+            });
+            valueAnimator.setDuration(300);
+            valueAnimator.setInterpolator(new LinearInterpolator());
+            valueAnimator.start();
             expanded = true;
         }
     }
 
     public void shrinkWithAnimation() {
         if (expanded) {
-            clearAnimation();
-            ScaleAnimation animShrink = new ScaleAnimation(BACKGROUND_EXPAND_SCALE, BACKGROUND_ORIGIN_SCALE, BACKGROUND_EXPAND_SCALE, BACKGROUND_ORIGIN_SCALE);
-            animShrink.setDuration(300);
-            animShrink.setFillAfter(true);
-            animShrink.setInterpolator(new LinearInterpolator());
-            setScaleX(BACKGROUND_ORIGIN_SCALE);
-            setScaleY(BACKGROUND_ORIGIN_SCALE);
-            startAnimation(animShrink);
+            ValueAnimator valueAnimator = ValueAnimator.ofFloat(BACKGROUND_EXPAND_SCALE, BACKGROUND_ORIGIN_SCALE);
+            valueAnimator.addUpdateListener(animation -> {
+                float progress = animation.getAnimatedFraction();
+                setScaleX(progress);
+                setScaleY(progress);
+            });
+            valueAnimator.setDuration(300);
+            valueAnimator.setInterpolator(new LinearInterpolator());
+            valueAnimator.start();
             expanded = false;
         }
     }
