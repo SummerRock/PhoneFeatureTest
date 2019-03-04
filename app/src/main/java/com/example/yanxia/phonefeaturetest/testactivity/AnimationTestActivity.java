@@ -7,13 +7,13 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
-import android.widget.ImageView;
 
 import com.example.yanxia.phonefeaturetest.R;
+import com.example.yanxia.phonefeaturetest.widget.ScaleAnimationImageView;
 
 public class AnimationTestActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ImageView imageView;
+    private ScaleAnimationImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,5 +54,15 @@ public class AnimationTestActivity extends AppCompatActivity implements View.OnC
         animation.setFillAfter(true);
         animation.setDuration(5000);
         imageView.startAnimation(animation);
+    }
+
+    public void startAnimationType4(View view) {
+        imageView.clearAnimation();
+        imageView.expandWithAnimation();
+    }
+
+    public void startAnimationType5(View view) {
+        imageView.clearAnimation();
+        imageView.shrinkWithAnimation();
     }
 }
