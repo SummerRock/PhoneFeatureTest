@@ -1,7 +1,11 @@
 package com.example.yanxia.phonefeaturetest.utils;
 
+import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.example.yanxia.phonefeaturetest.common.CommonFinishInterface;
+
+import java.util.Random;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -46,21 +50,34 @@ public class ThreadPoolUtils {
         sExecutor.execute(r);
     }
 
-    public class CustomDelayRunnable implements Runnable {
+    public static class CustomDelayRunnable implements Runnable {
+        private static final Random random = new Random();
         int index;
+        CommonFinishInterface commonFinishInterface;
 
-        public CustomDelayRunnable(int index) {
+        public CustomDelayRunnable(int index, @Nullable CommonFinishInterface finishInterface) {
             this.index = index;
+            commonFinishInterface = finishInterface;
         }
 
         @Override
         public void run() {
             Log.d("CustomDelayRunnable", "index: " + index);
             try {
-                Thread.sleep(2000);
+                Thread.sleep(1000 * getRandomInt());
+                if (commonFinishInterface != null) {
+                    commonFinishInterface.onSuccess();
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                if (commonFinishInterface != null) {
+                    commonFinishInterface.onFailed(e);
+                }
             }
+        }
+
+        private int getRandomInt() {
+            return random.nextInt(3) + 1;
         }
     }
 }

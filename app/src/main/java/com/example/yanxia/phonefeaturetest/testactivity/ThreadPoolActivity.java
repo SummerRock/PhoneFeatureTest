@@ -2,16 +2,19 @@ package com.example.yanxia.phonefeaturetest.testactivity;
 
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
 import com.example.yanxia.phonefeaturetest.R;
-import com.example.yanxia.phonefeaturetest.ThreadTest;
+import com.example.yanxia.phonefeaturetest.common.CommonFinishInterface;
+import com.example.yanxia.phonefeaturetest.utils.ThreadPoolUtils;
 
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * https://blog.csdn.net/u012702547/article/details/52259529
@@ -46,6 +49,20 @@ public class ThreadPoolActivity extends AppCompatActivity implements View.OnClic
     }
 
     public void startThreadPriorityTest(View view) {
-        ThreadTest.startThreadPriorityTest();
+        final AtomicInteger mCount = new AtomicInteger(0);
+        for (int i = 0; i < 5; i++) {
+            ThreadPoolUtils.postOnThreadPoolExecutor(new ThreadPoolUtils.CustomDelayRunnable(i, new CommonFinishInterface() {
+                @Override
+                public void onSuccess() {
+                    mCount.getAndIncrement();
+                    Log.d("ThreadPoolActivity_LOG", "onSuccess size: " + mCount.intValue());
+                }
+
+                @Override
+                public void onFailed(@Nullable Exception e) {
+
+                }
+            }));
+        }
     }
 }
