@@ -1,14 +1,18 @@
 package com.example.yanxia.phonefeaturetest.testactivity;
 
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
+import android.widget.RelativeLayout;
 
 import com.example.yanxia.phonefeaturetest.R;
+import com.example.yanxia.phonefeaturetest.utils.DisplayUtils;
 import com.example.yanxia.phonefeaturetest.widget.ScaleAnimationImageView;
 
 public class AnimationTestActivity extends AppCompatActivity implements View.OnClickListener {
@@ -64,5 +68,20 @@ public class AnimationTestActivity extends AppCompatActivity implements View.OnC
     public void startAnimationType5(View view) {
         imageView.clearAnimation();
         imageView.shrinkWithAnimation();
+    }
+
+    public void startAnimationType6(View view) {
+        int distance = DisplayUtils.dpToPx(80);
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 1f);
+        valueAnimator.addUpdateListener(animation -> {
+            float progress = animation.getAnimatedFraction();
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) imageView.getLayoutParams();
+            layoutParams.topMargin = (int) (distance * (1 - progress));
+            Log.d("AnimationTest_LOG", "progress: " + progress);
+            imageView.setLayoutParams(layoutParams);
+        });
+        valueAnimator.setInterpolator(new LinearInterpolator());
+        valueAnimator.setDuration(500);
+        valueAnimator.start();
     }
 }

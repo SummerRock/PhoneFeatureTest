@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".testactivity.AnimationTestActivity">
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="240dp"
         android:layout_height="240dp"
         android:background="@android:color/holo_green_light"
@@ -20,21 +20,31 @@
             android:id="@+id/animation_test_imageView"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
             android:src="@drawable/test_image_01" />
-    </FrameLayout>
 
-    <LinearLayout
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/animation_test_imageView"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/holo_blue_bright" />
+    </RelativeLayout>
+
+    <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:columnCount="4"
         android:orientation="horizontal"
+        android:rowCount="4"
+        android:useDefaultMargins="true"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:layout_weight="1"
             android:onClick="startAnimationType1"
             android:text="Button1" />
 
@@ -42,29 +52,32 @@
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:onClick="startAnimationType2"
             android:text="Button2" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:onClick="startAnimationType3"
             android:text="Button3" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:onClick="startAnimationType4"
             android:text="Button4" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:onClick="startAnimationType5"
             android:text="Button5" />
-    </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="startAnimationType6"
+            android:text="Button6" />
+
+    </GridLayout>
 </android.support.constraint.ConstraintLayout>
