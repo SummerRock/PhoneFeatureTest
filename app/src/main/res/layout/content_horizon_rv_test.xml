@@ -11,7 +11,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/horizontal_rv"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="90dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,28 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="70dp"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal"
-    android:orientation="vertical">
+    android:layout_height="70dp"
+    android:background="@android:color/holo_green_light">
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/test_image"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center"
         android:src="@drawable/shape_circle" />
 
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/test_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:maxLines="1"
-        android:text="test"
-        tools:ignore="HardcodedText" />
-
-</LinearLayout>
+</FrameLayout>

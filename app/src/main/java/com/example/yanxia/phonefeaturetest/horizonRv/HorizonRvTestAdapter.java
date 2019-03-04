@@ -6,9 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.utils.CommonLog;
@@ -35,11 +33,7 @@ public final class HorizonRvTestAdapter extends RecyclerView.Adapter<HorizonRvTe
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull HorizonTestViewHolder holder, int position, @NonNull List<Object> payloads) {
-        if (payloads.isEmpty()) {
-            holder.textView.setText("pos: " + position);
-        } else {
-            holder.textView.setText("payloads is not empty!");
-        }
+
     }
 
     @Override
@@ -61,12 +55,10 @@ public final class HorizonRvTestAdapter extends RecyclerView.Adapter<HorizonRvTe
 
     class HorizonTestViewHolder extends RecyclerView.ViewHolder {
         private ImageView imageView;
-        private TextView textView;
 
         HorizonTestViewHolder(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.test_image);
-            textView = itemView.findViewById(R.id.test_name);
         }
     }
 }
