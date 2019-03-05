@@ -8,8 +8,11 @@ import android.view.animation.LinearInterpolator;
 import android.widget.RelativeLayout;
 
 public class CustomRelativeLayout extends RelativeLayout implements ValueAnimator.AnimatorUpdateListener {
+    private static final String TAG = CustomRelativeLayout.class.getSimpleName();
     private ValueAnimator animExpand, animShrink;
     private boolean expanded;
+
+    private long lastAnimationTime;
 
     public CustomRelativeLayout(Context context) {
         super(context);
@@ -61,14 +64,12 @@ public class CustomRelativeLayout extends RelativeLayout implements ValueAnimato
         }
     }
 
-    private boolean isAnimationRunning() {
-        if (animExpand != null && animExpand.isRunning()) {
+    public boolean isAnimationRunning() {
+        if (System.currentTimeMillis() - lastAnimationTime < 30) {
             return true;
+        } else {
+            return false;
         }
-        if (animShrink != null && animShrink.isRunning()) {
-            return true;
-        }
-        return false;
     }
 
     @Override
@@ -76,5 +77,6 @@ public class CustomRelativeLayout extends RelativeLayout implements ValueAnimato
         PercentRelativeLayout.LayoutParams params = (PercentRelativeLayout.LayoutParams) getLayoutParams();
         params.getPercentLayoutInfo().heightPercent = (float) animation.getAnimatedValue();
         requestLayout();
+        lastAnimationTime = System.currentTimeMillis();
     }
 }
