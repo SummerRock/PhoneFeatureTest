@@ -13,16 +13,20 @@ import android.widget.Button;
 
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.utils.DisplayUtils;
+import com.example.yanxia.phonefeaturetest.widget.CustomRelativeLayout;
 
 /**
  * @author yanxia-Mac
  */
-public class RecyclerViewTestActivity extends AppCompatActivity {
+public class RecyclerViewTestActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private CustomRelativeLayout customRelativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view_test);
+        customRelativeLayout = findViewById(R.id.custom_relative_layout);
         RecyclerView recyclerView = findViewById(R.id.test_rv);
         GridLayoutManager layout = new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layout);
@@ -33,7 +37,7 @@ public class RecyclerViewTestActivity extends AppCompatActivity {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                Log.d("rv_test_scroll_state", "newState: " + newState);
+                // Log.d("rv_test_scroll_state", "newState: " + newState);
             }
 
             @Override
@@ -43,11 +47,34 @@ public class RecyclerViewTestActivity extends AppCompatActivity {
                         + " VerticalScrollOffset: " + recyclerView.computeVerticalScrollOffset()
                         + " VerticalScrollExtent: " + recyclerView.computeVerticalScrollExtent()
                         + " VerticalScrollRange: " + recyclerView.computeVerticalScrollRange());
+
+                if (dy > 0) {
+                    if (Math.abs(dy) > 3) {
+                        customRelativeLayout.expand();
+                    }
+                } else {
+                    if (Math.abs(dy) > 0 && !recyclerView.canScrollVertically(-1)) {
+                        customRelativeLayout.shrink();
+                    }
+                }
             }
         });
 
         Button button = findViewById(R.id.test_button);
         button.setOnClickListener(v -> adapter.changeSelectPosition(20));
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
+
+    public void expand(View view) {
+
+    }
+
+    public void shrink(View view) {
+
     }
 
     public class CustomItemDecoration extends RecyclerView.ItemDecoration {

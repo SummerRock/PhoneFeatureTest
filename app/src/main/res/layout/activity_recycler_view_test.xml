@@ -1,25 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".notifyitemtest.RecyclerViewTestActivity">
 
-    <Button
-        android:id="@+id/test_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="SELECT ITEM!!!"
-        tools:ignore="HardcodedText" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/test_rv"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/test_button"
-        android:background="@android:color/holo_purple"
-        android:clipToPadding="false"
-        android:paddingTop="20dp" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/test_button"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="SELECT ITEM!"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="expand"
+            android:text="EXPAND"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="shrink"
+            android:text="SHRINK"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+    <com.example.yanxia.phonefeaturetest.widget.CustomRelativeLayout
+        android:id="@+id/custom_relative_layout"
+        android:layout_alignParentBottom="true"
+        app:layout_heightPercent="40%"
+        app:layout_widthPercent="100%">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/test_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_purple"
+            android:clipToPadding="false"
+            android:paddingTop="20dp" />
+    </com.example.yanxia.phonefeaturetest.widget.CustomRelativeLayout>
+
+</android.support.percent.PercentRelativeLayout>
