@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.example.yanxia.phonefeaturetest.R;
@@ -60,6 +61,7 @@ public class HorizonRvTestActivity extends AppCompatActivity {
         final LinearLayoutManager linearLayoutManager =
                 new LinearLayoutManager(this, LinearLayout.HORIZONTAL, false);
 
+        EditText editText = findViewById(R.id.test_scroll_to_position);
         // SnapHelper snapHelper = new PagerSnapHelper();
         // snapHelper.attachToRecyclerView(recyclerView);
 
@@ -76,7 +78,7 @@ public class HorizonRvTestActivity extends AppCompatActivity {
                         linearLayoutManager.findLastVisibleItemPosition());
             }
         });
-        fab.setOnClickListener(view -> adapter.notifyItemRemoved(2));
+        fab.setOnClickListener(v -> recyclerView.scrollToPosition(Integer.valueOf(editText.getText().toString())));
     }
 
 }

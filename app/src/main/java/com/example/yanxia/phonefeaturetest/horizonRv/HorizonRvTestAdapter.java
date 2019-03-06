@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.utils.CommonLog;
@@ -33,7 +33,7 @@ public final class HorizonRvTestAdapter extends RecyclerView.Adapter<HorizonRvTe
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull HorizonTestViewHolder holder, int position, @NonNull List<Object> payloads) {
-
+        holder.positionNumTv.setText(String.valueOf(position));
     }
 
     @Override
@@ -50,15 +50,15 @@ public final class HorizonRvTestAdapter extends RecyclerView.Adapter<HorizonRvTe
 
     @Override
     public int getItemCount() {
-        return 30;
+        return 40;
     }
 
     class HorizonTestViewHolder extends RecyclerView.ViewHolder {
-        private ImageView imageView;
+        private TextView positionNumTv;
 
         HorizonTestViewHolder(View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.test_image);
+            positionNumTv = itemView.findViewById(R.id.test_position_number_tv);
         }
     }
 }

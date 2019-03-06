@@ -8,6 +8,18 @@
     tools:context=".horizonRv.HorizonRvTestActivity"
     tools:showIn="@layout/activity_horizon_rv_test">
 
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/test_scroll_to_position"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:inputType="number"
+        android:text="0"
+        app:layout_constraintBottom_toTopOf="@+id/horizontal_rv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/horizontal_rv"
         android:layout_width="0dp"
