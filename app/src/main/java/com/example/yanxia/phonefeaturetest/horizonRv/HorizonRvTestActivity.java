@@ -78,7 +78,26 @@ public class HorizonRvTestActivity extends AppCompatActivity {
                         linearLayoutManager.findLastVisibleItemPosition());
             }
         });
-        fab.setOnClickListener(v -> recyclerView.scrollToPosition(Integer.valueOf(editText.getText().toString())));
+        // fab.setOnClickListener(v -> recyclerView.scrollToPosition(Integer.valueOf(editText.getText().toString())));
+        fab.setOnClickListener(v -> {
+            int position = Integer.valueOf(editText.getText().toString());
+            if (position >= linearLayoutManager.findFirstCompletelyVisibleItemPosition() && position <= linearLayoutManager.findLastCompletelyVisibleItemPosition()) {
+                return;
+            }
+            if (position > linearLayoutManager.findLastCompletelyVisibleItemPosition()) {
+                if (position + 2 > adapter.getItemCount() - 1) {
+                    recyclerView.scrollToPosition(adapter.getItemCount() - 1);
+                } else {
+                    recyclerView.scrollToPosition(position + 2);
+                }
+            } else if (position < linearLayoutManager.findFirstCompletelyVisibleItemPosition()) {
+                if (position - 2 < 0) {
+                    recyclerView.scrollToPosition(0);
+                } else {
+                    recyclerView.scrollToPosition(position - 2);
+                }
+            }
+        });
     }
 
 }
