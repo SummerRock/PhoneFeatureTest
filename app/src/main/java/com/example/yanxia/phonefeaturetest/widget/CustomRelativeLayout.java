@@ -67,9 +67,14 @@ public class CustomRelativeLayout extends RelativeLayout implements ValueAnimato
     public boolean isAnimationRunning() {
         if (System.currentTimeMillis() - lastAnimationTime < 30) {
             return true;
-        } else {
-            return false;
         }
+        if (animExpand != null && animExpand.isRunning()) {
+            return true;
+        }
+        if (animShrink != null && animShrink.isRunning()) {
+            return true;
+        }
+        return false;
     }
 
     @Override

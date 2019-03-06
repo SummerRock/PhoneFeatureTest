@@ -50,10 +50,12 @@ public class RecyclerViewTestActivity extends AppCompatActivity implements View.
 
                 if (dy > 0) {
                     if (Math.abs(dy) > 3) {
+                        Log.d("kobe", "should expand");
                         customRelativeLayout.expand();
                     }
                 } else {
                     if (Math.abs(dy) > 0 && !recyclerView.canScrollVertically(-1)) {
+                        Log.d("kobe", "should shrink");
                         customRelativeLayout.shrink();
                     }
                 }
