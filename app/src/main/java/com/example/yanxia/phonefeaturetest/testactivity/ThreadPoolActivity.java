@@ -17,7 +17,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
+ * 线程池必须认真学习
  * https://blog.csdn.net/u012702547/article/details/52259529
+ * https://juejin.im/post/5a743c526fb9a063557d7eba
  */
 
 public class ThreadPoolActivity extends AppCompatActivity implements View.OnClickListener {
@@ -42,7 +44,7 @@ public class ThreadPoolActivity extends AppCompatActivity implements View.OnClic
             final int finalInt = i;
             Runnable runnable = () -> {
                 SystemClock.sleep(2000);
-                Log.d("ThreadPoolActivity", "run: " + finalInt);
+                Log.d("ThreadPoolActivity_LOG", "run: " + finalInt);
             };
             poolExecutor.execute(runnable);
         }

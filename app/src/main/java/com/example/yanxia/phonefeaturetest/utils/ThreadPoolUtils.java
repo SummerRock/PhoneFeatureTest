@@ -44,6 +44,7 @@ public class ThreadPoolUtils {
                         return thread;
                     }
                 });
+        Log.d(TAG, "CORE_POOL_SIZE: " + CORE_POOL_SIZE + " MAXIMUM_POOL_SIZE: " + MAXIMUM_POOL_SIZE);
     }
 
     public static void postOnThreadPoolExecutor(Runnable r) {
