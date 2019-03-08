@@ -9,22 +9,53 @@
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/imageView_01"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="14dp"
         android:src="@drawable/test_image_01"
         app:layout_aspectRatio="100%"
-        app:layout_widthPercent="100%" />
+        app:layout_widthPercent="50%" />
 
     <SeekBar
         android:id="@+id/seekBar_01"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/imageView_01"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="40dp"
         android:background="@android:color/holo_purple"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:progress="100" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/auto_size_test_tv"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/seekBar_01"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/holo_blue_bright"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="@android:string/selectTextMode"
+        app:autoSizeMaxTextSize="40sp"
+        app:autoSizeMinTextSize="10sp"
+        app:autoSizeStepGranularity="1sp"
+        app:autoSizeTextType="uniform" />
+
+    <SeekBar
+        android:id="@+id/seekBar_02"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/holo_purple"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:progress="0" />
 </android.support.percent.PercentRelativeLayout>
