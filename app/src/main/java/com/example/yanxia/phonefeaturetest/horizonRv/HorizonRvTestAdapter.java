@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.utils.CommonLog;
@@ -22,7 +23,12 @@ public final class HorizonRvTestAdapter extends RecyclerView.Adapter<HorizonRvTe
     @Override
     public HorizonTestViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.horizontal_test_item, parent, false);
-        return new HorizonTestViewHolder(view);
+        HorizonTestViewHolder horizonTestViewHolder = new HorizonTestViewHolder(view);
+        horizonTestViewHolder.itemView.setOnClickListener(v -> {
+            int position = horizonTestViewHolder.getAdapterPosition();
+            Toast.makeText(parent.getContext(), "Click position: " + position, Toast.LENGTH_SHORT).show();
+        });
+        return horizonTestViewHolder;
     }
 
     @Override
