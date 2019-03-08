@@ -9,13 +9,19 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.example.yanxia.phonefeaturetest.R;
 
-public class HorizonRvTestActivity extends AppCompatActivity {
+public class HorizonRvTestActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "HorizonRvTestActivity";
+
+    private EditText editText;
+    private LinearLayoutManager linearLayoutManager;
+    private HorizonRvTestAdapter adapter;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +30,8 @@ public class HorizonRvTestActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        RecyclerView recyclerView = findViewById(R.id.horizontal_rv);
-        final HorizonRvTestAdapter adapter = new HorizonRvTestAdapter();
+        recyclerView = findViewById(R.id.horizontal_rv);
+        adapter = new HorizonRvTestAdapter();
         adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onChanged() {
@@ -58,10 +64,8 @@ public class HorizonRvTestActivity extends AppCompatActivity {
             }
         });
         recyclerView.setAdapter(adapter);
-        final LinearLayoutManager linearLayoutManager =
-                new LinearLayoutManager(this, LinearLayout.HORIZONTAL, false);
-
-        EditText editText = findViewById(R.id.test_scroll_to_position);
+        linearLayoutManager = new LinearLayoutManager(this, LinearLayout.HORIZONTAL, false);
+        editText = findViewById(R.id.test_scroll_to_position);
         // SnapHelper snapHelper = new PagerSnapHelper();
         // snapHelper.attachToRecyclerView(recyclerView);
 
@@ -78,26 +82,35 @@ public class HorizonRvTestActivity extends AppCompatActivity {
                         linearLayoutManager.findLastVisibleItemPosition());
             }
         });
-        // fab.setOnClickListener(v -> recyclerView.scrollToPosition(Integer.valueOf(editText.getText().toString())));
-        fab.setOnClickListener(v -> {
-            int position = Integer.valueOf(editText.getText().toString());
-            if (position >= linearLayoutManager.findFirstCompletelyVisibleItemPosition() && position <= linearLayoutManager.findLastCompletelyVisibleItemPosition()) {
-                return;
-            }
-            if (position > linearLayoutManager.findLastCompletelyVisibleItemPosition()) {
-                if (position + 2 > adapter.getItemCount() - 1) {
-                    recyclerView.scrollToPosition(adapter.getItemCount() - 1);
-                } else {
-                    recyclerView.scrollToPosition(position + 2);
-                }
-            } else if (position < linearLayoutManager.findFirstCompletelyVisibleItemPosition()) {
-                if (position - 2 < 0) {
-                    recyclerView.scrollToPosition(0);
-                } else {
-                    recyclerView.scrollToPosition(position - 2);
-                }
-            }
-        });
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
+
+    public void jumpToPosition(View view) {
+        int position = Integer.valueOf(editText.getText().toString());
+        if (position >= linearLayoutManager.findFirstCompletelyVisibleItemPosition() && position <= linearLayoutManager.findLastCompletelyVisibleItemPosition()) {
+            return;
+        }
+        if (position > linearLayoutManager.findLastCompletelyVisibleItemPosition()) {
+            if (position + 2 > adapter.getItemCount() - 1) {
+                recyclerView.scrollToPosition(adapter.getItemCount() - 1);
+            } else {
+                recyclerView.scrollToPosition(position + 2);
+            }
+        } else if (position < linearLayoutManager.findFirstCompletelyVisibleItemPosition()) {
+            if (position - 2 < 0) {
+                recyclerView.scrollToPosition(0);
+            } else {
+                recyclerView.scrollToPosition(position - 2);
+            }
+        }
+    }
+
+    public void add(View view) {
+        int position = Integer.valueOf(editText.getText().toString());
+        adapter.notifyItemInserted(position);
+    }
 }
