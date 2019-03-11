@@ -109,8 +109,13 @@ public class HorizonRvTestActivity extends AppCompatActivity implements View.OnC
         }
     }
 
-    public void add(View view) {
+    public void addItem(View view) {
         int position = Integer.valueOf(editText.getText().toString());
         adapter.notifyItemInserted(position);
+    }
+
+    public void deleteItem(View view) {
+        int position = Integer.valueOf(editText.getText().toString());
+        adapter.notifyItemRemoved(position);
     }
 }
