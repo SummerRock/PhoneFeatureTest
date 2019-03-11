@@ -3,7 +3,6 @@ package com.example.yanxia.phonefeaturetest.horizonRv;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -70,8 +69,6 @@ public class HorizonRvTestActivity extends AppCompatActivity implements View.OnC
         // snapHelper.attachToRecyclerView(recyclerView);
 
         recyclerView.setLayoutManager(linearLayoutManager);
-        FloatingActionButton fab = findViewById(R.id.fab);
-
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
