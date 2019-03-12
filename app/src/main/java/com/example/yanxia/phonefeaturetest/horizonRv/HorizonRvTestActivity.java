@@ -9,8 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.NumberPicker;
 
 import com.example.yanxia.phonefeaturetest.R;
 
@@ -20,7 +20,7 @@ import java.util.List;
 public class HorizonRvTestActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "HorizonRvTestActivity";
 
-    private EditText editText;
+    private NumberPicker numberPicker;
     private LinearLayoutManager linearLayoutManager;
     private HorizonRvTestAdapter adapter;
     private RecyclerView recyclerView;
@@ -71,7 +71,14 @@ public class HorizonRvTestActivity extends AppCompatActivity implements View.OnC
         });
         recyclerView.setAdapter(adapter);
         linearLayoutManager = new LinearLayoutManager(this, LinearLayout.HORIZONTAL, false);
-        editText = findViewById(R.id.test_scroll_to_position);
+        numberPicker = findViewById(R.id.test_scroll_to_position);
+        numberPicker.setMinValue(0);
+        numberPicker.setMaxValue(39);
+        numberPicker.setValue(0);
+        // String[] stockArr = new String[stringList.size()];
+        // stockArr = stringList.toArray(stockArr);
+        // numberPicker.setDisplayedValues(stockArr);
+
         // SnapHelper snapHelper = new PagerSnapHelper();
         // snapHelper.attachToRecyclerView(recyclerView);
 
@@ -94,7 +101,7 @@ public class HorizonRvTestActivity extends AppCompatActivity implements View.OnC
     }
 
     public void jumpToPosition(View view) {
-        int position = Integer.valueOf(editText.getText().toString());
+        int position = numberPicker.getValue();
         if (position >= linearLayoutManager.findFirstCompletelyVisibleItemPosition() && position <= linearLayoutManager.findLastCompletelyVisibleItemPosition()) {
             return;
         }
@@ -114,23 +121,23 @@ public class HorizonRvTestActivity extends AppCompatActivity implements View.OnC
     }
 
     public void notifyItemInserted(View view) {
-        int position = Integer.valueOf(editText.getText().toString());
+        int position = numberPicker.getValue();
         adapter.notifyItemInserted(position);
     }
 
     public void notifyItemRemoved(View view) {
-        int position = Integer.valueOf(editText.getText().toString());
+        int position = numberPicker.getValue();
         adapter.notifyItemRemoved(position);
     }
 
     public void addItem(View view) {
-        int position = Integer.valueOf(editText.getText().toString());
+        int position = numberPicker.getValue();
         stringList.add(position, String.valueOf(position));
         adapter.notifyDataSetChanged();
     }
 
     public void removeItem(View view) {
-        int position = Integer.valueOf(editText.getText().toString());
+        int position = numberPicker.getValue();
         stringList.remove(position);
         adapter.notifyDataSetChanged();
     }
