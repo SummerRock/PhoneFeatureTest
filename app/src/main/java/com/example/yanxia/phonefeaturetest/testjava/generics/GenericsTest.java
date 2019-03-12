@@ -3,6 +3,9 @@ package com.example.yanxia.phonefeaturetest.testjava.generics;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * https://blog.csdn.net/s10461/article/details/53941091
+ */
 public class GenericsTest {
     public void showClassCastException() {
         List arrayList = new ArrayList();
@@ -105,10 +108,10 @@ public class GenericsTest {
     }
 
     public void test9() {
-        Generic<String> generic1 = new Generic<String>("11111");
-        Generic<Integer> generic2 = new Generic<Integer>(2222);
-        Generic<Float> generic3 = new Generic<Float>(2.4f);
-        Generic<Double> generic4 = new Generic<Double>(2.56);
+        Generic<String> generic1 = new Generic<>("11111");
+        Generic<Integer> generic2 = new Generic<>(2222);
+        Generic<Float> generic3 = new Generic<>(2.4f);
+        Generic<Double> generic4 = new Generic<>(2.56);
 
         //这一行代码编译器会提示错误，因为String类型并不是Number类型的子类
         //showKeyValue1(generic1);
@@ -118,10 +121,21 @@ public class GenericsTest {
         showKeyValue1(generic4);
     }
 
+    public void test10() {
+        // List<String>[] lsa = new List<String>[10]; // Not really allowed.
+        List<?>[] lsa = new List<?>[10]; // OK, array of unbounded wildcard type.
+        List<Integer> li = new ArrayList<>();
+        li.add(3);
+        ((Object[]) lsa)[1] = li; // Unsound, but passes run time store check
+        // String s = lsa[1].get(0); // Run-time error: ClassCastException.
+        Integer i = (Integer) lsa[1].get(0); // OK
+        System.out.println("泛型测试 Integer value is " + i);
+    }
+
     public static void main(String args[]) {
         GenericsTest genericsTest = new GenericsTest();
         // genericsTest.showClassCastException();
         // genericsTest.test2();
-        genericsTest.test8();
+        genericsTest.test10();
     }
 }
