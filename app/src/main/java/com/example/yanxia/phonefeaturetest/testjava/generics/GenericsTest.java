@@ -90,10 +90,38 @@ public class GenericsTest {
         }
     }
 
+    public <T> void printMsg(T... args) {
+        for (T t : args) {
+            System.out.println("泛型测试 t is " + t);
+        }
+    }
+
+    public void test8() {
+        printMsg("111", 222, "aaaa", "2323.4", 55.55);
+    }
+
+    public void showKeyValue1(Generic<? extends Number> obj) {
+        System.out.println("泛型测试 key value is " + obj.getKey());
+    }
+
+    public void test9() {
+        Generic<String> generic1 = new Generic<String>("11111");
+        Generic<Integer> generic2 = new Generic<Integer>(2222);
+        Generic<Float> generic3 = new Generic<Float>(2.4f);
+        Generic<Double> generic4 = new Generic<Double>(2.56);
+
+        //这一行代码编译器会提示错误，因为String类型并不是Number类型的子类
+        //showKeyValue1(generic1);
+
+        showKeyValue1(generic2);
+        showKeyValue1(generic3);
+        showKeyValue1(generic4);
+    }
+
     public static void main(String args[]) {
         GenericsTest genericsTest = new GenericsTest();
         // genericsTest.showClassCastException();
         // genericsTest.test2();
-        genericsTest.test7();
+        genericsTest.test8();
     }
 }
