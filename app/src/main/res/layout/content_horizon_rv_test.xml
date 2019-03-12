@@ -43,21 +43,31 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
             android:onClick="jumpToPosition"
             android:text="Jump" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="addItem"
-            android:text="Add" />
+            android:onClick="notifyItemInserted"
+            android:text="Inserted" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="deleteItem"
-            android:text="Delete" />
+            android:onClick="notifyItemRemoved"
+            android:text="Removed" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="addItem"
+            android:text="addItem" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="removeItem"
+            android:text="removeItem" />
     </GridLayout>
 </android.support.constraint.ConstraintLayout>

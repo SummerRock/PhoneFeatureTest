@@ -14,6 +14,9 @@ import android.widget.LinearLayout;
 
 import com.example.yanxia.phonefeaturetest.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HorizonRvTestActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "HorizonRvTestActivity";
 
@@ -21,6 +24,7 @@ public class HorizonRvTestActivity extends AppCompatActivity implements View.OnC
     private LinearLayoutManager linearLayoutManager;
     private HorizonRvTestAdapter adapter;
     private RecyclerView recyclerView;
+    private List<String> stringList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +34,10 @@ public class HorizonRvTestActivity extends AppCompatActivity implements View.OnC
         setSupportActionBar(toolbar);
 
         recyclerView = findViewById(R.id.horizontal_rv);
-        adapter = new HorizonRvTestAdapter();
+        for (int i = 0; i < 40; i++) {
+            stringList.add(String.valueOf(i));
+        }
+        adapter = new HorizonRvTestAdapter(stringList);
         adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onChanged() {
@@ -106,13 +113,25 @@ public class HorizonRvTestActivity extends AppCompatActivity implements View.OnC
         }
     }
 
-    public void addItem(View view) {
+    public void notifyItemInserted(View view) {
         int position = Integer.valueOf(editText.getText().toString());
         adapter.notifyItemInserted(position);
     }
 
-    public void deleteItem(View view) {
+    public void notifyItemRemoved(View view) {
         int position = Integer.valueOf(editText.getText().toString());
         adapter.notifyItemRemoved(position);
+    }
+
+    public void addItem(View view) {
+        int position = Integer.valueOf(editText.getText().toString());
+        stringList.add(position, String.valueOf(position));
+        adapter.notifyDataSetChanged();
+    }
+
+    public void removeItem(View view) {
+        int position = Integer.valueOf(editText.getText().toString());
+        stringList.remove(position);
+        adapter.notifyDataSetChanged();
     }
 }

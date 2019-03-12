@@ -19,6 +19,12 @@ import java.util.List;
  */
 public final class HorizonRvTestAdapter extends RecyclerView.Adapter<HorizonRvTestAdapter.HorizonTestViewHolder> {
 
+    private List<String> stringList;
+
+    public HorizonRvTestAdapter(@NonNull List<String> stringList) {
+        this.stringList = stringList;
+    }
+
     @NonNull
     @Override
     public HorizonTestViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,7 +45,7 @@ public final class HorizonRvTestAdapter extends RecyclerView.Adapter<HorizonRvTe
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull HorizonTestViewHolder holder, int position, @NonNull List<Object> payloads) {
-        holder.positionNumTv.setText(String.valueOf(position));
+        holder.positionNumTv.setText(stringList.get(position));
     }
 
     @Override
@@ -56,7 +62,7 @@ public final class HorizonRvTestAdapter extends RecyclerView.Adapter<HorizonRvTe
 
     @Override
     public int getItemCount() {
-        return 40;
+        return stringList.size();
     }
 
     class HorizonTestViewHolder extends RecyclerView.ViewHolder {
