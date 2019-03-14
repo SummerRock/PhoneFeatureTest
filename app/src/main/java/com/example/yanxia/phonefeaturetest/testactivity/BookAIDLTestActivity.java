@@ -11,7 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
-import com.example.yanxia.phonefeaturetest.AIDLService;
+import com.example.yanxia.phonefeaturetest.multiProcess.AIDLService;
 import com.example.yanxia.phonefeaturetest.Book;
 import com.example.yanxia.phonefeaturetest.IBookManager;
 import com.example.yanxia.phonefeaturetest.R;

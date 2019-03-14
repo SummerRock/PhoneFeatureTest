@@ -34,6 +34,7 @@ public class Constant {
     public static final String TEST_VIEW_FEATURE = "View 属性";
     public static final String TEST_AIDL = "AIDL";
     public static final String TEST_REMOTE = "Remote";
+    public static final String TEST_MESSENGER = "Messenger";
 
     private static List<TestItem> initTestItems() {
         List<TestItem> testItemList = new ArrayList<>();

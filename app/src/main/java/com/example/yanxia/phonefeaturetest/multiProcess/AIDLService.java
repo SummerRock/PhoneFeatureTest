@@ -1,9 +1,12 @@
-package com.example.yanxia.phonefeaturetest;
+package com.example.yanxia.phonefeaturetest.multiProcess;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
+
+import com.example.yanxia.phonefeaturetest.Book;
+import com.example.yanxia.phonefeaturetest.IBookManager;
 
 import java.util.ArrayList;
 import java.util.List;

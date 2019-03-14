@@ -25,12 +25,23 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".multiProcess.MessengerActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
+        <service
+            android:name=".multiProcess.MessengerService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":messenger" />
+
+        <activity
             android:name=".testactivity.RemoteDemoActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
 
         <service
-            android:name=".RemoteDemoService"
+            android:name=".multiProcess.RemoteDemoService"
             android:enabled="true"
             android:exported="true"
             android:process=":remote">
@@ -111,7 +122,7 @@
             android:screenOrientation="portrait" />
 
         <service
-            android:name=".AIDLService"
+            android:name=".multiProcess.AIDLService"
             android:enabled="true"
             android:exported="true"
             android:process=":server">

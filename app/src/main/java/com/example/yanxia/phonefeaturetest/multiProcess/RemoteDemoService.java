@@ -1,4 +1,4 @@
-package com.example.yanxia.phonefeaturetest;
+package com.example.yanxia.phonefeaturetest.multiProcess;
 
 import android.app.Service;
 import android.content.Intent;
