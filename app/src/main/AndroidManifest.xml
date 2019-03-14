@@ -25,6 +25,23 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".testactivity.RemoteDemoActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
+        <service
+            android:name=".RemoteDemoService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="summer.remote.server.action" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
+        <activity
             android:name=".testactivity.BookAIDLTestActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />

@@ -26,6 +26,7 @@ import com.example.yanxia.phonefeaturetest.testactivity.FullscreenActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.GpsTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.HandlerThreadActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ProgressBarTestActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.RemoteDemoActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SecondTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SensorTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SettingsActivity;
@@ -124,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         testItemList.add(new TestItem(Constant.TEST_DIALOG_FRAGMENT, R.drawable.ic_lock_24dp, null));
         testItemList.add(new TestItem(Constant.TEST_VIEW_FEATURE, R.drawable.ic_lock_24dp, ViewFeatureActivity.class));
         testItemList.add(new TestItem(Constant.TEST_AIDL, R.drawable.ic_lock_24dp, BookAIDLTestActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_REMOTE, R.drawable.ic_lock_24dp, RemoteDemoActivity.class));
     }
 
     private void startTest(@NonNull TestItem testItem) {

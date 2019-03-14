@@ -33,6 +33,7 @@ public class Constant {
     public static final String TEST_DIALOG_FRAGMENT = "Dialog Fragment";
     public static final String TEST_VIEW_FEATURE = "View 属性";
     public static final String TEST_AIDL = "AIDL";
+    public static final String TEST_REMOTE = "Remote";
 
     private static List<TestItem> initTestItems() {
         List<TestItem> testItemList = new ArrayList<>();
