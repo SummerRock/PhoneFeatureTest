@@ -17,7 +17,6 @@ import com.example.yanxia.phonefeaturetest.RemoteDemoService;
 import java.util.List;
 
 public class RemoteDemoActivity extends AppCompatActivity implements View.OnClickListener {
-    private static final String TAG = "RemoteDemoActivity";
 
     // State variables
     private boolean mIsServiceStarted = false;
@@ -39,14 +38,16 @@ public class RemoteDemoActivity extends AppCompatActivity implements View.OnClic
          */
         @Override
         public void onServiceConnected(ComponentName className, IBinder service) {
+            //不在同一个process中 返回的是android.os.BinderProxy
+            Log.i(RemoteDemoService.TAG, "onServiceConnected service type: " + service.getClass().getName());
             if (service instanceof RemoteDemoService.ServiceBinder) {
                 mIRemoteService = ((RemoteDemoService.ServiceBinder) service).getService();
                 if (null == mIRemoteService) {
-                    Log.e(TAG, "onServiceConnected, mService is null");
+                    Log.e(RemoteDemoService.TAG, "onServiceConnected, mService is null");
                     finish();
                 }
             } else {
-                Log.e(TAG, "service is wrong!");
+                Log.e(RemoteDemoService.TAG, "service is wrong!");
                 finish();
             }
         }
@@ -58,7 +59,7 @@ public class RemoteDemoActivity extends AppCompatActivity implements View.OnClic
          */
         @Override
         public void onServiceDisconnected(ComponentName className) {
-            Log.e(TAG, "onServiceDisconnected!");
+            Log.e(RemoteDemoService.TAG, "onServiceDisconnected!");
             finish();
         }
     };
@@ -73,9 +74,8 @@ public class RemoteDemoActivity extends AppCompatActivity implements View.OnClic
     protected void onStart() {
         super.onStart();
 
-        // Should start FM service first.
         if (null == startService(new Intent(RemoteDemoActivity.this, RemoteDemoService.class))) {
-            Log.e(TAG, "onStart, cannot start RemoteDemoService service");
+            Log.e(RemoteDemoService.TAG, "onStart, cannot start RemoteDemoService service");
             return;
         }
 
@@ -84,7 +84,7 @@ public class RemoteDemoActivity extends AppCompatActivity implements View.OnClic
                 mServiceConnection, Context.BIND_AUTO_CREATE);
 
         if (!mIsServiceBinded) {
-            Log.e(TAG, "onStart, cannot bind RemoteDemoService service");
+            Log.e(RemoteDemoService.TAG, "onStart, cannot bind RemoteDemoService service");
             finish();
         }
     }
@@ -95,8 +95,14 @@ public class RemoteDemoActivity extends AppCompatActivity implements View.OnClic
         super.onStop();
     }
 
+    @Override
+    protected void onDestroy() {
+        exitService();
+        super.onDestroy();
+    }
+
     /**
-     * Exit FM service
+     * Exit service
      */
     private void exitService() {
         if (mIsServiceBinded) {
