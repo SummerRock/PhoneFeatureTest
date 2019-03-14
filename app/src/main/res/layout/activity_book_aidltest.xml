@@ -24,4 +24,10 @@
         android:layout_height="wrap_content"
         android:onClick="addBookOut"
         android:text="addBookOut" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="printBookList"
+        android:text="printBookList" />
 </LinearLayout>

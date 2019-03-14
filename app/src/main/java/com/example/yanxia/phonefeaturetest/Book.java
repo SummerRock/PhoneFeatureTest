@@ -10,28 +10,28 @@ import android.support.annotation.NonNull;
  */
 public class Book implements Parcelable {
 
-    private String name;
+    private String bookName;
 
     public Book() {
         this("unknown");
     }
 
     public Book(@NonNull String name) {
-        this.name = name;
+        this.bookName = name;
     }
 
-    public String getName() {
-        return name;
+    public String getBookName() {
+        return bookName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBookName(String name) {
+        this.bookName = name;
     }
 
     @NonNull
     @Override
     public String toString() {
-        return "book name：" + name;
+        return "book name：" + bookName;
     }
 
     @Override
@@ -41,15 +41,15 @@ public class Book implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.name);
+        dest.writeString(this.bookName);
     }
 
     public void readFromParcel(Parcel dest) {
-        name = dest.readString();
+        bookName = dest.readString();
     }
 
     protected Book(Parcel in) {
-        this.name = in.readString();
+        this.bookName = in.readString();
     }
 
     public static final Creator<Book> CREATOR = new Creator<Book>() {

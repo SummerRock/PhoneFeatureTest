@@ -52,7 +52,8 @@ public class AIDLService extends Service {
         @Override
         public void addBookInOut(Book book) {
             if (book != null) {
-                Log.i(TAG, "addBookInOut 服务端接收的书名: " + book.getName());
+                Log.i(TAG, "addBookInOut 服务端接收的书名: " + book.getBookName());
+                book.setBookName(book.getBookName() + "_Server ");
                 bookList.add(book);
             } else {
                 Log.e(TAG, "addBookInOut 接收到了一个空对象");
@@ -62,7 +63,8 @@ public class AIDLService extends Service {
         @Override
         public void addBookIn(Book book) {
             if (book != null) {
-                Log.i(TAG, "addBookIn 服务端接收的书名: " + book.getName());
+                Log.i(TAG, "addBookIn 服务端接收的书名: " + book.getBookName());
+                book.setBookName(book.getBookName() + "_Server ");
                 bookList.add(book);
             } else {
                 Log.e(TAG, "addBookIn 接收到了一个空对象");
@@ -72,7 +74,8 @@ public class AIDLService extends Service {
         @Override
         public void addBookOut(Book book) {
             if (book != null) {
-                Log.i(TAG, "addBookOut 服务端接收的书名：" + book.getName());
+                Log.i(TAG, "addBookOut 服务端接收的书名：" + book.getBookName());
+                book.setBookName(book.getBookName() + "_Server ");
                 bookList.add(book);
             } else {
                 Log.e(TAG, "addBookOut 接收到了一个空对象");
