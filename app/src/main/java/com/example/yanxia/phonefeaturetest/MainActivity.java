@@ -17,6 +17,7 @@ import com.example.yanxia.phonefeaturetest.download.DownloadTestActivity;
 import com.example.yanxia.phonefeaturetest.horizonRv.HorizonRvTestActivity;
 import com.example.yanxia.phonefeaturetest.notifyitemtest.RecyclerViewTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.AnimationTestActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.BookAIDLTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.CameraTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ColorMatrixTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.DialogStyleActivity;
@@ -122,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         testItemList.add(new TestItem(Constant.TEST_CONTENT_PROVIDER, R.drawable.ic_lock_24dp, null));
         testItemList.add(new TestItem(Constant.TEST_DIALOG_FRAGMENT, R.drawable.ic_lock_24dp, null));
         testItemList.add(new TestItem(Constant.TEST_VIEW_FEATURE, R.drawable.ic_lock_24dp, ViewFeatureActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_AIDL, R.drawable.ic_lock_24dp, BookAIDLTestActivity.class));
     }
 
     private void startTest(@NonNull TestItem testItem) {

@@ -16,7 +16,7 @@ public class Book implements Parcelable {
         this("unknown");
     }
 
-    public Book(String name) {
+    public Book(@NonNull String name) {
         this.name = name;
     }
 

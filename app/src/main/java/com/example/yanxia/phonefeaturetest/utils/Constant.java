@@ -32,6 +32,7 @@ public class Constant {
     public static final String TEST_CONTENT_PROVIDER = "ContentProvider测试";
     public static final String TEST_DIALOG_FRAGMENT = "Dialog Fragment";
     public static final String TEST_VIEW_FEATURE = "View 属性";
+    public static final String TEST_AIDL = "AIDL";
 
     private static List<TestItem> initTestItems() {
         List<TestItem> testItemList = new ArrayList<>();

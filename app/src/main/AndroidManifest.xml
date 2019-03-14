@@ -24,6 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".testactivity.BookAIDLTestActivity"></activity>
         <activity
             android:name=".testactivity.ViewFeatureActivity"
             android:screenOrientation="portrait" />
@@ -92,6 +93,7 @@
         <service
             android:name=".AIDLService"
             android:enabled="true"
+            android:process=":server"
             android:exported="true">
             <intent-filter>
                 <action android:name="leavesc.hello.server.action" />

@@ -3,7 +3,6 @@ package com.example.yanxia.phonefeaturetest;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.os.RemoteException;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ import java.util.List;
  */
 public class AIDLService extends Service {
 
-    private final String TAG = "Server";
+    public static final String TAG = "AIDL_test_log";
 
     private List<Book> bookList;
 
@@ -47,14 +46,14 @@ public class AIDLService extends Service {
 
     private final BookController.Stub stub = new BookController.Stub() {
         @Override
-        public List<Book> getBookList() throws RemoteException {
+        public List<Book> getBookList() {
             return bookList;
         }
 
         @Override
-        public void addBookInOut(Book book) throws RemoteException {
+        public void addBookInOut(Book book) {
             if (book != null) {
-                book.setName("服务器改了新书的名字 InOut");
+                Log.i(TAG, "服务端添加的书名: " + book.getName());
                 bookList.add(book);
             } else {
                 Log.e(TAG, "接收到了一个空对象 InOut");
@@ -62,7 +61,7 @@ public class AIDLService extends Service {
         }
 
         @Override
-        public void addBookIn(Book book) throws RemoteException {
+        public void addBookIn(Book book) {
             if (book != null) {
                 book.setName("服务器改了新书的名字 In");
                 bookList.add(book);
@@ -72,7 +71,7 @@ public class AIDLService extends Service {
         }
 
         @Override
-        public void addBookOut(Book book) throws RemoteException {
+        public void addBookOut(Book book) {
             if (book != null) {
                 Log.e(TAG, "客户端传来的书的名字：" + book.getName());
                 book.setName("服务器改了新书的名字 Out");
