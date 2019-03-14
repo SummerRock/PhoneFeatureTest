@@ -13,7 +13,7 @@ import android.view.View;
 
 import com.example.yanxia.phonefeaturetest.AIDLService;
 import com.example.yanxia.phonefeaturetest.Book;
-import com.example.yanxia.phonefeaturetest.BookController;
+import com.example.yanxia.phonefeaturetest.IBookManager;
 import com.example.yanxia.phonefeaturetest.R;
 
 import java.util.List;
@@ -38,13 +38,13 @@ public class BookAIDLTestActivity extends AppCompatActivity implements View.OnCl
 
     private boolean mIsServiceBinded = false;
 
-    private BookController mIRemoteService;
+    private IBookManager mIRemoteService;
     private ServiceConnection mConnection = new ServiceConnection() {
         // Called when the connection with the service is established
         public void onServiceConnected(ComponentName className, IBinder service) {
             // Following the example above for an AIDL interface,
             // this gets an instance of the IRemoteInterface, which we can use to call on the service
-            mIRemoteService = BookController.Stub.asInterface(service);
+            mIRemoteService = IBookManager.Stub.asInterface(service);
         }
 
         // Called when the connection with the service disconnects unexpectedly

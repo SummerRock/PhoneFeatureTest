@@ -4,7 +4,7 @@ package com.example.yanxia.phonefeaturetest;
 import com.example.yanxia.phonefeaturetest.Book;
 // Declare any non-default types here with import statements
 
-interface BookController {
+interface IBookManager {
     /**
      * Demonstrates some basic types that you can use as parameters
      * and return values in AIDL.
