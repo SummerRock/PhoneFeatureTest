@@ -33,7 +33,7 @@ import com.example.yanxia.phonefeaturetest.testactivity.SettingsActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.StorageTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ThreadPoolActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ViewFeatureActivity;
-import com.example.yanxia.phonefeaturetest.testjava.Person;
+import com.example.yanxia.phonefeaturetest.testjava.People;
 import com.example.yanxia.phonefeaturetest.utils.CommonLog;
 import com.example.yanxia.phonefeaturetest.utils.Constant;
 import com.example.yanxia.phonefeaturetest.viewpager.ViewPagerActivity;
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
 
     private static final String MAIN_STRING = TestClass.TEST_STRING;
 
-    private Person person = new Person(25, "Summer", "BJ", "none");
+    private People person = new People(25, "Summer", "BJ", "none");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
 
     @Override
     public void onFragmentInteraction() {
-        Toast.makeText(this, "Person age: " + person.getAge(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "People age: " + person.getAge(), Toast.LENGTH_SHORT).show();
     }
 
     private void initTestItems() {
@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE) {
-            Toast.makeText(this, "Person age: " + person.getAge(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "People age: " + person.getAge(), Toast.LENGTH_SHORT).show();
         }
     }
 

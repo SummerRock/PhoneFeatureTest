@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.yanxia.phonefeaturetest.testjava.Person;
+import com.example.yanxia.phonefeaturetest.testjava.People;
 
 
 /**
@@ -24,7 +24,7 @@ import com.example.yanxia.phonefeaturetest.testjava.Person;
 public class MainFragment extends DialogFragment {
     private static final String ARG_PARAM1 = "param1";
 
-    private Person person;
+    private People person;
 
     private OnFragmentInteractionListener mListener;
 
@@ -32,7 +32,7 @@ public class MainFragment extends DialogFragment {
         // Required empty public constructor
     }
 
-    public static MainFragment newInstance(Person person) {
+    public static MainFragment newInstance(People person) {
         MainFragment fragment = new MainFragment();
         Bundle args = new Bundle();
         args.putParcelable(ARG_PARAM1, person);

@@ -11,13 +11,13 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.yanxia.phonefeaturetest.R;
-import com.example.yanxia.phonefeaturetest.testjava.Person;
+import com.example.yanxia.phonefeaturetest.testjava.People;
 
 public class SecondTestActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String EXTRA = "extra";
 
-    private Person person;
+    private People person;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

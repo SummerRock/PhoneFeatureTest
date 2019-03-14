@@ -6,6 +6,8 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.example.yanxia.phonefeaturetest.testjava.People;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,7 @@ public class RemoteDemoService extends Service {
     // For bind service
     private final IBinder mBinder = new ServiceBinder();
 
-    private List<Book> bookList = new ArrayList<>();
+    private List<People> peopleList = new ArrayList<>();
 
     public RemoteDemoService() {
     }
@@ -27,16 +29,10 @@ public class RemoteDemoService extends Service {
     }
 
     private void initData() {
-        Book book1 = new Book("位置");
-        Book book2 = new Book("牌面");
-        Book book3 = new Book("情商");
-        Book book4 = new Book("圈子");
-        Book book5 = new Book("态度");
-        bookList.add(book1);
-        bookList.add(book2);
-        bookList.add(book3);
-        bookList.add(book4);
-        bookList.add(book5);
+        People people1 = new People(30, "YYF", "上海", "3号位");
+        People people2 = new People(28, "Zhou", "湖南", "后期");
+        peopleList.add(people1);
+        peopleList.add(people2);
     }
 
     @Override
@@ -58,37 +54,17 @@ public class RemoteDemoService extends Service {
         }
     }
 
-    public List<Book> getBookList() {
-        return bookList;
+    public List<People> getPeopleList() {
+        return peopleList;
     }
 
-    public void addBookInOut(Book book) {
-        if (book != null) {
-            Log.i(TAG, "addBookInOut 服务端接收的书名: " + book.getBookName());
-            book.setBookName(book.getBookName() + "_Server");
-            bookList.add(book);
+    public void addPeopleInOut(People people) {
+        if (people != null) {
+            Log.i(TAG, "addPeopleInOut 服务端接收的书名: " + people.getAddress());
+            people.setAddress(people.getAddress() + "_Server");
+            peopleList.add(people);
         } else {
-            Log.e(TAG, "addBookInOut 接收到了一个空对象");
-        }
-    }
-
-    public void addBookIn(Book book) {
-        if (book != null) {
-            Log.i(TAG, "addBookIn 服务端接收的书名: " + book.getBookName());
-            book.setBookName(book.getBookName() + "_Server");
-            bookList.add(book);
-        } else {
-            Log.e(TAG, "addBookIn 接收到了一个空对象");
-        }
-    }
-
-    public void addBookOut(Book book) {
-        if (book != null) {
-            Log.i(TAG, "addBookOut 服务端接收的书名：" + book.getBookName());
-            book.setBookName(book.getBookName() + "_Server");
-            bookList.add(book);
-        } else {
-            Log.e(TAG, "addBookOut 接收到了一个空对象");
+            Log.e(TAG, "addPeopleInOut 接收到了一个空对象");
         }
     }
 }

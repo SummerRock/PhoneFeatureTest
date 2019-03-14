@@ -10,11 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
-import com.example.yanxia.phonefeaturetest.Book;
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.RemoteDemoService;
-
-import java.util.List;
+import com.example.yanxia.phonefeaturetest.testjava.People;
 
 public class RemoteDemoActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -121,31 +119,8 @@ public class RemoteDemoActivity extends AppCompatActivity implements View.OnClic
 
     }
 
-    public void addBookInOut(View view) {
-        Book book = new Book("小天鹅");
-        Log.d(RemoteDemoService.TAG, "addBookInOut 客户端添了书名： " + book.getBookName());
-        mIRemoteService.addBookInOut(book);
-        Log.d(RemoteDemoService.TAG, "addBookInOut 服务端处理后的书名： " + book.getBookName());
-    }
-
-    public void addBookIn(View view) {
-        Book book = new Book("天命");
-        Log.d(RemoteDemoService.TAG, "addBookIn 客户端添了书名： " + book.getBookName());
-        mIRemoteService.addBookIn(book);
-        Log.d(RemoteDemoService.TAG, "addBookIn 服务端处理后的书名： " + book.getBookName());
-    }
-
-    public void addBookOut(View view) {
-        Book book = new Book("卧底");
-        Log.d(RemoteDemoService.TAG, "addBookOut 客户端添了书名： " + book.getBookName());
-        mIRemoteService.addBookOut(book);
-        Log.d(RemoteDemoService.TAG, "addBookOut 服务端处理后的书名： " + book.getBookName());
-    }
-
-    public void printBookList(View view) {
-        List<Book> bookList = mIRemoteService.getBookList();
-        for (Book book : bookList) {
-            Log.d(RemoteDemoService.TAG, "服务端返回的书名集合： " + book.getBookName());
-        }
+    public void addPeopleInOut(View view) {
+        People people = new People(30, "DD", "黄浦江", "辅助");
+        mIRemoteService.addPeopleInOut(people);
     }
 }
