@@ -60,7 +60,7 @@ public class RemoteDemoService extends Service {
 
     public void addPeopleInOut(People people) {
         if (people != null) {
-            Log.i(TAG, "addPeopleInOut 服务端接收的书名: " + people.getAddress());
+            Log.i(TAG, "addPeopleInOut 服务端接收的地址名: " + people.getAddress());
             people.setAddress(people.getAddress() + "_Server");
             peopleList.add(people);
         } else {

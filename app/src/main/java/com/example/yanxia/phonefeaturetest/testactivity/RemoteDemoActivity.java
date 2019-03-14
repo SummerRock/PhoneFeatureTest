@@ -122,5 +122,6 @@ public class RemoteDemoActivity extends AppCompatActivity implements View.OnClic
     public void addPeopleInOut(View view) {
         People people = new People(30, "DD", "黄浦江", "辅助");
         mIRemoteService.addPeopleInOut(people);
+        Log.d(RemoteDemoService.TAG, "服务端处理后的地址名:" + people.getAddress());
     }
 }
