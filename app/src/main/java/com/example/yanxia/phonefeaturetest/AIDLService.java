@@ -19,7 +19,7 @@ public class AIDLService extends Service {
 
     public static final String TAG = "AIDL_test_log";
 
-    private List<Book> bookList;
+    private List<Book> bookList = new ArrayList<>();
 
     public AIDLService() {
     }
@@ -27,16 +27,15 @@ public class AIDLService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        bookList = new ArrayList<>();
         initData();
     }
 
     private void initData() {
-        Book book1 = new Book("活着");
-        Book book2 = new Book("或者");
-        Book book3 = new Book("叶应是叶");
-        Book book4 = new Book("https://github.com/leavesC");
-        Book book5 = new Book("http://www.jianshu.com/u/9df45b87cfdf");
+        Book book1 = new Book("位置");
+        Book book2 = new Book("牌面");
+        Book book3 = new Book("情商");
+        Book book4 = new Book("圈子");
+        Book book5 = new Book("态度");
         bookList.add(book1);
         bookList.add(book2);
         bookList.add(book3);
@@ -53,31 +52,30 @@ public class AIDLService extends Service {
         @Override
         public void addBookInOut(Book book) {
             if (book != null) {
-                Log.i(TAG, "服务端添加的书名: " + book.getName());
+                Log.i(TAG, "addBookInOut 服务端接收的书名: " + book.getName());
                 bookList.add(book);
             } else {
-                Log.e(TAG, "接收到了一个空对象 InOut");
+                Log.e(TAG, "addBookInOut 接收到了一个空对象");
             }
         }
 
         @Override
         public void addBookIn(Book book) {
             if (book != null) {
-                book.setName("服务器改了新书的名字 In");
+                Log.i(TAG, "addBookIn 服务端接收的书名: " + book.getName());
                 bookList.add(book);
             } else {
-                Log.e(TAG, "接收到了一个空对象 In");
+                Log.e(TAG, "addBookIn 接收到了一个空对象");
             }
         }
 
         @Override
         public void addBookOut(Book book) {
             if (book != null) {
-                Log.e(TAG, "客户端传来的书的名字：" + book.getName());
-                book.setName("服务器改了新书的名字 Out");
+                Log.i(TAG, "addBookOut 服务端接收的书名：" + book.getName());
                 bookList.add(book);
             } else {
-                Log.e(TAG, "接收到了一个空对象 Out");
+                Log.e(TAG, "addBookOut 接收到了一个空对象");
             }
         }
 

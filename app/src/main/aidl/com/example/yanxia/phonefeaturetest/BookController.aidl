@@ -11,9 +11,9 @@ interface BookController {
      */
     List<Book> getBookList();
 
-        void addBookInOut(inout Book book);
+    void addBookInOut(inout Book book);
 
-        void addBookIn(in Book book);
+    void addBookIn(in Book book);
 
-        void addBookOut(out Book book);
+    void addBookOut(out Book book);
 }

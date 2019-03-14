@@ -89,18 +89,33 @@ public class BookAIDLTestActivity extends AppCompatActivity implements View.OnCl
 
     }
 
-    public void addBook(View view) {
+    public void addBookInOut(View view) {
         try {
-            Book book = new Book("牌面");
-            Log.d(AIDLService.TAG, "客户端添了书名： " + book.getName());
+            Book book = new Book("小天鹅");
+            Log.d(AIDLService.TAG, "addBookInOut 客户端添了书名： " + book.getName());
             mIRemoteService.addBookInOut(book);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
     }
 
-    public void startTest2(View view) {
-
+    public void addBookIn(View view) {
+        try {
+            Book book = new Book("天命");
+            Log.d(AIDLService.TAG, "addBookIn 客户端添了书名： " + book.getName());
+            mIRemoteService.addBookIn(book);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
+    public void addBookOut(View view) {
+        try {
+            Book book = new Book("卧底");
+            Log.d(AIDLService.TAG, "addBookOut 客户端添了书名： " + book.getName());
+            mIRemoteService.addBookOut(book);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
 }

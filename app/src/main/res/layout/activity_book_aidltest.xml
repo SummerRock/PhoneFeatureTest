@@ -10,12 +10,18 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="addBook"
-        android:text="test1" />
+        android:onClick="addBookInOut"
+        android:text="addBookInOut" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="startTest2"
-        android:text="test2" />
+        android:onClick="addBookIn"
+        android:text="addBookIn" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="addBookOut"
+        android:text="addBookOut" />
 </LinearLayout>
