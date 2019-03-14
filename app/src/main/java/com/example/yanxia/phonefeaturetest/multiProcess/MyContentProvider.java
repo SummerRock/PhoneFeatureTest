@@ -12,7 +12,7 @@ import android.util.Log;
 import java.util.Random;
 
 public class MyContentProvider extends ContentProvider {
-    private static final String TAG = "MyContentProvider";
+    public static final String TAG = "ContentProvider_log";
 
     public MyContentProvider() {
         Log.i(TAG, "MyContentProvider init!");
@@ -21,14 +21,14 @@ public class MyContentProvider extends ContentProvider {
     @Nullable
     @Override
     public Bundle call(@NonNull String method, @Nullable String arg, @Nullable Bundle extras) {
-        Log.i(TAG, "call method: " + method);
+        // Log.i(TAG, "call method: " + method);
         Bundle bundle = new Bundle();
         // put一个boolean值，如果执行方法成功返回true、失败返回false
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        // try {
+        //     Thread.sleep(2000);
+        // } catch (InterruptedException e) {
+        //     e.printStackTrace();
+        // }
         Random random = new Random();
         bundle.putBoolean(method, random.nextBoolean());
         return bundle;

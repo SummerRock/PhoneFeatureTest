@@ -9,12 +9,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.yanxia.phonefeaturetest.download.DownloadTestActivity;
 import com.example.yanxia.phonefeaturetest.horizonRv.HorizonRvTestActivity;
+import com.example.yanxia.phonefeaturetest.multiProcess.MyContentProvider;
 import com.example.yanxia.phonefeaturetest.notifyitemtest.RecyclerViewTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.AnimationTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.BookAIDLTestActivity;
@@ -178,11 +180,12 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
     }
 
     private void testContentProvider() {
-        CommonLog.d("contentProvider test start!");
+        long currentTime = System.currentTimeMillis();
+        Log.d(MyContentProvider.TAG, "contentProvider test start!");
         String method = "isSuccess";
         String uri = "content://otherwork/abc.txt";
         Bundle bundle = getContentResolver().call(Uri.parse(uri), method, null, null);
         boolean result = bundle != null && bundle.getBoolean(method);
-        CommonLog.d("contentProvider test end with result: " + result);
+        Log.d(MyContentProvider.TAG, "contentProvider test end with result: " + result + " cost time: " + String.valueOf(System.currentTimeMillis() - currentTime));
     }
 }
