@@ -7,6 +7,14 @@
     android:orientation="vertical"
     tools:context=".testactivity.BookAIDLTestActivity">
 
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/new_book_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="新书上架"
+        android:textColor="@android:color/black"
+        android:textSize="26sp" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

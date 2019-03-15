@@ -1,20 +1,25 @@
 package com.example.yanxia.phonefeaturetest.testactivity;
 
+import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
-import com.example.yanxia.phonefeaturetest.multiProcess.AIDLService;
 import com.example.yanxia.phonefeaturetest.Book;
 import com.example.yanxia.phonefeaturetest.IBookManager;
+import com.example.yanxia.phonefeaturetest.IOnNewBookArrivedListener;
 import com.example.yanxia.phonefeaturetest.R;
+import com.example.yanxia.phonefeaturetest.multiProcess.AIDLService;
 
 import java.util.List;
 
@@ -32,32 +37,79 @@ import java.util.List;
  */
 public class BookAIDLTestActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "BookAIDLTestActivity";
+    private static final int MESSAGE_NEW_BOOK_ARRIVED = 1;
 
     // State variables
     private boolean mIsServiceStarted = false;
 
     private boolean mIsServiceBinded = false;
 
-    private IBookManager mIRemoteService;
+    private IBookManager iBookManager;
+
     private ServiceConnection mConnection = new ServiceConnection() {
         // Called when the connection with the service is established
         public void onServiceConnected(ComponentName className, IBinder service) {
             // Following the example above for an AIDL interface,
             // this gets an instance of the IRemoteInterface, which we can use to call on the service
-            mIRemoteService = IBookManager.Stub.asInterface(service);
+            IBookManager bookManager = IBookManager.Stub.asInterface(service);
+            iBookManager = bookManager;
+            try {
+                iBookManager.asBinder().linkToDeath(mDeathRecipient, 0);
+                bookManager.registerListener(mOnNewBookArrivedListener);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
 
         // Called when the connection with the service disconnects unexpectedly
         public void onServiceDisconnected(ComponentName className) {
             Log.e(TAG, "Service has unexpectedly disconnected");
-            mIRemoteService = null;
+            iBookManager = null;
         }
     };
+
+    @SuppressLint("HandlerLeak")
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case MESSAGE_NEW_BOOK_ARRIVED:
+                    Log.d(TAG, "receive new book :" + msg.obj);
+                    newBookTextView.setText("新书上架: " + String.valueOf(msg.obj));
+                    break;
+                default:
+                    super.handleMessage(msg);
+            }
+        }
+    };
+
+    private IBinder.DeathRecipient mDeathRecipient = new IBinder.DeathRecipient() {
+        @Override
+        public void binderDied() {
+            Log.d(TAG, "binder died. thread name:" + Thread.currentThread().getName());
+            if (iBookManager == null)
+                return;
+            iBookManager.asBinder().unlinkToDeath(mDeathRecipient, 0);
+            iBookManager = null;
+            // TODO:这里重新绑定远程Service
+        }
+    };
+
+    private IOnNewBookArrivedListener mOnNewBookArrivedListener = new IOnNewBookArrivedListener.Stub() {
+
+        @Override
+        public void onNewBookArrived(Book newBook) {
+            mHandler.obtainMessage(MESSAGE_NEW_BOOK_ARRIVED, newBook.getBookName()).sendToTarget();
+        }
+    };
+
+    private TextView newBookTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_aidltest);
+        newBookTextView = findViewById(R.id.new_book_tv);
     }
 
     @Override
@@ -79,6 +131,14 @@ public class BookAIDLTestActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     protected void onStop() {
+        if (iBookManager != null && iBookManager.asBinder().isBinderAlive()) {
+            try {
+                Log.i(TAG, "unregister listener:" + mOnNewBookArrivedListener);
+                iBookManager.unregisterListener(mOnNewBookArrivedListener);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
         exitService();
         super.onStop();
     }
@@ -107,7 +167,7 @@ public class BookAIDLTestActivity extends AppCompatActivity implements View.OnCl
         try {
             Book book = new Book("小天鹅");
             Log.d(AIDLService.TAG, "addBookInOut 客户端添了书名： " + book.getBookName());
-            mIRemoteService.addBookInOut(book);
+            iBookManager.addBookInOut(book);
             Log.d(AIDLService.TAG, "addBookInOut 服务端处理后的书名： " + book.getBookName());
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -118,7 +178,7 @@ public class BookAIDLTestActivity extends AppCompatActivity implements View.OnCl
         try {
             Book book = new Book("天命");
             Log.d(AIDLService.TAG, "addBookIn 客户端添了书名： " + book.getBookName());
-            mIRemoteService.addBookIn(book);
+            iBookManager.addBookIn(book);
             Log.d(AIDLService.TAG, "addBookIn 服务端处理后的书名： " + book.getBookName());
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -129,7 +189,7 @@ public class BookAIDLTestActivity extends AppCompatActivity implements View.OnCl
         try {
             Book book = new Book("卧底");
             Log.d(AIDLService.TAG, "addBookOut 客户端添了书名： " + book.getBookName());
-            mIRemoteService.addBookOut(book);
+            iBookManager.addBookOut(book);
             Log.d(AIDLService.TAG, "addBookOut 服务端处理后的书名： " + book.getBookName());
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -138,7 +198,7 @@ public class BookAIDLTestActivity extends AppCompatActivity implements View.OnCl
 
     public void printBookList(View view) {
         try {
-            List<Book> bookList = mIRemoteService.getBookList();
+            List<Book> bookList = iBookManager.getBookList();
             for (Book book : bookList) {
                 Log.d(AIDLService.TAG, "服务端返回的书名集合： " + book.getBookName());
             }
