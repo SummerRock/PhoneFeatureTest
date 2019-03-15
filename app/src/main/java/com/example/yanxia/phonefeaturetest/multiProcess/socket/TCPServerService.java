@@ -69,7 +69,7 @@ public class TCPServerService extends Service {
                 try {
                     // 接受客户端请求
                     final Socket client = serverSocket.accept();
-                    Log.d(TCPServerService.LOG_TAG, "accept");
+                    Log.d(TCPServerService.LOG_TAG, "accept client request!");
                     new Thread() {
                         @Override
                         public void run() {
@@ -89,21 +89,20 @@ public class TCPServerService extends Service {
 
     private void responseClient(Socket client) throws IOException {
         // 用于接收客户端消息
-        BufferedReader in = new BufferedReader(new InputStreamReader(
-                client.getInputStream()));
+        BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
         // 用于向客户端发送消息
         PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())), true);
         out.println("欢迎来到聊天室！");
         while (!mIsServiceDestroyed) {
             String str = in.readLine();
-            Log.d(TCPServerService.LOG_TAG, "msg from client:" + str);
+            Log.d(TCPServerService.LOG_TAG, "message from client: " + str);
             if (str == null) {
                 break;
             }
             int i = new Random().nextInt(mDefinedMessages.length);
             String msg = mDefinedMessages[i];
             out.println(msg);
-            Log.d(TCPServerService.LOG_TAG, "send :" + msg);
+            Log.d(TCPServerService.LOG_TAG, "server send message:" + msg);
         }
         Log.d(TCPServerService.LOG_TAG, "client quit.");
         // 关闭流
