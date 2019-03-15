@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -121,10 +122,10 @@ public class TCPClientActivity extends Activity implements OnClickListener {
                 mPrintWriter = new PrintWriter(new BufferedWriter(
                         new OutputStreamWriter(socket.getOutputStream())), true);
                 mHandler.sendEmptyMessage(MESSAGE_SOCKET_CONNECTED);
-                System.out.println("connect server success");
+                Log.d(TCPServerService.LOG_TAG, "connect server success");
             } catch (IOException e) {
                 SystemClock.sleep(1000);
-                System.out.println("connect tcp server failed, retry...");
+                Log.d(TCPServerService.LOG_TAG, "connect tcp server failed, retry...");
             }
         }
 
@@ -134,16 +135,14 @@ public class TCPClientActivity extends Activity implements OnClickListener {
                     socket.getInputStream()));
             while (!TCPClientActivity.this.isFinishing()) {
                 String msg = br.readLine();
-                System.out.println("receive :" + msg);
+                Log.d(TCPServerService.LOG_TAG, "receive :" + msg);
                 if (msg != null) {
                     String time = formatDateTime(System.currentTimeMillis());
-                    final String showedMsg = "server " + time + ":" + msg
-                            + "\n";
-                    mHandler.obtainMessage(MESSAGE_RECEIVE_NEW_MSG, showedMsg)
-                            .sendToTarget();
+                    final String showedMsg = "server " + time + ":" + msg + "\n";
+                    mHandler.obtainMessage(MESSAGE_RECEIVE_NEW_MSG, showedMsg).sendToTarget();
                 }
             }
-            System.out.println("quit...");
+            Log.d(TCPServerService.LOG_TAG, "quit...");
             ThreadPoolUtils.close(mPrintWriter);
             ThreadPoolUtils.close(br);
             socket.close();
