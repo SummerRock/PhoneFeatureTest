@@ -12,13 +12,15 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 
 import com.example.yanxia.phonefeaturetest.R;
 
-public class MessengerActivity extends AppCompatActivity {
+public class MessengerActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final int MSG_FROM_CLIENT = 1000;
     public static final int MSG_FROM_SERVICE = 1001;
+    public static final String BUNDLE_STRING_KEY = "string_key";
     private Messenger clientMessenger;
 
     private ServiceConnection messengerServiceConnection = new ServiceConnection() {
@@ -26,17 +28,7 @@ public class MessengerActivity extends AppCompatActivity {
         public void onServiceConnected(ComponentName name, IBinder service) {
             //1、发送消息给服务端
             clientMessenger = new Messenger(service);
-            Message message = Message.obtain(null, MSG_FROM_CLIENT);
-            Bundle bundle = new Bundle();
-            bundle.putString("msg", "Hello from client.");
-            message.setData(bundle);
-            //3、这句是服务端回复客户端使用
-            message.replyTo = getReplyMessenger;
-            try {
-                clientMessenger.send(message);
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
+            tryToConnectServer();
         }
 
         @Override
@@ -44,6 +36,7 @@ public class MessengerActivity extends AppCompatActivity {
 
         }
     };
+
     private final Messenger getReplyMessenger = new Messenger(new MessengerHandler());
 
     private static class MessengerHandler extends Handler {
@@ -52,7 +45,7 @@ public class MessengerActivity extends AppCompatActivity {
             switch (msg.what) {
                 case MSG_FROM_SERVICE:
                     //5、服务端回复消息给客户端，客户端接送消息
-                    Log.d("wxl", "msg=" + msg.getData().getString("msg"));
+                    Log.d(MessengerService.TAG, "client receiver message from server: " + msg.getData().getString(BUNDLE_STRING_KEY));
                     break;
             }
             super.handleMessage(msg);
@@ -78,4 +71,29 @@ public class MessengerActivity extends AppCompatActivity {
         unbindService(messengerServiceConnection);
         super.onStop();
     }
+
+    private void tryToConnectServer() {
+        Message message = Message.obtain(null, MSG_FROM_CLIENT);
+        Bundle bundle = new Bundle();
+        bundle.putString(BUNDLE_STRING_KEY, "Hello from client.");
+        message.setData(bundle);
+        //3、这句是服务端回复客户端使用
+        message.replyTo = getReplyMessenger;
+        try {
+            Log.d(MessengerService.TAG, "client try to send message to server!");
+            clientMessenger.send(message);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
+
+    public void sendMessageToServer(View view) {
+        tryToConnectServer();
+    }
+
 }
