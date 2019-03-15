@@ -26,12 +26,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/msg"
             android:layout_width="0dp"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/shape_round_corner_rect"
             android:ems="10"
@@ -40,7 +41,7 @@
         <Button
             android:id="@+id/send"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:enabled="false"
             android:text="发送" />
     </LinearLayout>

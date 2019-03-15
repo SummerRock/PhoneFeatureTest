@@ -1,12 +1,12 @@
 package com.example.yanxia.phonefeaturetest.multiProcess.socket;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -32,7 +32,7 @@ import java.text.SimpleDateFormat;
  * https://github.com/singwhatiwanna/android-art-res
  * 建议去读《Android开发艺术探索》
  */
-public class TCPClientActivity extends Activity implements OnClickListener {
+public class TCPClientActivity extends AppCompatActivity implements OnClickListener {
 
     private static final int MESSAGE_RECEIVE_NEW_MSG = 1;
     private static final int MESSAGE_SOCKET_CONNECTED = 2;
@@ -94,11 +94,13 @@ public class TCPClientActivity extends Activity implements OnClickListener {
         super.onDestroy();
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onClick(View v) {
         if (v == mSendButton) {
             final String msg = mMessageEditText.getText().toString();
             if (!TextUtils.isEmpty(msg) && mPrintWriter != null) {
+                Log.d(TCPServerService.LOG_TAG, "client start try to send message!");
                 ThreadPoolUtils.executeInNewThread(() -> mPrintWriter.println(msg));
                 mMessageEditText.setText("");
                 String time = formatDateTime(System.currentTimeMillis());
@@ -119,35 +121,34 @@ public class TCPClientActivity extends Activity implements OnClickListener {
             try {
                 socket = new Socket("localhost", 8688);
                 mClientSocket = socket;
-                mPrintWriter = new PrintWriter(new BufferedWriter(
-                        new OutputStreamWriter(socket.getOutputStream())), true);
+                mPrintWriter = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
                 mHandler.sendEmptyMessage(MESSAGE_SOCKET_CONNECTED);
                 Log.d(TCPServerService.LOG_TAG, "connect server success");
             } catch (IOException e) {
                 SystemClock.sleep(1000);
-                Log.d(TCPServerService.LOG_TAG, "connect tcp server failed, retry...");
+                Log.w(TCPServerService.LOG_TAG, "connect tcp server failed, retry...");
             }
         }
 
         try {
             // 接收服务器端的消息
-            BufferedReader br = new BufferedReader(new InputStreamReader(
-                    socket.getInputStream()));
+            BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             while (!TCPClientActivity.this.isFinishing()) {
                 String msg = br.readLine();
-                Log.d(TCPServerService.LOG_TAG, "receive :" + msg);
+                Log.d(TCPServerService.LOG_TAG, "client receive message from server: " + msg);
                 if (msg != null) {
                     String time = formatDateTime(System.currentTimeMillis());
                     final String showedMsg = "server " + time + ":" + msg + "\n";
                     mHandler.obtainMessage(MESSAGE_RECEIVE_NEW_MSG, showedMsg).sendToTarget();
                 }
             }
-            Log.d(TCPServerService.LOG_TAG, "quit...");
+            Log.d(TCPServerService.LOG_TAG, "stop to receive message from server!");
             ThreadPoolUtils.close(mPrintWriter);
             ThreadPoolUtils.close(br);
             socket.close();
         } catch (IOException e) {
             e.printStackTrace();
+            Log.e(TCPServerService.LOG_TAG, e.getMessage());
         }
     }
 }
