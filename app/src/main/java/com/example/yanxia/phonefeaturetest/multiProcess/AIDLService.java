@@ -3,13 +3,17 @@ package com.example.yanxia.phonefeaturetest.multiProcess;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.os.RemoteCallbackList;
+import android.os.RemoteException;
 import android.util.Log;
 
 import com.example.yanxia.phonefeaturetest.Book;
 import com.example.yanxia.phonefeaturetest.IBookManager;
+import com.example.yanxia.phonefeaturetest.IOnNewBookArrivedListener;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * 作者：leavesC
@@ -22,7 +26,9 @@ public class AIDLService extends Service {
 
     public static final String TAG = "AIDL_test_log";
 
-    private List<Book> bookList = new ArrayList<>();
+    private CopyOnWriteArrayList<Book> bookList = new CopyOnWriteArrayList<>();
+    private AtomicBoolean mIsServiceDestroyed = new AtomicBoolean(false);
+    private RemoteCallbackList<IOnNewBookArrivedListener> mListenerList = new RemoteCallbackList<>();
 
     public AIDLService() {
     }
@@ -31,6 +37,13 @@ public class AIDLService extends Service {
     public void onCreate() {
         super.onCreate();
         initData();
+        new Thread(new ServiceWorker()).start();
+    }
+
+    @Override
+    public void onDestroy() {
+        mIsServiceDestroyed.set(true);
+        super.onDestroy();
     }
 
     private void initData() {
@@ -85,11 +98,73 @@ public class AIDLService extends Service {
             }
         }
 
+        @Override
+        public void registerListener(IOnNewBookArrivedListener listener) {
+            mListenerList.register(listener);
+
+            final int N = mListenerList.beginBroadcast();
+            mListenerList.finishBroadcast();
+            Log.d(TAG, "registerListener, current size:" + N);
+        }
+
+        @Override
+        public void unregisterListener(IOnNewBookArrivedListener listener) {
+            boolean success = mListenerList.unregister(listener);
+
+            if (success) {
+                Log.d(TAG, "unregister success.");
+            } else {
+                Log.d(TAG, "not found, can not unregister.");
+            }
+            final int N = mListenerList.beginBroadcast();
+            mListenerList.finishBroadcast();
+            Log.d(TAG, "unregisterListener, current size:" + N);
+        }
+
+        ;
     };
 
     @Override
     public IBinder onBind(Intent intent) {
         return stub;
+    }
+
+    private class ServiceWorker implements Runnable {
+        @Override
+        public void run() {
+            // do background processing here.....
+            while (!mIsServiceDestroyed.get()) {
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                // SystemClock.sleep(5000);
+                int bookId = bookList.size() + 1;
+                Book newBook = new Book("new_book#" + bookId);
+                try {
+                    onNewBookArrived(newBook);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void onNewBookArrived(Book book) throws RemoteException {
+        bookList.add(book);
+        final int N = mListenerList.beginBroadcast();
+        for (int i = 0; i < N; i++) {
+            IOnNewBookArrivedListener l = mListenerList.getBroadcastItem(i);
+            if (l != null) {
+                try {
+                    l.onNewBookArrived(book);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        mListenerList.finishBroadcast();
     }
 
 }
