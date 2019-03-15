@@ -18,6 +18,7 @@ import com.example.yanxia.phonefeaturetest.download.DownloadTestActivity;
 import com.example.yanxia.phonefeaturetest.horizonRv.HorizonRvTestActivity;
 import com.example.yanxia.phonefeaturetest.multiProcess.MessengerActivity;
 import com.example.yanxia.phonefeaturetest.multiProcess.MyContentProvider;
+import com.example.yanxia.phonefeaturetest.multiProcess.socket.TCPClientActivity;
 import com.example.yanxia.phonefeaturetest.notifyitemtest.RecyclerViewTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.AnimationTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.BookAIDLTestActivity;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
     private List<TestItem> testItemList = new ArrayList<>();
     private static final int REQUEST_CODE = 10;
 
+    @SuppressWarnings("unused")
     private static final String MAIN_STRING = TestClass.TEST_STRING;
 
     private People person = new People(25, "Summer", "BJ", "none");
@@ -130,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         testItemList.add(new TestItem(Constant.TEST_AIDL, R.drawable.ic_lock_24dp, BookAIDLTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_REMOTE, R.drawable.ic_lock_24dp, RemoteDemoActivity.class));
         testItemList.add(new TestItem(Constant.TEST_MESSENGER, R.drawable.ic_lock_24dp, MessengerActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_TCP, R.drawable.ic_lock_24dp, TCPClientActivity.class));
     }
 
     private void startTest(@NonNull TestItem testItem) {

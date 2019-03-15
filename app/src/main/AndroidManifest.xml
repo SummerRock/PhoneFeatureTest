@@ -139,6 +139,17 @@
             android:enabled="true"
             android:exported="true"
             android:process=".secondProcess" />
+
+        <service
+            android:name=".multiProcess.socket.TCPServerService"
+            android:enabled="true"
+            android:process=":remote" />
+
+        <activity
+            android:name=".multiProcess.socket.TCPClientActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

@@ -1,10 +1,13 @@
 package com.example.yanxia.phonefeaturetest.utils;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.example.yanxia.phonefeaturetest.common.CommonFinishInterface;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.util.Random;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadFactory;
@@ -81,4 +84,19 @@ public class ThreadPoolUtils {
             return random.nextInt(3) + 1;
         }
     }
+
+    public static void close(Closeable closeable) {
+        try {
+            if (closeable != null) {
+                closeable.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void executeInNewThread(@NonNull Runnable runnable) {
+        new Thread(runnable).start();
+    }
+
 }
