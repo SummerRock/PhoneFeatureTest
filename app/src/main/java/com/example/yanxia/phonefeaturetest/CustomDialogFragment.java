@@ -16,24 +16,24 @@ import com.example.yanxia.phonefeaturetest.testjava.People;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link MainFragment.OnFragmentInteractionListener} interface
+ * {@link CustomDialogFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link MainFragment#newInstance} factory method to
+ * Use the {@link CustomDialogFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainFragment extends DialogFragment {
+public class CustomDialogFragment extends DialogFragment {
     private static final String ARG_PARAM1 = "param1";
 
     private People person;
 
     private OnFragmentInteractionListener mListener;
 
-    public MainFragment() {
+    public CustomDialogFragment() {
         // Required empty public constructor
     }
 
-    public static MainFragment newInstance(People person) {
-        MainFragment fragment = new MainFragment();
+    public static CustomDialogFragment newInstance(People person) {
+        CustomDialogFragment fragment = new CustomDialogFragment();
         Bundle args = new Bundle();
         args.putParcelable(ARG_PARAM1, person);
         fragment.setArguments(args);
@@ -51,8 +51,8 @@ public class MainFragment extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
-        Button button = view.findViewById(R.id.main_fragment_button);
+        View view = inflater.inflate(R.layout.fragment_custom_dialog, container, false);
+        Button button = view.findViewById(R.id.custom_dialog_fragment_button);
         button.setOnClickListener(v -> onButtonPressed());
         return view;
     }

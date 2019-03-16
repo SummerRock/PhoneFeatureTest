@@ -48,7 +48,7 @@ import java.util.List;
 /**
  * @author yanxia-Mac
  */
-public class MainActivity extends AppCompatActivity implements MainFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements CustomDialogFragment.OnFragmentInteractionListener {
 
     private List<TestItem> testItemList = new ArrayList<>();
     private static final int REQUEST_CODE = 10;
@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
                 testContentProvider();
                 break;
             case Constant.TEST_DIALOG_FRAGMENT:
-                MainFragment.newInstance(person).show(getSupportFragmentManager(), MainFragment.class.getSimpleName());
+                CustomDialogFragment.newInstance(person).show(getSupportFragmentManager(), CustomDialogFragment.class.getSimpleName());
                 break;
             default:
                 Toast.makeText(MainActivity.this, "you clicked testName " + testItem.getName(), Toast.LENGTH_SHORT).show();
