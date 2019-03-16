@@ -1,4 +1,4 @@
-package com.example.yanxia.phonefeaturetest.testactivity;
+package com.example.yanxia.phonefeaturetest.multiProcess;
 
 import android.annotation.SuppressLint;
 import android.content.ComponentName;
@@ -19,7 +19,6 @@ import com.example.yanxia.phonefeaturetest.Book;
 import com.example.yanxia.phonefeaturetest.IBookManager;
 import com.example.yanxia.phonefeaturetest.IOnNewBookArrivedListener;
 import com.example.yanxia.phonefeaturetest.R;
-import com.example.yanxia.phonefeaturetest.multiProcess.AIDLService;
 
 import java.util.List;
 

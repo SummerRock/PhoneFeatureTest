@@ -21,7 +21,7 @@ import com.example.yanxia.phonefeaturetest.multiProcess.MyContentProvider;
 import com.example.yanxia.phonefeaturetest.multiProcess.socket.TCPClientActivity;
 import com.example.yanxia.phonefeaturetest.notifyitemtest.RecyclerViewTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.AnimationTestActivity;
-import com.example.yanxia.phonefeaturetest.testactivity.BookAIDLTestActivity;
+import com.example.yanxia.phonefeaturetest.multiProcess.BookAIDLTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.CameraTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ColorMatrixTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.DialogStyleActivity;

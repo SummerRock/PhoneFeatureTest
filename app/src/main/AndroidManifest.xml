@@ -53,7 +53,7 @@
         </service>
 
         <activity
-            android:name=".testactivity.BookAIDLTestActivity"
+            android:name=".multiProcess.BookAIDLTestActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
