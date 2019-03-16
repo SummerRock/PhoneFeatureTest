@@ -24,6 +24,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <service
+            android:name=".DemoIntentService"
+            android:exported="false" />
+
         <activity
             android:name=".multiProcess.MessengerActivity"
             android:launchMode="singleTop"

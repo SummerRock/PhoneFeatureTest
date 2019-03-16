@@ -36,6 +36,7 @@ public class Constant {
     public static final String TEST_REMOTE = "Remote";
     public static final String TEST_MESSENGER = "Messenger";
     public static final String TEST_TCP = "TCP";
+    public static final String TEST_INTENT_SERVICE = "Intent Service";
 
     private static List<TestItem> initTestItems() {
         List<TestItem> testItemList = new ArrayList<>();

@@ -133,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         testItemList.add(new TestItem(Constant.TEST_REMOTE, R.drawable.ic_lock_24dp, RemoteDemoActivity.class));
         testItemList.add(new TestItem(Constant.TEST_MESSENGER, R.drawable.ic_lock_24dp, MessengerActivity.class));
         testItemList.add(new TestItem(Constant.TEST_TCP, R.drawable.ic_lock_24dp, TCPClientActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_INTENT_SERVICE, R.drawable.ic_lock_24dp, null));
     }
 
     private void startTest(@NonNull TestItem testItem) {
@@ -155,6 +156,9 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
                 break;
             case Constant.TEST_DIALOG_FRAGMENT:
                 CustomDialogFragment.newInstance(person).show(getSupportFragmentManager(), CustomDialogFragment.class.getSimpleName());
+                break;
+            case Constant.TEST_INTENT_SERVICE:
+                DemoIntentService.startActionFoo(this);
                 break;
             default:
                 Toast.makeText(MainActivity.this, "you clicked testName " + testItem.getName(), Toast.LENGTH_SHORT).show();
