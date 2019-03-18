@@ -34,7 +34,7 @@ public class ScreenRecordManager {
      * 上一次亮屏时间
      */
     private long lastScreenOnTime;
-    List<Pair<Long, Long>> timeRecordList = new ArrayList<>();
+    private List<Pair<Long, Long>> timeRecordList = new ArrayList<>();
 
     private static final int MESSAGE_SCREEN_ON_LAST_HALF_HOUR = 0;
     private static final int MESSAGE_SCREEN_ON_LAST_ONE_HOUR = 1;
@@ -88,6 +88,7 @@ public class ScreenRecordManager {
     }
 
     private ScreenRecordManager() {
+        Log.i(TAG, "ScreenRecordManager init!");
         handler = new CustomHandler();
         lastScreenOnTime = System.currentTimeMillis();
         if (isScreenManagerEnable()) {
@@ -126,8 +127,10 @@ public class ScreenRecordManager {
     }
 
     private void handleScreenOff() {
-        Log.i(TAG, "handleScreenOff");
-        Pair<Long, Long> pair = new Pair<>(lastScreenOnTime, System.currentTimeMillis());
+        long currentTime = System.currentTimeMillis();
+        int seconds = (int) ((currentTime - lastScreenOnTime) / 1000);
+        Log.i(TAG, "handleScreenOff, 本次亮屏持续时间: " + seconds + "秒");
+        Pair<Long, Long> pair = new Pair<>(lastScreenOnTime, currentTime);
         timeRecordList.add(pair);
         handler.removeCallbacksAndMessages(null);
     }
@@ -143,6 +146,7 @@ public class ScreenRecordManager {
                 total = total + (longLongPair.second - longLongPair.first);
             }
         }
+        Log.i(TAG, "屏幕在前段时间亮屏了: " + (total / 1000) + "秒");
         return total;
     }
 
