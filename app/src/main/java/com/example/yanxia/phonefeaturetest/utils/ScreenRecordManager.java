@@ -10,8 +10,12 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.util.Log;
+import android.util.Pair;
 
 import com.example.yanxia.phonefeaturetest.Myapplication;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ScreenRecordManager {
     private static final String TAG = "ScreenRecordManager";
@@ -21,12 +25,16 @@ public class ScreenRecordManager {
 
     private static final long HALF_HOUR = DateUtils.MINUTE_IN_MILLIS * 30;
     private static final long ONE_HOUR = DateUtils.HOUR_IN_MILLIS;
-    private static final long THREE_HOUR = DateUtils.HOUR_IN_MILLIS * 3;
+    // private static final long THREE_HOUR = DateUtils.HOUR_IN_MILLIS * 3;
+
+    private static final long TWO_HOUR = 2 * ONE_HOUR;
+    private static final long TWO_AND_HALF_HOUR = HALF_HOUR + 2 * ONE_HOUR;
 
     /**
      * 上一次亮屏时间
      */
     private long lastScreenOnTime;
+    List<Pair<Long, Long>> timeRecordList = new ArrayList<>();
 
     private static final int MESSAGE_SCREEN_ON_LAST_HALF_HOUR = 0;
     private static final int MESSAGE_SCREEN_ON_LAST_ONE_HOUR = 1;
@@ -104,16 +112,38 @@ public class ScreenRecordManager {
     private void handleScreenOn() {
         Log.i(TAG, "handleScreenOn");
         lastScreenOnTime = System.currentTimeMillis();
-        handler.removeMessages(MESSAGE_SCREEN_ON_LAST_HALF_HOUR);
-        handler.removeMessages(MESSAGE_SCREEN_ON_LAST_ONE_HOUR);
+        handler.removeCallbacksAndMessages(null);
         handler.sendEmptyMessageDelayed(MESSAGE_SCREEN_ON_LAST_HALF_HOUR, HALF_HOUR);
         handler.sendEmptyMessageDelayed(MESSAGE_SCREEN_ON_LAST_ONE_HOUR, ONE_HOUR);
+        long screenOnTotalTimeTwoAndHalfHourPast = getScreenOnTotalTimeFromTimeRecordList(TWO_AND_HALF_HOUR);
+        if (screenOnTotalTimeTwoAndHalfHourPast < HALF_HOUR) {
+            handler.sendEmptyMessageDelayed(MESSAGE_SCREEN_ON_TOTAL_HALF_HOUR, HALF_HOUR - screenOnTotalTimeTwoAndHalfHourPast);
+        }
+        long screenOnTotalTimeTwoHoursPast = getScreenOnTotalTimeFromTimeRecordList(TWO_HOUR);
+        if (screenOnTotalTimeTwoHoursPast < ONE_HOUR) {
+            handler.sendEmptyMessageDelayed(MESSAGE_SCREEN_ON_TOTAL_ONE_HOUR, ONE_HOUR - screenOnTotalTimeTwoHoursPast);
+        }
     }
 
     private void handleScreenOff() {
         Log.i(TAG, "handleScreenOff");
-        handler.removeMessages(MESSAGE_SCREEN_ON_LAST_HALF_HOUR);
-        handler.removeMessages(MESSAGE_SCREEN_ON_LAST_ONE_HOUR);
+        Pair<Long, Long> pair = new Pair<>(lastScreenOnTime, System.currentTimeMillis());
+        timeRecordList.add(pair);
+        handler.removeCallbacksAndMessages(null);
+    }
+
+    private long getScreenOnTotalTimeFromTimeRecordList(long timeInterval) {
+        if (timeRecordList.isEmpty()) {
+            return 0;
+        }
+        long minutesAgoTime = System.currentTimeMillis() - timeInterval;
+        long total = 0;
+        for (Pair<Long, Long> longLongPair : timeRecordList) {
+            if (longLongPair.first > minutesAgoTime) {
+                total = total + (longLongPair.second - longLongPair.first);
+            }
+        }
+        return total;
     }
 
     private void notifyScreenOnLastHalfHour() {
