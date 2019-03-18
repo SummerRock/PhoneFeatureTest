@@ -146,7 +146,7 @@ public class ScreenRecordManager {
                 total = total + (longLongPair.second - longLongPair.first);
             }
         }
-        Log.i(TAG, "屏幕在前段时间亮屏了: " + (total / 1000) + "秒");
+        Log.i(TAG, "屏幕在前" + (timeInterval / 1000) + "秒内亮屏了: " + (total / 1000) + "秒");
         return total;
     }
 
