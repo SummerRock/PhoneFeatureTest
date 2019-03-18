@@ -23,9 +23,18 @@ public class ScreenRecordManager {
     private static final long ONE_HOUR = DateUtils.HOUR_IN_MILLIS;
     private static final long THREE_HOUR = DateUtils.HOUR_IN_MILLIS * 3;
 
+    /**
+     * 上一次亮屏时间
+     */
+    private long lastScreenOnTime;
 
     private static final int MESSAGE_SCREEN_ON_LAST_HALF_HOUR = 0;
     private static final int MESSAGE_SCREEN_ON_LAST_ONE_HOUR = 1;
+    /**
+     * N小时内，累计亮屏时间超过M分钟
+     */
+    private static final int MESSAGE_SCREEN_ON_TOTAL_HALF_HOUR = 2;
+    private static final int MESSAGE_SCREEN_ON_TOTAL_ONE_HOUR = 3;
 
     @SuppressLint("HandlerLeak")
     private class CustomHandler extends Handler {
@@ -42,12 +51,19 @@ public class ScreenRecordManager {
                 case MESSAGE_SCREEN_ON_LAST_ONE_HOUR:
                     notifyScreenOnLastOneHour();
                     break;
+                case MESSAGE_SCREEN_ON_TOTAL_HALF_HOUR:
+                    notifyScreenOnTotalTimeHalfHour();
+                    break;
+                case MESSAGE_SCREEN_ON_TOTAL_ONE_HOUR:
+                    notifyScreenOnTotalTimeOneHour();
+                    break;
                 default:
                     break;
             }
         }
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     public static ScreenRecordManager getInstance() {
         if (ourInstance == null) {
             synchronized (SingletonDemo.class) {
@@ -65,6 +81,7 @@ public class ScreenRecordManager {
 
     private ScreenRecordManager() {
         handler = new CustomHandler();
+        lastScreenOnTime = System.currentTimeMillis();
         if (isScreenManagerEnable()) {
 
             final IntentFilter screenFilter = new IntentFilter();
@@ -86,6 +103,7 @@ public class ScreenRecordManager {
 
     private void handleScreenOn() {
         Log.i(TAG, "handleScreenOn");
+        lastScreenOnTime = System.currentTimeMillis();
         handler.removeMessages(MESSAGE_SCREEN_ON_LAST_HALF_HOUR);
         handler.removeMessages(MESSAGE_SCREEN_ON_LAST_ONE_HOUR);
         handler.sendEmptyMessageDelayed(MESSAGE_SCREEN_ON_LAST_HALF_HOUR, HALF_HOUR);
@@ -104,5 +122,13 @@ public class ScreenRecordManager {
 
     private void notifyScreenOnLastOneHour() {
         Log.i(TAG, "屏幕持续亮了1小时！");
+    }
+
+    private void notifyScreenOnTotalTimeHalfHour() {
+        Log.i(TAG, "3小时内，累计亮屏时间超过30分钟");
+    }
+
+    private void notifyScreenOnTotalTimeOneHour() {
+        Log.i(TAG, "3小时内，累计亮屏时间超过1小时");
     }
 }
