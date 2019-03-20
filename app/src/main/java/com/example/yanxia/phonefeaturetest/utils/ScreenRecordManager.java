@@ -8,7 +8,6 @@ import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
-import android.text.format.DateUtils;
 import android.util.Log;
 import android.util.Pair;
 
@@ -23,12 +22,15 @@ public class ScreenRecordManager {
     private CustomHandler handler;
     private final boolean enable = true;
 
-    private static final long HALF_HOUR = DateUtils.MINUTE_IN_MILLIS * 30;
-    private static final long ONE_HOUR = DateUtils.HOUR_IN_MILLIS;
-    // private static final long THREE_HOUR = DateUtils.HOUR_IN_MILLIS * 3;
+    private static final long HALF_HOUR = 30000;
+    private static final long ONE_HOUR = HALF_HOUR * 2;
+    private static final long THREE_HOUR = ONE_HOUR * 3;
 
     private static final long TWO_HOUR = 2 * ONE_HOUR;
     private static final long TWO_AND_HALF_HOUR = HALF_HOUR + 2 * ONE_HOUR;
+
+    private long lastReportTimeHalfHourIn3Hour;
+    private long lastReportTime1HourIn3Hour;
 
     /**
      * 上一次亮屏时间
@@ -109,7 +111,7 @@ public class ScreenRecordManager {
     }
 
     private void handleScreenOn() {
-        Log.i(TAG, "handleScreenOn");
+        Log.i(TAG, "屏幕亮起！");
         lastScreenOnTime = System.currentTimeMillis();
         handler.removeCallbacksAndMessages(null);
         handler.sendEmptyMessageDelayed(MESSAGE_SCREEN_ON_LAST_HALF_HOUR, HALF_HOUR);
@@ -117,19 +119,24 @@ public class ScreenRecordManager {
         long screenOnTotalTimeTwoAndHalfHourPast = getScreenOnTotalTimeFromTimeRecordList(TWO_AND_HALF_HOUR);
         if (screenOnTotalTimeTwoAndHalfHourPast < HALF_HOUR) {
             handler.sendEmptyMessageDelayed(MESSAGE_SCREEN_ON_TOTAL_HALF_HOUR, HALF_HOUR - screenOnTotalTimeTwoAndHalfHourPast);
+        } else {
+            Log.i(TAG, "过去两个半小时内累计亮屏时间超过半小时，不做处理");
         }
         long screenOnTotalTimeTwoHoursPast = getScreenOnTotalTimeFromTimeRecordList(TWO_HOUR);
         if (screenOnTotalTimeTwoHoursPast < ONE_HOUR) {
             handler.sendEmptyMessageDelayed(MESSAGE_SCREEN_ON_TOTAL_ONE_HOUR, ONE_HOUR - screenOnTotalTimeTwoHoursPast);
+        } else {
+            Log.i(TAG, "过去两小时内累计亮屏时间超过一个小时，不做处理");
         }
     }
 
     private void handleScreenOff() {
         long currentTime = System.currentTimeMillis();
         int seconds = (int) ((currentTime - lastScreenOnTime) / 1000);
-        Log.i(TAG, "handleScreenOff, 本次亮屏持续时间: " + seconds + "秒");
+        Log.i(TAG, "屏幕熄灭, 本次亮屏持续时间: " + seconds + "秒");
         Pair<Long, Long> pair = new Pair<>(lastScreenOnTime, currentTime);
         if (pairArrayDeque.size() > 200) {
+            Log.i(TAG, "记录超过200条，删除最老的数据!");
             pairArrayDeque.removeLast();
         }
         pairArrayDeque.addFirst(pair);
@@ -162,10 +169,20 @@ public class ScreenRecordManager {
     }
 
     private void notifyScreenOnTotalTimeHalfHour() {
-        Log.i(TAG, "3小时内，累计亮屏时间超过30分钟");
+        if (System.currentTimeMillis() - lastReportTimeHalfHourIn3Hour > THREE_HOUR) {
+            Log.i(TAG, "3小时内，累计亮屏时间超过30分钟");
+            lastReportTimeHalfHourIn3Hour = System.currentTimeMillis();
+        } else {
+            Log.i(TAG, "时间间隔过小，本次不发送累计亮屏时间超过30分钟的事件");
+        }
     }
 
     private void notifyScreenOnTotalTimeOneHour() {
-        Log.i(TAG, "3小时内，累计亮屏时间超过1小时");
+        if (System.currentTimeMillis() - lastReportTime1HourIn3Hour > THREE_HOUR) {
+            Log.i(TAG, "3小时内，累计亮屏时间超过1小时");
+            lastReportTime1HourIn3Hour = System.currentTimeMillis();
+        } else {
+            Log.i(TAG, "时间间隔过小，本次不发送累计亮屏时间超过1小时的事件");
+        }
     }
 }
