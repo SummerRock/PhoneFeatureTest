@@ -14,8 +14,8 @@ import android.util.Pair;
 
 import com.example.yanxia.phonefeaturetest.Myapplication;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class ScreenRecordManager {
     private static final String TAG = "ScreenRecordManager";
@@ -34,7 +34,7 @@ public class ScreenRecordManager {
      * 上一次亮屏时间
      */
     private long lastScreenOnTime;
-    private List<Pair<Long, Long>> timeRecordList = new ArrayList<>();
+    private Deque<Pair<Long, Long>> pairArrayDeque = new ArrayDeque<>();
 
     private static final int MESSAGE_SCREEN_ON_LAST_HALF_HOUR = 0;
     private static final int MESSAGE_SCREEN_ON_LAST_ONE_HOUR = 1;
@@ -71,16 +71,14 @@ public class ScreenRecordManager {
         }
     }
 
-    @SuppressWarnings("UnusedReturnValue")
-    public static ScreenRecordManager getInstance() {
+    public static void init() {
         if (ourInstance == null) {
-            synchronized (SingletonDemo.class) {
+            synchronized (ScreenRecordManager.class) {
                 if (ourInstance == null) {
                     ourInstance = new ScreenRecordManager();
                 }
             }
         }
-        return ourInstance;
     }
 
     private boolean isScreenManagerEnable() {
@@ -131,19 +129,24 @@ public class ScreenRecordManager {
         int seconds = (int) ((currentTime - lastScreenOnTime) / 1000);
         Log.i(TAG, "handleScreenOff, 本次亮屏持续时间: " + seconds + "秒");
         Pair<Long, Long> pair = new Pair<>(lastScreenOnTime, currentTime);
-        timeRecordList.add(pair);
+        if (pairArrayDeque.size() > 200) {
+            pairArrayDeque.removeLast();
+        }
+        pairArrayDeque.addFirst(pair);
         handler.removeCallbacksAndMessages(null);
     }
 
     private long getScreenOnTotalTimeFromTimeRecordList(long timeInterval) {
-        if (timeRecordList.isEmpty()) {
+        if (pairArrayDeque.isEmpty()) {
             return 0;
         }
         long minutesAgoTime = System.currentTimeMillis() - timeInterval;
         long total = 0;
-        for (Pair<Long, Long> longLongPair : timeRecordList) {
+        for (Pair<Long, Long> longLongPair : pairArrayDeque) {
             if (longLongPair.first > minutesAgoTime) {
                 total = total + (longLongPair.second - longLongPair.first);
+            } else if (longLongPair.first < minutesAgoTime && longLongPair.second > minutesAgoTime) {
+                total = total + (longLongPair.second - minutesAgoTime);
             }
         }
         Log.i(TAG, "屏幕在前" + (timeInterval / 1000) + "秒内亮屏了: " + (total / 1000) + "秒");

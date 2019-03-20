@@ -74,7 +74,7 @@ public class Myapplication extends Application {
         SingletonDemo.getInstance();
         initThirdService();
         ScreenStatusManager.getInstance();
-        ScreenRecordManager.getInstance();
+        ScreenRecordManager.init();
     }
 
     public static Context getContext() {
