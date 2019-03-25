@@ -26,6 +26,8 @@ public class HorizonRvTestActivity extends AppCompatActivity implements View.OnC
     private RecyclerView recyclerView;
     private List<String> stringList = new ArrayList<>();
 
+    private int listIndex = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +36,8 @@ public class HorizonRvTestActivity extends AppCompatActivity implements View.OnC
         setSupportActionBar(toolbar);
 
         recyclerView = findViewById(R.id.horizontal_rv);
-        for (int i = 0; i < 40; i++) {
-            stringList.add(String.valueOf(i));
+        for (; listIndex < 40; listIndex++) {
+            stringList.add(String.valueOf(listIndex));
         }
         adapter = new HorizonRvTestAdapter(stringList);
         adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
@@ -132,7 +134,7 @@ public class HorizonRvTestActivity extends AppCompatActivity implements View.OnC
 
     public void addItem(View view) {
         int position = numberPicker.getValue();
-        stringList.add(position, String.valueOf(position));
+        stringList.add(position, String.valueOf(++listIndex));
         adapter.notifyDataSetChanged();
     }
 

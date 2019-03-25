@@ -32,7 +32,7 @@ public final class HorizonRvTestAdapter extends RecyclerView.Adapter<HorizonRvTe
         HorizonTestViewHolder horizonTestViewHolder = new HorizonTestViewHolder(view);
         horizonTestViewHolder.itemView.setOnClickListener(v -> {
             int position = horizonTestViewHolder.getAdapterPosition();
-            Toast.makeText(parent.getContext(), "Click position: " + position, Toast.LENGTH_SHORT).show();
+            Toast.makeText(parent.getContext(), "Click position: " + position + " item content: " + stringList.get(position), Toast.LENGTH_SHORT).show();
         });
         return horizonTestViewHolder;
     }
