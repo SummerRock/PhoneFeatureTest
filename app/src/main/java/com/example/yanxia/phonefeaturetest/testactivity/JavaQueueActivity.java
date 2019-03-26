@@ -42,4 +42,16 @@ public class JavaQueueActivity extends AppCompatActivity implements View.OnClick
     public void addArrayQueueLast(View view) {
         arrayDeque.addLast(String.valueOf(arrayQueueIndex++));
     }
+
+    public void removeArrayQueue(View view) {
+        arrayDeque.remove();
+    }
+
+    public void removeArrayQueueFirst(View view) {
+        arrayDeque.removeFirst();
+    }
+
+    public void removeArrayQueueLast(View view) {
+        arrayDeque.removeLast();
+    }
 }

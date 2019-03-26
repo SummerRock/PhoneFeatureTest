@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".testactivity.JavaQueueActivity">
+    tools:context=".testactivity.JavaQueueActivity"
+    tools:ignore="HardcodedText">
 
     <android.support.v7.widget.AppCompatButton
         android:layout_width="0dp"
@@ -45,6 +46,24 @@
                 android:layout_height="wrap_content"
                 android:onClick="addArrayQueueLast"
                 android:text="addArrayQueueLast" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="removeArrayQueue"
+                android:text="removeArrayQueue" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="removeArrayQueueFirst"
+                android:text="removeArrayQueueFirst" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="removeArrayQueueLast"
+                android:text="removeArrayQueueLast" />
         </LinearLayout>
 
     </HorizontalScrollView>
