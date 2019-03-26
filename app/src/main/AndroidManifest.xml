@@ -24,6 +24,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".testactivity.JavaQueueActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
         <service
             android:name=".DemoIntentService"
             android:exported="false" />

@@ -29,6 +29,7 @@ import com.example.yanxia.phonefeaturetest.testactivity.EasyDrawableActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.FullscreenActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.GpsTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.HandlerThreadActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.JavaQueueActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ProgressBarTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.RemoteDemoActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SecondTestActivity;
@@ -134,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         testItemList.add(new TestItem(Constant.TEST_MESSENGER, R.drawable.ic_lock_24dp, MessengerActivity.class));
         testItemList.add(new TestItem(Constant.TEST_TCP, R.drawable.ic_lock_24dp, TCPClientActivity.class));
         testItemList.add(new TestItem(Constant.TEST_INTENT_SERVICE, R.drawable.ic_lock_24dp, null));
+        testItemList.add(new TestItem(Constant.TEST_JAVA_QUEUE, R.drawable.ic_lock_24dp, JavaQueueActivity.class));
     }
 
     private void startTest(@NonNull TestItem testItem) {
