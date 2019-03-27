@@ -21,21 +21,20 @@
             tools:ignore="HardcodedText" />
 
         <Button
-            style="?android:attr/buttonBarStyle"
+            style="@style/Base.TextAppearance.AppCompat.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="expand"
-            android:text="EXPAND"
+            android:onClick="notifyDataSetChangedTest"
+            android:text="notifyDataSetChanged"
             tools:ignore="HardcodedText" />
 
         <Button
-            style="?android:attr/buttonBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="shrink"
-            android:text="SHRINK"
+            android:onClick="notifyItemChangedTest"
+            android:text="notifyItemChangedTest"
             tools:ignore="HardcodedText" />
     </LinearLayout>
 

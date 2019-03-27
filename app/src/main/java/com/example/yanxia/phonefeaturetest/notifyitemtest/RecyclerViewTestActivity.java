@@ -21,6 +21,7 @@ import com.example.yanxia.phonefeaturetest.widget.CustomRelativeLayout;
 public class RecyclerViewTestActivity extends AppCompatActivity implements View.OnClickListener {
 
     private CustomRelativeLayout customRelativeLayout;
+    private TestSelectAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class RecyclerViewTestActivity extends AppCompatActivity implements View.
         RecyclerView recyclerView = findViewById(R.id.test_rv);
         GridLayoutManager layout = new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layout);
-        final TestSelectAdapter adapter = new TestSelectAdapter();
+        adapter = new TestSelectAdapter();
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new CustomItemDecoration(DisplayUtils.dpToPx(4)));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -71,12 +72,12 @@ public class RecyclerViewTestActivity extends AppCompatActivity implements View.
 
     }
 
-    public void expand(View view) {
-
+    public void notifyDataSetChangedTest(View view) {
+        adapter.notifyDataSetChanged();
     }
 
-    public void shrink(View view) {
-
+    public void notifyItemChangedTest(View view) {
+        adapter.notifyItemChanged(20);
     }
 
     public class CustomItemDecoration extends RecyclerView.ItemDecoration {
