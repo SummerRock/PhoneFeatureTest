@@ -38,6 +38,7 @@ public class Constant {
     public static final String TEST_TCP = "TCP";
     public static final String TEST_INTENT_SERVICE = "Intent Service";
     public static final String TEST_JAVA_QUEUE = "Queue";
+    public static final String TEST_RX_JAVA = "RxJava";
 
     private static List<TestItem> initTestItems() {
         List<TestItem> testItemList = new ArrayList<>();

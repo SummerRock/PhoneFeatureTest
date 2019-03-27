@@ -25,6 +25,10 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".testactivity.RxJavaActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".testactivity.JavaQueueActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
