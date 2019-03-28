@@ -4,29 +4,30 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.yanxia.phonefeaturetest.R;
+
+import java.util.Locale;
 
 /**
  * @author yanxia-Mac
  * https://blog.csdn.net/lmj623565791/article/details/47079737
  */
-public class HandlerThreadActivity extends AppCompatActivity {
+public class HandlerThreadActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView mTvServiceInfo;
 
     private HandlerThread mCheckMsgThread;
     private Handler mCheckMsgHandler;
-    private boolean isUpdateInfo;
+    private volatile boolean isUpdateInfo;
 
     private static final int MSG_UPDATE_INFO = 0x110;
-
-    //与UI线程管理的handler
-    private Handler mainThreadHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,11 @@ public class HandlerThreadActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
+
     private void initBackThread() {
         mCheckMsgThread = new HandlerThread("check-message-coming");
         mCheckMsgThread.start();
@@ -75,19 +81,17 @@ public class HandlerThreadActivity extends AppCompatActivity {
      * 模拟从服务器解析数据
      */
     private void checkForUpdate() {
-        try {
-            //模拟耗时
-            Thread.sleep(1000);
-            mainThreadHandler.post(() -> {
-                String result = "实时更新中，当前大盘指数：<font color='red'>%d</font>";
-                result = String.format(result, (int) (Math.random() * 3000 + 1000));
-                mTvServiceInfo.setText(Html.fromHtml(result));
-            });
+        //模拟耗时
+        SystemClock.sleep(2000);
+        runOnUiThread(() -> {
+            String result = "实时更新中，当前大盘指数：<font color='red'>%d</font>";
+            result = String.format(Locale.getDefault(), result, (int) (Math.random() * 3000 + 1000));
+            mTvServiceInfo.setText(Html.fromHtml(result));
+        });
+    }
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
+    public void quitThread(View view) {
+        mCheckMsgThread.quit();
     }
 
     @Override
