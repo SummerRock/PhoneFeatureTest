@@ -34,7 +34,7 @@ import com.example.yanxia.phonefeaturetest.testactivity.ProgressBarTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.RemoteDemoActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.RxJavaActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SecondTestActivity;
-import com.example.yanxia.phonefeaturetest.testactivity.SensorTestActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.EventBusTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SettingsActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.StorageTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ThreadPoolActivity;
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         testItemList.add(new TestItem(Constant.TEST_HORIZONTAL_RV, R.drawable.ic_lock_24dp, HorizonRvTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_RV_INSIDE_VIEW_PAGER, R.drawable.ic_lock_24dp, ViewPagerActivity.class));
         testItemList.add(new TestItem(Constant.TEST_GPS, R.drawable.ic_lock_24dp, GpsTestActivity.class));
-        testItemList.add(new TestItem(Constant.TEST_SENSOR, R.drawable.ic_lock_24dp, SensorTestActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_EVENT_BUS, R.drawable.ic_lock_24dp, EventBusTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_STORAGE, R.drawable.ic_lock_24dp, StorageTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_CAMERA, R.drawable.ic_lock_24dp, CameraTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_EASY_DRAWABLE, R.drawable.ic_lock_24dp, EasyDrawableActivity.class));

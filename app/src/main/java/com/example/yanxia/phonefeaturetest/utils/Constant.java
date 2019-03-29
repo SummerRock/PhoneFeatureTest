@@ -20,7 +20,7 @@ public class Constant {
     public static final String TEST_HORIZONTAL_RV = "横向RV";
     public static final String TEST_RV_INSIDE_VIEW_PAGER = "ViewPager嵌套横向RV";
     public static final String TEST_GPS = "GPS测试";
-    public static final String TEST_SENSOR = "Sensor传感器";
+    public static final String TEST_EVENT_BUS = "EventBus";
     public static final String TEST_STORAGE = "Storage测试";
     public static final String TEST_CAMERA = "Camera测试";
     public static final String TEST_EASY_DRAWABLE = "背景测试";

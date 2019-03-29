@@ -114,7 +114,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".testactivity.StorageTestActivity" />
         <activity
-            android:name=".testactivity.SensorTestActivity"
+            android:name=".testactivity.EventBusTestActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity android:name=".testactivity.DialogStyleActivity" />
