@@ -1,6 +1,8 @@
 package com.example.yanxia.phonefeaturetest.utils;
 
 import android.os.Handler;
+import android.os.Looper;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -9,7 +11,7 @@ import java.util.Random;
 
 public class SingletonDemo {
     public interface OnDataLoadedInterface {
-        void onDataLoadFinish();
+        void onDataLoadFinish(@NonNull List<String> dataList);
     }
 
     private static final String TAG = SingletonDemo.class.getSimpleName();
@@ -17,7 +19,7 @@ public class SingletonDemo {
     private List<String> stringList;
     private volatile boolean isUpdating;
     private Random random = new Random();
-    private Handler handler = new Handler();
+    private Handler handler = new Handler(Looper.getMainLooper());
     private List<OnDataLoadedInterface> dataLoadedInterfaceList;
 
     public static SingletonDemo getInstance() {
@@ -66,7 +68,7 @@ public class SingletonDemo {
                 isUpdating = false;
                 handler.post(() -> {
                     for (OnDataLoadedInterface dataLoadedInterface : dataLoadedInterfaceList) {
-                        dataLoadedInterface.onDataLoadFinish();
+                        dataLoadedInterface.onDataLoadFinish(new ArrayList<>(stringList));
                     }
                 });
             }
