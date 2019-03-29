@@ -16,16 +16,17 @@ import android.widget.Toast;
 
 import com.example.yanxia.phonefeaturetest.download.DownloadTestActivity;
 import com.example.yanxia.phonefeaturetest.horizonRv.HorizonRvTestActivity;
+import com.example.yanxia.phonefeaturetest.multiProcess.BookAIDLTestActivity;
 import com.example.yanxia.phonefeaturetest.multiProcess.MessengerActivity;
 import com.example.yanxia.phonefeaturetest.multiProcess.MyContentProvider;
 import com.example.yanxia.phonefeaturetest.multiProcess.socket.TCPClientActivity;
 import com.example.yanxia.phonefeaturetest.notifyitemtest.RecyclerViewTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.AnimationTestActivity;
-import com.example.yanxia.phonefeaturetest.multiProcess.BookAIDLTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.CameraTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ColorMatrixTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.DialogStyleActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.EasyDrawableActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.EventBusTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.FullscreenActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.GpsTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.HandlerThreadActivity;
@@ -34,13 +35,11 @@ import com.example.yanxia.phonefeaturetest.testactivity.ProgressBarTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.RemoteDemoActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.RxJavaActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SecondTestActivity;
-import com.example.yanxia.phonefeaturetest.testactivity.EventBusTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SettingsActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.StorageTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ThreadPoolActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ViewFeatureActivity;
 import com.example.yanxia.phonefeaturetest.testjava.People;
-import com.example.yanxia.phonefeaturetest.utils.CommonLog;
 import com.example.yanxia.phonefeaturetest.utils.Constant;
 import com.example.yanxia.phonefeaturetest.viewpager.ViewPagerActivity;
 
@@ -52,6 +51,7 @@ import java.util.List;
  */
 public class MainActivity extends AppCompatActivity implements CustomDialogFragment.OnFragmentInteractionListener {
 
+    private static final String TAG = "MainActivityTag";
     private List<TestItem> testItemList = new ArrayList<>();
     private static final int REQUEST_CODE = 10;
 
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CommonLog.d("main onCreate!");
+        Log.d(TAG, "main onCreate!");
         setContentView(R.layout.activity_main);
         Toolbar myToolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(myToolbar);
@@ -78,13 +78,13 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        CommonLog.d("main onWindowFocusChanged hasFocus: " + hasFocus);
+        Log.d(TAG, "main onWindowFocusChanged hasFocus: " + hasFocus);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        CommonLog.d("main onResume");
+        Log.d(TAG, "main onResume");
     }
 
     @Override
