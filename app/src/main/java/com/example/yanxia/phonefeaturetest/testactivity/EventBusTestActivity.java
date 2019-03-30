@@ -2,6 +2,7 @@ package com.example.yanxia.phonefeaturetest.testactivity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.example.yanxia.phonefeaturetest.R;
@@ -36,6 +37,7 @@ public class EventBusTestActivity extends AppCompatActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent event) {
+        Log.d("SingletonDemo", "onMessageEvent!");
         textView.setText(event.getMessage());
         // Toast.makeText(this, event.getMessage(), Toast.LENGTH_SHORT).show();
     }

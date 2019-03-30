@@ -91,8 +91,8 @@ public class SingletonDemo {
         }
         stringList.clear();
         stringList.addAll(tempList);
-        Log.d(TAG, "updateList end!");
         isUpdating = false;
+        Log.d(TAG, "updateList end! post event bus!");
         EventBus.getDefault().post(new MessageEvent("stringList size: " + stringList.size()));
         handler.post(() -> {
             for (OnDataLoadedInterface dataLoadedInterface : dataLoadedInterfaceList) {
