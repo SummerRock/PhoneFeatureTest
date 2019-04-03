@@ -41,4 +41,12 @@
         android:layout_centerHorizontal="true"
         android:text="Button"
         android:visibility="visible" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/glide_test_image_view_2"
+        android:layout_centerHorizontal="true"
+        android:onClick="notifyList"
+        android:text="Notify!" />
 </RelativeLayout>
