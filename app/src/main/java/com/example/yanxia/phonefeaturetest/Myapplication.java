@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.os.Process;
 import android.util.Log;
 
-import com.example.yanxia.phonefeaturetest.utils.ScreenRecordManager;
+import com.example.yanxia.phonefeaturetest.utils.MultiThreadDemoManager;
 import com.example.yanxia.phonefeaturetest.utils.ScreenStatusManager;
 import com.example.yanxia.phonefeaturetest.utils.SingletonDemo;
 
@@ -74,7 +74,6 @@ public class Myapplication extends Application {
         SingletonDemo.getInstance();
         initThirdService();
         ScreenStatusManager.getInstance();
-        ScreenRecordManager.init();
     }
 
     public static Context getContext() {
@@ -88,6 +87,7 @@ public class Myapplication extends Application {
                 super.run();
                 Process.setThreadPriority(Process.THREAD_PRIORITY_LOWEST);
                 Log.d(TAG, "initThirdService start!");
+                MultiThreadDemoManager.getInstance();
             }
         }.start();
     }
