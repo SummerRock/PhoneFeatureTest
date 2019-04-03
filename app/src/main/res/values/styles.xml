@@ -44,4 +44,7 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <style name="CustomProgress" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:indeterminateDrawable">@drawable/ic_lock_24dp</item>
+    </style>
 </resources>
