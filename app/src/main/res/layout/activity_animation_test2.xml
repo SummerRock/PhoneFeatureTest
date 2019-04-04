@@ -7,6 +7,7 @@
     tools:context=".testactivity.AnimationTestActivity">
 
     <RelativeLayout
+        android:id="@+id/rl_01"
         android:layout_width="240dp"
         android:layout_height="240dp"
         android:background="@android:color/holo_green_light"
@@ -31,6 +32,15 @@
             android:layout_centerHorizontal="true"
             android:background="@android:color/holo_blue_bright" />
     </RelativeLayout>
+
+    <ProgressBar
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:indeterminateDrawable="@drawable/rotate_loading_circle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rl_01" />
 
     <GridLayout
         android:layout_width="match_parent"
