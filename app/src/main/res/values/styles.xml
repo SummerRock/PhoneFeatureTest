@@ -47,4 +47,11 @@
     <style name="CustomProgress" parent="Widget.AppCompat.ProgressBar.Horizontal">
         <item name="android:indeterminateDrawable">@drawable/ic_lock_24dp</item>
     </style>
+
+    <style name="CustomFullScreenDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
 </resources>

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.example.yanxia.phonefeaturetest.R;
+import com.example.yanxia.phonefeaturetest.dialog.TermsDialogFragment;
 
 public class DialogStyleActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -42,5 +43,9 @@ public class DialogStyleActivity extends AppCompatActivity implements View.OnCli
         okButton.setOnClickListener(v -> dialog.dismiss());
         View cancelButton = dialogView.findViewById(R.id.exit_dialog_cancel_btn);
         cancelButton.setOnClickListener(v -> dialog.dismiss());
+    }
+
+    public void showCustomDialogFragment(View view) {
+        TermsDialogFragment.newInstance().show(getSupportFragmentManager(), TermsDialogFragment.class.getSimpleName());
     }
 }
