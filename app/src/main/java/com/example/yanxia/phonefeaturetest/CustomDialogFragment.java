@@ -59,7 +59,7 @@ public class CustomDialogFragment extends DialogFragment {
 
     public void onButtonPressed() {
         if (person != null) {
-            person.setAge(40);
+            person.setBirthPlace("new_place");
         }
         if (mListener != null) {
             mListener.onFragmentInteraction();

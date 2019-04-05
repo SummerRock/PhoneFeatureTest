@@ -37,7 +37,7 @@ public class SecondTestActivity extends AppCompatActivity implements View.OnClic
     }
 
     public void setOK(View view) {
-        person.setAge(30);
+        person.setBirthPlace("new_place");
         setResult(Activity.RESULT_OK);
         finish();
     }

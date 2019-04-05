@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
     @SuppressWarnings("unused")
     private static final String MAIN_STRING = TestClass.TEST_STRING;
 
-    private People person = new People(25, "Summer", "BJ", "none");
+    private People person = new People(System.currentTimeMillis(), "Summer", "BJ", "none");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
 
     @Override
     public void onFragmentInteraction() {
-        Toast.makeText(this, "People age: " + person.getAge(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "People age: " + person.getId(), Toast.LENGTH_SHORT).show();
     }
 
     private void initTestItems() {
@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE) {
-            Toast.makeText(this, "People age: " + person.getAge(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "People age: " + person.getId(), Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -5,32 +5,28 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
 public class People implements Parcelable {
-    private int age;
+    private long id;
     private String name;
-    private String address;
+    private String birthPlace;
     private String race;
 
-    public People(int age, @NonNull String name, @NonNull String address, @NonNull String race) {
-        this.age = age;
+    public People(long id, @NonNull String name, @NonNull String birthPlace, @NonNull String race) {
+        this.id = id;
         this.name = name;
-        this.address = address;
+        this.birthPlace = birthPlace;
         this.race = race;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public long getId() {
+        return id;
     }
 
-    public int getAge() {
-        return age;
+    public String getBirthPlace() {
+        return birthPlace;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+    public void setBirthPlace(String birthPlace) {
+        this.birthPlace = birthPlace;
     }
 
     @Override
@@ -40,16 +36,16 @@ public class People implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.age);
+        dest.writeLong(this.id);
         dest.writeString(this.name);
-        dest.writeString(this.address);
+        dest.writeString(this.birthPlace);
         dest.writeString(this.race);
     }
 
     protected People(Parcel in) {
-        this.age = in.readInt();
+        this.id = in.readLong();
         this.name = in.readString();
-        this.address = in.readString();
+        this.birthPlace = in.readString();
         this.race = in.readString();
     }
 
