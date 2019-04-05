@@ -29,6 +29,14 @@ public class People implements Parcelable {
         this.birthPlace = birthPlace;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getRace() {
+        return race;
+    }
+
     @Override
     public int describeContents() {
         return 0;
