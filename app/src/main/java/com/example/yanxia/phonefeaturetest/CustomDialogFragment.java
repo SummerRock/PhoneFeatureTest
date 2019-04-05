@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.yanxia.phonefeaturetest.testjava.People;
+import com.example.yanxia.phonefeaturetest.dataModel.People;
 
 
 /**

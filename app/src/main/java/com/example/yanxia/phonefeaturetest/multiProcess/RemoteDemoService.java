@@ -6,7 +6,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.example.yanxia.phonefeaturetest.testjava.People;
+import com.example.yanxia.phonefeaturetest.dataModel.People;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -12,7 +12,7 @@ import android.view.View;
 
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.multiProcess.RemoteDemoService;
-import com.example.yanxia.phonefeaturetest.testjava.People;
+import com.example.yanxia.phonefeaturetest.dataModel.People;
 
 public class RemoteDemoActivity extends AppCompatActivity implements View.OnClickListener {
 
