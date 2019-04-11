@@ -57,13 +57,14 @@
         tools:ignore="HardcodedText" />
 
     <ProgressBar
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:id="@+id/test_horizontal_progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/test_reset_button"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="30dp"
-        android:progress="20"
-        android:progressDrawable="@drawable/shape_progress" />
+        android:progress="30"
+        android:progressDrawable="@drawable/horizontal_progress_bar_background" />
 </RelativeLayout>
