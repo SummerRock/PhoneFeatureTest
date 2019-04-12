@@ -54,4 +54,9 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:backgroundDimEnabled">true</item>
     </style>
+
+    <style name="AlertDialogColorTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#9d34c3</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>
