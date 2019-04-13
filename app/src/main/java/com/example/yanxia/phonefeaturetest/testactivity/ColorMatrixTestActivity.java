@@ -4,6 +4,7 @@ import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.example.annotation.BindView;
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.utils.CommonLog;
+import com.example.yanxia.phonefeaturetest.utils.DisplayUtils;
 
 /**
  * @author yanxia-Mac
@@ -37,6 +39,7 @@ public final class ColorMatrixTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_color_matrix_test);
         testImageView = findViewById(R.id.color_matrix_test_image);
         saturationText = findViewById(R.id.color_matrix_test_saturation_tv);
+        saturationText.setTextColor(ContextCompat.getColor(this, DisplayUtils.getResourceIdByName(this, "control_background", "color")));
         SeekBar seekBar = findViewById(R.id.color_matrix_adjust_seek_bar);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
