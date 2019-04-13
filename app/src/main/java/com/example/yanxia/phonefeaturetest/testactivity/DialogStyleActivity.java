@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.example.yanxia.phonefeaturetest.R;
+import com.example.yanxia.phonefeaturetest.dialog.FullScreenDialogFragment;
 import com.example.yanxia.phonefeaturetest.dialog.TermsDialogFragment;
 
 public class DialogStyleActivity extends AppCompatActivity implements View.OnClickListener {
@@ -45,5 +46,9 @@ public class DialogStyleActivity extends AppCompatActivity implements View.OnCli
 
     public void showCustomDialogFragment(View view) {
         TermsDialogFragment.newInstance().show(getSupportFragmentManager(), TermsDialogFragment.class.getSimpleName());
+    }
+
+    public void showFullScreenDialogFragment(View view) {
+        FullScreenDialogFragment.newInstance().show(getSupportFragmentManager(), FullScreenDialogFragment.class.getSimpleName());
     }
 }

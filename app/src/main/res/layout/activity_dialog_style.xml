@@ -30,4 +30,11 @@
         android:onClick="showCustomDialogFragment"
         android:text="Custom Dialog Fragment"
         tools:ignore="HardcodedText" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="showFullScreenDialogFragment"
+        android:text="Full Screen Dialog Fragment"
+        tools:ignore="HardcodedText" />
 </LinearLayout>
