@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".testactivity.ProgressBarTestActivity">
 
     <com.example.yanxia.phonefeaturetest.widget.ProgressButton
         android:id="@+id/custom_progress_button"
         android:layout_width="90dp"
         android:layout_height="48dp"
-        android:layout_above="@+id/custom_progress_bar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/button_bg_selector"
         android:gravity="center"
         app:buttonCornerRadius="7dp"
@@ -26,7 +26,7 @@
         android:id="@+id/custom_progress_bar"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
         android:background="@android:color/holo_blue_dark"
         android:padding="8dp"
         app:max="100"
@@ -40,8 +40,6 @@
         style="@android:style/Widget.Holo.SeekBar"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/custom_progress_bar"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:max="100"
         android:min="0" />
@@ -50,8 +48,6 @@
         android:id="@+id/test_reset_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/test_seek_bar"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:text="Reset Button"
         tools:ignore="HardcodedText" />
@@ -61,10 +57,19 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/test_reset_button"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="30dp"
         android:progress="30"
         android:progressDrawable="@drawable/horizontal_progress_bar_background" />
-</RelativeLayout>
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:progress="30"
+        android:progressDrawable="@drawable/horizontal_progress_bar_background_2" />
+</LinearLayout>
