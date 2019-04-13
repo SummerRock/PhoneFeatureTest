@@ -56,13 +56,14 @@
         android:src="@drawable/ic_dialpad_black_48dp" />
 
     <com.example.yanxia.phonefeaturetest.widget.TextViewOutline
+        android:id="@+id/font_test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/balboa_w01_extra_bold"
         android:letterSpacing="0.1"
         android:padding="4dp"
-        android:text="TEST FONT"
+        android:text="TEST 100% FONT"
         android:textColor="@android:color/black"
         android:textSize="32sp"
         app:outlineColor="@android:color/white"

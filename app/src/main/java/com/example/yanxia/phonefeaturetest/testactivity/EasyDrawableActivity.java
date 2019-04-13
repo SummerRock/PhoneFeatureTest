@@ -9,6 +9,9 @@ import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.content.res.AppCompatResources;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.AbsoluteSizeSpan;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,6 +36,13 @@ public class EasyDrawableActivity extends AppCompatActivity implements View.OnCl
         imageView.setBackground(createNewDrawable());
         TextView textView = findViewById(R.id.drawable_text_view);
         textView.setCompoundDrawables(null, null, null, getDrawableFromRes());
+
+        TextView fontTv = findViewById(R.id.font_test);
+        Spannable span = new SpannableString(fontTv.getText());
+        span.setSpan(new AbsoluteSizeSpan(58, true), fontTv.getText().toString().indexOf("1"), fontTv.getText().toString().indexOf("%"), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        // span.setSpan(new ForegroundColorSpan(Color.RED), 11, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        // span.setSpan(new BackgroundColorSpan(Color.YELLOW), 11, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        fontTv.setText(span);
     }
 
     @Override
