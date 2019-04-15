@@ -72,5 +72,16 @@
     <View
         android:layout_width="2dp"
         android:layout_height="100dp"
-        android:background="@drawable/shape_line_divider" />
+        android:background="@drawable/shape_line_divider"
+        android:layerType="software" />
+
+    <com.example.yanxia.phonefeaturetest.widget.DividerView
+        android:layout_width="2dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:layerType="software"
+        app:color="@android:color/holo_red_light"
+        app:dashGap="4dp"
+        app:dashLength="6dp"
+        app:orientation="vertical" />
 </LinearLayout>
