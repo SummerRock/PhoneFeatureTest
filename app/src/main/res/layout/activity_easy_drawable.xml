@@ -68,4 +68,9 @@
         android:textSize="32sp"
         app:outlineColor="@android:color/white"
         app:outlineSize="3dp" />
+
+    <View
+        android:layout_width="40dp"
+        android:layout_height="100dp"
+        android:background="@drawable/shape_line_divider" />
 </LinearLayout>
