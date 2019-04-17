@@ -11,8 +11,5 @@
         android:id="@+id/test_lottie_1"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:background="@android:color/holo_green_light"
-        app:lottie_fileName="lottie/test/data.json"
-        app:lottie_imageAssetsFolder="lottie/test/images"
-        app:lottie_loop="true" />
+        android:background="@android:color/holo_green_light" />
 </LinearLayout>
