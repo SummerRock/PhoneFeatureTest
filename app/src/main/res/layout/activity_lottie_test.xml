@@ -8,9 +8,11 @@
     tools:context=".testactivity.LottieTestActivity">
 
     <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/test_lottie_1"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        app:lottie_autoPlay="true"
-        app:lottie_fileName="lottie/demo.json"
+        android:background="@android:color/holo_green_light"
+        app:lottie_fileName="lottie/test/data.json"
+        app:lottie_imageAssetsFolder="lottie/test/images"
         app:lottie_loop="true" />
 </LinearLayout>
