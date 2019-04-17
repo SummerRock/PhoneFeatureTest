@@ -10,20 +10,9 @@ public class LottieTestActivity extends AppCompatActivity {
 
     private static final String TAG = "Lottie_debug";
 
-    private boolean hasUpdateBitmap;
-
-    private LottieAnimationView lottieAnimationView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lottie_test);
-    }
-
-    @Override
-    protected void onDestroy() {
-        lottieAnimationView.removeCallbacks(null);
-        lottieAnimationView.cancelAnimation();
-        super.onDestroy();
     }
 }
