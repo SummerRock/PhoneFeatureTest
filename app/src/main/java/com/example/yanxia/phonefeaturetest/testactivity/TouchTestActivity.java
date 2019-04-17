@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.widget.ScratchView;
@@ -30,8 +29,7 @@ public class TouchTestActivity extends AppCompatActivity {
 
             @Override
             public void onCompleted(View view) {
-                Log.i(TAG, "onCompleted mark: ");
-                Toast.makeText(TouchTestActivity.this, "完成了！", Toast.LENGTH_SHORT).show();
+                Log.i(TAG, "onCompleted!");
                 scratchView.clear();
             }
         });
