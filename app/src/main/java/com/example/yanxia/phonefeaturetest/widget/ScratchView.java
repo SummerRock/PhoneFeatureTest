@@ -26,6 +26,8 @@ import android.view.ViewConfiguration;
 
 import com.example.yanxia.phonefeaturetest.R;
 
+import java.util.concurrent.Executors;
+
 /**
  * Created by Clock on 2016/8/26.
  */
@@ -353,7 +355,13 @@ public class ScratchView extends View {
                 }
             }
 
-        }.execute(width, height);
+        }.executeOnExecutor(Executors.newCachedThreadPool(), width, height);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        mEraseStatusListener = null;
+        super.onDetachedFromWindow();
     }
 
     /**
