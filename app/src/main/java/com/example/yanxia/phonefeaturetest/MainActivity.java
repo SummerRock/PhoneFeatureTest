@@ -39,6 +39,7 @@ import com.example.yanxia.phonefeaturetest.testactivity.SecondTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SettingsActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.StorageTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ThreadPoolActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.TouchTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ViewFeatureActivity;
 import com.example.yanxia.phonefeaturetest.dataModel.People;
 import com.example.yanxia.phonefeaturetest.utils.Constant;
@@ -112,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
     private void initTestItems() {
         testItemList.add(new TestItem(Constant.TEST_RECYCLER, R.drawable.ic_lock_24dp, RecyclerViewTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_RX_JAVA, R.drawable.ic_lock_24dp, RxJavaActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_SCRATCH, R.drawable.ic_lock_24dp, TouchTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_LOTTIE, R.drawable.ic_lock_24dp, LottieTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_DIALOG, R.drawable.ic_lock_24dp, DialogStyleActivity.class));
         testItemList.add(new TestItem(Constant.TEST_HANDLER_THREAD, R.drawable.ic_lock_24dp, HandlerThreadActivity.class));
