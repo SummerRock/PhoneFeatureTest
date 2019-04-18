@@ -26,7 +26,9 @@ import android.view.ViewConfiguration;
 
 import com.example.yanxia.phonefeaturetest.R;
 
-import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Clock on 2016/8/26.
@@ -109,6 +111,9 @@ public class ScratchView extends View {
     private int mPixels[];
 
     private EraseStatusListener mEraseStatusListener;
+
+    private ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(1, 1, 0L,
+            TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(), new ThreadPoolExecutor.DiscardOldestPolicy());
 
     public ScratchView(Context context) {
         super(context);
@@ -355,7 +360,7 @@ public class ScratchView extends View {
                 }
             }
 
-        }.executeOnExecutor(Executors.newCachedThreadPool(), width, height);
+        }.executeOnExecutor(poolExecutor, width, height);
     }
 
     @Override
