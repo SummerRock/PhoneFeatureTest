@@ -2,6 +2,8 @@ package com.example.yanxia.phonefeaturetest;
 
 import com.example.yanxia.phonefeaturetest.utils.CommonLog;
 
+import java.util.Random;
+
 public class TestClass {
 
     static final String TEST_STRING;
@@ -67,4 +69,10 @@ public class TestClass {
         CommonLog.d("haha" + b);
     }
 
+    public static void testRandom() {
+        Random random = new Random();
+        for (int i = 0; i < 30; i++) {
+            CommonLog.d("random number: " + random.nextInt(10));
+        }
+    }
 }
