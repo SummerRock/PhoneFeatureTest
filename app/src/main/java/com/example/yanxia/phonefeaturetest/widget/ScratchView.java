@@ -26,7 +26,7 @@ import android.view.ViewConfiguration;
 
 import com.example.yanxia.phonefeaturetest.R;
 
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -113,7 +113,7 @@ public class ScratchView extends View {
     private EraseStatusListener mEraseStatusListener;
 
     private ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(1, 1, 0L,
-            TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(), new ThreadPoolExecutor.DiscardOldestPolicy());
+            TimeUnit.MILLISECONDS, new ArrayBlockingQueue<>(1), new ThreadPoolExecutor.DiscardOldestPolicy());
 
     public ScratchView(Context context) {
         super(context);
