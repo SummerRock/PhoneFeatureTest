@@ -21,9 +21,21 @@ public class ThreadPoolActivity extends AppCompatActivity implements View.OnClic
 
     private static final String TAG = "ThreadPoolActivity_LOG";
 
-    private ExecutorService newSingleThreadExecutor = Executors.newSingleThreadExecutor(r -> new Thread("SingleThread"));
-    private ExecutorService newCachedThreadPool = Executors.newCachedThreadPool(r -> new Thread("CachedThread"));
-    private ExecutorService newFixedThreadPool = Executors.newFixedThreadPool(5, r -> new Thread("FixedThread"));
+    private ExecutorService newSingleThreadExecutor = Executors.newSingleThreadExecutor(r -> {
+        Thread thread = new Thread(r);
+        thread.setName("SingleThread");
+        return thread;
+    });
+    private ExecutorService newCachedThreadPool = Executors.newCachedThreadPool(r -> {
+        Thread thread = new Thread(r);
+        thread.setName("CachedThread");
+        return thread;
+    });
+    private ExecutorService newFixedThreadPool = Executors.newFixedThreadPool(5, r -> {
+        Thread thread = new Thread(r);
+        thread.setName("FixedThread");
+        return thread;
+    });
     private ExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(3, r -> {
         Thread thread = new Thread(r);
         thread.setName("ScheduledThread");
