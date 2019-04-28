@@ -1,18 +1,15 @@
 package com.example.yanxia.phonefeaturetest.testactivity;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
 import com.example.yanxia.phonefeaturetest.R;
-import com.example.yanxia.phonefeaturetest.common.CommonFinishInterface;
-import com.example.yanxia.phonefeaturetest.utils.ThreadPoolUtils;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 线程池必须认真学习
@@ -22,7 +19,16 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ThreadPoolActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ExecutorService newSingleThreadExecutor = Executors.newSingleThreadExecutor();
+    private static final String TAG = "ThreadPoolActivity_LOG";
+
+    private ExecutorService newSingleThreadExecutor = Executors.newSingleThreadExecutor(r -> new Thread("SingleThread"));
+    private ExecutorService newCachedThreadPool = Executors.newCachedThreadPool(r -> new Thread("CachedThread"));
+    private ExecutorService newFixedThreadPool = Executors.newFixedThreadPool(5, r -> new Thread("FixedThread"));
+    private ExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(3, r -> {
+        Thread thread = new Thread(r);
+        thread.setName("ScheduledThread");
+        return thread;
+    });
     private int testNumber = 0;
 
     @Override
@@ -37,34 +43,49 @@ public class ThreadPoolActivity extends AppCompatActivity implements View.OnClic
     }
 
     private class TestRunnableAddDirectly implements Runnable {
+        private long sleepTime;
+
+        TestRunnableAddDirectly(long sleepTime) {
+            this.sleepTime = sleepTime;
+        }
+
         @Override
         public void run() {
+            if (sleepTime != 0) {
+                SystemClock.sleep(sleepTime);
+            }
+
             testNumber++;
-            Log.d("ThreadPoolActivity_LOG", "testNumber: " + testNumber);
+            String name = Thread.currentThread().getName();
+            Log.d(TAG, name + " testNumber: " + testNumber);
         }
     }
 
     public void startSingleThreadPool(View view) {
+        testNumber = 0;
         for (int i = 0; i < 30; i++) {
-            newSingleThreadExecutor.execute(new TestRunnableAddDirectly());
+            newSingleThreadExecutor.execute(new TestRunnableAddDirectly(500));
         }
     }
 
-    public void startThreadPriorityTest(View view) {
-        final AtomicInteger mCount = new AtomicInteger(0);
-        for (int i = 0; i < 5; i++) {
-            ThreadPoolUtils.postOnThreadPoolExecutor(new ThreadPoolUtils.CustomDelayRunnable(i, new CommonFinishInterface() {
-                @Override
-                public void onSuccess() {
-                    mCount.getAndIncrement();
-                    Log.d("ThreadPoolActivity_LOG", "onSuccess size: " + mCount.intValue());
-                }
+    public void startNewCachedThreadPool(View view) {
+        testNumber = 0;
+        for (int i = 0; i < 30; i++) {
+            newCachedThreadPool.execute(new TestRunnableAddDirectly(500));
+        }
+    }
 
-                @Override
-                public void onFailed(@Nullable Exception e) {
+    public void startNewFixedThreadPool(View view) {
+        testNumber = 0;
+        for (int i = 0; i < 30; i++) {
+            newFixedThreadPool.execute(new TestRunnableAddDirectly(0));
+        }
+    }
 
-                }
-            }));
+    public void startScheduledThreadPool(View view) {
+        testNumber = 0;
+        for (int i = 0; i < 30; i++) {
+            scheduledExecutorService.execute(new TestRunnableAddDirectly(500));
         }
     }
 }
