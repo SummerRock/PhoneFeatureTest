@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.example.yanxia.phonefeaturetest.R;
+import com.example.yanxia.phonefeaturetest.dialog.CustomWidthDialogFragment;
 import com.example.yanxia.phonefeaturetest.dialog.FullScreenDialogFragment;
 import com.example.yanxia.phonefeaturetest.dialog.TermsDialogFragment;
 
@@ -50,5 +51,9 @@ public class DialogStyleActivity extends AppCompatActivity implements View.OnCli
 
     public void showFullScreenDialogFragment(View view) {
         FullScreenDialogFragment.newInstance().show(getSupportFragmentManager(), FullScreenDialogFragment.class.getSimpleName());
+    }
+
+    public void showCustomWidthDialogFragment(View view) {
+        CustomWidthDialogFragment.newInstance().show(getSupportFragmentManager(), CustomWidthDialogFragment.class.getSimpleName());
     }
 }
