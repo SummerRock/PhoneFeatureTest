@@ -28,6 +28,6 @@ public class CustomWidthDialogFragment extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_custom_dialog, container, false);
+        return inflater.inflate(R.layout.fragment_custom_width_dialog, container, false);
     }
 }

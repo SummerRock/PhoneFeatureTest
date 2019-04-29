@@ -79,9 +79,16 @@
     </style>
 
     <style name="customWidthDialog" parent="Theme.AppCompat.Dialog">
-        <item name="android:windowMinWidthMinor">48%</item>
         <item name="android:windowNoTitle">true</item>
+
+        <!-- Set this to true if you want Full Screen without status bar -->
+        <item name="android:windowFullscreen">true</item>
+
+        <item name="android:windowIsFloating">false</item>
+
+        <!-- This is important! Don't forget to set window background -->
         <item name="android:windowBackground">@android:color/transparent</item>
+
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
