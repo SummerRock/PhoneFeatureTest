@@ -2,17 +2,22 @@ package com.example.yanxia.phonefeaturetest.testactivity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 
 import com.example.yanxia.phonefeaturetest.R;
+import com.example.yanxia.phonefeaturetest.dialog.CustomProgressDialogFragment;
 import com.example.yanxia.phonefeaturetest.dialog.CustomWidthDialogFragment;
 import com.example.yanxia.phonefeaturetest.dialog.FullScreenDialogFragment;
 import com.example.yanxia.phonefeaturetest.dialog.TermsDialogFragment;
 
 public class DialogStyleActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private CustomProgressDialogFragment customProgressDialogFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,5 +60,34 @@ public class DialogStyleActivity extends AppCompatActivity implements View.OnCli
 
     public void showCustomWidthDialogFragment(View view) {
         CustomWidthDialogFragment.newInstance().show(getSupportFragmentManager(), CustomWidthDialogFragment.class.getSimpleName());
+    }
+
+    public void showProgressDialogFragment(View view) {
+        new ShowProgressDialogTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    private class ShowProgressDialogTask extends AsyncTask {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            if (customProgressDialogFragment == null) {
+                customProgressDialogFragment = CustomProgressDialogFragment.newInstance();
+            }
+            customProgressDialogFragment.show(getSupportFragmentManager(), CustomProgressDialogFragment.class.getSimpleName());
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+            if (customProgressDialogFragment != null) {
+                customProgressDialogFragment.dismiss();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object[] objects) {
+            SystemClock.sleep(5000);
+            return null;
+        }
     }
 }
