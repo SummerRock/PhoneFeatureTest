@@ -66,11 +66,20 @@ public class ThreadPoolActivity extends AppCompatActivity implements View.OnClic
             if (sleepTime != 0) {
                 SystemClock.sleep(sleepTime);
             }
-
-            testNumber++;
-            String name = Thread.currentThread().getName();
-            Log.d(TAG, name + " testNumber: " + testNumber);
+            addValueAsync();
         }
+    }
+
+    private void addValueAsync() {
+        testNumber++;
+        String name = Thread.currentThread().getName();
+        Log.d(TAG, name + " testNumber: " + testNumber);
+    }
+
+    private synchronized void addValueSync() {
+        testNumber++;
+        String name = Thread.currentThread().getName();
+        Log.d(TAG, name + " testNumber: " + testNumber);
     }
 
     public void startSingleThreadPool(View view) {
