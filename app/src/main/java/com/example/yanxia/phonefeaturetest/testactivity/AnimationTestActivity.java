@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.RelativeLayout;
 
@@ -83,5 +84,12 @@ public class AnimationTestActivity extends AppCompatActivity implements View.OnC
         valueAnimator.setInterpolator(new LinearInterpolator());
         valueAnimator.setDuration(500);
         valueAnimator.start();
+    }
+
+    public void startAnimationType7(View view) {
+        RotateAnimation rotateAnimation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        rotateAnimation.setDuration(4000);
+        rotateAnimation.setInterpolator(new LinearInterpolator());
+        imageView.startAnimation(rotateAnimation);
     }
 }

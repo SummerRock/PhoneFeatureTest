@@ -11,22 +11,32 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:onClick="startThreadPool"
-        android:text="线程池"
+        android:layout_margin="8dp"
+        android:onClick="startSingleThreadPool"
+        android:text="Single Thread"
         tools:ignore="HardcodedText" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:onClick="startThreadPriorityTest"
-        android:text="优先级竞争"
+        android:layout_margin="8dp"
+        android:onClick="startNewCachedThreadPool"
+        android:text="Cached"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:onClick="startNewFixedThreadPool"
+        android:text="Fixed"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:onClick="startScheduledThreadPool"
+        android:text="Schedules"
         tools:ignore="HardcodedText" />
 </LinearLayout>
