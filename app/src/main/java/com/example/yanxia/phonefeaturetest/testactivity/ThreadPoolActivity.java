@@ -66,7 +66,7 @@ public class ThreadPoolActivity extends AppCompatActivity implements View.OnClic
             if (sleepTime != 0) {
                 SystemClock.sleep(sleepTime);
             }
-            addValueAsync();
+            addValueSync();
         }
     }
 
@@ -99,7 +99,7 @@ public class ThreadPoolActivity extends AppCompatActivity implements View.OnClic
     public void startNewFixedThreadPool(View view) {
         testNumber = 0;
         for (int i = 0; i < 30; i++) {
-            newFixedThreadPool.execute(new TestRunnableAddDirectly(0));
+            newFixedThreadPool.execute(new TestRunnableAddDirectly(500));
         }
     }
 

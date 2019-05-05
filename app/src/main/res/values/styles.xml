@@ -9,8 +9,6 @@
     </style>
 
     <style name="MainTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
         <item name="android:colorEdgeEffect" tools:ignore="NewApi">@android:color/holo_purple</item>
     </style>
 
