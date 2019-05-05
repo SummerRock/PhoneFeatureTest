@@ -25,6 +25,14 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".testactivity.InputMethodTestActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:taskAffinity=".input_test"
+            android:theme="@style/FullscreenActivityThemeNoActionBar"
+            android:windowSoftInputMode="stateAlwaysVisible" />
+        <activity
             android:name=".testactivity.LottieTestActivity"
             android:launchMode="singleTop" />
         <activity

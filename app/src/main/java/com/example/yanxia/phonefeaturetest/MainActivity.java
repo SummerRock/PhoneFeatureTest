@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.yanxia.phonefeaturetest.dataModel.People;
 import com.example.yanxia.phonefeaturetest.download.DownloadTestActivity;
 import com.example.yanxia.phonefeaturetest.horizonRv.HorizonRvTestActivity;
 import com.example.yanxia.phonefeaturetest.multiProcess.BookAIDLTestActivity;
@@ -30,6 +32,7 @@ import com.example.yanxia.phonefeaturetest.testactivity.EventBusTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.FullscreenActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.GpsTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.HandlerThreadActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.InputMethodTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.JavaQueueActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.LottieTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ProgressBarTestActivity;
@@ -41,7 +44,6 @@ import com.example.yanxia.phonefeaturetest.testactivity.StorageTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ThreadPoolActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.TouchTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ViewFeatureActivity;
-import com.example.yanxia.phonefeaturetest.dataModel.People;
 import com.example.yanxia.phonefeaturetest.utils.Constant;
 import com.example.yanxia.phonefeaturetest.viewpager.ViewPagerActivity;
 
@@ -112,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
 
     private void initTestItems() {
         testItemList.add(new TestItem(Constant.TEST_RECYCLER, R.drawable.ic_lock_24dp, RecyclerViewTestActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_INPUT_METHOD, R.drawable.ic_lock_24dp, null));
         testItemList.add(new TestItem(Constant.TEST_RX_JAVA, R.drawable.ic_lock_24dp, RxJavaActivity.class));
         testItemList.add(new TestItem(Constant.TEST_SCRATCH, R.drawable.ic_lock_24dp, TouchTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_LOTTIE, R.drawable.ic_lock_24dp, LottieTestActivity.class));
@@ -167,6 +170,13 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
                 break;
             case Constant.TEST_INTENT_SERVICE:
                 DemoIntentService.startActionFoo(this);
+                break;
+            case Constant.TEST_INPUT_METHOD:
+                Intent intent = new Intent(Myapplication.getContext(), InputMethodTestActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                ContextCompat.startActivity(Myapplication.getContext(), intent, null);
                 break;
             default:
                 Toast.makeText(MainActivity.this, "you clicked testName " + testItem.getName(), Toast.LENGTH_SHORT).show();

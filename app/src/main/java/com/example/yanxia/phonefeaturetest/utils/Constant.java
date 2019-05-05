@@ -11,6 +11,7 @@ import java.util.List;
  */
 public class Constant {
     public static final String TEST_RECYCLER = "RV选中状态";
+    public static final String TEST_INPUT_METHOD = "输入法测试";
     public static final String TEST_DIALOG = "Dialog样式";
     public static final String TEST_HANDLER_THREAD = "HandlerThread测试";
     public static final String TEST_COLOR_MATRIX = "Color Matrix";
