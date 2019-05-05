@@ -6,17 +6,17 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.example.yanxia.phonefeaturetest.Myapplication;
+import com.example.yanxia.phonefeaturetest.MyApplication;
 
 public class DisplayUtils {
 
     public static int getScreenWidthPixels() {
-        Resources resources = Myapplication.getContext().getResources();
+        Resources resources = MyApplication.getContext().getResources();
         return resources.getDisplayMetrics().widthPixels;
     }
 
     public static int dpToPx(float dp) {
-        float density = Myapplication.getContext().getResources().getDisplayMetrics().density;
+        float density = MyApplication.getContext().getResources().getDisplayMetrics().density;
         return Math.round(dp * density);
     }
 

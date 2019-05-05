@@ -7,7 +7,7 @@ import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.Process;
 
-import com.example.yanxia.phonefeaturetest.Myapplication;
+import com.example.yanxia.phonefeaturetest.MyApplication;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +47,7 @@ public class ScreenStatusManager {
                 screenFilter.addAction(Intent.ACTION_SCREEN_OFF);
                 screenFilter.addAction(Intent.ACTION_SCREEN_ON);
 
-                Myapplication.getContext().registerReceiver(new BroadcastReceiver() {
+                MyApplication.getContext().registerReceiver(new BroadcastReceiver() {
                     @Override
                     public void onReceive(Context context, Intent intent) {
                         Runnable runnable = () -> {

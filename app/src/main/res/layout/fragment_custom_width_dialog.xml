@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
-    tools:context=".CustomDialogFragment">
+    tools:context=".dialog.CustomWidthDialogFragment">
 
     <Button
         android:id="@+id/custom_dialog_fragment_button"

@@ -172,11 +172,11 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
                 DemoIntentService.startActionFoo(this);
                 break;
             case Constant.TEST_INPUT_METHOD:
-                Intent intent = new Intent(Myapplication.getContext(), InputMethodTestActivity.class);
+                Intent intent = new Intent(MyApplication.getContext(), InputMethodTestActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                ContextCompat.startActivity(Myapplication.getContext(), intent, null);
+                ContextCompat.startActivity(MyApplication.getContext(), intent, null);
                 break;
             default:
                 Toast.makeText(MainActivity.this, "you clicked testName " + testItem.getName(), Toast.LENGTH_SHORT).show();

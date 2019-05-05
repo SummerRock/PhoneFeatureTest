@@ -17,10 +17,10 @@ import com.example.yanxia.phonefeaturetest.utils.SingletonDemo;
  * @date 2017/2/10
  */
 
-public class Myapplication extends Application {
+public class MyApplication extends Application {
     @SuppressLint("StaticFieldLeak")
     private static Context context;
-    private static final String TAG = "Myapplication";
+    private static final String TAG = "MyApplication";
 
     private ActivityLifecycleCallbacks activityLifecycleCallbacks = new ActivityLifecycleCallbacks() {
         @Override

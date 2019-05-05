@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.NonNull;
 
-import com.example.yanxia.phonefeaturetest.Myapplication;
+import com.example.yanxia.phonefeaturetest.MyApplication;
 import com.example.yanxia.phonefeaturetest.dataModel.People;
 
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class PeopleSQLiteOpenHelper extends SQLiteOpenHelper {
                     + PEOPLE_RACE + " TEXT)";
 
     private PeopleSQLiteOpenHelper() {
-        super(Myapplication.getContext(), DB_NAME, null, VERSION);
+        super(MyApplication.getContext(), DB_NAME, null, VERSION);
         try {
             database = getWritableDatabase();
         } catch (Exception e) {
