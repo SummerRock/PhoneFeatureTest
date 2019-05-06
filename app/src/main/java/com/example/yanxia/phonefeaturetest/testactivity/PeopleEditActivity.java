@@ -11,6 +11,7 @@ import android.widget.Button;
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.dataModel.People;
 import com.example.yanxia.phonefeaturetest.utils.PeopleDataManager;
+import com.example.yanxia.phonefeaturetest.utils.ToastUtils;
 import com.google.gson.Gson;
 
 public class PeopleEditActivity extends AppCompatActivity {
@@ -38,6 +39,7 @@ public class PeopleEditActivity extends AppCompatActivity {
             public void onClick(View v) {
                 People people = gson.fromJson(getJsonString(), People.class);
                 Log.i(TAG, "people: " + people.toString());
+                ToastUtils.showToast(people.toString());
             }
         });
     }
