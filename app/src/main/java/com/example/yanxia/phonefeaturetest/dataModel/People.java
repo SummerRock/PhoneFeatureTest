@@ -50,6 +50,12 @@ public class People implements Parcelable {
         return new ArrayList<>(carList);
     }
 
+    @NonNull
+    @Override
+    public String toString() {
+        return "name: " + name + " id: " + id + " birthPlace: " + birthPlace + " race: " + race + " carList: " + carList.size();
+    }
+
     @Override
     public int describeContents() {
         return 0;

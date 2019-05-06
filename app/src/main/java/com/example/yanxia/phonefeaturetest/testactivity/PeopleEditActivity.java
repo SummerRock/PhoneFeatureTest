@@ -1,5 +1,7 @@
 package com.example.yanxia.phonefeaturetest.testactivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,7 +16,6 @@ import com.google.gson.Gson;
 public class PeopleEditActivity extends AppCompatActivity {
 
     private static final String TAG = "PeopleEdit_TAG";
-    private String string;
     private Gson gson = new Gson();
 
     @Override
@@ -26,7 +27,8 @@ public class PeopleEditActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                string = gson.toJson(PeopleDataManager.getInstance().getDefaultPeople());
+                String string = gson.toJson(PeopleDataManager.getInstance().getDefaultPeople());
+                saveJsonString(string);
             }
         });
 
@@ -34,9 +36,21 @@ public class PeopleEditActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                People people = gson.fromJson(string, People.class);
-                Log.i(TAG, "");
+                People people = gson.fromJson(getJsonString(), People.class);
+                Log.i(TAG, "people: " + people.toString());
             }
         });
+    }
+
+    private void saveJsonString(String string) {
+        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("jsonString", string);
+        editor.apply();
+    }
+
+    private String getJsonString() {
+        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        return sharedPreferences.getString("jsonString", "");
     }
 }
