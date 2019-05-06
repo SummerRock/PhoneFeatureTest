@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/shape_big_corner"
-    tools:context=".CustomDialogFragment">
+    tools:context=".dialog.CustomDialogFragment">
 
     <Button
         android:id="@+id/custom_dialog_fragment_button"
