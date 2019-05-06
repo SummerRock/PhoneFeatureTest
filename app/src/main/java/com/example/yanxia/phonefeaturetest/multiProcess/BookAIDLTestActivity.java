@@ -15,7 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.yanxia.phonefeaturetest.Book;
+import com.example.yanxia.phonefeaturetest.dataModel.Book;
 import com.example.yanxia.phonefeaturetest.IBookManager;
 import com.example.yanxia.phonefeaturetest.IOnNewBookArrivedListener;
 import com.example.yanxia.phonefeaturetest.R;
