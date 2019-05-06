@@ -1,6 +1,9 @@
 package com.example.yanxia.phonefeaturetest.dataModel;
 
-public class Car {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Car implements Parcelable {
     private final long productDate;
     private final String brand;
     /**
@@ -29,4 +32,35 @@ public class Car {
     public void run() {
         System.out.println("car is running!");
     }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(this.productDate);
+        dest.writeString(this.brand);
+        dest.writeString(this.licenseNumber);
+    }
+
+    protected Car(Parcel in) {
+        this.productDate = in.readLong();
+        this.brand = in.readString();
+        this.licenseNumber = in.readString();
+    }
+
+    public static final Parcelable.Creator<Car> CREATOR = new Parcelable.Creator<Car>() {
+        @Override
+        public Car createFromParcel(Parcel source) {
+            return new Car(source);
+        }
+
+        @Override
+        public Car[] newArray(int size) {
+            return new Car[size];
+        }
+    };
 }
