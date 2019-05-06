@@ -46,6 +46,9 @@ public class People implements Parcelable {
         return race;
     }
 
+    public List<Car> getCarList() {
+        return new ArrayList<>(carList);
+    }
 
     @Override
     public int describeContents() {
