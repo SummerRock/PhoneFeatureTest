@@ -5,6 +5,10 @@ import android.os.Environment;
 
 import com.example.yanxia.phonefeaturetest.MyApplication;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -12,21 +16,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class FileDataManager {
-    private static final FileDataManager ourInstance = new FileDataManager();
+public class JsonFileSaveUtils {
+    private static String FILENAME = "hello_file";
+    private static String string = "hello world!";
 
-    public static FileDataManager getInstance() {
-        return ourInstance;
-    }
-
-    private String FILENAME = "hello_file";
-    private String string = "hello world!";
-
-    private FileDataManager() {
-
-    }
-
-    private void saveData() {
+    private static void saveData() {
         try {
             FileOutputStream fos = MyApplication.getContext().openFileOutput(FILENAME, Context.MODE_PRIVATE);
             fos.write(string.getBytes());
@@ -38,7 +32,7 @@ public class FileDataManager {
         }
     }
 
-    public static File dir = new File(Environment.getExternalStorageDirectory() + "/data/json/");
+    private static File dir = new File(Environment.getExternalStorageDirectory() + "/data/json/");
 
     public static void saveToSDCard(String filename, String content) {
         String en = Environment.getExternalStorageState();
@@ -82,5 +76,18 @@ public class FileDataManager {
             e.printStackTrace();
         }
         return sb.toString();
+    }
+
+    public static String getJsonString(String key, Object value) {
+        JSONArray jsonArray = new JSONArray();
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = new JSONObject("{\"name\":\"李四\",\"age\":99,\"hobby\":\"爱好是练习截拳道\"}");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        //put和element都是往JSONObject对象中放入 key/value 对
+        jsonObject.toString();
+        return jsonObject.toString();
     }
 }
