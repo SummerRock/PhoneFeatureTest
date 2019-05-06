@@ -7,7 +7,7 @@ import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.util.Log;
 
-import com.example.yanxia.phonefeaturetest.dataModel.Book;
+import com.example.yanxia.phonefeaturetest.Book;
 import com.example.yanxia.phonefeaturetest.IBookManager;
 import com.example.yanxia.phonefeaturetest.IOnNewBookArrivedListener;
 

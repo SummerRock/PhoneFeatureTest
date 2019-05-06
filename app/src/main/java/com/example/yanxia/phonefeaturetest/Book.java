@@ -1,4 +1,4 @@
-package com.example.yanxia.phonefeaturetest.dataModel;
+package com.example.yanxia.phonefeaturetest;
 
 
 import android.os.Parcel;
