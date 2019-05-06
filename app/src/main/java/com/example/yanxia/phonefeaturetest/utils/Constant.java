@@ -42,6 +42,7 @@ public class Constant {
     public static final String TEST_RX_JAVA = "RxJava";
     public static final String TEST_LOTTIE = "Lottie";
     public static final String TEST_SCRATCH = "刮奖";
+    public static final String TEST_PEOPLE_DATA = "数据管理";
 
     private static List<TestItem> initTestItems() {
         List<TestItem> testItemList = new ArrayList<>();

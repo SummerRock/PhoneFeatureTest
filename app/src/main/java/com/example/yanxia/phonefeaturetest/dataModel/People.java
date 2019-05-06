@@ -18,12 +18,12 @@ public class People implements Parcelable {
         this(id, name, birthPlace, race, new ArrayList<>());
     }
 
-    public People(long id, @NonNull String name, @NonNull String birthPlace, @NonNull String race, @NonNull List<Car> carList) {
-        this.id = id;
-        this.name = name;
-        this.birthPlace = birthPlace;
-        this.race = race;
-        this.carList = carList;
+    public People(long idParam, @NonNull String nameParam, @NonNull String birthPlaceParam, @NonNull String raceParam, @NonNull List<Car> carListParam) {
+        id = idParam;
+        name = nameParam;
+        birthPlace = birthPlaceParam;
+        race = raceParam;
+        carList = carListParam;
     }
 
     public long getId() {
