@@ -10,6 +10,8 @@ import com.example.yanxia.phonefeaturetest.R;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 线程池必须认真学习
@@ -21,26 +23,10 @@ public class ThreadPoolActivity extends AppCompatActivity implements View.OnClic
 
     private static final String TAG = "ThreadPoolActivity_LOG";
 
-    private ExecutorService newSingleThreadExecutor = Executors.newSingleThreadExecutor(r -> {
-        Thread thread = new Thread(r);
-        thread.setName("SingleThread");
-        return thread;
-    });
-    private ExecutorService newCachedThreadPool = Executors.newCachedThreadPool(r -> {
-        Thread thread = new Thread(r);
-        thread.setName("CachedThread");
-        return thread;
-    });
-    private ExecutorService newFixedThreadPool = Executors.newFixedThreadPool(5, r -> {
-        Thread thread = new Thread(r);
-        thread.setName("FixedThread");
-        return thread;
-    });
-    private ExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(3, r -> {
-        Thread thread = new Thread(r);
-        thread.setName("ScheduledThread");
-        return thread;
-    });
+    private ExecutorService newSingleThreadExecutor = Executors.newSingleThreadExecutor();
+    private ExecutorService newCachedThreadPool = Executors.newCachedThreadPool();
+    private ExecutorService newFixedThreadPool = Executors.newFixedThreadPool(5);
+    private ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(3);
     private int testNumber = 0;
 
     @Override
@@ -105,8 +91,9 @@ public class ThreadPoolActivity extends AppCompatActivity implements View.OnClic
 
     public void startScheduledThreadPool(View view) {
         testNumber = 0;
-        for (int i = 0; i < 30; i++) {
-            scheduledExecutorService.execute(new TestRunnableAddDirectly(500));
+        Log.d(TAG, "scheduledExecutorService start!");
+        for (int i = 0; i < 20; i++) {
+            scheduledExecutorService.schedule(new TestRunnableAddDirectly(300), 1000, TimeUnit.MILLISECONDS);
         }
     }
 }
