@@ -7,7 +7,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -44,6 +43,7 @@ import static android.graphics.PorterDuff.Mode.CLEAR;
 /**
  * Created by michael on 15/4/15.
  */
+@SuppressWarnings("WeakerAccess")
 public class EasyDialog {
     private Context context;
     /**
@@ -118,20 +118,14 @@ public class EasyDialog {
         llContent = dialogView.findViewById(R.id.llContent);
         dialog = new Dialog(context, isFullScreen() ? android.R.style.Theme_Translucent_NoTitleBar_Fullscreen : android.R.style.Theme_Translucent_NoTitleBar);
         dialog.setContentView(dialogView);
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                if (onEasyDialogDismissed != null) {
-                    onEasyDialogDismissed.onDismissed();
-                }
+        dialog.setOnDismissListener(dialog -> {
+            if (onEasyDialogDismissed != null) {
+                onEasyDialogDismissed.onDismissed();
             }
         });
-        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialog) {
-                if (onEasyDialogShow != null) {
-                    onEasyDialogShow.onShow();
-                }
+        dialog.setOnShowListener(dialog -> {
+            if (onEasyDialogShow != null) {
+                onEasyDialogShow.onShow();
             }
         });
         animatorSetForDialogShow = new AnimatorSet();
@@ -514,9 +508,6 @@ public class EasyDialog {
             animatorSetForDialogShow.playTogether(objectAnimatorsForDialogShow);
             animatorSetForDialogShow.start();
         }
-        //TODO 缩放的动画效果不好，不能从控件所在的位置开始缩放
-//        ObjectAnimator.ofFloat(rlOutsideBackground.findViewById(R.id.rlParentForAnimate), "scaleX", 0.3f, 1.0f).setDuration(500).start();
-//        ObjectAnimator.ofFloat(rlOutsideBackground.findViewById(R.id.rlParentForAnimate), "scaleY", 0.3f, 1.0f).setDuration(500).start();
     }
 
     @SuppressLint("NewApi")
@@ -545,9 +536,9 @@ public class EasyDialog {
                             try {
                                 dismissDialog(dialog);
                             } catch (final IllegalArgumentException e) {
-
+                                e.printStackTrace();
                             } catch (final Exception e) {
-
+                                e.printStackTrace();
                             } finally {
                                 dialog = null;
                             }
@@ -735,10 +726,10 @@ public class EasyDialog {
             if (dialog.isShowing()) {
                 try {
                     dialog.dismiss();
-                } catch (Exception var3) {
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
-
         }
     }
 
