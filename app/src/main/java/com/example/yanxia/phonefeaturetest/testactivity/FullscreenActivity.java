@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.callback.CommonCallBack;
+import com.example.yanxia.phonefeaturetest.utils.DisplayUtils;
 import com.example.yanxia.phonefeaturetest.utils.MultiThreadDemoManager;
 import com.example.yanxia.phonefeaturetest.widget.EasyDialog;
 
@@ -59,8 +60,8 @@ public class FullscreenActivity extends AppCompatActivity implements View.OnClic
         EasyDialog easyDialog = new EasyDialog(this)
                 .setLayout(view)
                 .setBackgroundColor(Color.WHITE)
-                //point in screen
                 .setDialogLocationAuto(easyDialogTestImage)
+                .setMarginLeftAndRight(0, DisplayUtils.dpToPx(20))
                 .setGravity(EasyDialog.GRAVITY_BOTTOM)
                 .setMatchParent(false)
                 .setOutsideColor(ContextCompat.getColor(this, R.color.black_70_transparent))
