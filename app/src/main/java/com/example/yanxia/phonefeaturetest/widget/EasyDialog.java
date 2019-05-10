@@ -288,7 +288,7 @@ public class EasyDialog {
                 ivTriangle.setBackgroundResource(R.drawable.triangle_right);
                 break;
         }
-        llContent.setBackgroundResource(R.drawable.round_corner_bg);
+        llContent.setBackgroundResource(R.drawable.easy_dialog_content_view_round_corner_bg);
         if (attachedView != null)//如果用户调用setGravity()之前就调用过setLocationByAttachedView，需要再调用一次setLocationByAttachedView
         {
             this.setLocationByAttachedView(attachedView);

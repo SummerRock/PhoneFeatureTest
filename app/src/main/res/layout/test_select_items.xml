@@ -8,7 +8,7 @@
         android:layout_width="161dp"
         android:layout_height="46dp"
         android:layout_centerHorizontal="true"
-        android:background="@android:color/white"
+        android:background="@android:color/transparent"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
