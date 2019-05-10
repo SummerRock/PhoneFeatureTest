@@ -1,7 +1,10 @@
 package com.example.yanxia.phonefeaturetest.testactivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -10,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.callback.CommonCallBack;
 import com.example.yanxia.phonefeaturetest.utils.MultiThreadDemoManager;
+import com.example.yanxia.phonefeaturetest.widget.EasyDialog;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -22,6 +26,8 @@ public class FullscreenActivity extends AppCompatActivity implements View.OnClic
     private static final String PIC_URL = "http://a.hiphotos.baidu.com/image/pic/item/aa18972bd40735faee21b63393510fb30e240862.jpg";
 
     private Button button;
+
+    private ImageView easyDialogTestImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,28 @@ public class FullscreenActivity extends AppCompatActivity implements View.OnClic
         button.setOnClickListener(v -> Glide.with(FullscreenActivity.this).load(PIC_URL).into(imageView2));
 
         MultiThreadDemoManager.getInstance().addListener(this);
+
+        easyDialogTestImage = findViewById(R.id.easy_dialog_test);
+        easyDialogTestImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showEasyDialog();
+            }
+        });
+    }
+
+    private void showEasyDialog() {
+        View view = LayoutInflater.from(this).inflate(R.layout.test_select_items, null);
+        EasyDialog easyDialog = new EasyDialog(this)
+                .setLayout(view)
+                .setBackgroundColor(Color.WHITE)
+                //point in screen
+                .setDialogLocationAuto(easyDialogTestImage)
+                .setGravity(EasyDialog.GRAVITY_BOTTOM)
+                .setMatchParent(false)
+                .setOutsideColor(ContextCompat.getColor(this, R.color.black_70_transparent))
+                .setAnimationAlphaShow(200, 0f, 1.0f)
+                .show();
     }
 
     @Override

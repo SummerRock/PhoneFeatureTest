@@ -108,12 +108,9 @@ public class EasyDialog {
         LayoutInflater layoutInflater = ((Activity) context).getLayoutInflater();
         View dialogView = layoutInflater.inflate(R.layout.easy_dialog_layout, null);
         ViewTreeObserver viewTreeObserver = dialogView.getViewTreeObserver();
-        viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                //当View可以获取宽高的时候，设置view的位置
-                relocation(location);
-            }
+        viewTreeObserver.addOnGlobalLayoutListener(() -> {
+            //当View可以获取宽高的时候，设置view的位置
+            relocation(location);
         });
         rlOutsideBackground = dialogView.findViewById(R.id.rlOutsideBackground);
         setTouchOutsideDismiss(true);
@@ -734,7 +731,7 @@ public class EasyDialog {
 
     private static void dismissDialog(Dialog dialog) {
         Context context = dialog.getContext();
-        if (!(context instanceof Activity) || !((Activity)context).isFinishing()) {
+        if (!(context instanceof Activity) || !((Activity) context).isFinishing()) {
             if (dialog.isShowing()) {
                 try {
                     dialog.dismiss();
