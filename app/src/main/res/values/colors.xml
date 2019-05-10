@@ -37,4 +37,6 @@
     <color name="white_87_transparent">#DFFFFFFF</color>
     <color name="white_100_transparent">#FFFFFF</color>
 
+
+    <color name="easy_dialog_background_color_black">#bb000000</color>
 </resources>
