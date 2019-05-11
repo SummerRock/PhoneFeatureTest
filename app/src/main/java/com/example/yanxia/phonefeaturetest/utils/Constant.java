@@ -40,7 +40,7 @@ public class Constant {
     public static final String TEST_INTENT_SERVICE = "Intent Service";
     public static final String TEST_JAVA_QUEUE = "Queue";
     public static final String TEST_RX_JAVA = "RxJava";
-    public static final String TEST_LOTTIE = "Lottie";
+    public static final String TEST_PERMISSION = "权限";
     public static final String TEST_SCRATCH = "刮奖";
     public static final String TEST_PEOPLE_DATA = "数据管理";
 
