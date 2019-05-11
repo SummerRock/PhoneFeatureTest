@@ -37,7 +37,7 @@
             android:theme="@style/FullscreenActivityThemeNoActionBar"
             android:windowSoftInputMode="stateAlwaysVisible" />
         <activity
-            android:name=".testactivity.LottieTestActivity"
+            android:name=".testactivity.PermissionTestActivity"
             android:launchMode="singleTop" />
         <activity
             android:name=".testactivity.RxJavaActivity"

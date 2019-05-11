@@ -35,7 +35,7 @@ import com.example.yanxia.phonefeaturetest.testactivity.GpsTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.HandlerThreadActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.InputMethodTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.JavaQueueActivity;
-import com.example.yanxia.phonefeaturetest.testactivity.LottieTestActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.PermissionTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.PeopleEditActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ProgressBarTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.RemoteDemoActivity;
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         testItemList.add(new TestItem(Constant.TEST_INPUT_METHOD, R.drawable.ic_lock_24dp, null));
         testItemList.add(new TestItem(Constant.TEST_RX_JAVA, R.drawable.ic_lock_24dp, RxJavaActivity.class));
         testItemList.add(new TestItem(Constant.TEST_SCRATCH, R.drawable.ic_lock_24dp, TouchTestActivity.class));
-        testItemList.add(new TestItem(Constant.TEST_LOTTIE, R.drawable.ic_lock_24dp, LottieTestActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_LOTTIE, R.drawable.ic_lock_24dp, PermissionTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_DIALOG, R.drawable.ic_lock_24dp, DialogStyleActivity.class));
         testItemList.add(new TestItem(Constant.TEST_HANDLER_THREAD, R.drawable.ic_lock_24dp, HandlerThreadActivity.class));
         testItemList.add(new TestItem(Constant.TEST_COLOR_MATRIX, R.drawable.ic_lock_24dp, ColorMatrixTestActivity.class));
