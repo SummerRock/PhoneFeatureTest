@@ -122,15 +122,15 @@ public class HorizonRvTestActivity extends AppCompatActivity implements View.OnC
         }
         if (position > linearLayoutManager.findLastCompletelyVisibleItemPosition()) {
             if (position + 2 > adapter.getItemCount() - 1) {
-                recyclerView.scrollToPosition(adapter.getItemCount() - 1);
+                recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
             } else {
-                recyclerView.scrollToPosition(position + 2);
+                recyclerView.smoothScrollToPosition(position + 2);
             }
         } else if (position < linearLayoutManager.findFirstCompletelyVisibleItemPosition()) {
             if (position - 2 < 0) {
-                recyclerView.scrollToPosition(0);
+                recyclerView.smoothScrollToPosition(0);
             } else {
-                recyclerView.scrollToPosition(position - 2);
+                recyclerView.smoothScrollToPosition(position - 2);
             }
         }
     }
