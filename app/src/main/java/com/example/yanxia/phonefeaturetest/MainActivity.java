@@ -44,7 +44,6 @@ import com.example.yanxia.phonefeaturetest.testactivity.SecondTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SettingsActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.StorageTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ThreadPoolActivity;
-import com.example.yanxia.phonefeaturetest.testactivity.TouchTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ViewFeatureActivity;
 import com.example.yanxia.phonefeaturetest.utils.Constant;
 import com.example.yanxia.phonefeaturetest.viewpager.ViewPagerActivity;
@@ -119,7 +118,6 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         testItemList.add(new TestItem(Constant.TEST_PEOPLE_DATA, R.drawable.ic_lock_24dp, PeopleEditActivity.class));
         testItemList.add(new TestItem(Constant.TEST_INPUT_METHOD, R.drawable.ic_lock_24dp, null));
         testItemList.add(new TestItem(Constant.TEST_RX_JAVA, R.drawable.ic_lock_24dp, RxJavaActivity.class));
-        testItemList.add(new TestItem(Constant.TEST_SCRATCH, R.drawable.ic_lock_24dp, TouchTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_PERMISSION, R.drawable.ic_lock_24dp, PermissionTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_DIALOG, R.drawable.ic_lock_24dp, DialogStyleActivity.class));
         testItemList.add(new TestItem(Constant.TEST_HANDLER_THREAD, R.drawable.ic_lock_24dp, HandlerThreadActivity.class));
