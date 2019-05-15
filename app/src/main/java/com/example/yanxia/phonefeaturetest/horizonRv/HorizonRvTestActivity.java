@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HorizonRvTestActivity extends AppCompatActivity implements View.OnClickListener {
-    private static final String TAG = "HorizonRvTestActivity";
 
     private NumberPicker numberPicker;
     private LinearLayoutManager linearLayoutManager;
@@ -89,10 +88,24 @@ public class HorizonRvTestActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                Log.d(TAG, "first visible item :" +
+                Log.d("rv_onScrolled", "first visible item :" +
                         linearLayoutManager.findFirstVisibleItemPosition() +
                         " last visible item: " +
                         linearLayoutManager.findLastVisibleItemPosition());
+            }
+        });
+
+        recyclerView.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
+            @Override
+            public void onChildViewAttachedToWindow(@NonNull View view) {
+                int position = recyclerView.getChildAdapterPosition(view);
+                Log.d("ChildAttachStateChange", "onChildViewAttachedToWindow position :" + position);
+            }
+
+            @Override
+            public void onChildViewDetachedFromWindow(@NonNull View view) {
+                int position = recyclerView.getChildAdapterPosition(view);
+                Log.d("ChildAttachStateChange", "onChildViewDetachedFromWindow position :" + position);
             }
         });
     }
