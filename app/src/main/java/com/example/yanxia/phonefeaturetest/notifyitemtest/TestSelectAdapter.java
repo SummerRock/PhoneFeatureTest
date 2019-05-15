@@ -1,11 +1,15 @@
 package com.example.yanxia.phonefeaturetest.notifyitemtest;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.LinearInterpolator;
 import android.widget.TextView;
 
 import com.example.yanxia.phonefeaturetest.R;
@@ -20,6 +24,7 @@ import java.util.List;
 public final class TestSelectAdapter extends RecyclerView.Adapter<TestSelectAdapter.TestViewHolder> {
 
     private static final String PAYLOADS = "payloads";
+    public static final String PAYLOADS_ANIMATION = "payloads_animation";
     private int selectPosition = RecyclerView.NO_POSITION;
 
     @NonNull
@@ -44,6 +49,10 @@ public final class TestSelectAdapter extends RecyclerView.Adapter<TestSelectAdap
             } else {
                 holder.textView.setSelected(false);
             }
+            return;
+        }
+        if (payloads.contains(PAYLOADS_ANIMATION)) {
+            holder.playSimpleAnimation();
             return;
         }
         holder.textView.setText("position: " + position);
@@ -85,11 +94,42 @@ public final class TestSelectAdapter extends RecyclerView.Adapter<TestSelectAdap
 
     class TestViewHolder extends RecyclerView.ViewHolder {
         private TextView textView;
+        private ValueAnimator valueAnimator;
 
         TestViewHolder(View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.test_item_text_view);
             // setIsRecyclable(false);
+        }
+
+        void playSimpleAnimation() {
+            if (itemView.getWidth() == 0 || itemView.getHeight() == 0) {
+                return;
+            }
+            //Do Animation
+            if (valueAnimator == null) {
+                valueAnimator = ValueAnimator.ofFloat(1f, 1.5f, 1f);
+                valueAnimator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                    }
+
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+                        super.onAnimationStart(animation);
+
+                    }
+                });
+                valueAnimator.addUpdateListener(animation -> {
+                    float animatedValue = (float) animation.getAnimatedValue();
+                    itemView.setScaleX(animatedValue);
+                    itemView.setScaleY(animatedValue);
+                });
+                valueAnimator.setDuration(400);
+                valueAnimator.setInterpolator(new LinearInterpolator());
+            }
+            valueAnimator.start();
         }
     }
 }

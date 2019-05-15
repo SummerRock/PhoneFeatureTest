@@ -80,6 +80,10 @@ public class RecyclerViewTestActivity extends AppCompatActivity implements View.
         adapter.notifyItemChanged(20);
     }
 
+    public void notifyItemAnimation(View view) {
+        adapter.notifyItemChanged(2, TestSelectAdapter.PAYLOADS_ANIMATION);
+    }
+
     public class CustomItemDecoration extends RecyclerView.ItemDecoration {
 
         private int gap;

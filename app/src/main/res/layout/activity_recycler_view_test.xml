@@ -11,30 +11,38 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
             android:id="@+id/test_button"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="SELECT ITEM!"
+            android:text="Func 1"
             tools:ignore="HardcodedText" />
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
             style="@style/Base.TextAppearance.AppCompat.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="notifyDataSetChangedTest"
-            android:text="notifyDataSetChanged"
+            android:text="Func 2"
             tools:ignore="HardcodedText" />
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="notifyItemChangedTest"
-            android:text="notifyItemChangedTest"
+            android:text="Func 3"
+            tools:ignore="HardcodedText" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="notifyItemAnimation"
+            android:text="Func 4"
             tools:ignore="HardcodedText" />
     </LinearLayout>
 
