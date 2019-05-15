@@ -33,7 +33,7 @@ public class RecyclerViewTestActivity extends AppCompatActivity implements View.
         recyclerView.setLayoutManager(layout);
         adapter = new TestSelectAdapter();
         recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new CustomItemDecoration(DisplayUtils.dpToPx(4)));
+        recyclerView.addItemDecoration(new CustomItemDecoration(DisplayUtils.dpToPx(2)));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
@@ -81,7 +81,7 @@ public class RecyclerViewTestActivity extends AppCompatActivity implements View.
     }
 
     public void notifyItemAnimation(View view) {
-        adapter.notifyItemChanged(2, TestSelectAdapter.PAYLOADS_ANIMATION);
+        adapter.notifyItemChanged(1, TestSelectAdapter.PAYLOADS_ANIMATION);
     }
 
     public class CustomItemDecoration extends RecyclerView.ItemDecoration {

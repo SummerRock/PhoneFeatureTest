@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipChildren="false"
     tools:context=".notifyitemtest.RecyclerViewTestActivity">
 
     <LinearLayout
@@ -49,6 +50,7 @@
     <com.example.yanxia.phonefeaturetest.widget.CustomRelativeLayout
         android:id="@+id/custom_relative_layout"
         android:layout_alignParentBottom="true"
+        android:clipChildren="false"
         app:layout_heightPercent="40%"
         app:layout_widthPercent="100%">
 
@@ -58,7 +60,7 @@
             android:layout_height="match_parent"
             android:background="@android:color/holo_purple"
             android:clipToPadding="false"
-            android:paddingTop="20dp" />
+            android:paddingTop="5dp" />
     </com.example.yanxia.phonefeaturetest.widget.CustomRelativeLayout>
 
 </android.support.percent.PercentRelativeLayout>
