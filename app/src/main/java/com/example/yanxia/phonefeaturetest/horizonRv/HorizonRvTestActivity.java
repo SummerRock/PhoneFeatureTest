@@ -117,38 +117,27 @@ public class HorizonRvTestActivity extends AppCompatActivity implements View.OnC
 
     public void jumpToPosition(View view) {
         int position = numberPicker.getValue();
-        if (position >= linearLayoutManager.findFirstCompletelyVisibleItemPosition() && position <= linearLayoutManager.findLastCompletelyVisibleItemPosition()) {
-            return;
-        }
-        if (position > linearLayoutManager.findLastCompletelyVisibleItemPosition()) {
-            if (position + 2 > adapter.getItemCount() - 1) {
-                recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
-            } else {
-                recyclerView.smoothScrollToPosition(position + 2);
-            }
-        } else if (position < linearLayoutManager.findFirstCompletelyVisibleItemPosition()) {
-            if (position - 2 < 0) {
-                recyclerView.smoothScrollToPosition(0);
-            } else {
-                recyclerView.smoothScrollToPosition(position - 2);
-            }
-        }
+        recyclerView.smoothScrollToPosition(position);
     }
 
     public void jumpToPosition(int position) {
-        if (position > linearLayoutManager.findLastVisibleItemPosition()) {
-            if (position + 2 > adapter.getItemCount() - 1) {
-                recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
-            } else {
-                recyclerView.smoothScrollToPosition(position + 2);
-            }
-        } else if (position < linearLayoutManager.findFirstVisibleItemPosition()) {
-            if (position - 2 < 0) {
-                recyclerView.smoothScrollToPosition(0);
-            } else {
-                recyclerView.smoothScrollToPosition(position - 2);
-            }
+        if (position - linearLayoutManager.findFirstCompletelyVisibleItemPosition() == 2) {
+            return;
         }
+        int jumpPosition;
+
+        if (position - linearLayoutManager.findFirstCompletelyVisibleItemPosition() > 2) {
+            jumpPosition = position + 2;
+        } else {
+            jumpPosition = position - 2;
+        }
+        if (jumpPosition < 0) {
+            jumpPosition = 0;
+        }
+        if (jumpPosition > adapter.getItemCount() - 1) {
+            jumpPosition = adapter.getItemCount() - 1;
+        }
+        recyclerView.smoothScrollToPosition(jumpPosition);
     }
 
     @Override

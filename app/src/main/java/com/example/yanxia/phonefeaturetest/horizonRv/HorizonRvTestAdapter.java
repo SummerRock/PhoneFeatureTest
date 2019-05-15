@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.utils.CommonLog;
@@ -38,7 +37,7 @@ public final class HorizonRvTestAdapter extends RecyclerView.Adapter<HorizonRvTe
             if (recyclerViewItemClickInterface != null) {
                 recyclerViewItemClickInterface.onItemClick(position);
             }
-            Toast.makeText(parent.getContext(), "Click position: " + position + " item content: " + stringList.get(position), Toast.LENGTH_SHORT).show();
+            // Toast.makeText(parent.getContext(), "Click position: " + position + " item content: " + stringList.get(position), Toast.LENGTH_SHORT).show();
         });
         return horizonTestViewHolder;
     }
