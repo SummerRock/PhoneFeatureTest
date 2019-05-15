@@ -2,6 +2,7 @@ package com.example.yanxia.phonefeaturetest.horizonRv;
 
 import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +21,11 @@ import java.util.List;
 public final class HorizonRvTestAdapter extends RecyclerView.Adapter<HorizonRvTestAdapter.HorizonTestViewHolder> {
 
     private List<String> stringList;
+    private RecyclerViewItemClickInterface recyclerViewItemClickInterface;
 
-    public HorizonRvTestAdapter(@NonNull List<String> stringList) {
+    HorizonRvTestAdapter(@NonNull List<String> stringList, @Nullable RecyclerViewItemClickInterface itemClickInterface) {
         this.stringList = stringList;
+        recyclerViewItemClickInterface = itemClickInterface;
     }
 
     @NonNull
@@ -32,6 +35,9 @@ public final class HorizonRvTestAdapter extends RecyclerView.Adapter<HorizonRvTe
         HorizonTestViewHolder horizonTestViewHolder = new HorizonTestViewHolder(view);
         horizonTestViewHolder.itemView.setOnClickListener(v -> {
             int position = horizonTestViewHolder.getAdapterPosition();
+            if (recyclerViewItemClickInterface != null) {
+                recyclerViewItemClickInterface.onItemClick(position);
+            }
             Toast.makeText(parent.getContext(), "Click position: " + position + " item content: " + stringList.get(position), Toast.LENGTH_SHORT).show();
         });
         return horizonTestViewHolder;

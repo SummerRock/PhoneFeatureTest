@@ -17,7 +17,7 @@ import com.example.yanxia.phonefeaturetest.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HorizonRvTestActivity extends AppCompatActivity implements View.OnClickListener {
+public class HorizonRvTestActivity extends AppCompatActivity implements View.OnClickListener, RecyclerViewItemClickInterface {
 
     private NumberPicker numberPicker;
     private LinearLayoutManager linearLayoutManager;
@@ -38,7 +38,7 @@ public class HorizonRvTestActivity extends AppCompatActivity implements View.OnC
         for (; listIndex < 40; listIndex++) {
             stringList.add(String.valueOf(listIndex));
         }
-        adapter = new HorizonRvTestAdapter(stringList);
+        adapter = new HorizonRvTestAdapter(stringList, this);
         adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onChanged() {
@@ -133,6 +133,27 @@ public class HorizonRvTestActivity extends AppCompatActivity implements View.OnC
                 recyclerView.smoothScrollToPosition(position - 2);
             }
         }
+    }
+
+    public void jumpToPosition(int position) {
+        if (position > linearLayoutManager.findLastVisibleItemPosition()) {
+            if (position + 2 > adapter.getItemCount() - 1) {
+                recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
+            } else {
+                recyclerView.smoothScrollToPosition(position + 2);
+            }
+        } else if (position < linearLayoutManager.findFirstVisibleItemPosition()) {
+            if (position - 2 < 0) {
+                recyclerView.smoothScrollToPosition(0);
+            } else {
+                recyclerView.smoothScrollToPosition(position - 2);
+            }
+        }
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        jumpToPosition(position);
     }
 
     public void notifyItemInserted(View view) {
