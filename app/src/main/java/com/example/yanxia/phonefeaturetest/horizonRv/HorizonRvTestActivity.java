@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 
 import com.example.yanxia.phonefeaturetest.R;
+import com.example.yanxia.phonefeaturetest.utils.DisplayUtils;
+import com.example.yanxia.phonefeaturetest.widget.HorizonItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,6 +86,7 @@ public class HorizonRvTestActivity extends AppCompatActivity implements View.OnC
         // snapHelper.attachToRecyclerView(recyclerView);
 
         recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.addItemDecoration(new HorizonItemDecoration(DisplayUtils.dpToPx(6)));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
