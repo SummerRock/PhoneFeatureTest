@@ -124,16 +124,28 @@ public class HorizonRvTestActivity extends AppCompatActivity implements View.OnC
     }
 
     public void jumpToPosition(int position) {
-        if (position - linearLayoutManager.findFirstCompletelyVisibleItemPosition() == 2) {
-            return;
-        }
         int jumpPosition;
 
-        if (position - linearLayoutManager.findFirstCompletelyVisibleItemPosition() > 2) {
-            jumpPosition = position + 2;
+        if (linearLayoutManager.findFirstCompletelyVisibleItemPosition() == linearLayoutManager.findFirstVisibleItemPosition()) {
+            if (position - linearLayoutManager.findFirstCompletelyVisibleItemPosition() == 2) {
+                return;
+            }
+            if (position - linearLayoutManager.findFirstCompletelyVisibleItemPosition() > 2) {
+                jumpPosition = position + 2;
+            } else {
+                jumpPosition = position - 2;
+            }
         } else {
-            jumpPosition = position - 2;
+            if (position - linearLayoutManager.findFirstVisibleItemPosition() == 2) {
+                return;
+            }
+            if (position - linearLayoutManager.findFirstVisibleItemPosition() > 2) {
+                jumpPosition = position + 2;
+            } else {
+                jumpPosition = position - 2;
+            }
         }
+
         if (jumpPosition < 0) {
             jumpPosition = 0;
         }
