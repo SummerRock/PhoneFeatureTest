@@ -18,16 +18,14 @@ import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.example.yanxia.phonefeaturetest.R;
-import com.example.yanxia.phonefeaturetest.callback.CommonCallBack;
 import com.example.yanxia.phonefeaturetest.utils.DisplayUtils;
-import com.example.yanxia.phonefeaturetest.utils.MultiThreadDemoManager;
 import com.example.yanxia.phonefeaturetest.widget.EasyDialog;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class FullscreenActivity extends AppCompatActivity implements View.OnClickListener, CommonCallBack {
+public class FullscreenActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String GIF_URL = "http://img.soogif.com/nCQ8lWATbFgLakRNMQhMMwPqT3GVRk0K.gif";
     private static final String GIF_2 = "https://dev-appcloudbox.s3.amazonaws.com/050/gif_test/LuckyDraw_3MB.gif";
@@ -37,35 +35,20 @@ public class FullscreenActivity extends AppCompatActivity implements View.OnClic
     private Button button;
 
     private ImageView easyDialogTestImage;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fullscreen);
-        ImageView imageView = findViewById(R.id.glide_test_image_view_0);
-        Glide.with(this).asGif().load(GIF_URL).listener(new RequestListener<GifDrawable>() {
-            @Override
-            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<GifDrawable> target, boolean isFirstResource) {
-                Log.e("GlideError", "GlideException: " + e.getMessage());
-                return false;
-            }
-
-            @Override
-            public boolean onResourceReady(GifDrawable resource, Object model, Target<GifDrawable> target, DataSource dataSource, boolean isFirstResource) {
-                if (resource != null) {
-                    resource.setLoopCount(1);
-                }
-                return false;
-            }
-        }).into(imageView);
+        imageView = findViewById(R.id.glide_test_image_view_0);
+        Glide.with(this).asGif().load(GIF_URL).preload();
         ImageView imageView1 = findViewById(R.id.glide_test_image_view_1);
         Glide.with(this).load(PIC_URL).into(imageView1);
         ImageView imageView2 = findViewById(R.id.glide_test_image_view_2);
 
         button = findViewById(R.id.glide_test_button);
         button.setOnClickListener(v -> Glide.with(FullscreenActivity.this).load(PIC_URL).into(imageView2));
-
-        MultiThreadDemoManager.getInstance().addListener(this);
 
         easyDialogTestImage = findViewById(R.id.easy_dialog_test);
         easyDialogTestImage.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +75,6 @@ public class FullscreenActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     protected void onDestroy() {
-        MultiThreadDemoManager.getInstance().removeListener(this);
         super.onDestroy();
     }
 
@@ -101,12 +83,21 @@ public class FullscreenActivity extends AppCompatActivity implements View.OnClic
 
     }
 
-    @Override
-    public void onResult(boolean success) {
-        button.setText("EE");
-    }
+    public void loadAgain(View view) {
+        Glide.with(this).asGif().load(GIF_URL).listener(new RequestListener<GifDrawable>() {
+            @Override
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<GifDrawable> target, boolean isFirstResource) {
+                Log.e("GlideError", "GlideException: " + e.getMessage());
+                return false;
+            }
 
-    public void notifyList(View view) {
-        MultiThreadDemoManager.getInstance().notifyList();
+            @Override
+            public boolean onResourceReady(GifDrawable resource, Object model, Target<GifDrawable> target, DataSource dataSource, boolean isFirstResource) {
+                if (resource != null) {
+                    resource.setLoopCount(1);
+                }
+                return false;
+            }
+        }).into(imageView);
     }
 }

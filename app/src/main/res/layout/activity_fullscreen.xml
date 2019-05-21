@@ -8,7 +8,7 @@
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/glide_test_image_view_0"
-        android:layout_width="150dp"
+        android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp" />
@@ -47,8 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/glide_test_image_view_2"
         android:layout_centerHorizontal="true"
-        android:onClick="notifyList"
-        android:text="Notify!" />
+        android:onClick="loadAgain"
+        android:text="Load Preload!" />
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/easy_dialog_test"
