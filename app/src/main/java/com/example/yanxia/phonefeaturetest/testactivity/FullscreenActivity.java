@@ -1,7 +1,6 @@
 package com.example.yanxia.phonefeaturetest.testactivity;
 
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -31,6 +30,7 @@ import com.example.yanxia.phonefeaturetest.widget.EasyDialog;
 public class FullscreenActivity extends AppCompatActivity implements View.OnClickListener, CommonCallBack {
 
     private static final String GIF_URL = "http://img.soogif.com/nCQ8lWATbFgLakRNMQhMMwPqT3GVRk0K.gif";
+    private static final String GIF_2 = "https://dev-appcloudbox.s3.amazonaws.com/050/gif_test/LuckyDraw_3MB.gif";
 
     private static final String PIC_URL = "http://a.hiphotos.baidu.com/image/pic/item/aa18972bd40735faee21b63393510fb30e240862.jpg";
 
@@ -43,18 +43,17 @@ public class FullscreenActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fullscreen);
         ImageView imageView = findViewById(R.id.glide_test_image_view_0);
-        Glide.with(this).load(GIF_URL).listener(new RequestListener<Drawable>() {
+        Glide.with(this).asGif().load(GIF_URL).listener(new RequestListener<GifDrawable>() {
             @Override
-            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<GifDrawable> target, boolean isFirstResource) {
                 Log.e("GlideError", "GlideException: " + e.getMessage());
                 return false;
             }
 
             @Override
-            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                if (resource instanceof GifDrawable) {
-                    GifDrawable gifDrawable = ((GifDrawable) resource);
-                    gifDrawable.setLoopCount(1);
+            public boolean onResourceReady(GifDrawable resource, Object model, Target<GifDrawable> target, DataSource dataSource, boolean isFirstResource) {
+                if (resource != null) {
+                    resource.setLoopCount(1);
                 }
                 return false;
             }
