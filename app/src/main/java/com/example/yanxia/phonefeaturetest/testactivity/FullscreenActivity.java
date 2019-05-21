@@ -30,7 +30,7 @@ import com.example.yanxia.phonefeaturetest.widget.EasyDialog;
  */
 public class FullscreenActivity extends AppCompatActivity implements View.OnClickListener, CommonCallBack {
 
-    private static final String GIF_URL = "https://dev-appcloudbox.s3.amazonaws.com/050/gif_test/keyboard_scan_face.gif";
+    private static final String GIF_URL = "http://img.soogif.com/nCQ8lWATbFgLakRNMQhMMwPqT3GVRk0K.gif";
 
     private static final String PIC_URL = "http://a.hiphotos.baidu.com/image/pic/item/aa18972bd40735faee21b63393510fb30e240862.jpg";
 
