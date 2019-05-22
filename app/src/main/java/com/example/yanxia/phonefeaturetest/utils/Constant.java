@@ -28,7 +28,7 @@ public class Constant {
     public static final String TEST_START_ACTIVITY_FOR_RESULT = "启动Activity";
     public static final String TEST_THREAD_POOL = "线程池";
     public static final String TEST_DOWNLOAD_FILE = "下载测试";
-    public static final String TEST_ACTIVITY_THEME = "主题测试";
+    public static final String FULL_SCREEN_ACTIVITY = "全屏";
     public static final String TEST_ANIMATION = "动画测试";
     public static final String TEST_CONTENT_PROVIDER = "ContentProvider测试";
     public static final String TEST_DIALOG_FRAGMENT = "Dialog Fragment";

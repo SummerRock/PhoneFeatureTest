@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".testactivity.FullscreenActivity">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/easy_dialog_test"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:background="@android:color/holo_blue_bright" />
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/glide_test_image_view_0"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp" />
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/glide_test_image_view_1"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_below="@+id/glide_test_image_view_0"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:background="@android:color/darker_gray"
         android:scaleType="center" />
@@ -27,35 +35,25 @@
         android:id="@+id/glide_test_image_view_2"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/glide_test_image_view_1"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:background="@android:color/darker_gray"
         android:scaleType="center" />
 
     <Button
-        android:id="@+id/glide_test_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="Start Load"
-        android:visibility="visible" />
+        android:onClick="startLoadImage"
+        android:text="Start Load Image" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/glide_test_image_view_2"
-        android:layout_centerHorizontal="true"
-        android:onClick="loadAgain"
+        android:onClick="startLoadGif"
         android:text="Load Gif" />
 
-    <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/easy_dialog_test"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@android:color/holo_blue_bright" />
-</RelativeLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="clearGifCache"
+        android:text="Clear Gif" />
+</LinearLayout>

@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -33,20 +32,18 @@ public class FullscreenActivity extends AppCompatActivity implements View.OnClic
     private static final String PIC_URL = "http://a.hiphotos.baidu.com/image/pic/item/aa18972bd40735faee21b63393510fb30e240862.jpg";
 
     private ImageView easyDialogTestImage;
-    private ImageView imageView;
+    private ImageView imageViewGif;
+    private ImageView imageViewSmall;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fullscreen);
-        imageView = findViewById(R.id.glide_test_image_view_0);
+        imageViewGif = findViewById(R.id.glide_test_image_view_0);
         // Glide.with(this).asGif().load(GIF_2).apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)).preload();
         ImageView imageView1 = findViewById(R.id.glide_test_image_view_1);
         Glide.with(this).load(PIC_URL).into(imageView1);
-        ImageView imageView2 = findViewById(R.id.glide_test_image_view_2);
-
-        Button button = findViewById(R.id.glide_test_button);
-        button.setOnClickListener(v -> Glide.with(FullscreenActivity.this).load(PIC_URL).into(imageView2));
+        imageViewSmall = findViewById(R.id.glide_test_image_view_2);
 
         easyDialogTestImage = findViewById(R.id.easy_dialog_test);
         easyDialogTestImage.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +78,11 @@ public class FullscreenActivity extends AppCompatActivity implements View.OnClic
 
     }
 
-    public void loadAgain(View view) {
+    public void startLoadImage(View view) {
+        Glide.with(FullscreenActivity.this).load(PIC_URL).into(imageViewSmall);
+    }
+
+    public void startLoadGif(View view) {
         Glide.with(this).asGif().load(GIF_2).listener(new RequestListener<GifDrawable>() {
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<GifDrawable> target, boolean isFirstResource) {
@@ -96,6 +97,10 @@ public class FullscreenActivity extends AppCompatActivity implements View.OnClic
                 }
                 return false;
             }
-        }).into(imageView);
+        }).into(imageViewGif);
+    }
+
+    public void clearGifCache(View view) {
+        Glide.with(this).clear(imageViewGif);
     }
 }
