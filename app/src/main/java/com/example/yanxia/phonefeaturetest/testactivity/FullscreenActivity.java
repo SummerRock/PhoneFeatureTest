@@ -13,11 +13,9 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.utils.DisplayUtils;
@@ -30,11 +28,9 @@ import com.example.yanxia.phonefeaturetest.widget.EasyDialog;
 public class FullscreenActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String GIF_URL = "http://img.soogif.com/nCQ8lWATbFgLakRNMQhMMwPqT3GVRk0K.gif";
-    private static final String GIF_2 = "https://dev-appcloudbox.s3.amazonaws.com/050/gif_test/keyboard_scan_face.gif";
+    private static final String GIF_2 = "http://cdn.appcloudbox.net/keyboardarts/download/stickers/avatar/keyboardscanface.gif";
 
     private static final String PIC_URL = "http://a.hiphotos.baidu.com/image/pic/item/aa18972bd40735faee21b63393510fb30e240862.jpg";
-
-    private Button button;
 
     private ImageView easyDialogTestImage;
     private ImageView imageView;
@@ -44,12 +40,12 @@ public class FullscreenActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fullscreen);
         imageView = findViewById(R.id.glide_test_image_view_0);
-        Glide.with(this).asGif().load(GIF_2).apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)).preload();
+        // Glide.with(this).asGif().load(GIF_2).apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)).preload();
         ImageView imageView1 = findViewById(R.id.glide_test_image_view_1);
         Glide.with(this).load(PIC_URL).into(imageView1);
         ImageView imageView2 = findViewById(R.id.glide_test_image_view_2);
 
-        button = findViewById(R.id.glide_test_button);
+        Button button = findViewById(R.id.glide_test_button);
         button.setOnClickListener(v -> Glide.with(FullscreenActivity.this).load(PIC_URL).into(imageView2));
 
         easyDialogTestImage = findViewById(R.id.easy_dialog_test);

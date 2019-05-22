@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Button"
+        android:text="Start Load"
         android:visibility="visible" />
 
     <Button
@@ -48,7 +48,7 @@
         android:layout_below="@+id/glide_test_image_view_2"
         android:layout_centerHorizontal="true"
         android:onClick="loadAgain"
-        android:text="Load Preload!" />
+        android:text="Load Gif" />
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/easy_dialog_test"
