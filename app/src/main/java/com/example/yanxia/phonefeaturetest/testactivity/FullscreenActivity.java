@@ -55,6 +55,10 @@ public class FullscreenActivity extends AppCompatActivity implements View.OnClic
 
     private void showEasyDialog() {
         View view = LayoutInflater.from(this).inflate(R.layout.test_select_items, null);
+        View one = view.findViewById(R.id.select_item_1);
+        one.setOnClickListener(v -> Log.i("easy", "do something"));
+        View two = view.findViewById(R.id.select_item_2);
+        two.setOnClickListener(v -> Log.i("easy", "do something 2"));
         EasyDialog easyDialog = new EasyDialog(this)
                 .setLayout(view)
                 .setBackgroundColor(Color.WHITE)
