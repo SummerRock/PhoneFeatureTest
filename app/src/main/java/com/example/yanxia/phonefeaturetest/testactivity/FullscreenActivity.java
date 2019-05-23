@@ -27,7 +27,6 @@ import com.example.yanxia.phonefeaturetest.widget.EasyDialog;
 public class FullscreenActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String GIF_URL = "http://img.soogif.com/nCQ8lWATbFgLakRNMQhMMwPqT3GVRk0K.gif";
-    private static final String GIF_2 = "http://cdn.appcloudbox.net/keyboardarts/download/stickers/avatar/keyboardscanface.gif";
 
     private static final String PIC_URL = "http://a.hiphotos.baidu.com/image/pic/item/aa18972bd40735faee21b63393510fb30e240862.jpg";
 
@@ -83,7 +82,7 @@ public class FullscreenActivity extends AppCompatActivity implements View.OnClic
     }
 
     public void startLoadGif(View view) {
-        Glide.with(this).asGif().load(GIF_2).listener(new RequestListener<GifDrawable>() {
+        Glide.with(this).asGif().load(GIF_URL).listener(new RequestListener<GifDrawable>() {
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<GifDrawable> target, boolean isFirstResource) {
                 Log.e("GlideError", "GlideException: " + e.getMessage());
