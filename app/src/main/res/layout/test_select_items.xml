@@ -9,7 +9,7 @@
         android:layout_width="161dp"
         android:layout_height="46dp"
         android:layout_centerHorizontal="true"
-        android:background="@android:color/transparent"
+        android:background="@drawable/ripple_compat"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 

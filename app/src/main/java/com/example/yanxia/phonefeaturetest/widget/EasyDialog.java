@@ -357,7 +357,7 @@ public class EasyDialog {
         canvas.drawRect(transparentArea, paint);
         canvas.save();
 
-        BitmapDrawable drawable = new BitmapDrawable(bm);
+        BitmapDrawable drawable = new BitmapDrawable(context.getResources(), bm);
         rlOutsideBackground.setBackground(drawable);
         return this;
     }
