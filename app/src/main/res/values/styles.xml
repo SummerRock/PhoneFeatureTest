@@ -10,6 +10,8 @@
 
     <style name="MainTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:colorEdgeEffect" tools:ignore="NewApi">@android:color/holo_purple</item>
+        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
