@@ -76,7 +76,7 @@ public class DisplayUtils {
         paint.setAntiAlias(true);
         paint.setFilterBitmap(true);
         paint.setDither(true);
-        paint.setColor(Color.CYAN);
+        canvas.drawColor(Color.CYAN);
         canvas.drawBitmap(bitmap, new Matrix(), paint);
         return newBitmap;
     }
