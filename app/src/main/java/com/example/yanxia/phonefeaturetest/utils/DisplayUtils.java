@@ -4,13 +4,14 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
@@ -66,7 +67,7 @@ public class DisplayUtils {
         return output;
     }
 
-    public static Bitmap addColorBackgroundForBitmap(@NonNull Bitmap bitmap) {
+    public static Bitmap addColorBackgroundForBitmap(@NonNull Bitmap bitmap, @ColorInt int color) {
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
         int size = Math.max(width, height);
@@ -76,8 +77,12 @@ public class DisplayUtils {
         paint.setAntiAlias(true);
         paint.setFilterBitmap(true);
         paint.setDither(true);
-        canvas.drawColor(Color.CYAN);
-        canvas.drawBitmap(bitmap, new Matrix(), paint);
+        canvas.drawColor(color);
+        Point canvasCenter = new Point(size / 2, size / 2);
+        Point originBitmapCenter = new Point(width / 2, height / 2);
+        Matrix matrix = new Matrix();
+        matrix.postTranslate(canvasCenter.x - originBitmapCenter.x, canvasCenter.y - originBitmapCenter.y);
+        canvas.drawBitmap(bitmap, matrix, paint);
         return newBitmap;
     }
 }

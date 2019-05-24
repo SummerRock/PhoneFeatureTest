@@ -2,6 +2,7 @@ package com.example.yanxia.phonefeaturetest.testFragment;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.utils.CommonLog;
 import com.example.yanxia.phonefeaturetest.utils.DisplayUtils;
@@ -53,7 +56,7 @@ public class BitmapTestFragment extends BaseTestFragment implements View.OnClick
     }
 
     public void addCircle() {
-        Bitmap bitmap = DisplayUtils.addColorBackgroundForBitmap(originBitmap);
-        imageView.setImageBitmap(bitmap);
+        Bitmap bitmap = DisplayUtils.addColorBackgroundForBitmap(originBitmap, Color.CYAN);
+        Glide.with(this).asBitmap().load(bitmap).apply(new RequestOptions().circleCrop()).into(imageView);
     }
 }
