@@ -25,6 +25,7 @@ import com.example.yanxia.phonefeaturetest.multiProcess.MyContentProvider;
 import com.example.yanxia.phonefeaturetest.multiProcess.socket.TCPClientActivity;
 import com.example.yanxia.phonefeaturetest.notifyitemtest.RecyclerViewTestActivity;
 import com.example.yanxia.phonefeaturetest.testFragment.BaseTestFragment;
+import com.example.yanxia.phonefeaturetest.testFragment.BitmapTestFragment;
 import com.example.yanxia.phonefeaturetest.testactivity.AnimationTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.CameraTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ColorMatrixTestActivity;
@@ -182,6 +183,7 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
                 ContextCompat.startActivity(MyApplication.getContext(), intent, null);
                 break;
             case Constant.TEST_BITMAP:
+                BitmapTestFragment.newInstance().show(getSupportFragmentManager(), BitmapTestFragment.class.getSimpleName());
                 break;
             default:
                 Toast.makeText(MainActivity.this, "you clicked testName " + testItem.getName(), Toast.LENGTH_SHORT).show();
