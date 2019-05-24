@@ -24,6 +24,7 @@ import com.example.yanxia.phonefeaturetest.multiProcess.MessengerActivity;
 import com.example.yanxia.phonefeaturetest.multiProcess.MyContentProvider;
 import com.example.yanxia.phonefeaturetest.multiProcess.socket.TCPClientActivity;
 import com.example.yanxia.phonefeaturetest.notifyitemtest.RecyclerViewTestActivity;
+import com.example.yanxia.phonefeaturetest.testFragment.BaseTestFragment;
 import com.example.yanxia.phonefeaturetest.testactivity.AnimationTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.CameraTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ColorMatrixTestActivity;
@@ -35,8 +36,8 @@ import com.example.yanxia.phonefeaturetest.testactivity.GpsTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.HandlerThreadActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.InputMethodTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.JavaQueueActivity;
-import com.example.yanxia.phonefeaturetest.testactivity.PermissionTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.PeopleEditActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.PermissionTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ProgressBarTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.RemoteDemoActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.RxJavaActivity;
@@ -117,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         testItemList.add(new TestItem(Constant.TEST_RECYCLER, R.drawable.ic_lock_24dp, RecyclerViewTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_PEOPLE_DATA, R.drawable.ic_lock_24dp, PeopleEditActivity.class));
         testItemList.add(new TestItem(Constant.TEST_INPUT_METHOD, R.drawable.ic_lock_24dp, null));
+        testItemList.add(new TestItem(Constant.TEST_BITMAP, R.drawable.ic_lock_24dp, BaseTestFragment.class));
         testItemList.add(new TestItem(Constant.TEST_RX_JAVA, R.drawable.ic_lock_24dp, RxJavaActivity.class));
         testItemList.add(new TestItem(Constant.TEST_PERMISSION, R.drawable.ic_lock_24dp, PermissionTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_DIALOG, R.drawable.ic_lock_24dp, DialogStyleActivity.class));
@@ -178,6 +180,8 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 ContextCompat.startActivity(MyApplication.getContext(), intent, null);
+                break;
+            case Constant.TEST_BITMAP:
                 break;
             default:
                 Toast.makeText(MainActivity.this, "you clicked testName " + testItem.getName(), Toast.LENGTH_SHORT).show();

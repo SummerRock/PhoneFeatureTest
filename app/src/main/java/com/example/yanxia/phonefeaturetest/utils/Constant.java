@@ -36,4 +36,5 @@ public class Constant {
     public static final String TEST_RX_JAVA = "RxJava";
     public static final String TEST_PERMISSION = "权限";
     public static final String TEST_PEOPLE_DATA = "数据管理";
+    public static final String TEST_BITMAP = "Bitmap";
 }

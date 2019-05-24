@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
@@ -62,5 +63,19 @@ public class DisplayUtils {
         canvas.drawBitmap(bitmap, rect, rect, paint);
 
         return output;
+    }
+
+    public static Bitmap addCircleBackgroundForBitmap(Bitmap bitmap) {
+        int size = 400;
+        Bitmap newBitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(newBitmap);
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setFilterBitmap(true);
+        paint.setDither(true);
+        Matrix matrix = new Matrix();
+        matrix.setScale(0.7f, 0.7f, 0.5f, 0.5f);
+        canvas.drawBitmap(bitmap, matrix, paint);
+        return newBitmap;
     }
 }
