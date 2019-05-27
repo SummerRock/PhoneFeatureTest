@@ -15,10 +15,11 @@ import com.example.yanxia.phonefeaturetest.R;
 import cn.bingoogolapple.qrcode.core.QRCodeView;
 import cn.bingoogolapple.qrcode.zbar.ZBarView;
 
-public class QRScanTestActivity extends AppCompatActivity implements QRCodeView.Delegate{
+public class QRScanTestActivity extends AppCompatActivity implements QRCodeView.Delegate {
 
     private static final String TAG = QRScanTestActivity.class.getSimpleName();
     private QRCodeView mQRCodeView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +83,7 @@ public class QRScanTestActivity extends AppCompatActivity implements QRCodeView.
     public void onScanQRCodeOpenCameraError() {
         Log.e(TAG, "打开相机出错");
     }
+
     private void vibrate() {
         Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         vibrator.vibrate(200);
