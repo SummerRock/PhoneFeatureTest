@@ -18,15 +18,17 @@ android {
     }
     buildTypes {
         debug {
+            // 开启源代码混淆
             minifyEnabled false
+            // 启用资源压缩
             shrinkResources false
             useProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         release {
-            shrinkResources true
             minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
