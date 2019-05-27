@@ -1,8 +1,8 @@
 package com.example.yanxia.phonefeaturetest;
 
 import android.app.IntentService;
-import android.content.Intent;
 import android.content.Context;
+import android.content.Intent;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.util.Log;
