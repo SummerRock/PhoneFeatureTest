@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_bright"
+    android:background="@android:color/holo_orange_light"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".testactivity.EasyDrawableActivity">
@@ -52,8 +52,11 @@
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/gradient_shape"
+        android:clickable="true"
+        android:focusable="true"
         android:padding="10dp"
-        android:src="@drawable/ic_dialpad_black_48dp" />
+        android:src="@drawable/ic_dialpad_black_48dp"
+        android:tint="@color/selector_color_demo" />
 
     <com.example.yanxia.phonefeaturetest.widget.TextViewOutline
         android:id="@+id/font_test"

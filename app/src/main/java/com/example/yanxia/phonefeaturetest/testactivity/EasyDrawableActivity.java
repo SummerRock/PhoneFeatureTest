@@ -56,7 +56,7 @@ public class EasyDrawableActivity extends AppCompatActivity implements View.OnCl
 
     public void testTwo(View view) {
         List<String> list = SingletonDemo.getInstance().getList();
-        Toast.makeText(this, "item size: " + String.valueOf(list.size()), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "item size: " + list.size(), Toast.LENGTH_SHORT).show();
         list.add("temp new one!");
     }
 
