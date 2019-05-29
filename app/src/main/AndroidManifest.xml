@@ -125,7 +125,8 @@
         <activity
             android:name=".horizonRv.HorizonRvTestActivity"
             android:label="@string/title_activity_horizon_rv_test"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".testactivity.StorageTestActivity" />
         <activity
             android:name=".testactivity.EventBusTestActivity"

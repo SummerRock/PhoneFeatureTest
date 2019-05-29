@@ -1,9 +1,10 @@
 package com.example.yanxia.phonefeaturetest.horizonRv;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -13,13 +14,14 @@ import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 
 import com.example.yanxia.phonefeaturetest.R;
+import com.example.yanxia.phonefeaturetest.testactivity.BaseLoadingActivity;
 import com.example.yanxia.phonefeaturetest.utils.DisplayUtils;
 import com.example.yanxia.phonefeaturetest.widget.HorizonItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HorizonRvTestActivity extends AppCompatActivity implements View.OnClickListener, RecyclerViewItemClickInterface {
+public class HorizonRvTestActivity extends BaseLoadingActivity implements View.OnClickListener, RecyclerViewItemClickInterface {
 
     private NumberPicker numberPicker;
     private LinearLayoutManager linearLayoutManager;
@@ -37,9 +39,6 @@ public class HorizonRvTestActivity extends AppCompatActivity implements View.OnC
         setSupportActionBar(toolbar);
 
         recyclerView = findViewById(R.id.horizontal_rv);
-        for (; listIndex < 40; listIndex++) {
-            stringList.add(String.valueOf(listIndex));
-        }
         adapter = new HorizonRvTestAdapter(stringList, this);
         adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
@@ -111,6 +110,32 @@ public class HorizonRvTestActivity extends AppCompatActivity implements View.OnC
                 Log.d("ChildAttachStateChange", "onChildViewDetachedFromWindow position :" + position);
             }
         });
+        new GetDataAsync().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    private class GetDataAsync extends AsyncTask<Void, Void, List<String>> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            showLoading();
+        }
+
+        @Override
+        protected List<String> doInBackground(Void... voids) {
+            for (; listIndex < 30; listIndex++) {
+                SystemClock.sleep(50);
+                stringList.add(String.valueOf(listIndex));
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(List<String> list) {
+            super.onPostExecute(list);
+            hideLoading();
+            adapter.notifyDataSetChanged();
+        }
     }
 
     @Override
