@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.yanxia.phonefeaturetest.R;
 
@@ -12,6 +13,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Locale;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -19,30 +21,53 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class DownloadTestActivity extends AppCompatActivity implements View.OnClickListener {
+public class DownloadTestActivity extends AppCompatActivity implements OnDownloadUpdateListener {
 
-    private static final String TAG = DownloadTestActivity.class.getSimpleName();
+    private static final String TAG = "download_tag";
 
     private OkHttpClient client = new OkHttpClient();
+
+    private static final String LOCALE_FILE_DIR_NAME = "testBigFile";
+    private static final String LOCALE_FILE_NAME = "bigFile.bin";
+
+    private static final String TEST_URL = "http://b.hiphotos.baidu.com/image/pic/item/9825bc315c6034a8ef5250cec5134954082376c9.jpg";
+
+    private TextView progressTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_download_test);
+        progressTextView = findViewById(R.id.progress_tv);
     }
 
     @Override
-    public void onClick(View v) {
+    public void onDownloadStart(Downloadable downloadItem) {
+        progressTextView.setText("start download!");
+    }
 
+    @Override
+    public void onDownloadProgressUpdate(Downloadable downloadItem, float percent) {
+        progressTextView.setText(String.format(Locale.getDefault(), "progress: %f", percent));
+    }
+
+    @Override
+    public void onDownloadSuccess(Downloadable downloadItem, long downloadTime) {
+        progressTextView.setText("success!");
+    }
+
+    @Override
+    public void onDownloadFailure(Downloadable downloadItem) {
+        progressTextView.setText("failed!");
     }
 
     public void startDownload(View view) {
-        File file = new File(getFilesDir() + File.separator + "testBigFile" + File.separator + "bigFile.bin");
+        File file = new File(getFilesDir() + File.separator + LOCALE_FILE_DIR_NAME + File.separator + LOCALE_FILE_NAME);
         if (file.exists()) {
             //noinspection ResultOfMethodCallIgnored
             file.delete();
         }
-        download("http://speedtest.tokyo.linode.com/100MB-tokyo.bin", getFilesDir() + File.separator + "testBigFile", "bigFile.bin", null);
+        download(TEST_URL, getFilesDir() + File.separator + LOCALE_FILE_DIR_NAME, LOCALE_FILE_NAME, this);
     }
 
     /**
@@ -51,7 +76,7 @@ public class DownloadTestActivity extends AppCompatActivity implements View.OnCl
      * @param destFileName 下载文件名称
      * @param listener     下载监听
      */
-    public void download(final String url, final String destFileDir, final String destFileName, final OnDownloadUpdateListener listener) {
+    private void download(final String url, final String destFileDir, final String destFileName, final OnDownloadUpdateListener listener) {
         Request request = new Request.Builder().url(url).build();
         //异步请求
         Call call = client.newCall(request);
@@ -94,7 +119,7 @@ public class DownloadTestActivity extends AppCompatActivity implements View.OnCl
                         sum += len;
                         float progress = (sum * 1.0f / total * 100);
                         //下载中更新进度条
-                        Log.d(TAG, "update progress: " + String.valueOf(progress));
+                        Log.d(TAG, "update progress: " + progress);
                         if (listener != null) {
                             listener.onDownloadProgressUpdate(null, progress);
                         }
@@ -119,7 +144,6 @@ public class DownloadTestActivity extends AppCompatActivity implements View.OnCl
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
                 }
             }
         });
