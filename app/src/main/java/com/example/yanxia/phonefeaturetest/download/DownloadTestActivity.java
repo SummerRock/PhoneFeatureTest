@@ -43,22 +43,22 @@ public class DownloadTestActivity extends AppCompatActivity implements OnDownloa
 
     @Override
     public void onDownloadStart(Downloadable downloadItem) {
-        progressTextView.setText("start download!");
+        runOnUiThread(() -> progressTextView.setText("start download!"));
     }
 
     @Override
     public void onDownloadProgressUpdate(Downloadable downloadItem, float percent) {
-        progressTextView.setText(String.format(Locale.getDefault(), "progress: %f", percent));
+        runOnUiThread(() -> progressTextView.setText(String.format(Locale.getDefault(), "progress: %f", percent)));
     }
 
     @Override
     public void onDownloadSuccess(Downloadable downloadItem, long downloadTime) {
-        progressTextView.setText("success!");
+        runOnUiThread(() -> progressTextView.setText("success!"));
     }
 
     @Override
     public void onDownloadFailure(Downloadable downloadItem, @NonNull Exception e) {
-        progressTextView.setText(e.getMessage());
+        runOnUiThread(() -> progressTextView.setText(e.getMessage()));
     }
 
     public void startDownload(View view) {
