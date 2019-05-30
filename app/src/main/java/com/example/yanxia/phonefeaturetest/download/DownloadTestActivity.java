@@ -109,6 +109,10 @@ public class DownloadTestActivity extends AppCompatActivity implements OnDownloa
                 }
                 File file = new File(dir, destFileName);
 
+                if (listener != null) {
+                    listener.onDownloadStart(null);
+                }
+
                 try {
                     is = response.body().byteStream();
                     long total = response.body().contentLength();
