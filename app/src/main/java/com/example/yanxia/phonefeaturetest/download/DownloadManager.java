@@ -85,7 +85,7 @@ public class DownloadManager {
                         if (!dir.exists()) {
                             if (!dir.mkdirs()) {
                                 for (OnDownloadUpdateListener onDownloadUpdateListener : getAllListeners(downloadItem)) {
-                                    onDownloadUpdateListener.onDownloadFailure(downloadItem);
+                                    onDownloadUpdateListener.onDownloadFailure(downloadItem, new RuntimeException("mkdirs failed!"));
                                 }
                                 return;
                             }
@@ -114,7 +114,7 @@ public class DownloadManager {
                             }
                         } catch (Exception e) {
                             for (OnDownloadUpdateListener onDownloadUpdateListener : getAllListeners(downloadItem)) {
-                                onDownloadUpdateListener.onDownloadFailure(downloadItem);
+                                onDownloadUpdateListener.onDownloadFailure(downloadItem, e);
                             }
                         } finally {
                             try {
@@ -130,7 +130,7 @@ public class DownloadManager {
                         }
                     } else {
                         for (OnDownloadUpdateListener onDownloadUpdateListener : getAllListeners(downloadItem)) {
-                            onDownloadUpdateListener.onDownloadFailure(downloadItem);
+                            onDownloadUpdateListener.onDownloadFailure(downloadItem, new RuntimeException("response is failed!"));
                         }
                     }
                 } catch (IOException e) {

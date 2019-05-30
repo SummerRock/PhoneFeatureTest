@@ -57,8 +57,8 @@ public class DownloadTestActivity extends AppCompatActivity implements OnDownloa
     }
 
     @Override
-    public void onDownloadFailure(Downloadable downloadItem) {
-        progressTextView.setText("failed!");
+    public void onDownloadFailure(Downloadable downloadItem, @NonNull Exception e) {
+        progressTextView.setText(e.getMessage());
     }
 
     public void startDownload(View view) {
@@ -85,7 +85,7 @@ public class DownloadTestActivity extends AppCompatActivity implements OnDownloa
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 // 下载失败监听回调
                 if (listener != null) {
-                    listener.onDownloadFailure(null);
+                    listener.onDownloadFailure(null, e);
                 }
             }
 
@@ -102,7 +102,7 @@ public class DownloadTestActivity extends AppCompatActivity implements OnDownloa
                 if (!dir.exists()) {
                     if (!dir.mkdirs()) {
                         if (listener != null) {
-                            listener.onDownloadFailure(null);
+                            listener.onDownloadFailure(null, new RuntimeException("mkdirs failed!"));
                         }
                         return;
                     }
@@ -131,7 +131,7 @@ public class DownloadTestActivity extends AppCompatActivity implements OnDownloa
                     }
                 } catch (Exception e) {
                     if (listener != null) {
-                        listener.onDownloadFailure(null);
+                        listener.onDownloadFailure(null, e);
                     }
                 } finally {
                     try {

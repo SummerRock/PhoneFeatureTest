@@ -1,5 +1,7 @@
 package com.example.yanxia.phonefeaturetest.download;
 
+import android.support.annotation.NonNull;
+
 public interface OnDownloadUpdateListener {
     void onDownloadStart(Downloadable downloadItem);
 
@@ -7,5 +9,5 @@ public interface OnDownloadUpdateListener {
 
     void onDownloadSuccess(Downloadable downloadItem, long downloadTime);
 
-    void onDownloadFailure(Downloadable downloadItem);
+    void onDownloadFailure(Downloadable downloadItem, @NonNull Exception e);
 }
