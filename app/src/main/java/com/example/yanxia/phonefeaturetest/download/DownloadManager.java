@@ -84,9 +84,7 @@ public class DownloadManager {
                         File dir = new File(downloadItem.getDownloadFileDirectoryPath());
                         if (!dir.exists()) {
                             if (!dir.mkdirs()) {
-                                for (OnDownloadUpdateListener onDownloadUpdateListener : getAllListeners(downloadItem)) {
-                                    onDownloadUpdateListener.onDownloadFailure(downloadItem, new RuntimeException("mkdirs failed!"));
-                                }
+                                notifyDownloadFailed(downloadItem, new RuntimeException("mkdirs failed!"));
                                 return;
                             }
                         }
@@ -101,21 +99,14 @@ public class DownloadManager {
                                 fos.write(buf, 0, len);
                                 sum += len;
                                 float progress = (sum * 1.0f / total * 100);
-                                //下载中更新进度条
-                                Log.d(TAG, "update progress: " + String.valueOf(progress));
-                                for (OnDownloadUpdateListener onDownloadUpdateListener : getAllListeners(downloadItem)) {
-                                    onDownloadUpdateListener.onDownloadProgressUpdate(downloadItem, progress);
-                                }
+                                notifyDownloadProgress(downloadItem, progress);
                             }
                             fos.flush();
                             //下载完成
-                            for (OnDownloadUpdateListener onDownloadUpdateListener : getAllListeners(downloadItem)) {
-                                onDownloadUpdateListener.onDownloadSuccess(downloadItem, 0);
-                            }
+                            long downloadTime = SystemClock.elapsedRealtime() - startTime;
+                            notifyDownloadSuccess(downloadItem, downloadTime);
                         } catch (Exception e) {
-                            for (OnDownloadUpdateListener onDownloadUpdateListener : getAllListeners(downloadItem)) {
-                                onDownloadUpdateListener.onDownloadFailure(downloadItem, e);
-                            }
+                            notifyDownloadFailed(downloadItem, e);
                         } finally {
                             try {
                                 if (is != null) {
@@ -129,9 +120,7 @@ public class DownloadManager {
                             }
                         }
                     } else {
-                        for (OnDownloadUpdateListener onDownloadUpdateListener : getAllListeners(downloadItem)) {
-                            onDownloadUpdateListener.onDownloadFailure(downloadItem, new RuntimeException("response is failed!"));
-                        }
+                        notifyDownloadFailed(downloadItem, new RuntimeException("response is failed!"));
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -141,22 +130,19 @@ public class DownloadManager {
         }
     }
 
-    private List<OnDownloadUpdateListener> getAllListeners(Downloadable downloadItem) {
-        List<OnDownloadUpdateListener> downloadItemListeners = downloadItemListenerMap.get(downloadItem);
-        ArrayList<OnDownloadUpdateListener> copiedListeners = new ArrayList<>();
-        addListValid(downloadItemListeners, copiedListeners);
-        addListValid(globalListeners, copiedListeners);
-        return copiedListeners;
+    private synchronized void notifyDownloadStart(@NonNull Downloadable downloadable) {
+
     }
 
-    private void addListValid(List<OnDownloadUpdateListener> toAdd, List<OnDownloadUpdateListener> dst) {
-        if (toAdd == null || dst == null) {
-            return;
-        }
-        for (OnDownloadUpdateListener listener : toAdd) {
-            if (listener != null) {
-                dst.add(listener);
-            }
-        }
+    private synchronized void notifyDownloadProgress(@NonNull Downloadable downloadable, float progress) {
+
+    }
+
+    private synchronized void notifyDownloadSuccess(@NonNull Downloadable downloadable, long downloadTime) {
+
+    }
+
+    private synchronized void notifyDownloadFailed(@NonNull Downloadable downloadable, @NonNull Exception e) {
+
     }
 }
