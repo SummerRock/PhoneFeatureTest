@@ -26,6 +26,7 @@ public class DownloadTestActivity extends AppCompatActivity implements OnDownloa
     private static final String TAG = "download_tag";
 
     private OkHttpClient client = new OkHttpClient();
+    private Call call;
 
     private static final String LOCALE_FILE_DIR_NAME = "testBigFile";
     private static final String LOCALE_FILE_NAME = "bigFile.bin";
@@ -70,6 +71,22 @@ public class DownloadTestActivity extends AppCompatActivity implements OnDownloa
         download(TEST_URL, getFilesDir() + File.separator + LOCALE_FILE_DIR_NAME, LOCALE_FILE_NAME, this);
     }
 
+    public void cancelDownload(View view) {
+        if (call != null) {
+            call.cancel();
+            call = null;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (call != null) {
+            call.cancel();
+            call = null;
+        }
+        super.onDestroy();
+    }
+
     /**
      * @param url          下载连接
      * @param destFileDir  下载的文件储存目录
@@ -79,7 +96,11 @@ public class DownloadTestActivity extends AppCompatActivity implements OnDownloa
     private void download(final String url, final String destFileDir, final String destFileName, final OnDownloadUpdateListener listener) {
         Request request = new Request.Builder().url(url).build();
         //异步请求
-        Call call = client.newCall(request);
+        if (call != null) {
+            call.cancel();
+            call = null;
+        }
+        call = client.newCall(request);
         call.enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {

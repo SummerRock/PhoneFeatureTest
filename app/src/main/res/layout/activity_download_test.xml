@@ -30,4 +30,11 @@
         android:onClick="startDownload"
         android:text="Start Download"
         tools:ignore="HardcodedText" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="cancelDownload"
+        android:text="@android:string/cancel" />
 </LinearLayout>
