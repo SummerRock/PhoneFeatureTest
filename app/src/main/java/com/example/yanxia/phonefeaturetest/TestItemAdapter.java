@@ -33,7 +33,14 @@ public class TestItemAdapter extends RecyclerView.Adapter<TestItemAdapter.Simple
     @Override
     public SimpleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.test_item, parent, false);
-        return new SimpleViewHolder(view);
+        SimpleViewHolder holder = new SimpleViewHolder(view);
+        holder.itemView.setOnClickListener(v -> {
+            if (testItemClickListener != null) {
+                final TestItem testItem = mTestList.get(holder.getAdapterPosition());
+                testItemClickListener.onItemClick(testItem);
+            }
+        });
+        return holder;
     }
 
     @Override
@@ -41,14 +48,6 @@ public class TestItemAdapter extends RecyclerView.Adapter<TestItemAdapter.Simple
         final TestItem testItem = mTestList.get(position);
         holder.testImage.setImageResource(testItem.getImageId());
         holder.testName.setText(testItem.getName());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (testItemClickListener != null) {
-                    testItemClickListener.onItemClick(testItem);
-                }
-            }
-        });
     }
 
     @Override
