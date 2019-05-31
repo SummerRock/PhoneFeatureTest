@@ -30,7 +30,7 @@ public class DownloadTestActivity extends AppCompatActivity implements OnDownloa
     private static final String LOCALE_FILE_DIR_NAME = "testBigFile";
     private static final String LOCALE_FILE_NAME = "bigFile.bin";
 
-    private static final String TEST_URL = "http://b.hiphotos.baidu.com/image/pic/item/9825bc315c6034a8ef5250cec5134954082376c9.jpg";
+    private static final String TEST_URL = "http://speedtest.tokyo.linode.com/100MB-tokyo.bin";
 
     private TextView progressTextView;
 
