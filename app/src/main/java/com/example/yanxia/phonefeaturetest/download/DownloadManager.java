@@ -68,6 +68,7 @@ public class DownloadManager {
         Log.d(TAG, "downloadable url: " + downloadable.getDownloadUrl());
         if (downloadable.isDownloaded()) {
             Log.d(TAG, "downloadable 已下载: " + downloadable.getDownloadUrl());
+            notifyDownloadSuccess(downloadable, 0);
             return;
         }
 
