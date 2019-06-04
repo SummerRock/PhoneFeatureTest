@@ -30,6 +30,7 @@ public class DownloadManager {
     private ThreadPoolExecutor poolExecutor;
     private OkHttpClient client;
 
+    private List<Downloadable> waitingForDownloadList = new ArrayList<>();
     private Map<Downloadable, Call> downloadingItems;
     private Map<Downloadable, List<OnDownloadUpdateListener>> downloadItemListenerMap;
     private List<OnDownloadUpdateListener> globalListeners;
@@ -60,16 +61,29 @@ public class DownloadManager {
         globalListeners = new ArrayList<>();
     }
 
-    public void downloadItem(@NonNull Downloadable downloadItem) {
-        Log.d(TAG, "downloadItem url: " + downloadItem.getDownloadUrl());
-        if (downloadItem.isDownloaded()) {
+    public void downloadItem(@NonNull Downloadable downloadable) {
+        Log.d(TAG, "downloadable url: " + downloadable.getDownloadUrl());
+        if (downloadable.isDownloaded()) {
             return;
         }
 
-        if (!downloadingItems.keySet().contains(downloadItem)) {
+        if (isWaitingForDownload(downloadable)) {
+            return;
+        }
+
+        waitingForDownloadList.add(downloadable);
+
+        if (!downloadingItems.keySet().contains(downloadable)) {
             Runnable runnable = () -> {
-                Request request = new Request.Builder().url(downloadItem.getDownloadUrl()).build();
+                Request request = new Request.Builder().url(downloadable.getDownloadUrl()).build();
                 Call call = client.newCall(request);
+
+                handler.post(() -> {
+                    waitingForDownloadList.remove(downloadable);
+                    downloadingItems.put(downloadable, call);
+                });
+                notifyDownloadStart(downloadable);
+
                 final long startTime = SystemClock.elapsedRealtime();
                 try {
                     Response response = call.execute();
@@ -81,14 +95,14 @@ public class DownloadManager {
                         FileOutputStream fos = null;
 
                         //储存下载文件的目录
-                        File dir = new File(downloadItem.getDownloadFileDirectoryPath());
+                        File dir = new File(downloadable.getDownloadFileDirectoryPath());
                         if (!dir.exists()) {
                             if (!dir.mkdirs()) {
-                                notifyDownloadFailed(downloadItem, new RuntimeException("mkdirs failed!"));
+                                notifyDownloadFailed(downloadable, new RuntimeException("mkdirs failed!"));
                                 return;
                             }
                         }
-                        File file = new File(dir, downloadItem.getDownloadFileName());
+                        File file = new File(dir, downloadable.getDownloadFileName());
 
                         try {
                             is = response.body().byteStream();
@@ -99,14 +113,14 @@ public class DownloadManager {
                                 fos.write(buf, 0, len);
                                 sum += len;
                                 float progress = (sum * 1.0f / total * 100);
-                                notifyDownloadProgress(downloadItem, progress);
+                                notifyDownloadProgress(downloadable, progress);
                             }
                             fos.flush();
                             //下载完成
                             long downloadTime = SystemClock.elapsedRealtime() - startTime;
-                            notifyDownloadSuccess(downloadItem, downloadTime);
+                            notifyDownloadSuccess(downloadable, downloadTime);
                         } catch (Exception e) {
-                            notifyDownloadFailed(downloadItem, e);
+                            notifyDownloadFailed(downloadable, e);
                         } finally {
                             try {
                                 if (is != null) {
@@ -120,14 +134,19 @@ public class DownloadManager {
                             }
                         }
                     } else {
-                        notifyDownloadFailed(downloadItem, new RuntimeException("response is failed!"));
+                        notifyDownloadFailed(downloadable, new RuntimeException("response is failed!"));
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
+                    notifyDownloadFailed(downloadable, e);
                 }
             };
             poolExecutor.execute(runnable);
         }
+    }
+
+    public boolean isWaitingForDownload(@NonNull Downloadable downloadable) {
+        return waitingForDownloadList.contains(downloadable);
     }
 
     private synchronized void notifyDownloadStart(@NonNull Downloadable downloadable) {
