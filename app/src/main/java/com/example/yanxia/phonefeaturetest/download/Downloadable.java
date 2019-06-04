@@ -22,11 +22,6 @@ public interface Downloadable {
     String getDownloadFileDirectoryPath();
 
     /**
-     * 下载文件临时名称
-     */
-    String getDownloadFileTempName();
-
-    /**
      * 下载文件名称
      */
     String getDownloadFileName();
