@@ -37,4 +37,6 @@ public interface Downloadable {
      * 是否已下载
      */
     boolean isDownloaded();
+
+    boolean equals(Object obj);
 }

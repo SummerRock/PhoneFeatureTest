@@ -1,6 +1,7 @@
 package com.example.yanxia.phonefeaturetest.download.test;
 
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 import com.example.yanxia.phonefeaturetest.download.Downloadable;
 
@@ -56,5 +57,19 @@ public class DownloadDemoItem implements Downloadable {
     public boolean isDownloaded() {
         File file = new File(dirName, fileName);
         return file.exists();
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode() + type.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        DownloadDemoItem downloadDemoItem = (DownloadDemoItem) obj;
+        return TextUtils.equals(name, downloadDemoItem.name) && TextUtils.equals(type, downloadDemoItem.type);
     }
 }
