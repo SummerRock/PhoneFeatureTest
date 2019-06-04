@@ -15,9 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
@@ -28,7 +27,7 @@ public class DownloadManager {
     private static final String TAG = "DownloadManager";
     private volatile static DownloadManager instance;
 
-    private ThreadPoolExecutor poolExecutor;
+    private ExecutorService poolExecutor;
     private OkHttpClient client;
 
     private List<Downloadable> waitingForDownloadList = new ArrayList<>();
@@ -52,8 +51,7 @@ public class DownloadManager {
     }
 
     private DownloadManager() {
-        poolExecutor = new ThreadPoolExecutor(3, 5,
-                1, TimeUnit.MILLISECONDS, new LinkedBlockingDeque<>(128));
+        poolExecutor = Executors.newFixedThreadPool(2);
 
         client = new OkHttpClient();
 
