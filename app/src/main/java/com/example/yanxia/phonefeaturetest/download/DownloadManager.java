@@ -162,7 +162,7 @@ public class DownloadManager {
         return waitingForDownloadList.contains(downloadable);
     }
 
-    public void addDownloadListener(@NonNull Downloadable downloadable, @NonNull OnDownloadUpdateListener onDownloadUpdateListener) {
+    public synchronized void addDownloadListener(@NonNull Downloadable downloadable, @NonNull OnDownloadUpdateListener onDownloadUpdateListener) {
         if (!downloadItemListenerMap.containsKey(downloadable)) {
             List<OnDownloadUpdateListener> onDownloadUpdateListeners = new ArrayList<>();
             onDownloadUpdateListeners.add(onDownloadUpdateListener);
@@ -177,7 +177,7 @@ public class DownloadManager {
         }
     }
 
-    public void removeDownloadListener(@NonNull Downloadable downloadable, @NonNull OnDownloadUpdateListener onDownloadUpdateListener) {
+    public synchronized void removeDownloadListener(@NonNull Downloadable downloadable, @NonNull OnDownloadUpdateListener onDownloadUpdateListener) {
         if (downloadItemListenerMap.containsKey(downloadable)) {
             List<OnDownloadUpdateListener> listeners = downloadItemListenerMap.get(downloadable);
             if (listeners != null) {

@@ -47,6 +47,7 @@ public class DownloadItemAdapter extends RecyclerView.Adapter<DownloadItemViewHo
     public void onBindViewHolder(@NonNull DownloadItemViewHolder holder, int position) {
         final DownloadDemoItem downloadDemoItem = downloadDemoItemList.get(position);
         holder.name.setText(downloadDemoItem.getDownloadName());
+        holder.progressBar.setProgress(0);
         if (downloadDemoItem.isDownloaded()) {
             holder.button.setText("已下载");
         } else {
