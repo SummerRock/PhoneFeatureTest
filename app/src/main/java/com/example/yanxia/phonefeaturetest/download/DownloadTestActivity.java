@@ -147,7 +147,8 @@ public class DownloadTestActivity extends AppCompatActivity implements OnDownloa
                         return;
                     }
                 }
-                File file = new File(dir, destFileName);
+                File tempFile = new File(dir, destFileName + "_temp");
+                File realFile = new File(dir, destFileName);
 
                 if (listener != null) {
                     listener.onDownloadStart(null);
@@ -156,7 +157,7 @@ public class DownloadTestActivity extends AppCompatActivity implements OnDownloa
                 try {
                     is = response.body().byteStream();
                     long total = response.body().contentLength();
-                    fos = new FileOutputStream(file);
+                    fos = new FileOutputStream(tempFile);
                     long sum = 0;
                     while ((len = is.read(buf)) != -1) {
                         fos.write(buf, 0, len);
@@ -171,8 +172,13 @@ public class DownloadTestActivity extends AppCompatActivity implements OnDownloa
                     }
                     fos.flush();
                     //下载完成
+                    boolean renameResult = tempFile.renameTo(realFile);
                     if (listener != null) {
-                        listener.onDownloadSuccess(null, 0);
+                        if (renameResult) {
+                            listener.onDownloadSuccess(null, 0);
+                        } else {
+                            listener.onDownloadFailure(null, new RuntimeException("rename failed!"));
+                        }
                     }
                 } catch (Exception e) {
                     if (listener != null) {
