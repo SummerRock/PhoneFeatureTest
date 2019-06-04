@@ -107,12 +107,13 @@ public class DownloadManager {
                                 return;
                             }
                         }
-                        File file = new File(dir, downloadable.getDownloadFileName());
+                        File tempFile = new File(dir, downloadable.getDownloadFileName() + "_temp");
+                        File realFile = new File(dir, downloadable.getDownloadFileName());
 
                         try {
                             is = response.body().byteStream();
                             long total = response.body().contentLength();
-                            fos = new FileOutputStream(file);
+                            fos = new FileOutputStream(tempFile);
                             long sum = 0;
                             while ((len = is.read(buf)) != -1) {
                                 fos.write(buf, 0, len);
@@ -124,7 +125,12 @@ public class DownloadManager {
                             fos.flush();
                             //下载完成
                             long downloadTime = SystemClock.elapsedRealtime() - startTime;
-                            notifyDownloadSuccess(downloadable, downloadTime);
+                            boolean renameResult = tempFile.renameTo(realFile);
+                            if (renameResult) {
+                                notifyDownloadSuccess(downloadable, downloadTime);
+                            } else {
+                                notifyDownloadFailed(downloadable, new RuntimeException("rename failed!"));
+                            }
                         } catch (Exception e) {
                             notifyDownloadFailed(downloadable, e);
                         } finally {
