@@ -1,29 +1,36 @@
 package com.example.yanxia.phonefeaturetest.download;
 
+import android.support.annotation.NonNull;
+
 public interface Downloadable {
     /**
      * 下载内容名称
      */
-    void getDownloadName();
+    @NonNull
+    String getDownloadName();
 
     /**
      * 下载内容类型
      */
-    void getDownloadType();
+    @NonNull
+    String getDownloadType();
 
     /**
      * 下载地址
      */
+    @NonNull
     String getDownloadUrl();
 
     /**
      * 下载到本地目录
      */
+    @NonNull
     String getDownloadFileDirectoryPath();
 
     /**
      * 下载文件名称
      */
+    @NonNull
     String getDownloadFileName();
 
     /**

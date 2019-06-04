@@ -1,6 +1,10 @@
 package com.example.yanxia.phonefeaturetest.download.test;
 
+import android.support.annotation.NonNull;
+
 import com.example.yanxia.phonefeaturetest.download.Downloadable;
+
+import java.io.File;
 
 public class DownloadDemoItem implements Downloadable {
 
@@ -18,33 +22,39 @@ public class DownloadDemoItem implements Downloadable {
         this.fileName = fileName;
     }
 
+    @NonNull
     @Override
-    public void getDownloadName() {
-
+    public String getDownloadName() {
+        return name;
     }
 
+    @NonNull
     @Override
-    public void getDownloadType() {
-
+    public String getDownloadType() {
+        return type;
     }
 
+    @NonNull
     @Override
     public String getDownloadUrl() {
-        return null;
+        return url;
     }
 
+    @NonNull
     @Override
     public String getDownloadFileDirectoryPath() {
-        return null;
+        return dirName;
     }
 
+    @NonNull
     @Override
     public String getDownloadFileName() {
-        return null;
+        return fileName;
     }
 
     @Override
     public boolean isDownloaded() {
-        return false;
+        File file = new File(dirName, fileName);
+        return file.exists();
     }
 }
