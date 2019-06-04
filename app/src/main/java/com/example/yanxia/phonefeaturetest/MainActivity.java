@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.example.yanxia.phonefeaturetest.dataModel.People;
 import com.example.yanxia.phonefeaturetest.dialog.CustomDialogFragment;
-import com.example.yanxia.phonefeaturetest.download.DownloadTestActivity;
+import com.example.yanxia.phonefeaturetest.download.test.DownloadTestActivity;
 import com.example.yanxia.phonefeaturetest.horizonRv.HorizonRvTestActivity;
 import com.example.yanxia.phonefeaturetest.multiProcess.BookAIDLTestActivity;
 import com.example.yanxia.phonefeaturetest.multiProcess.MessengerActivity;

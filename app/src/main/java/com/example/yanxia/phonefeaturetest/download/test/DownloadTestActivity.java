@@ -1,4 +1,4 @@
-package com.example.yanxia.phonefeaturetest.download;
+package com.example.yanxia.phonefeaturetest.download.test;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,6 +9,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.yanxia.phonefeaturetest.R;
+import com.example.yanxia.phonefeaturetest.download.Downloadable;
+import com.example.yanxia.phonefeaturetest.download.OnDownloadUpdateListener;
 import com.example.yanxia.phonefeaturetest.utils.ToastUtils;
 
 import java.io.File;

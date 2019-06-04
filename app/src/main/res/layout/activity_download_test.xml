@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".download.DownloadTestActivity">
+    tools:context=".download.test.DownloadTestActivity">
 
     <ProgressBar
         android:id="@+id/download_progress_bar"
