@@ -5,9 +5,11 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.yanxia.phonefeaturetest.R;
+import com.example.yanxia.phonefeaturetest.utils.ToastUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -33,6 +35,7 @@ public class DownloadTestActivity extends AppCompatActivity implements OnDownloa
 
     private static final String TEST_URL = "http://speedtest.tokyo.linode.com/100MB-tokyo.bin";
 
+    private ProgressBar progressBar;
     private TextView progressTextView;
 
     @Override
@@ -40,26 +43,39 @@ public class DownloadTestActivity extends AppCompatActivity implements OnDownloa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_download_test);
         progressTextView = findViewById(R.id.progress_tv);
+        progressBar = findViewById(R.id.download_progress_bar);
     }
 
     @Override
     public void onDownloadStart(Downloadable downloadItem) {
-        runOnUiThread(() -> progressTextView.setText("start download!"));
+        runOnUiThread(() -> {
+            progressTextView.setText("start download!");
+            progressBar.setProgress(0);
+        });
     }
 
     @Override
     public void onDownloadProgressUpdate(Downloadable downloadItem, float percent) {
-        runOnUiThread(() -> progressTextView.setText(String.format(Locale.getDefault(), "progress: %f", percent)));
+        runOnUiThread(() -> {
+            progressBar.setProgress(Math.round(percent));
+            progressTextView.setText(String.format(Locale.getDefault(), "progress: %f", percent));
+        });
     }
 
     @Override
     public void onDownloadSuccess(Downloadable downloadItem, long downloadTime) {
-        runOnUiThread(() -> progressTextView.setText("success!"));
+        runOnUiThread(() -> {
+            progressTextView.setText("success!");
+            progressBar.setProgress(100);
+        });
     }
 
     @Override
     public void onDownloadFailure(Downloadable downloadItem, @NonNull Exception e) {
-        runOnUiThread(() -> progressTextView.setText(e.getMessage()));
+        runOnUiThread(() -> {
+            progressBar.setProgress(0);
+            progressTextView.setText(e.getMessage());
+        });
     }
 
     public void startDownload(View view) {
@@ -67,6 +83,7 @@ public class DownloadTestActivity extends AppCompatActivity implements OnDownloa
         if (file.exists()) {
             //noinspection ResultOfMethodCallIgnored
             file.delete();
+            ToastUtils.showToast("删除文件！");
         }
         download(TEST_URL, getFilesDir() + File.separator + LOCALE_FILE_DIR_NAME, LOCALE_FILE_NAME, this);
     }
