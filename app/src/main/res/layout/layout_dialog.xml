@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@android:color/white">
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/exit_dialog_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
         android:textStyle="bold"
         tools:ignore="HardcodedText" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/exit_dialog_subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
         android:textStyle="normal"
         tools:ignore="HardcodedText" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/exit_dialog_ok_btn"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
@@ -48,7 +48,7 @@
         android:textSize="14sp"
         android:textStyle="bold" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/exit_dialog_cancel_btn"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"

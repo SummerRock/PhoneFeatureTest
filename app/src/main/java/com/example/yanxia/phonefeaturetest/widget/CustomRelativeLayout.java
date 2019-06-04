@@ -2,7 +2,7 @@ package com.example.yanxia.phonefeaturetest.widget;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.support.percent.PercentRelativeLayout;
+import androidx.percentlayout.widget.PercentRelativeLayout;
 import android.util.AttributeSet;
 import android.view.animation.LinearInterpolator;
 import android.widget.RelativeLayout;

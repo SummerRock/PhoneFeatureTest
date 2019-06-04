@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".multiProcess.BookAIDLTestActivity">
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/new_book_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

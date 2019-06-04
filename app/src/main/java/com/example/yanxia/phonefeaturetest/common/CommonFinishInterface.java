@@ -1,6 +1,6 @@
 package com.example.yanxia.phonefeaturetest.common;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 public interface CommonFinishInterface {
     void onSuccess();

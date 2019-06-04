@@ -2,8 +2,8 @@ package com.example.yanxia.phonefeaturetest.testactivity;
 
 import android.animation.ValueAnimator;
 import android.os.Bundle;
-import android.support.v4.view.animation.FastOutSlowInInterpolator;
-import android.support.v7.app.AppCompatActivity;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;

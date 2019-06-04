@@ -1,10 +1,11 @@
 package com.example.yanxia.phonefeaturetest.testactivity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.yanxia.phonefeaturetest.R;
 

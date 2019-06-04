@@ -3,8 +3,9 @@ package com.example.yanxia.phonefeaturetest.utils;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.StringRes;
 import android.widget.Toast;
+
+import androidx.annotation.StringRes;
 
 import com.example.yanxia.phonefeaturetest.MyApplication;
 

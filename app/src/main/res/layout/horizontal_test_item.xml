@@ -4,14 +4,14 @@
     android:layout_height="70dp"
     android:background="@android:color/holo_green_light">
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/test_image"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:src="@drawable/shape_circle" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/test_position_number_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

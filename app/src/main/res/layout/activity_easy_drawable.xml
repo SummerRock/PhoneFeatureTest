@@ -30,13 +30,13 @@
         android:text="TEST TWO"
         tools:ignore="HardcodedText" />
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/drawable_image_view"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:scaleType="centerInside" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/drawable_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
         android:text="PHOTO"
         android:textColor="@android:color/black" />
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginTop="20dp"

@@ -1,6 +1,6 @@
 package com.example.yanxia.phonefeaturetest.utils;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.example.yanxia.phonefeaturetest.dataModel.People;
 

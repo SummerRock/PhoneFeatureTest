@@ -12,8 +12,8 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.GradientDrawable;
-import android.support.annotation.FloatRange;
-import android.support.v7.widget.AppCompatButton;
+import androidx.annotation.FloatRange;
+import androidx.appcompat.widget.AppCompatButton;
 import android.util.AttributeSet;
 
 import com.example.yanxia.phonefeaturetest.R;

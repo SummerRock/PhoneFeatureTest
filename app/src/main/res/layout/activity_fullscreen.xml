@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".testactivity.FullscreenActivity">
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/easy_dialog_test"
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -17,13 +17,13 @@
         android:layout_marginEnd="20dp"
         android:background="@android:color/holo_blue_bright" />
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/glide_test_image_view_0"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="10dp" />
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/glide_test_image_view_1"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -31,7 +31,7 @@
         android:background="@android:color/darker_gray"
         android:scaleType="center" />
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/glide_test_image_view_2"
         android:layout_width="50dp"
         android:layout_height="50dp"

@@ -1,6 +1,6 @@
 package com.example.yanxia.phonefeaturetest.download;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public interface OnDownloadUpdateListener {
     void onDownloadStart(Downloadable downloadItem);

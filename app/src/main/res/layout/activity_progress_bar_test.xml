@@ -35,7 +35,7 @@
         app:progressbarBackgroundColor="@android:color/holo_purple"
         app:progressbarColor="@android:color/holo_green_light" />
 
-    <android.support.v7.widget.AppCompatSeekBar
+    <androidx.appcompat.widget.AppCompatSeekBar
         android:id="@+id/test_seek_bar"
         style="@android:style/Widget.Holo.SeekBar"
         android:layout_width="100dp"

@@ -3,7 +3,7 @@ package com.example.yanxia.phonefeaturetest.utils;
 import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
+import androidx.core.app.ActivityCompat;
 
 import com.example.yanxia.phonefeaturetest.MyApplication;
 

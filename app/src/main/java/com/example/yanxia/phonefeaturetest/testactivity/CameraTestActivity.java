@@ -3,7 +3,7 @@ package com.example.yanxia.phonefeaturetest.testactivity;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.yanxia.phonefeaturetest.R;
 
