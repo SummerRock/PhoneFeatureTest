@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +35,8 @@ public class DownloadManager {
     private Map<Downloadable, Call> downloadingItemMap;
     private Map<Downloadable, List<OnDownloadUpdateListener>> downloadItemListenerMap;
     private List<OnDownloadUpdateListener> globalListeners;
+
+    private DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
     private Handler handler;
 
@@ -115,7 +118,8 @@ public class DownloadManager {
                                 fos.write(buf, 0, len);
                                 sum += len;
                                 float progress = (sum * 1.0f / total * 100);
-                                notifyDownloadProgress(downloadable, progress);
+                                String format = decimalFormat.format(progress);
+                                notifyDownloadProgress(downloadable, Float.valueOf(format));
                             }
                             fos.flush();
                             //下载完成

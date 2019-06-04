@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DecimalFormat;
 import java.util.Locale;
 
 import okhttp3.Call;
@@ -37,6 +38,7 @@ public class DownloadTestActivity extends AppCompatActivity implements OnDownloa
 
     private ProgressBar progressBar;
     private TextView progressTextView;
+    private DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +60,7 @@ public class DownloadTestActivity extends AppCompatActivity implements OnDownloa
     public void onDownloadProgressUpdate(Downloadable downloadItem, float percent) {
         runOnUiThread(() -> {
             progressBar.setProgress(Math.round(percent));
-            progressTextView.setText(String.format(Locale.getDefault(), "progress: %f", percent));
+            progressTextView.setText(String.format(Locale.getDefault(), "progress: %d", Math.round(percent)));
         });
     }
 
@@ -161,9 +163,10 @@ public class DownloadTestActivity extends AppCompatActivity implements OnDownloa
                         sum += len;
                         float progress = (sum * 1.0f / total * 100);
                         //下载中更新进度条
-                        Log.d(TAG, "update progress: " + progress);
+                        String format = decimalFormat.format(progress);
+                        Log.d(TAG, "update progress: " + format);
                         if (listener != null) {
-                            listener.onDownloadProgressUpdate(null, progress);
+                            listener.onDownloadProgressUpdate(null, Float.valueOf(format));
                         }
                     }
                     fos.flush();
