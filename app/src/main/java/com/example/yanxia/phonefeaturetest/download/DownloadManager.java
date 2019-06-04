@@ -31,7 +31,7 @@ public class DownloadManager {
     private OkHttpClient client;
 
     private List<Downloadable> waitingForDownloadList = new ArrayList<>();
-    private Map<Downloadable, Call> downloadingItems;
+    private Map<Downloadable, Call> downloadingItemMap;
     private Map<Downloadable, List<OnDownloadUpdateListener>> downloadItemListenerMap;
     private List<OnDownloadUpdateListener> globalListeners;
 
@@ -56,7 +56,7 @@ public class DownloadManager {
 
         handler = new Handler(Looper.getMainLooper());
 
-        downloadingItems = new HashMap<>();
+        downloadingItemMap = new HashMap<>();
         downloadItemListenerMap = new HashMap<>();
         globalListeners = new ArrayList<>();
     }
@@ -73,14 +73,14 @@ public class DownloadManager {
 
         waitingForDownloadList.add(downloadable);
 
-        if (!downloadingItems.keySet().contains(downloadable)) {
+        if (!downloadingItemMap.keySet().contains(downloadable)) {
             Runnable runnable = () -> {
                 Request request = new Request.Builder().url(downloadable.getDownloadUrl()).build();
                 Call call = client.newCall(request);
 
                 handler.post(() -> {
                     waitingForDownloadList.remove(downloadable);
-                    downloadingItems.put(downloadable, call);
+                    downloadingItemMap.put(downloadable, call);
                 });
                 notifyDownloadStart(downloadable);
 
@@ -150,18 +150,60 @@ public class DownloadManager {
     }
 
     private synchronized void notifyDownloadStart(@NonNull Downloadable downloadable) {
-
+        handler.post(() -> {
+            List<OnDownloadUpdateListener> listeners = downloadItemListenerMap.get(downloadable);
+            if (listeners != null) {
+                for (OnDownloadUpdateListener onDownloadUpdateListener : listeners) {
+                    onDownloadUpdateListener.onDownloadStart(downloadable);
+                }
+            }
+            for (OnDownloadUpdateListener onDownloadUpdateListener : globalListeners) {
+                onDownloadUpdateListener.onDownloadStart(downloadable);
+            }
+        });
     }
 
     private synchronized void notifyDownloadProgress(@NonNull Downloadable downloadable, float progress) {
-
+        handler.post(() -> {
+            List<OnDownloadUpdateListener> listeners = downloadItemListenerMap.get(downloadable);
+            if (listeners != null) {
+                for (OnDownloadUpdateListener onDownloadUpdateListener : listeners) {
+                    onDownloadUpdateListener.onDownloadProgressUpdate(downloadable, progress);
+                }
+            }
+            for (OnDownloadUpdateListener onDownloadUpdateListener : globalListeners) {
+                onDownloadUpdateListener.onDownloadProgressUpdate(downloadable, progress);
+            }
+        });
     }
 
     private synchronized void notifyDownloadSuccess(@NonNull Downloadable downloadable, long downloadTime) {
-
+        handler.post(() -> {
+            downloadingItemMap.remove(downloadable);
+            List<OnDownloadUpdateListener> listeners = downloadItemListenerMap.get(downloadable);
+            if (listeners != null) {
+                for (OnDownloadUpdateListener onDownloadUpdateListener : listeners) {
+                    onDownloadUpdateListener.onDownloadSuccess(downloadable, downloadTime);
+                }
+            }
+            for (OnDownloadUpdateListener onDownloadUpdateListener : globalListeners) {
+                onDownloadUpdateListener.onDownloadSuccess(downloadable, downloadTime);
+            }
+        });
     }
 
     private synchronized void notifyDownloadFailed(@NonNull Downloadable downloadable, @NonNull Exception e) {
-
+        handler.post(() -> {
+            downloadingItemMap.remove(downloadable);
+            List<OnDownloadUpdateListener> listeners = downloadItemListenerMap.get(downloadable);
+            if (listeners != null) {
+                for (OnDownloadUpdateListener onDownloadUpdateListener : listeners) {
+                    onDownloadUpdateListener.onDownloadFailure(downloadable, e);
+                }
+            }
+            for (OnDownloadUpdateListener onDownloadUpdateListener : globalListeners) {
+                onDownloadUpdateListener.onDownloadFailure(downloadable, e);
+            }
+        });
     }
 }
