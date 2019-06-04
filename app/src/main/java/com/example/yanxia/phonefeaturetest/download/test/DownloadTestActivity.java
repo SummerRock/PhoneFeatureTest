@@ -1,23 +1,25 @@
 package com.example.yanxia.phonefeaturetest.download.test;
 
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.View;
 
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.download.DownloadManager;
 import com.example.yanxia.phonefeaturetest.download.Downloadable;
 import com.example.yanxia.phonefeaturetest.download.OnDownloadUpdateListener;
+import com.example.yanxia.phonefeaturetest.utils.DisplayUtils;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DownloadTestActivity extends AppCompatActivity implements OnDownloadUpdateListener, DownloadItemAdapter.OnItemClickListener {
-
 
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
@@ -33,6 +35,7 @@ public class DownloadTestActivity extends AppCompatActivity implements OnDownloa
         downloadDemoItemList = getDemoList();
         DownloadItemAdapter downloadItemAdapter = new DownloadItemAdapter(downloadDemoItemList, this);
         recyclerView.setAdapter(downloadItemAdapter);
+        recyclerView.addItemDecoration(new CustomItemDecoration(DisplayUtils.dpToPx(10)));
 
         for (DownloadDemoItem downloadDemoItem : downloadDemoItemList) {
             DownloadManager.getInstance().addDownloadListener(downloadDemoItem, this);
@@ -132,5 +135,20 @@ public class DownloadTestActivity extends AppCompatActivity implements OnDownloa
             DownloadManager.getInstance().removeDownloadListener(downloadDemoItem, this);
         }
         super.onDestroy();
+    }
+
+    private class CustomItemDecoration extends RecyclerView.ItemDecoration {
+
+        private int gap;
+
+        CustomItemDecoration(int gap) {
+            this.gap = gap;
+        }
+
+        @Override
+        public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+            // int position = parent.getChildAdapterPosition(view);
+            outRect.set(gap, gap, gap, gap);
+        }
     }
 }
