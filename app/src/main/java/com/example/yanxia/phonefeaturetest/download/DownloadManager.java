@@ -64,10 +64,12 @@ public class DownloadManager {
     public void downloadItem(@NonNull Downloadable downloadable) {
         Log.d(TAG, "downloadable url: " + downloadable.getDownloadUrl());
         if (downloadable.isDownloaded()) {
+            Log.d(TAG, "downloadable 已下载: " + downloadable.getDownloadUrl());
             return;
         }
 
         if (isWaitingForDownload(downloadable)) {
+            Log.d(TAG, "downloadable 正在等待下载: " + downloadable.getDownloadUrl());
             return;
         }
 
@@ -147,6 +149,30 @@ public class DownloadManager {
 
     public boolean isWaitingForDownload(@NonNull Downloadable downloadable) {
         return waitingForDownloadList.contains(downloadable);
+    }
+
+    public void addDownloadListener(@NonNull Downloadable downloadable, @NonNull OnDownloadUpdateListener onDownloadUpdateListener) {
+        if (!downloadItemListenerMap.containsKey(downloadable)) {
+            List<OnDownloadUpdateListener> onDownloadUpdateListeners = new ArrayList<>();
+            onDownloadUpdateListeners.add(onDownloadUpdateListener);
+            downloadItemListenerMap.put(downloadable, onDownloadUpdateListeners);
+        } else {
+            List<OnDownloadUpdateListener> listeners = downloadItemListenerMap.get(downloadable);
+            if (listeners == null) {
+                listeners = new ArrayList<>();
+            }
+            listeners.add(onDownloadUpdateListener);
+            downloadItemListenerMap.put(downloadable, listeners);
+        }
+    }
+
+    public void removeDownloadListener(@NonNull Downloadable downloadable, @NonNull OnDownloadUpdateListener onDownloadUpdateListener) {
+        if (downloadItemListenerMap.containsKey(downloadable)) {
+            List<OnDownloadUpdateListener> listeners = downloadItemListenerMap.get(downloadable);
+            if (listeners != null) {
+                listeners.remove(onDownloadUpdateListener);
+            }
+        }
     }
 
     private synchronized void notifyDownloadStart(@NonNull Downloadable downloadable) {
