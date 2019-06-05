@@ -12,4 +12,8 @@ public class DemoChild {
     public String getData() {
         return data;
     }
+
+    public String getParentName() {
+        return parentName;
+    }
 }

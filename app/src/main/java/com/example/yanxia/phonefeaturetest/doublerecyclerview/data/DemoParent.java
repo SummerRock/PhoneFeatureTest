@@ -14,7 +14,7 @@ public class DemoParent {
         this.name = name;
     }
 
-    public List<DemoChild> getDemoList() {
+    public List<DemoChild> getDemoChildList() {
         return demoList;
     }
 

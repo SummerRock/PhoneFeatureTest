@@ -20,7 +20,7 @@ public final class DemoParentAdapter extends RecyclerView.Adapter<DemoParentView
 
     private List<DemoParent> demoGroupList;
 
-    DemoParentAdapter(@NonNull List<DemoParent> demoGroupList) {
+    public DemoParentAdapter(@NonNull List<DemoParent> demoGroupList) {
         this.demoGroupList = demoGroupList;
     }
 
@@ -39,7 +39,11 @@ public final class DemoParentAdapter extends RecyclerView.Adapter<DemoParentView
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull DemoParentViewHolder holder, int position, @NonNull List<Object> payloads) {
-
+        // if (holder.recyclerView.getAdapter() == null) {
+        //     holder.recyclerView.setAdapter(new ChildInfoAdapter(context, list.get(position).getMenuList()));
+        // } else {
+        //     holder.recyclerView.getAdapter().notifyDataSetChanged();
+        // }
     }
 
     @Override
