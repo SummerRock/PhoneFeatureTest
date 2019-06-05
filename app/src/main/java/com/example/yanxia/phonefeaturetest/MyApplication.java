@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.os.Process;
 import android.util.Log;
 
+import androidx.multidex.MultiDex;
+
 import com.example.yanxia.phonefeaturetest.utils.MultiThreadDemoManager;
 import com.example.yanxia.phonefeaturetest.utils.ScreenStatusManager;
 import com.example.yanxia.phonefeaturetest.utils.SingletonDemo;
@@ -62,6 +64,7 @@ public class MyApplication extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
+        MultiDex.install(this);
         Log.d(TAG, "attachBaseContext");
     }
 
