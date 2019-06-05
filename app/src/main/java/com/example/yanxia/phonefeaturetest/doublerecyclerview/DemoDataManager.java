@@ -1,7 +1,7 @@
-package com.example.yanxia.phonefeaturetest.recyclerview;
+package com.example.yanxia.phonefeaturetest.doublerecyclerview;
 
-import com.example.yanxia.phonefeaturetest.recyclerview.data.DemoChild;
-import com.example.yanxia.phonefeaturetest.recyclerview.data.DemoParent;
+import com.example.yanxia.phonefeaturetest.doublerecyclerview.data.DemoChild;
+import com.example.yanxia.phonefeaturetest.doublerecyclerview.data.DemoParent;
 
 import java.util.ArrayList;
 import java.util.List;

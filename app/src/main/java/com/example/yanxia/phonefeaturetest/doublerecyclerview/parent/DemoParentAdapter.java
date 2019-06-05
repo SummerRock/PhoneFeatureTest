@@ -1,4 +1,4 @@
-package com.example.yanxia.phonefeaturetest.recyclerview.parent;
+package com.example.yanxia.phonefeaturetest.doublerecyclerview.parent;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yanxia.phonefeaturetest.R;
-import com.example.yanxia.phonefeaturetest.recyclerview.data.DemoParent;
+import com.example.yanxia.phonefeaturetest.doublerecyclerview.data.DemoParent;
 
 import java.util.List;
 

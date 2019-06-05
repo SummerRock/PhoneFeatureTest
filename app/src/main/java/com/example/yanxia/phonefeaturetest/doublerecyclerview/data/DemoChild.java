@@ -1,4 +1,4 @@
-package com.example.yanxia.phonefeaturetest.recyclerview.data;
+package com.example.yanxia.phonefeaturetest.doublerecyclerview.data;
 
 public class DemoChild {
     private final String data;

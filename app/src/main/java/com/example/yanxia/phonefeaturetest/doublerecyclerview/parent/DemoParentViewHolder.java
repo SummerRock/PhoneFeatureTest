@@ -1,4 +1,4 @@
-package com.example.yanxia.phonefeaturetest.recyclerview.parent;
+package com.example.yanxia.phonefeaturetest.doublerecyclerview.parent;
 
 import android.view.View;
 
