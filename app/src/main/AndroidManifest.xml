@@ -25,6 +25,10 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".recyclerview.CustomRecyclerViewActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".testactivity.PeopleEditActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
