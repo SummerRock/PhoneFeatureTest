@@ -1,7 +1,7 @@
 // BookController.aidl
 package com.example.yanxia.phonefeaturetest;
 
-import com.example.yanxia.phonefeaturetest.Book;
+import com.example.yanxia.phonefeaturetest.dataModel.Book;
 import com.example.yanxia.phonefeaturetest.IOnNewBookArrivedListener;
 // Declare any non-default types here with import statements 引入其他aidl文件
 
