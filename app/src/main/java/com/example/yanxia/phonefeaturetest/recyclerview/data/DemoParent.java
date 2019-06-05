@@ -5,33 +5,33 @@ import androidx.annotation.NonNull;
 import java.util.List;
 import java.util.Objects;
 
-public class DemoGroup {
-    private List<Demo> demoList;
-    private final String groupName;
+public class DemoParent {
+    private List<DemoChild> demoList;
+    private final String name;
 
-    public DemoGroup(@NonNull List<Demo> demoList, String groupName) {
+    public DemoParent(@NonNull List<DemoChild> demoList, String name) {
         this.demoList = demoList;
-        this.groupName = groupName;
+        this.name = name;
     }
 
-    public List<Demo> getDemoList() {
+    public List<DemoChild> getDemoList() {
         return demoList;
     }
 
-    public String getGroupName() {
-        return groupName;
+    public String getName() {
+        return name;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DemoGroup demoGroup = (DemoGroup) o;
-        return groupName.equals(demoGroup.groupName);
+        DemoParent demoGroup = (DemoParent) o;
+        return name.equals(demoGroup.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(groupName);
+        return Objects.hash(name);
     }
 }

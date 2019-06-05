@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yanxia.phonefeaturetest.R;
-import com.example.yanxia.phonefeaturetest.recyclerview.data.DemoGroup;
+import com.example.yanxia.phonefeaturetest.recyclerview.data.DemoParent;
 
 import java.util.List;
 
@@ -18,9 +18,9 @@ import java.util.List;
  */
 public final class DemoParentAdapter extends RecyclerView.Adapter<DemoParentViewHolder> {
 
-    private List<DemoGroup> demoGroupList;
+    private List<DemoParent> demoGroupList;
 
-    DemoParentAdapter(@NonNull List<DemoGroup> demoGroupList) {
+    DemoParentAdapter(@NonNull List<DemoParent> demoGroupList) {
         this.demoGroupList = demoGroupList;
     }
 

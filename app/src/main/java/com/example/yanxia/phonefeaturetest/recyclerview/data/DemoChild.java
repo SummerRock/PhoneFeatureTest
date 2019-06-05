@@ -1,12 +1,12 @@
 package com.example.yanxia.phonefeaturetest.recyclerview.data;
 
-public class Demo {
+public class DemoChild {
     private final String data;
-    private final String groupName;
+    private final String parentName;
 
-    public Demo(String data, String groupName) {
+    public DemoChild(String data, String parentName) {
         this.data = data;
-        this.groupName = groupName;
+        this.parentName = parentName;
     }
 
     public String getData() {

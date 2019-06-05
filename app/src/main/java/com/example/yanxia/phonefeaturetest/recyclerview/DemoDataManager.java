@@ -1,7 +1,7 @@
 package com.example.yanxia.phonefeaturetest.recyclerview;
 
-import com.example.yanxia.phonefeaturetest.recyclerview.data.Demo;
-import com.example.yanxia.phonefeaturetest.recyclerview.data.DemoGroup;
+import com.example.yanxia.phonefeaturetest.recyclerview.data.DemoChild;
+import com.example.yanxia.phonefeaturetest.recyclerview.data.DemoParent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class DemoDataManager {
     }
 
 
-    private List<DemoGroup> demoGroupList = new ArrayList<>();
+    private List<DemoParent> demoGroupList = new ArrayList<>();
 
     private Random random = new Random();
     private int demoData;
@@ -27,22 +27,22 @@ public class DemoDataManager {
             int start = demoData;
             demoData = demoData + random.nextInt(5) + 1;
             int end = demoData;
-            DemoGroup demoGroup = new DemoGroup(getDemoList(start, end, name), name);
+            DemoParent demoGroup = new DemoParent(getDemoList(start, end, name), name);
             demoGroupList.add(demoGroup);
         }
     }
 
-    public List<DemoGroup> getDemoGroupList() {
+    public List<DemoParent> getDemoGroupList() {
         return new ArrayList<>(demoGroupList);
     }
 
-    private List<Demo> getDemoList(int start, int end, String groupName) {
-        List<Demo> demoList = new ArrayList<>();
+    private List<DemoChild> getDemoList(int start, int end, String groupName) {
+        List<DemoChild> demoList = new ArrayList<>();
         if (end <= start) {
             throw new IllegalArgumentException("wrong!");
         } else {
             for (int i = start; i < end; i++) {
-                demoList.add(new Demo(String.valueOf(i), groupName));
+                demoList.add(new DemoChild(String.valueOf(i), groupName));
             }
         }
         return demoList;
