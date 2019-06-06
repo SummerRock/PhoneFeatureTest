@@ -1,6 +1,7 @@
 package com.example.yanxia.phonefeaturetest.doublerecyclerview.child;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +44,13 @@ public final class DemoChildAdapter extends RecyclerView.Adapter<DemoChildViewHo
     @Override
     public void onBindViewHolder(@NonNull DemoChildViewHolder holder, int position, @NonNull List<Object> payloads) {
         DemoChild demoChild = demoChildList.get(position);
+        boolean isSelected = getCurrentDemoChildListener.getCurrentDemoChild().equals(demoChild);
         holder.textView.setText(demoChild.getData());
+        if (isSelected) {
+            holder.textView.setTextColor(Color.BLACK);
+        } else {
+            holder.textView.setTextColor(Color.WHITE);
+        }
     }
 
     @Override
