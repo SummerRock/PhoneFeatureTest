@@ -18,5 +18,8 @@
         android:id="@+id/parent_item_rv"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/double_rv_item_size"
+        android:background="@drawable/demo_parent_shape"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:visibility="gone" />
 </FrameLayout>
