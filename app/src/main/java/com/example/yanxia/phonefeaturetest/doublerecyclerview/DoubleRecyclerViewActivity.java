@@ -26,6 +26,7 @@ public class DoubleRecyclerViewActivity extends AppCompatActivity implements onG
     private List<DemoChild> demoChildList = new ArrayList<>();
 
     private ViewPager viewPager;
+    private DemoParentAdapter demoParentAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,7 @@ public class DoubleRecyclerViewActivity extends AppCompatActivity implements onG
 
             @Override
             public void onPageSelected(int position) {
-
+                demoParentAdapter.changeSelectPosition(demoChildList.get(position));
             }
 
             @Override
@@ -57,7 +58,8 @@ public class DoubleRecyclerViewActivity extends AppCompatActivity implements onG
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view_demo);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        recyclerView.setAdapter(new DemoParentAdapter(demoParentList, this));
+        demoParentAdapter = new DemoParentAdapter(demoParentList, this);
+        recyclerView.setAdapter(demoParentAdapter);
         recyclerView.addItemDecoration(new CustomItemDecoration(DisplayUtils.dpToPx(10)));
     }
 

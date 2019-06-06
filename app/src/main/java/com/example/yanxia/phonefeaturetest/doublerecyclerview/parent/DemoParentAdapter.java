@@ -1,5 +1,6 @@
 package com.example.yanxia.phonefeaturetest.doublerecyclerview.parent;
 
+import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,12 +50,16 @@ public final class DemoParentAdapter extends RecyclerView.Adapter<DemoParentView
         boolean selected = position == selectPosition;
         boolean isSingleItem = demoParent.isSingleParent();
 
+        holder.parentName.setText(demoParent.getName());
+
         if (selected) {
             if (isSingleItem) {
-                holder.name.setVisibility(View.VISIBLE);
+                holder.parentName.setVisibility(View.VISIBLE);
+                holder.parentName.setTextColor(Color.BLACK);
                 holder.recyclerView.setVisibility(View.GONE);
             } else {
-                holder.name.setVisibility(View.GONE);
+                holder.parentName.setVisibility(View.GONE);
+                holder.parentName.setTextColor(Color.WHITE);
                 holder.recyclerView.setVisibility(View.VISIBLE);
 
                 if (holder.recyclerView.getAdapter() == null) {
@@ -64,7 +69,8 @@ public final class DemoParentAdapter extends RecyclerView.Adapter<DemoParentView
                 }
             }
         } else {
-            holder.name.setVisibility(View.VISIBLE);
+            holder.parentName.setVisibility(View.VISIBLE);
+            holder.parentName.setTextColor(Color.WHITE);
             holder.recyclerView.setVisibility(View.GONE);
         }
     }
