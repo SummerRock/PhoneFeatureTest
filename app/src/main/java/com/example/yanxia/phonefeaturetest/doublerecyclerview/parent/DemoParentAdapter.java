@@ -1,5 +1,6 @@
 package com.example.yanxia.phonefeaturetest.doublerecyclerview.parent;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.doublerecyclerview.child.DemoChildAdapter;
+import com.example.yanxia.phonefeaturetest.doublerecyclerview.data.DemoChild;
 import com.example.yanxia.phonefeaturetest.doublerecyclerview.data.DemoParent;
 
 import java.util.List;
@@ -67,5 +69,20 @@ public final class DemoParentAdapter extends RecyclerView.Adapter<DemoParentView
     @Override
     public int getItemCount() {
         return demoParentList.size();
+    }
+
+    public void changeSelectPosition(DemoChild demoChild) {
+        notifyItemChanged(selectPosition);
+        selectPosition = getPosition(demoChild);
+        notifyItemChanged(selectPosition);
+    }
+
+    private int getPosition(DemoChild demoChild) {
+        for (int i = 0; i < demoParentList.size(); i++) {
+            if (TextUtils.equals(demoChild.getParentName(), demoParentList.get(i).getName())) {
+                return i;
+            }
+        }
+        return 0;
     }
 }
