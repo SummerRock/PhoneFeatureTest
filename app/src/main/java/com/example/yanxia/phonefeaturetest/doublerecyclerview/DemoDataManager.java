@@ -21,7 +21,7 @@ public class DemoDataManager {
     private int demoData;
 
     private DemoDataManager() {
-        String baseName = "Parent_";
+        String baseName = "Pa_";
         for (int i = 0; i < 10; i++) {
             char ch = (char) (i + 65);
             String name = baseName + ch;
@@ -43,7 +43,7 @@ public class DemoDataManager {
             throw new IllegalArgumentException("wrong!");
         } else {
             for (int i = start; i < end; i++) {
-                demoList.add(new DemoChild("Child_" + i, groupName));
+                demoList.add(new DemoChild("Ch_" + i, groupName));
             }
         }
         return demoList;

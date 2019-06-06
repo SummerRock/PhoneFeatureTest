@@ -9,6 +9,9 @@
         android:id="@+id/parent_item_name"
         android:layout_width="@dimen/double_rv_item_size"
         android:layout_height="@dimen/double_rv_item_size"
+        android:layout_gravity="center"
+        android:background="@drawable/shape_circle"
+        android:gravity="center"
         android:maxLines="1" />
 
     <androidx.recyclerview.widget.RecyclerView
