@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="50dp"
-    android:layout_height="50dp"
+    android:layout_width="@dimen/double_rv_item_size"
+    android:layout_height="@dimen/double_rv_item_size"
     android:layout_gravity="center"
-    android:background="@drawable/shape_circle">
+    android:background="@drawable/shape_circle"
+    tools:context="com.example.yanxia.phonefeaturetest.doublerecyclerview.child.DemoChildViewHolder">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/demo_data_tv"

@@ -3,6 +3,8 @@ package com.example.yanxia.phonefeaturetest.doublerecyclerview.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Objects;
+
 public class DemoChild implements Parcelable {
     private final String data;
     private final String parentName;
@@ -20,6 +22,18 @@ public class DemoChild implements Parcelable {
         return parentName;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DemoChild demoChild = (DemoChild) o;
+        return data.equals(demoChild.data) && parentName.equals(demoChild.parentName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(data, parentName);
+    }
 
     @Override
     public int describeContents() {
