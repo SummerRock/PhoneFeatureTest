@@ -1,6 +1,5 @@
 package com.example.yanxia.phonefeaturetest.doublerecyclerview.parent;
 
-import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,25 +37,30 @@ public final class DemoParentAdapter extends RecyclerView.Adapter<DemoParentView
 
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull DemoParentViewHolder holder, int position, @NonNull List<Object> payloads) {
 
         DemoParent demoParent = demoParentList.get(position);
         boolean selected = position == selectPosition;
+        boolean isSingleItem = demoParent.isSingleParent();
 
         if (selected) {
+            if (isSingleItem) {
+                holder.name.setVisibility(View.VISIBLE);
+                holder.recyclerView.setVisibility(View.GONE);
+            } else {
+                holder.name.setVisibility(View.GONE);
+                holder.recyclerView.setVisibility(View.VISIBLE);
+
+                if (holder.recyclerView.getAdapter() == null) {
+                    holder.recyclerView.setAdapter(new DemoChildAdapter(demoParent.getDemoChildList()));
+                } else {
+                    holder.recyclerView.getAdapter().notifyDataSetChanged();
+                }
+            }
+        } else {
             holder.name.setVisibility(View.VISIBLE);
             holder.recyclerView.setVisibility(View.GONE);
-        } else {
-            holder.name.setVisibility(View.GONE);
-            holder.recyclerView.setVisibility(View.VISIBLE);
-
-            if (holder.recyclerView.getAdapter() == null) {
-                holder.recyclerView.setAdapter(new DemoChildAdapter(demoParent.getDemoChildList()));
-            } else {
-                holder.recyclerView.getAdapter().notifyDataSetChanged();
-            }
         }
     }
 

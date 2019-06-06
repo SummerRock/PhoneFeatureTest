@@ -22,6 +22,10 @@ public class DemoParent {
         return name;
     }
 
+    public boolean isSingleParent() {
+        return demoList.size() < 2;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
