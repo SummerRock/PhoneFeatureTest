@@ -38,7 +38,8 @@ public class DemoChildFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.demo_child_fragment, container, false);
         TextView data = rootView.findViewById(R.id.demo_child_fragment_tv);
-        data.setText(demoChild.getData());
+        String str = demoChild.getParentName() + ": " + demoChild.getData();
+        data.setText(str);
         return rootView;
     }
 

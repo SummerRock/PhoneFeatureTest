@@ -21,9 +21,10 @@ public class DemoDataManager {
     private int demoData;
 
     private DemoDataManager() {
-        String baseName = "parent";
+        String baseName = "Parent_";
         for (int i = 0; i < 10; i++) {
-            String name = baseName + i;
+            char ch = (char) (i + 65);
+            String name = baseName + ch;
             int start = demoData;
             demoData = demoData + random.nextInt(5) + 1;
             int end = demoData;
@@ -42,7 +43,7 @@ public class DemoDataManager {
             throw new IllegalArgumentException("wrong!");
         } else {
             for (int i = start; i < end; i++) {
-                demoList.add(new DemoChild(String.valueOf(i), groupName));
+                demoList.add(new DemoChild("Child_" + i, groupName));
             }
         }
         return demoList;
