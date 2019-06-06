@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yanxia.phonefeaturetest.R;
+import com.example.yanxia.phonefeaturetest.doublerecyclerview.child.DemoChildAdapter;
 import com.example.yanxia.phonefeaturetest.doublerecyclerview.data.DemoParent;
 
 import java.util.List;
@@ -18,10 +19,11 @@ import java.util.List;
  */
 public final class DemoParentAdapter extends RecyclerView.Adapter<DemoParentViewHolder> {
 
-    private List<DemoParent> demoGroupList;
+    private List<DemoParent> demoParentList;
+    private int selectPosition;
 
-    public DemoParentAdapter(@NonNull List<DemoParent> demoGroupList) {
-        this.demoGroupList = demoGroupList;
+    public DemoParentAdapter(@NonNull List<DemoParent> demoParentList) {
+        this.demoParentList = demoParentList;
     }
 
     @NonNull
@@ -39,15 +41,27 @@ public final class DemoParentAdapter extends RecyclerView.Adapter<DemoParentView
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull DemoParentViewHolder holder, int position, @NonNull List<Object> payloads) {
-        // if (holder.recyclerView.getAdapter() == null) {
-        //     holder.recyclerView.setAdapter(new ChildInfoAdapter(context, list.get(position).getMenuList()));
-        // } else {
-        //     holder.recyclerView.getAdapter().notifyDataSetChanged();
-        // }
+
+        DemoParent demoParent = demoParentList.get(position);
+        boolean selected = position == selectPosition;
+
+        if (selected) {
+            holder.name.setVisibility(View.VISIBLE);
+            holder.recyclerView.setVisibility(View.GONE);
+        } else {
+            holder.name.setVisibility(View.GONE);
+            holder.recyclerView.setVisibility(View.VISIBLE);
+
+            if (holder.recyclerView.getAdapter() == null) {
+                holder.recyclerView.setAdapter(new DemoChildAdapter(demoParent.getDemoChildList()));
+            } else {
+                holder.recyclerView.getAdapter().notifyDataSetChanged();
+            }
+        }
     }
 
     @Override
     public int getItemCount() {
-        return demoGroupList.size();
+        return demoParentList.size();
     }
 }

@@ -27,7 +27,7 @@ public final class DemoChildAdapter extends RecyclerView.Adapter<DemoChildViewHo
     @NonNull
     @Override
     public DemoChildViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.demo_parent_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.demo_child_item, parent, false);
         return new DemoChildViewHolder(view);
     }
 
@@ -39,11 +39,8 @@ public final class DemoChildAdapter extends RecyclerView.Adapter<DemoChildViewHo
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull DemoChildViewHolder holder, int position, @NonNull List<Object> payloads) {
-        // if (holder.recyclerView.getAdapter() == null) {
-        //     holder.recyclerView.setAdapter(new ChildInfoAdapter(context, list.get(position).getMenuList()));
-        // } else {
-        //     holder.recyclerView.getAdapter().notifyDataSetChanged();
-        // }
+        DemoChild demoChild = demoChildList.get(position);
+        holder.textView.setText(demoChild.getData());
     }
 
     @Override
