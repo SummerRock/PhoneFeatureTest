@@ -3,20 +3,22 @@ package com.example.yanxia.phonefeaturetest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.yanxia.phonefeaturetest.dataModel.People;
 import com.example.yanxia.phonefeaturetest.dialog.CustomDialogFragment;
+import com.example.yanxia.phonefeaturetest.doublerecyclerview.DoubleRecyclerViewActivity;
 import com.example.yanxia.phonefeaturetest.download.test.DownloadTestActivity;
 import com.example.yanxia.phonefeaturetest.horizonRv.HorizonRvTestActivity;
 import com.example.yanxia.phonefeaturetest.multiProcess.BookAIDLTestActivity;
@@ -118,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         testItemList.add(new TestItem(Constant.TEST_RECYCLER, R.drawable.ic_lock_24dp, RecyclerViewTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_PEOPLE_DATA, R.drawable.ic_lock_24dp, PeopleEditActivity.class));
         testItemList.add(new TestItem(Constant.TEST_INPUT_METHOD, R.drawable.ic_lock_24dp, null));
+        testItemList.add(new TestItem(Constant.TEST_DOUBLE_RV, R.drawable.ic_lock_24dp, DoubleRecyclerViewActivity.class));
         testItemList.add(new TestItem(Constant.TEST_BITMAP, R.drawable.ic_lock_24dp, null));
         testItemList.add(new TestItem(Constant.TEST_RX_JAVA, R.drawable.ic_lock_24dp, RxJavaActivity.class));
         testItemList.add(new TestItem(Constant.TEST_PERMISSION, R.drawable.ic_lock_24dp, PermissionTestActivity.class));
