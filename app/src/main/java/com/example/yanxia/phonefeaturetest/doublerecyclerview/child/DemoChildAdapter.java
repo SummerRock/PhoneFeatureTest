@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.doublerecyclerview.data.DemoChild;
+import com.example.yanxia.phonefeaturetest.doublerecyclerview.onGetCurrentDemoChildListener;
 
 import java.util.List;
 
@@ -19,9 +20,11 @@ import java.util.List;
 public final class DemoChildAdapter extends RecyclerView.Adapter<DemoChildViewHolder> {
 
     private List<DemoChild> demoChildList;
+    private onGetCurrentDemoChildListener getCurrentDemoChildListener;
 
-    public DemoChildAdapter(@NonNull List<DemoChild> childList) {
+    public DemoChildAdapter(@NonNull List<DemoChild> childList, onGetCurrentDemoChildListener getCurrentDemoChildListener) {
         this.demoChildList = childList;
+        this.getCurrentDemoChildListener = getCurrentDemoChildListener;
     }
 
     @NonNull

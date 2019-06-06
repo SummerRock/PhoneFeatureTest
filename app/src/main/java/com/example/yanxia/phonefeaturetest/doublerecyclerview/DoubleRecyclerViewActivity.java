@@ -20,10 +20,12 @@ import com.example.yanxia.phonefeaturetest.utils.DisplayUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DoubleRecyclerViewActivity extends AppCompatActivity {
+public class DoubleRecyclerViewActivity extends AppCompatActivity implements onGetCurrentDemoChildListener {
 
     private List<DemoParent> demoParentList = DemoDataManager.getInstance().getDemoGroupList();
     private List<DemoChild> demoChildList = new ArrayList<>();
+
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +36,35 @@ public class DoubleRecyclerViewActivity extends AppCompatActivity {
             demoChildList.addAll(demoParent.getDemoChildList());
         }
 
-        ViewPager viewPager = findViewById(R.id.view_pager_demo);
+        viewPager = findViewById(R.id.view_pager_demo);
         viewPager.setAdapter(new DemoChildFragmentStatePagerAdapter(getSupportFragmentManager(), demoChildList));
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view_demo);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        recyclerView.setAdapter(new DemoParentAdapter(demoParentList));
+        recyclerView.setAdapter(new DemoParentAdapter(demoParentList, this));
         recyclerView.addItemDecoration(new CustomItemDecoration(DisplayUtils.dpToPx(10)));
+    }
+
+    @NonNull
+    @Override
+    public DemoChild getCurrentDemoChild() {
+        return demoChildList.get(viewPager.getCurrentItem());
     }
 
     private class CustomItemDecoration extends RecyclerView.ItemDecoration {

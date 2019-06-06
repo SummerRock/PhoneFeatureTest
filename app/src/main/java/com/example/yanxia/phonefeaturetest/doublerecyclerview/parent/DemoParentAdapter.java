@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yanxia.phonefeaturetest.R;
+import com.example.yanxia.phonefeaturetest.doublerecyclerview.onGetCurrentDemoChildListener;
 import com.example.yanxia.phonefeaturetest.doublerecyclerview.child.DemoChildAdapter;
 import com.example.yanxia.phonefeaturetest.doublerecyclerview.data.DemoChild;
 import com.example.yanxia.phonefeaturetest.doublerecyclerview.data.DemoParent;
@@ -22,9 +23,11 @@ public final class DemoParentAdapter extends RecyclerView.Adapter<DemoParentView
 
     private List<DemoParent> demoParentList;
     private int selectPosition;
+    private onGetCurrentDemoChildListener getCurrentDemoChildListener;
 
-    public DemoParentAdapter(@NonNull List<DemoParent> demoParentList) {
+    public DemoParentAdapter(List<DemoParent> demoParentList, onGetCurrentDemoChildListener getCurrentDemoChildListener) {
         this.demoParentList = demoParentList;
+        this.getCurrentDemoChildListener = getCurrentDemoChildListener;
     }
 
     @NonNull
@@ -55,7 +58,7 @@ public final class DemoParentAdapter extends RecyclerView.Adapter<DemoParentView
                 holder.recyclerView.setVisibility(View.VISIBLE);
 
                 if (holder.recyclerView.getAdapter() == null) {
-                    holder.recyclerView.setAdapter(new DemoChildAdapter(demoParent.getDemoChildList()));
+                    holder.recyclerView.setAdapter(new DemoChildAdapter(demoParent.getDemoChildList(), getCurrentDemoChildListener));
                 } else {
                     holder.recyclerView.getAdapter().notifyDataSetChanged();
                 }
