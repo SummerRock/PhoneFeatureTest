@@ -26,7 +26,13 @@ public class DemoDataManager {
             char ch = (char) (i + 65);
             String name = baseName + ch;
             int start = demoData;
-            demoData = demoData + random.nextInt(5) + 1;
+            int range;
+            if (i % 2 == 0) {
+                range = 1;
+            } else {
+                range = 4;
+            }
+            demoData = demoData + range;
             int end = demoData;
             DemoParent demoGroup = new DemoParent(getDemoList(start, end, name), name);
             demoGroupList.add(demoGroup);

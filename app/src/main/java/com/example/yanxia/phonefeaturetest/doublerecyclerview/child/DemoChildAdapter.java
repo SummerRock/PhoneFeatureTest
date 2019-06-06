@@ -50,4 +50,9 @@ public final class DemoChildAdapter extends RecyclerView.Adapter<DemoChildViewHo
     public int getItemCount() {
         return demoChildList.size();
     }
+
+    public void setData(@NonNull List<DemoChild> list) {
+        demoChildList = list;
+        notifyDataSetChanged();
+    }
 }

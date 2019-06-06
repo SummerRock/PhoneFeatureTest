@@ -65,7 +65,7 @@ public final class DemoParentAdapter extends RecyclerView.Adapter<DemoParentView
                 if (holder.recyclerView.getAdapter() == null) {
                     holder.recyclerView.setAdapter(new DemoChildAdapter(demoParent.getDemoChildList(), getCurrentDemoChildListener));
                 } else {
-                    holder.recyclerView.getAdapter().notifyDataSetChanged();
+                    ((DemoChildAdapter) holder.recyclerView.getAdapter()).setData(demoParent.getDemoChildList());
                 }
             }
         } else {
