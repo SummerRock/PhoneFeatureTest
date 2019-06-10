@@ -9,7 +9,6 @@ public class Constant {
     public static final String TEST_DIALOG = "Dialog样式";
     public static final String TEST_HANDLER_THREAD = "HandlerThread测试";
     public static final String TEST_COLOR_MATRIX = "Color Matrix";
-    public static final String TEST_AUTO_PACKAGE = "自动装箱";
     public static final String TEST_STRING_FORMAT = "String格式";
     public static final String TEST_PROGRESS_BAR = "Progress Widget";
     public static final String TEST_HORIZONTAL_RV = "横向RV";

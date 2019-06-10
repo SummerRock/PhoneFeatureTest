@@ -1,4 +1,4 @@
-package com.example.yanxia.phonefeaturetest;
+package com.example.yanxia.phonefeaturetest.testjava;
 
 import com.example.yanxia.phonefeaturetest.utils.CommonLog;
 
@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class TestClass {
 
-    static final String TEST_STRING;
+    public static final String TEST_STRING;
 
     static {
         CommonLog.d("TestClass static init!");

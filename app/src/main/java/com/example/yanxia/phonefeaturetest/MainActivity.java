@@ -48,6 +48,7 @@ import com.example.yanxia.phonefeaturetest.testactivity.SettingsActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.StorageTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ThreadPoolActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ViewFeatureActivity;
+import com.example.yanxia.phonefeaturetest.testjava.TestClass;
 import com.example.yanxia.phonefeaturetest.utils.Constant;
 import com.example.yanxia.phonefeaturetest.viewpager.ViewPagerActivity;
 
@@ -127,7 +128,6 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         testItemList.add(new TestItem(Constant.TEST_DIALOG, R.drawable.ic_lock_24dp, DialogStyleActivity.class));
         testItemList.add(new TestItem(Constant.TEST_HANDLER_THREAD, R.drawable.ic_lock_24dp, HandlerThreadActivity.class));
         testItemList.add(new TestItem(Constant.TEST_COLOR_MATRIX, R.drawable.ic_lock_24dp, ColorMatrixTestActivity.class));
-        testItemList.add(new TestItem(Constant.TEST_AUTO_PACKAGE, R.drawable.ic_lock_24dp));
         testItemList.add(new TestItem(Constant.TEST_STRING_FORMAT, R.drawable.ic_lock_24dp));
         testItemList.add(new TestItem(Constant.TEST_PROGRESS_BAR, R.drawable.ic_lock_24dp, ProgressBarTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_HORIZONTAL_RV, R.drawable.ic_lock_24dp, HorizonRvTestActivity.class));
@@ -159,9 +159,6 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
             return;
         }
         switch (testItem.getName()) {
-            case Constant.TEST_AUTO_PACKAGE:
-                TestClass.mainTest();
-                break;
             case Constant.TEST_STRING_FORMAT:
                 TestString.testStringFormat();
                 break;
