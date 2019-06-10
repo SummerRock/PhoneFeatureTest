@@ -1,19 +1,20 @@
 package com.example.yanxia.phonefeaturetest.testactivity;
 
+import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.annotation.BindView;
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.utils.CommonLog;
-import com.example.yanxia.phonefeaturetest.utils.DisplayUtils;
 
 /**
  * @author yanxia-Mac
@@ -28,6 +29,12 @@ public final class ColorMatrixTestActivity extends AppCompatActivity {
     @BindView(R.id.color_matrix_test_saturation_tv)
     private TextView saturationText;
 
+
+    private int originColor = Color.parseColor("#F2F2F2");
+    private ImageView imageView1;
+    private ImageView imageView2;
+    private ImageView imageView3;
+
     public ColorMatrixTestActivity() {
         CommonLog.d("construct init!");
     }
@@ -39,7 +46,7 @@ public final class ColorMatrixTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_color_matrix_test);
         testImageView = findViewById(R.id.color_matrix_test_image);
         saturationText = findViewById(R.id.color_matrix_test_saturation_tv);
-        saturationText.setTextColor(ContextCompat.getColor(this, DisplayUtils.getResourceIdByName(this, "control_background", "color")));
+        // saturationText.setTextColor(ContextCompat.getColor(this, DisplayUtils.getResourceIdByName(this, "control_background", "color")));
         SeekBar seekBar = findViewById(R.id.color_matrix_adjust_seek_bar);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -60,5 +67,26 @@ public final class ColorMatrixTestActivity extends AppCompatActivity {
 
             }
         });
+
+        imageView1 = findViewById(R.id.color_image_1);
+        imageView2 = findViewById(R.id.color_image_2);
+
+        imageView1.setBackgroundColor(originColor);
+        imageView2.setBackgroundColor(getDarkSkinColor(originColor));
+    }
+
+    @ColorInt
+    public static int getDarkSkinColor(@ColorInt int originColor) {
+        final float[] hsv = new float[3];
+        Color.colorToHSV(originColor, hsv);
+        float hue = hsv[0];
+        if (hue - 5 < 0) {
+            hsv[0] = 360 + hue - 5;
+        } else {
+            hsv[0] = hue - 5;
+        }
+        hsv[1] = hsv[1] + 5;
+        hsv[2] = hsv[2] - 10;
+        return Color.HSVToColor(hsv);
     }
 }
