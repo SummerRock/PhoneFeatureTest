@@ -14,4 +14,12 @@
         android:layout_height="100dp"
         app:svg="puzzle_nine.svg" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="updateSvg"
+        android:text="updateSVG"
+        android:textSize="20sp" />
+
 </LinearLayout>
