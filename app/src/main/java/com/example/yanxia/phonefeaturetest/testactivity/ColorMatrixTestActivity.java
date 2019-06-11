@@ -104,4 +104,8 @@ public final class ColorMatrixTestActivity extends AppCompatActivity {
         hsv[2] = 0.84f;
         return Color.HSVToColor(hsv);
     }
+
+    public static String converColorIntToHexString(@ColorInt int colorInt) {
+        return String.format("#%06X", (0xFFFFFF & colorInt));
+    }
 }
