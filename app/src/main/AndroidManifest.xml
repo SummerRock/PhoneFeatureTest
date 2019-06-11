@@ -108,7 +108,8 @@
         <activity
             android:name=".testactivity.GpsTestActivity"
             android:label="@string/title_activity_gps_test"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".testactivity.QRScanTestActivity"
             android:label="@string/title_activity_qrscan_test"
