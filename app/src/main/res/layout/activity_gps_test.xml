@@ -9,6 +9,7 @@
     tools:context="com.example.yanxia.phonefeaturetest.testactivity.GpsTestActivity">
 
     <com.caverock.androidsvg.SVGImageView
+        android:id="@+id/puzzle_svg_image_view"
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:svg="puzzle_nine.svg" />
