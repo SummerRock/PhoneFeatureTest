@@ -25,9 +25,10 @@ import java.util.Locale;
 public class SVGTestActivity extends AppCompatActivity {
     private static final String TAG = "test_log";
 
-    private static final String COLOR_ENABLE = GraphicUtils.convertColorIntToHexString(Color.CYAN);
-    private static final String COLOR_DISABLE = GraphicUtils.convertColorIntToHexString(Color.RED);
+    private static final String COLOR_1 = GraphicUtils.convertColorIntToHexString(Color.CYAN);
+    private static final String COLOR_2 = GraphicUtils.convertColorIntToHexString(Color.RED);
 
+    private static final String SVG_ASSET_URL = "puzzle_nine.svg";
     private SVGImageView puzzleImageView;
     private ImageView imageView2;
 
@@ -70,10 +71,10 @@ public class SVGTestActivity extends AppCompatActivity {
         StringBuilder cssString = new StringBuilder();
         for (int i = 0; i < dataArray.length; i++) {
             if (dataArray[i] > 0) {
-                String temp = String.format(Locale.getDefault(), ".brick%d { fill:%s; } ", i, COLOR_ENABLE);
+                String temp = String.format(Locale.getDefault(), ".brick%d { fill:%s; } ", i, COLOR_1);
                 cssString.append(temp);
             } else {
-                String temp = String.format(Locale.getDefault(), ".brick%d { fill:%s; } ", i, COLOR_DISABLE);
+                String temp = String.format(Locale.getDefault(), ".brick%d { fill:%s; } ", i, COLOR_2);
                 cssString.append(temp);
             }
         }
@@ -83,7 +84,7 @@ public class SVGTestActivity extends AppCompatActivity {
     private void initLocaleSvg() {
         // Check whether svg attribute is a string.
         // Could be a URL/filename or an SVG itself
-        String url = "puzzle_nine.svg";
+        String url = SVG_ASSET_URL;
         if (internalSetImageAsset(url))
             return;
         // Last chance, maybe there is an actual SVG in the string
@@ -97,6 +98,7 @@ public class SVGTestActivity extends AppCompatActivity {
             new LoadURITask().execute(is);
             return true;
         } catch (IOException e) {
+            e.printStackTrace();
             return false;
         }
     }
@@ -106,7 +108,7 @@ public class SVGTestActivity extends AppCompatActivity {
             try {
                 return SVG.getFromInputStream(is[0]);
             } catch (SVGParseException e) {
-                Log.e("SVGImageView", "Parse error loading URI: " + e.getMessage());
+                Log.e(TAG, "Parse error loading URI: " + e.getMessage());
             } finally {
                 try {
                     is[0].close();

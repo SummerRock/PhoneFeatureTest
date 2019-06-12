@@ -4,8 +4,8 @@
 	 viewBox="0 0 120 120" style="enable-background:new 0 0 120 120;" xml:space="preserve">
 <g id="artstyledefault_x5F_lefteye_x5F_101_x5F_front_x5F_default">
 	<g>
-		<path style="fill:#D8D8D8;"  fill-opacity="1" d="M99.528,47.018c0,0-6.849-14.171-24.01-14.171c-9.188,0-21.256,4.937-30.006,15.082
-			c0,0,5.603-4.24,12.625-6.935C69.884,36.486,87.085,34.101,99.528,47.018"/>
+		<path style="fill:#D8D8D8;" class="eyelid_top" d="M99.528,47.018c0,0-6.849-14.171-24.01-14.171c-9.188,0-21.256,4.937-30.006,15.082
+			c0,0,5.603-4.24,12.625-6.935C69.884,36.486,87.085,34.101,99.528,47.018" fill-opacity="1" />
 		<g>
 			<g>
 				<g>
