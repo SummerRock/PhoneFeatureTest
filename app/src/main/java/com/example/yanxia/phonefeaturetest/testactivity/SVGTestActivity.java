@@ -28,7 +28,7 @@ public class SVGTestActivity extends AppCompatActivity {
     private static final String COLOR_1 = GraphicUtils.convertColorIntToHexString(Color.CYAN);
     private static final String COLOR_2 = GraphicUtils.convertColorIntToHexString(Color.RED);
 
-    private static final String SVG_ASSET_URL = "test_eye.svg";
+    private static final String SVG_ASSET_URL = "puzzle_nine.svg";
     private SVGImageView puzzleImageView;
     private ImageView imageView2;
 
@@ -63,8 +63,7 @@ public class SVGTestActivity extends AppCompatActivity {
         dataArray[3] = 2;
         dataArray[5] = 2;
         dataArray[8] = 2;
-        // String css = getCssStringFromDataArray(dataArray);
-        String css = ".eyelid_top { fill:#FF0000; } .eyeball { fill:#FF0000; }";
+        String css = getCssStringFromDataArray(dataArray);
         return css;
     }
 
