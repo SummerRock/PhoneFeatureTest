@@ -1,5 +1,8 @@
 package com.example.yanxia.phonefeaturetest.testactivity;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Picture;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,7 +21,7 @@ import java.io.InputStream;
 import java.util.Locale;
 
 public class GpsTestActivity extends AppCompatActivity {
-    private static final String TAG = "GpsTestActivity";
+    private static final String TAG = "test_log";
 
     private static final String COLOR_ENABLE = "#f55b70";
     private static final String COLOR_DISABLE = "#641D1D";
@@ -36,27 +39,36 @@ public class GpsTestActivity extends AppCompatActivity {
 
         puzzleImageView = findViewById(R.id.puzzle_svg_image_view);
 
-        long[] dataArray = new long[9];
-        dataArray[3] = 2;
-        dataArray[5] = 2;
-        dataArray[8] = 2;
-        String css = getCssStringFromDataArray(dataArray);
-        renderOptions.css(css);
+        renderOptions.css(getCssString());
 
         initLocaleSvg();
     }
 
     public void updateSvg(View view) {
-        localeSvg.renderToPicture(renderOptions);
-        puzzleImageView.setSVG(localeSvg);
+        Picture picture = localeSvg.renderToPicture(renderOptions);
 
-        // long[] dataArray = new long[9];
-        // dataArray[3] = 2;
-        // dataArray[5] = 2;
-        // dataArray[8] = 2;
-        // String css = getCssStringFromDataArray(dataArray);
-        //
-        // puzzleImageView.setCSS(css);
+        Bitmap bitmap = createBitmapFromPicture(picture, 100, 100);
+        puzzleImageView.setImageBitmap(bitmap);
+    }
+
+    public static Bitmap createBitmapFromPicture(Picture source, int width, int height) {
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        if (source.getWidth() != width || source.getHeight() != height) {
+            canvas.scale(width / (float) source.getWidth(), height / (float) source.getHeight());
+        }
+        canvas.drawPicture(source);
+        canvas.setBitmap(null);
+        return bitmap;
+    }
+
+    private String getCssString() {
+        long[] dataArray = new long[9];
+        dataArray[3] = 2;
+        dataArray[5] = 2;
+        dataArray[8] = 2;
+        String css = getCssStringFromDataArray(dataArray);
+        return css;
     }
 
     private String getCssStringFromDataArray(long[] dataArray) {
