@@ -1,7 +1,7 @@
 package com.example.yanxia.phonefeaturetest.testactivity;
 
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Picture;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import com.caverock.androidsvg.SVG;
 import com.caverock.androidsvg.SVGImageView;
 import com.caverock.androidsvg.SVGParseException;
 import com.example.yanxia.phonefeaturetest.R;
+import com.example.yanxia.phonefeaturetest.utils.GraphicUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,8 +25,8 @@ import java.util.Locale;
 public class SVGTestActivity extends AppCompatActivity {
     private static final String TAG = "test_log";
 
-    private static final String COLOR_ENABLE = "#f55b70";
-    private static final String COLOR_DISABLE = "#641D1D";
+    private static final String COLOR_ENABLE = GraphicUtils.convertColorIntToHexString(Color.CYAN);
+    private static final String COLOR_DISABLE = GraphicUtils.convertColorIntToHexString(Color.RED);
 
     private SVGImageView puzzleImageView;
     private ImageView imageView2;
@@ -52,19 +53,8 @@ public class SVGTestActivity extends AppCompatActivity {
         renderOptions.css(getCssString());
         Picture picture = localeSvg.renderToPicture(renderOptions);
 
-        Bitmap bitmap = createBitmapFromPicture(picture, picture.getWidth(), picture.getHeight());
+        Bitmap bitmap = GraphicUtils.createBitmapFromPicture(picture, picture.getWidth(), picture.getHeight());
         imageView2.setImageBitmap(bitmap);
-    }
-
-    public static Bitmap createBitmapFromPicture(Picture source, int width, int height) {
-        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        if (source.getWidth() != width || source.getHeight() != height) {
-            canvas.scale(width / (float) source.getWidth(), height / (float) source.getHeight());
-        }
-        canvas.drawPicture(source);
-        canvas.setBitmap(null);
-        return bitmap;
     }
 
     private String getCssString() {
