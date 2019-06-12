@@ -106,8 +106,7 @@
             android:label="@string/title_activity_second" />
         <activity android:name=".testactivity.CameraTestActivity" />
         <activity
-            android:name=".testactivity.GpsTestActivity"
-            android:label="@string/title_activity_gps_test"
+            android:name=".testactivity.SVGTestActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity

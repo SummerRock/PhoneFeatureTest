@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="com.example.yanxia.phonefeaturetest.testactivity.GpsTestActivity">
+    tools:context="com.example.yanxia.phonefeaturetest.testactivity.SVGTestActivity">
 
     <com.caverock.androidsvg.SVGImageView
         android:id="@+id/puzzle_svg_image_view"

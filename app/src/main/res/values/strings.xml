@@ -8,7 +8,6 @@
     <string name="title_activity_second">SecondTestActivity</string>
 
     <string name="title_activity_touch_test">TouchTestActivity</string>
-    <string name="title_activity_gps_test">GpsTestActivity</string>
     <string name="gpslocation">Gps Location:</string>
     <string name="title_activity_qrscan_test">QRScanTestActivity</string>
     <string name="title_activity_handler_thread">HandlerThreadActivity</string>

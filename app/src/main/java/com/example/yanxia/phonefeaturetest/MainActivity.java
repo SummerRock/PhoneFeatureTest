@@ -34,7 +34,7 @@ import com.example.yanxia.phonefeaturetest.testactivity.DialogStyleActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.EasyDrawableActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.EventBusTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.FullscreenActivity;
-import com.example.yanxia.phonefeaturetest.testactivity.GpsTestActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.SVGTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.HandlerThreadActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.InputMethodTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.JavaQueueActivity;
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         testItemList.add(new TestItem(Constant.TEST_PROGRESS_BAR, R.drawable.ic_lock_24dp, ProgressBarTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_HORIZONTAL_RV, R.drawable.ic_lock_24dp, HorizonRvTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_RV_INSIDE_VIEW_PAGER, R.drawable.ic_lock_24dp, ViewPagerActivity.class));
-        testItemList.add(new TestItem(Constant.TEST_GPS, R.drawable.ic_lock_24dp, GpsTestActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_SVG, R.drawable.ic_lock_24dp, SVGTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_EVENT_BUS, R.drawable.ic_lock_24dp, EventBusTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_STORAGE, R.drawable.ic_lock_24dp, StorageTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_CAMERA, R.drawable.ic_lock_24dp, CameraTestActivity.class));

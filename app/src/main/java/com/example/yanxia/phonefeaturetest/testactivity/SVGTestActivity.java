@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Locale;
 
-public class GpsTestActivity extends AppCompatActivity {
+public class SVGTestActivity extends AppCompatActivity {
     private static final String TAG = "test_log";
 
     private static final String COLOR_ENABLE = "#f55b70";
@@ -35,7 +35,7 @@ public class GpsTestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gps_test);
+        setContentView(R.layout.activity_svg_test);
 
         puzzleImageView = findViewById(R.id.puzzle_svg_image_view);
         imageView2 = findViewById(R.id.svg_test_image_2);

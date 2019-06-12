@@ -4,8 +4,8 @@
     android:id="@+id/content_gps_test"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.yanxia.phonefeaturetest.testactivity.GpsTestActivity"
-    tools:showIn="@layout/activity_gps_test">
+    tools:context="com.example.yanxia.phonefeaturetest.testactivity.SVGTestActivity"
+    tools:showIn="@layout/activity_svg_test">
 
     <TextView
         android:id="@+id/tv_gps"
