@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,8 +28,7 @@ public class GpsTestActivity extends AppCompatActivity {
     private static final String COLOR_DISABLE = "#641D1D";
 
     private SVGImageView puzzleImageView;
-
-    private RenderOptions renderOptions = new RenderOptions();
+    private ImageView imageView2;
 
     private SVG localeSvg;
 
@@ -38,17 +38,22 @@ public class GpsTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gps_test);
 
         puzzleImageView = findViewById(R.id.puzzle_svg_image_view);
-
-        renderOptions.css(getCssString());
+        imageView2 = findViewById(R.id.svg_test_image_2);
 
         initLocaleSvg();
     }
 
+    public void updateWithCss(View view) {
+        puzzleImageView.setCSS(getCssString());
+    }
+
     public void updateSvg(View view) {
+        RenderOptions renderOptions = new RenderOptions();
+        renderOptions.css(getCssString());
         Picture picture = localeSvg.renderToPicture(renderOptions);
 
-        Bitmap bitmap = createBitmapFromPicture(picture, 100, 100);
-        puzzleImageView.setImageBitmap(bitmap);
+        Bitmap bitmap = createBitmapFromPicture(picture, picture.getWidth(), picture.getHeight());
+        imageView2.setImageBitmap(bitmap);
     }
 
     public static Bitmap createBitmapFromPicture(Picture source, int width, int height) {
@@ -104,7 +109,6 @@ public class GpsTestActivity extends AppCompatActivity {
         } catch (IOException e) {
             return false;
         }
-
     }
 
     private class LoadURITask extends AsyncTask<InputStream, Integer, SVG> {
@@ -116,7 +120,9 @@ public class GpsTestActivity extends AppCompatActivity {
             } finally {
                 try {
                     is[0].close();
-                } catch (IOException e) { /* do nothing */ }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             return null;
         }
@@ -131,7 +137,7 @@ public class GpsTestActivity extends AppCompatActivity {
             localeSvg = SVG.getFromString(url);
         } catch (SVGParseException e) {
             // Failed to interpret url as a resource, a filename, or an actual SVG...
-            Log.e("SVGImageView", "Could not find SVG at: " + url);
+            Log.e(TAG, "Could not find SVG at: " + url);
         }
     }
 }
