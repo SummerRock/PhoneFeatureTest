@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.example.yanxia.phonefeaturetest.testFragment.PluginTestFragment">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/plugin_load_apk_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="加载APK" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/plugin_jump_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="跳转到插件Activity" />
+
+</LinearLayout>

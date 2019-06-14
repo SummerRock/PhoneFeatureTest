@@ -27,6 +27,7 @@ import com.example.yanxia.phonefeaturetest.multiProcess.MyContentProvider;
 import com.example.yanxia.phonefeaturetest.multiProcess.socket.TCPClientActivity;
 import com.example.yanxia.phonefeaturetest.notifyitemtest.RecyclerViewTestActivity;
 import com.example.yanxia.phonefeaturetest.testFragment.BitmapTestFragment;
+import com.example.yanxia.phonefeaturetest.testFragment.PluginTestFragment;
 import com.example.yanxia.phonefeaturetest.testactivity.AnimationTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.CameraTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ColorMatrixTestActivity;
@@ -123,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         testItemList.add(new TestItem(Constant.TEST_INPUT_METHOD, R.drawable.ic_lock_24dp, null));
         testItemList.add(new TestItem(Constant.TEST_DOUBLE_RV, R.drawable.ic_lock_24dp, DoubleRecyclerViewActivity.class));
         testItemList.add(new TestItem(Constant.TEST_BITMAP, R.drawable.ic_lock_24dp, null));
+        testItemList.add(new TestItem(Constant.TEST_PLUGIN, R.drawable.ic_lock_24dp, null));
         testItemList.add(new TestItem(Constant.TEST_RX_JAVA, R.drawable.ic_lock_24dp, RxJavaActivity.class));
         testItemList.add(new TestItem(Constant.TEST_PERMISSION, R.drawable.ic_lock_24dp, PermissionTestActivity.class));
         testItemList.add(new TestItem(Constant.TEST_DIALOG, R.drawable.ic_lock_24dp, DialogStyleActivity.class));
@@ -183,6 +185,9 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
                 break;
             case Constant.TEST_BITMAP:
                 BitmapTestFragment.newInstance().show(getSupportFragmentManager(), BitmapTestFragment.class.getSimpleName());
+                break;
+            case Constant.TEST_PLUGIN:
+                PluginTestFragment.newInstance().show(getSupportFragmentManager(), PluginTestFragment.class.getSimpleName());
                 break;
             default:
                 Toast.makeText(MainActivity.this, "you clicked testName " + testItem.getName(), Toast.LENGTH_SHORT).show();

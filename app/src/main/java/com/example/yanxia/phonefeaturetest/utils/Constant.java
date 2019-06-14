@@ -37,4 +37,5 @@ public class Constant {
     public static final String TEST_PEOPLE_DATA = "数据管理";
     public static final String TEST_BITMAP = "Bitmap";
     public static final String TEST_DOUBLE_RV = "双重RV";
+    public static final String TEST_PLUGIN = "插件化";
 }
