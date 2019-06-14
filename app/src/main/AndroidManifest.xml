@@ -102,6 +102,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="com.example.pluginlibrary.ProxyActivity"
+            android:launchMode="singleTop" />
+        <activity
             android:name=".testactivity.SecondTestActivity"
             android:label="@string/title_activity_second" />
         <activity android:name=".testactivity.CameraTestActivity" />

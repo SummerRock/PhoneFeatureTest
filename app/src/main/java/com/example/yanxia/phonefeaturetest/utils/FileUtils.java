@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.net.Uri;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -17,6 +18,40 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class FileUtils {
+
+
+    public static String copyAssetAndWrite(Context context, String fileName) {
+        try {
+            File cacheDir = context.getCacheDir();
+            if (!cacheDir.exists()) {
+                cacheDir.mkdirs();
+            }
+            File outFile = new File(cacheDir, fileName);
+            if (!outFile.exists()) {
+                boolean res = outFile.createNewFile();
+                if (res) {
+                    InputStream is = context.getAssets().open(fileName);
+                    FileOutputStream fos = new FileOutputStream(outFile);
+                    byte[] buffer = new byte[is.available()];
+                    int byteCount;
+                    while ((byteCount = is.read(buffer)) != -1) {
+                        fos.write(buffer, 0, byteCount);
+                    }
+                    fos.flush();
+                    is.close();
+                    fos.close();
+                    Toast.makeText(context, "下载成功", Toast.LENGTH_SHORT).show();
+                    return outFile.getAbsolutePath();
+                }
+            } else {
+                Toast.makeText(context, "文件已存在", Toast.LENGTH_SHORT).show();
+                return outFile.getAbsolutePath();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 
     public static boolean copyFile(final String srcPath, final String destPath) {
         try {

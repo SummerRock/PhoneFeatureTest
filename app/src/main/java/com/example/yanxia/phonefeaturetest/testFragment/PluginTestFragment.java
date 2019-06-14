@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import com.example.pluginlibrary.PluginManager;
 import com.example.pluginlibrary.ProxyActivity;
 import com.example.yanxia.phonefeaturetest.R;
+import com.example.yanxia.phonefeaturetest.utils.FileUtils;
 
 public class PluginTestFragment extends BaseTestFragment {
 
@@ -32,7 +33,7 @@ public class PluginTestFragment extends BaseTestFragment {
         View rootView = inflater.inflate(R.layout.fragment_plugin_dialog, container, false);
         Button loadButton = rootView.findViewById(R.id.plugin_load_apk_button);
         loadButton.setOnClickListener(v -> {
-            String apkPath = "";
+            String apkPath = FileUtils.copyAssetAndWrite(getContext(), "np.apk");
             PluginManager.getInstance().loadApk(apkPath);
         });
 
