@@ -2,6 +2,7 @@ package com.example.yanxia.phonefeaturetest.testFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.example.yanxia.phonefeaturetest.utils.FileUtils;
 
 public class PluginTestFragment extends BaseTestFragment {
 
+    public static final String PLUG_IN_APK_PATH = "myplugin.apk";
     public static PluginTestFragment newInstance() {
         return new PluginTestFragment();
     }
@@ -33,7 +35,8 @@ public class PluginTestFragment extends BaseTestFragment {
         View rootView = inflater.inflate(R.layout.fragment_plugin_dialog, container, false);
         Button loadButton = rootView.findViewById(R.id.plugin_load_apk_button);
         loadButton.setOnClickListener(v -> {
-            String apkPath = FileUtils.copyAssetAndWrite(getContext(), "np.apk");
+            String apkPath = FileUtils.copyAssetAndWrite(getContext(), PLUG_IN_APK_PATH);
+            Log.i("xiayan", "apkPath: " + apkPath);
             PluginManager.getInstance().loadApk(apkPath);
         });
 
