@@ -74,4 +74,22 @@ public class PluginManager {
         File file = context.getDir("dex", Context.MODE_PRIVATE);
         return new DexClassLoader(apkPath, file.getAbsolutePath(), null, context.getClassLoader());
     }
+
+    private static AssetManager createAssetManager2(String apkPath) {
+        try {
+            AssetManager assetManager = AssetManager.class.newInstance();
+            try {
+                AssetManager.class.getDeclaredMethod("addAssetPath", String.class).invoke(
+                        assetManager, apkPath);
+            } catch (Throwable th) {
+                System.out.println("debug:createAssetManager :" + th.getMessage());
+                th.printStackTrace();
+            }
+            return assetManager;
+        } catch (Throwable th) {
+            System.out.println("debug:createAssetManager :" + th.getMessage());
+            th.printStackTrace();
+        }
+        return null;
+    }
 }
