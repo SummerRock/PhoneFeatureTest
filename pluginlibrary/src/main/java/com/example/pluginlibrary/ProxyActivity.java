@@ -1,5 +1,6 @@
 package com.example.pluginlibrary;
 
+import android.app.Activity;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -11,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 /**
  * 代理Activity, 管理插件Activity的生命周期
  */
-public class ProxyActivity extends AppCompatActivity {
+public class ProxyActivity extends Activity {
 
     private String mClassName;
     private PluginApk pluginApk;
