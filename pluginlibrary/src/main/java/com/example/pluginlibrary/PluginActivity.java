@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class PluginActivity extends AppCompatActivity implements IPlugin {
+public class PluginActivity extends Activity implements IPlugin {
 
     private int mFrom = FROM_INTERNAL;
     private Activity mProxyActivity;
