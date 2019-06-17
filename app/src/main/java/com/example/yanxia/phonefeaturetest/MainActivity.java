@@ -65,9 +65,6 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
     private List<TestItem> testItemList = new ArrayList<>();
     private static final int REQUEST_CODE = 10;
 
-    @SuppressWarnings("unused")
-    private static final String MAIN_STRING = TestClass.TEST_STRING;
-
     private People person = new People(System.currentTimeMillis(), "Summer", "BJ", "none");
 
     @Override
