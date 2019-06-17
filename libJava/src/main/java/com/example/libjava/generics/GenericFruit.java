@@ -15,10 +15,10 @@ public class GenericFruit {
         }
     }
 
-    static class Person {
+    static class Unknown {
         @Override
         public String toString() {
-            return "Person";
+            return "Unknown thing";
         }
     }
 
@@ -41,7 +41,7 @@ public class GenericFruit {
 
     public static void main(String[] args) {
         Apple apple = new Apple();
-        Person person = new Person();
+        Unknown unknown = new Unknown();
 
         GenerateTest<Fruit> generateTest = new GenerateTest<>();
         //apple是Fruit的子类，所以这里可以
@@ -51,10 +51,10 @@ public class GenericFruit {
 
         //使用这两个方法都可以成功
         generateTest.show_2(apple);
-        generateTest.show_2(person);
+        generateTest.show_2(unknown);
 
         //使用这两个方法也都可以成功
         generateTest.show_3(apple);
-        generateTest.show_3(person);
+        generateTest.show_3(unknown);
     }
 }
