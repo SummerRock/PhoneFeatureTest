@@ -1,4 +1,4 @@
-package com.example.binarytree;
+package com.example.libarithmetic.binarytree;
 
 /**
  * https://mp.weixin.qq.com/s/AZPtJ63b65u-sBZWEatYvA

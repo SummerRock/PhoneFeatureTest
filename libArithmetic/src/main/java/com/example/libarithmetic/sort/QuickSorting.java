@@ -1,4 +1,4 @@
-package com.example.sort;
+package com.example.libarithmetic.sort;
 
 public class QuickSorting {
     public static void quickSort(int[] a) {

@@ -1,4 +1,4 @@
-package com.example.sort;
+package com.example.libarithmetic.sort;
 
 /**
  * Copy from https://github.com/cxzl/SortingTest

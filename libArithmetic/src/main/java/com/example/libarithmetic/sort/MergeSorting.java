@@ -1,4 +1,4 @@
-package com.example.sort;
+package com.example.libarithmetic.sort;
 
 public class MergeSorting {
     private static int[] aux; //归并所需的辅助数组

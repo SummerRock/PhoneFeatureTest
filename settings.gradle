@@ -1,1 +1,1 @@
-include ':app', ':annotation', ':myplugin', ':pluginlibrary'
+include ':app', ':annotation', ':myplugin', ':pluginlibrary', ':libArithmetic'

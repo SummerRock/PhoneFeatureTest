@@ -1,4 +1,4 @@
-package com.example.sort;
+package com.example.libarithmetic.sort;
 
 public class ShellSorting {
     public static void shellSort(int[] a) {

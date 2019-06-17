@@ -1,4 +1,4 @@
-package com.example.sort;
+package com.example.libarithmetic.sort;
 
 public class SimpleSorting {
     public static void insertionSort(int[] a) {

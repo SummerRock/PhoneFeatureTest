@@ -1,4 +1,4 @@
-package com.example.binarytree;
+package com.example.libarithmetic.binarytree;
 
 public class TreeNode {
     int val;
