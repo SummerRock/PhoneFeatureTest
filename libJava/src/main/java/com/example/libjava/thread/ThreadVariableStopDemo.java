@@ -1,4 +1,4 @@
-package com.example.yanxia.phonefeaturetest.testjava.thread;
+package com.example.libjava.thread;
 
 public class ThreadVariableStopDemo {
     public static void main(String[] args) throws InterruptedException {

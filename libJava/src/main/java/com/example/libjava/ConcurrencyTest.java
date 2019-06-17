@@ -1,4 +1,4 @@
-package com.example.yanxia.phonefeaturetest.testjava;
+package com.example.libjava;
 
 /**
  * 并发和单线程执行测试

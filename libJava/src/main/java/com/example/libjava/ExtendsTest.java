@@ -1,4 +1,4 @@
-package com.example.yanxia.phonefeaturetest.testjava;
+package com.example.libjava;
 
 class A {
     public String show(D obj) {

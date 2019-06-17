@@ -1,4 +1,4 @@
-package com.example.yanxia.phonefeaturetest.testjava;
+package com.example.libjava;
 
 //step #1 - Create a funnctional interface.
 

@@ -1,4 +1,4 @@
-package com.example.yanxia.phonefeaturetest.testjava;
+package com.example.libjava;
 
 import com.example.yanxia.phonefeaturetest.utils.CommonLog;
 

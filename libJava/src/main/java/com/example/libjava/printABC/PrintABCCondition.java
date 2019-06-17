@@ -1,4 +1,4 @@
-package com.example.yanxia.phonefeaturetest.testjava.printABC;
+package com.example.libjava.printABC;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;

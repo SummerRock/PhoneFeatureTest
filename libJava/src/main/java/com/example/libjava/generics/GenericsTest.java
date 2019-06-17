@@ -1,4 +1,4 @@
-package com.example.yanxia.phonefeaturetest.testjava.generics;
+package com.example.libjava.generics;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.yanxia.phonefeaturetest.testjava.annotation;
+package com.example.libjava.annotation;
 
 import java.lang.annotation.Repeatable;
 

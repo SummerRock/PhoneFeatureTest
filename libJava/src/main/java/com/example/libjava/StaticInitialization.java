@@ -1,4 +1,4 @@
-package com.example.yanxia.phonefeaturetest.testjava;
+package com.example.libjava;
 //: initialization/StaticInitialization.java
 // Specifying initial values in a class definition.
 

@@ -1,4 +1,4 @@
-package com.example.yanxia.phonefeaturetest.testjava.generics;
+package com.example.libjava.generics;
 
 public class StaticGenerator<T> {
     /**

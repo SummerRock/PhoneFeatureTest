@@ -1,4 +1,4 @@
-package com.example.yanxia.phonefeaturetest.testjava.generics;
+package com.example.libjava.generics;
 
 /**
  * @param <T> 此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型
