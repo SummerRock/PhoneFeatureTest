@@ -1,27 +1,6 @@
 package com.example.libjava;
 
-import com.example.yanxia.phonefeaturetest.utils.CommonLog;
-
-import java.util.Random;
-
 public class TestClass {
-
-    public static final String TEST_STRING;
-
-    static {
-        CommonLog.d("TestClass static init!");
-        // try {
-        //     Thread.sleep(2000);
-        // } catch (InterruptedException e) {
-        //     e.printStackTrace();
-        // }
-        TEST_STRING = "testOne";
-        CommonLog.d("TestClass static end!");
-    }
-
-    {
-        CommonLog.d("TestClass common init!");
-    }
 
     /**
      * https://www.cnblogs.com/dolphin0520/p/3780005.html
@@ -43,7 +22,7 @@ public class TestClass {
     }
 
     private static void printBoolean(boolean b) {
-        CommonLog.d(String.valueOf(b));
+        System.out.println(String.valueOf(b));
     }
 
     private Integer test() {
@@ -61,18 +40,11 @@ public class TestClass {
     }
 
     public void throwException() throws Exception {
-        CommonLog.d("haha");
+        System.out.println("haha");
     }
 
     public void noException(int a) {
         int b = a + 2;
-        CommonLog.d("haha" + b);
-    }
-
-    public static void testRandom() {
-        Random random = new Random();
-        for (int i = 0; i < 30; i++) {
-            CommonLog.d("random number: " + random.nextInt(10));
-        }
+        System.out.println("haha" + b);
     }
 }
