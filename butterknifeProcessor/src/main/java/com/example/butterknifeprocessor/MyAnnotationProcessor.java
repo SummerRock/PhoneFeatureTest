@@ -86,7 +86,7 @@ public class MyAnnotationProcessor extends AbstractProcessor {
     private void createFile(TypeElement enclosingElement, String bindViewFiledClassType, String bindViewFiledName, int id) {
         String pkName = mElementUtils.getPackageOf(enclosingElement).getQualifiedName().toString();
         try {
-            JavaFileObject jfo = mFiler.createSourceFile(pkName + ".ViewBinding", new Element[]{});
+            JavaFileObject jfo = mFiler.createSourceFile(pkName + "$ViewBinder", new Element[]{});
             Writer writer = jfo.openWriter();
             writer.write(brewCode(pkName, bindViewFiledClassType, bindViewFiledName, id));
             writer.flush();
@@ -109,6 +109,22 @@ public class MyAnnotationProcessor extends AbstractProcessor {
         return builder.toString();
     }
 
+    private void demo() {
+        try {
+            JavaFileObject javaFileObject = mFiler.createSourceFile("ColorMatrixTestActivity$ViewBinder");
+            Writer writer = javaFileObject.openWriter();
+            writer.write("package com.example.yanxia.phonefeaturetest.testactivity;");
+            writer.write("\n");
+            writer.write("import com.example.butterknifelibrary.ViewBinder;");
+            writer.write("\n");
+            writer.write("public class ColorMatrixTestActivity$ViewBinder implements ViewBinder<ColorMatrixTestActivity> {");
+            writer.write("\n");
+            writer.write("}");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void note(String msg) {
         mMessager.printMessage(Diagnostic.Kind.NOTE, msg);
