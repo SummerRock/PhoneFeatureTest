@@ -49,7 +49,6 @@ import com.example.yanxia.phonefeaturetest.testactivity.SettingsActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.StorageTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ThreadPoolActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ViewFeatureActivity;
-import com.example.yanxia.phonefeaturetest.testjava.TestClass;
 import com.example.yanxia.phonefeaturetest.utils.Constant;
 import com.example.yanxia.phonefeaturetest.viewpager.ViewPagerActivity;
 

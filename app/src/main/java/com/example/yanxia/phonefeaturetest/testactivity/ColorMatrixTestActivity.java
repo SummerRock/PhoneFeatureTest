@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.annotation.BindView;
+import com.example.butterknifelibrary.ButterKnife;
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.utils.CommonLog;
 
@@ -46,6 +47,7 @@ public final class ColorMatrixTestActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         CommonLog.d("onCreate!");
         super.onCreate(savedInstanceState);
+        ButterKnife.bind(this);
         setContentView(R.layout.activity_color_matrix_test);
         testImageView = findViewById(R.id.color_matrix_test_image);
         saturationText = findViewById(R.id.color_matrix_test_saturation_tv);
