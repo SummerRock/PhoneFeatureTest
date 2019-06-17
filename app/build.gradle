@@ -69,4 +69,5 @@ dependencies {
     implementation project(path: ':annotation')
     annotationProcessor 'com.google.auto.service:auto-service:1.0-rc3'
     implementation project(path: ':pluginlibrary')
+    implementation project(path: ':butterknifelibrary')
 }
