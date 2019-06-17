@@ -1,5 +1,6 @@
-package com.example.annotation;
+package com.example.butterknifeprocessor;
 
+import com.example.annotation.BindView;
 import com.google.auto.service.AutoService;
 
 import java.io.IOException;
