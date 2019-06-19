@@ -3,15 +3,16 @@ package com.example.yanxia.phonefeaturetest.horizonRv;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.testactivity.BaseLoadingActivity;
@@ -20,6 +21,8 @@ import com.example.yanxia.phonefeaturetest.widget.HorizonItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class HorizonRvTestActivity extends BaseLoadingActivity implements View.OnClickListener, RecyclerViewItemClickInterface {
 
@@ -111,6 +114,9 @@ public class HorizonRvTestActivity extends BaseLoadingActivity implements View.O
             }
         });
         new GetDataAsync().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+        // Horizontal  阻尼效果
+        OverScrollDecoratorHelper.setUpOverScroll(recyclerView, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL);
     }
 
     private class GetDataAsync extends AsyncTask<Void, Void, List<String>> {
