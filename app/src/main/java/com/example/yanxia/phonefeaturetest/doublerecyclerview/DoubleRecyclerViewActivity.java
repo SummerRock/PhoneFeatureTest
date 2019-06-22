@@ -60,7 +60,7 @@ public class DoubleRecyclerViewActivity extends AppCompatActivity implements onG
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         demoParentAdapter = new DemoParentAdapter(demoParentList, this);
         recyclerView.setAdapter(demoParentAdapter);
-        recyclerView.addItemDecoration(new CustomItemDecoration(DisplayUtils.dpToPx(10)));
+        recyclerView.addItemDecoration(new CustomItemDecoration());
     }
 
     @NonNull
@@ -71,16 +71,23 @@ public class DoubleRecyclerViewActivity extends AppCompatActivity implements onG
 
     private class CustomItemDecoration extends RecyclerView.ItemDecoration {
 
-        private int gap;
-
-        CustomItemDecoration(int gap) {
-            this.gap = gap;
-        }
+        private int gap = DisplayUtils.dpToPx(12);
+        private int largeGap = DisplayUtils.dpToPx(14);
 
         @Override
         public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-            // int position = parent.getChildAdapterPosition(view);
-            outRect.set(gap, 0, gap, 0);
+            if (parent.getAdapter() == null) {
+                outRect.set(gap, 0, gap, 0);
+                return;
+            }
+            int position = parent.getChildAdapterPosition(view);
+            if (position == 0) {
+                outRect.set(largeGap, 0, gap, 0);
+            } else if (position == parent.getAdapter().getItemCount() - 1) {
+                outRect.set(gap, 0, largeGap, 0);
+            } else {
+                outRect.set(gap, 0, gap, 0);
+            }
         }
     }
 }
