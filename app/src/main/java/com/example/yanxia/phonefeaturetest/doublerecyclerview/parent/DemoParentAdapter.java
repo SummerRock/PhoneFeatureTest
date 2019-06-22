@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yanxia.phonefeaturetest.R;
-import com.example.yanxia.phonefeaturetest.doublerecyclerview.onGetCurrentDemoChildListener;
+import com.example.yanxia.phonefeaturetest.doublerecyclerview.OnGetCurrentDemoChildListener;
 import com.example.yanxia.phonefeaturetest.doublerecyclerview.child.DemoChildAdapter;
 import com.example.yanxia.phonefeaturetest.doublerecyclerview.data.DemoChild;
 import com.example.yanxia.phonefeaturetest.doublerecyclerview.data.DemoParent;
@@ -24,9 +24,9 @@ public final class DemoParentAdapter extends RecyclerView.Adapter<DemoParentView
 
     private List<DemoParent> demoParentList;
     private int selectPosition;
-    private onGetCurrentDemoChildListener getCurrentDemoChildListener;
+    private OnGetCurrentDemoChildListener getCurrentDemoChildListener;
 
-    public DemoParentAdapter(List<DemoParent> demoParentList, onGetCurrentDemoChildListener getCurrentDemoChildListener) {
+    public DemoParentAdapter(List<DemoParent> demoParentList, OnGetCurrentDemoChildListener getCurrentDemoChildListener) {
         this.demoParentList = demoParentList;
         this.getCurrentDemoChildListener = getCurrentDemoChildListener;
     }

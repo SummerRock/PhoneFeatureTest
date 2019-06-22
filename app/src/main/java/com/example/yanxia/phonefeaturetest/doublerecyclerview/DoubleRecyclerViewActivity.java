@@ -20,7 +20,7 @@ import com.example.yanxia.phonefeaturetest.utils.DisplayUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DoubleRecyclerViewActivity extends AppCompatActivity implements onGetCurrentDemoChildListener {
+public class DoubleRecyclerViewActivity extends AppCompatActivity implements OnGetCurrentDemoChildListener {
 
     private List<DemoParent> demoParentList = DemoDataManager.getInstance().getDemoGroupList();
     private List<DemoChild> demoChildList = new ArrayList<>();

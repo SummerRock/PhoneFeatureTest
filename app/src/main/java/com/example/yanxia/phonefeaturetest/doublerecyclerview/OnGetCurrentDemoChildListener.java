@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.example.yanxia.phonefeaturetest.doublerecyclerview.data.DemoChild;
 
-public interface onGetCurrentDemoChildListener {
+public interface OnGetCurrentDemoChildListener {
     @NonNull
     DemoChild getCurrentDemoChild();
 }
