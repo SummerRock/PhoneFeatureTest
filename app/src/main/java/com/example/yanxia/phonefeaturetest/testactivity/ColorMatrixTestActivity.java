@@ -13,7 +13,6 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.annotation.BindView;
 import com.example.butterknifelibrary.ButterKnife;
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.utils.CommonLog;
@@ -30,7 +29,6 @@ public final class ColorMatrixTestActivity extends AppCompatActivity {
 
     private ColorMatrix mColorMatrix = new ColorMatrix();
     private ImageView testImageView;
-    @BindView(R.id.color_matrix_test_saturation_tv)
     private TextView saturationText;
 
 
