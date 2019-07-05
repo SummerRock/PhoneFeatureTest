@@ -2,14 +2,14 @@ package com.example.yanxia.phonefeaturetest.notifyitemtest;
 
 import android.graphics.Rect;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.utils.DisplayUtils;
@@ -29,7 +29,7 @@ public class RecyclerViewTestActivity extends AppCompatActivity implements View.
         setContentView(R.layout.activity_recycler_view_test);
         customRelativeLayout = findViewById(R.id.custom_relative_layout);
         RecyclerView recyclerView = findViewById(R.id.test_rv);
-        GridLayoutManager layout = new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false);
+        GridLayoutManager layout = new GridLayoutManager(this, 2, RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(layout);
         adapter = new TestSelectAdapter();
         recyclerView.setAdapter(adapter);

@@ -30,7 +30,7 @@ public class DownloadTestActivity extends AppCompatActivity implements OnDownloa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_download_test);
         recyclerView = findViewById(R.id.download_demo_rv);
-        linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         downloadDemoItemList = getDemoList();
         DownloadItemAdapter downloadItemAdapter = new DownloadItemAdapter(downloadDemoItemList, this);
