@@ -96,7 +96,7 @@ public class DisplayUtils {
             return null;
         }
         view.clearFocus();
-        Bitmap bitmap = createBitmapSafely();
+        Bitmap bitmap = createBitmapSafely(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888, 3);
         if (bitmap != null) {
             synchronized (CANVAS) {
                 CANVAS.setBitmap(bitmap);
@@ -107,7 +107,7 @@ public class DisplayUtils {
         return bitmap;
     }
 
-    private static Bitmap createBitmapSafely(int width, int height, Bitmap.Config config, int retryCount) {
+    private static Bitmap createBitmapSafely(int width, int height, @NonNull Bitmap.Config config, int retryCount) {
         try {
             return Bitmap.createBitmap(width, height, config);
         } catch (OutOfMemoryError error) {
