@@ -11,10 +11,13 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.example.yanxia.phonefeaturetest.MyApplication;
 
@@ -84,5 +87,36 @@ public class DisplayUtils {
         matrix.postTranslate(canvasCenter.x - originBitmapCenter.x, canvasCenter.y - originBitmapCenter.y);
         canvas.drawBitmap(bitmap, matrix, paint);
         return newBitmap;
+    }
+
+    private static final Canvas CANVAS = new Canvas();
+
+    public static Bitmap createBitmapFromView(@Nullable View view) {
+        if (view == null) {
+            return null;
+        }
+        view.clearFocus();
+        Bitmap bitmap = createBitmapSafely();
+        if (bitmap != null) {
+            synchronized (CANVAS) {
+                CANVAS.setBitmap(bitmap);
+                view.draw(CANVAS);
+                CANVAS.setBitmap(null);
+            }
+        }
+        return bitmap;
+    }
+
+    private static Bitmap createBitmapSafely(int width, int height, Bitmap.Config config, int retryCount) {
+        try {
+            return Bitmap.createBitmap(width, height, config);
+        } catch (OutOfMemoryError error) {
+            error.printStackTrace();
+            if (retryCount > 0) {
+                System.gc();
+                return createBitmapSafely(width, height, config, retryCount - 1);
+            }
+            return null;
+        }
     }
 }
