@@ -27,6 +27,7 @@ import com.example.yanxia.phonefeaturetest.multiProcess.MessengerActivity;
 import com.example.yanxia.phonefeaturetest.multiProcess.MyContentProvider;
 import com.example.yanxia.phonefeaturetest.multiProcess.socket.TCPClientActivity;
 import com.example.yanxia.phonefeaturetest.notifyitemtest.RecyclerViewTestActivity;
+import com.example.yanxia.phonefeaturetest.retrofit.RetrofitActivity;
 import com.example.yanxia.phonefeaturetest.testFragment.BitmapTestFragment;
 import com.example.yanxia.phonefeaturetest.testFragment.PluginTestFragment;
 import com.example.yanxia.phonefeaturetest.testactivity.AnimationTestActivity;
@@ -158,6 +159,7 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         testItemList.add(new TestItem(Constant.TEST_TCP, R.drawable.ic_lock_24dp, TCPClientActivity.class));
         testItemList.add(new TestItem(Constant.TEST_INTENT_SERVICE, R.drawable.ic_lock_24dp, null));
         testItemList.add(new TestItem(Constant.TEST_JAVA_QUEUE, R.drawable.ic_lock_24dp, JavaQueueActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_RETROFIT, R.drawable.ic_lock_24dp, RetrofitActivity.class));
     }
 
     private void startTest(@NonNull TestItem testItem) {

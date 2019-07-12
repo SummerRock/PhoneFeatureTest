@@ -25,6 +25,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".retrofit.RetrofitActivity"
+            android:launchMode="singleTop" />
+        <activity
             android:name=".doublerecyclerview.DoubleRecyclerViewActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
