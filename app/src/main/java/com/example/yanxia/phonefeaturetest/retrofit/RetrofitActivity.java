@@ -8,18 +8,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.yanxia.phonefeaturetest.R;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public class RetrofitActivity extends AppCompatActivity {
 
     public interface GitHubService {
-        @GET("user")
-        Call<Repo> listRepos(@Path("user") String user);
+        @GET("users/{user}/repos")
+        Call<List<Repo>> listRepos(@Path("user") String user);
     }
 
     @Override
@@ -35,20 +38,21 @@ public class RetrofitActivity extends AppCompatActivity {
     private void testRetrofit() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.github.com/")
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         GitHubService service = retrofit.create(GitHubService.class);
 
-        Call<Repo> repos = service.listRepos("user");
-        repos.enqueue(new Callback<Repo>() {
+        Call<List<Repo>> repos = service.listRepos("octocat");
+        repos.enqueue(new Callback<List<Repo>>() {
             @Override
-            public void onResponse(Call<Repo> call, Response<Repo> response) {
-                Log.i("debug", "");
+            public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
+                Log.i("debug", "response: " + response.body().toString());
             }
 
             @Override
-            public void onFailure(Call<Repo> call, Throwable t) {
-                Log.i("debug", "");
+            public void onFailure(Call<List<Repo>> call, Throwable t) {
+                Log.i("debug", "onFailure: " + t.getMessage());
             }
         });
     }
