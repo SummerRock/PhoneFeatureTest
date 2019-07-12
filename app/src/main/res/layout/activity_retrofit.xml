@@ -10,6 +10,12 @@
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="startRetrofit"
-        android:text="Retrofit start!" />
+        android:onClick="startGithubRetrofit"
+        android:text="Github start!" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="startYouDao"
+        android:text="有道翻译" />
 </LinearLayout>

@@ -20,9 +20,18 @@ import retrofit2.http.Path;
 
 public class RetrofitActivity extends AppCompatActivity {
 
+
     public interface GitHubService {
         @GET("users/{user}/repos")
         Call<List<Repo>> listRepos(@Path("user") String user);
+    }
+
+    public interface YouDaoTranslateService {
+        @GET("openapi.do?keyfrom=Yanzhikai&key=2032414398&type=data&doctype=json&version=1.1&q=car")
+        Call<Translation> getTranslationData();
+        // @GET注解的作用:采用Get方法发送网络请求
+        // getTranslationData() = 接收网络请求数据的方法
+        // 其中返回类型为Call<*>，*是接收数据的类（即上面定义的Translation类）
     }
 
     @Override
@@ -31,7 +40,7 @@ public class RetrofitActivity extends AppCompatActivity {
         setContentView(R.layout.activity_retrofit);
     }
 
-    public void startRetrofit(View view) {
+    public void startGithubRetrofit(View view) {
         testRetrofit();
     }
 
@@ -55,5 +64,28 @@ public class RetrofitActivity extends AppCompatActivity {
                 Log.i("debug", "onFailure: " + t.getMessage());
             }
         });
+    }
+
+    public void startYouDao(View view) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://fanyi.youdao.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        YouDaoTranslateService service = retrofit.create(YouDaoTranslateService.class);
+
+        Call<Translation> repos = service.getTranslationData();
+        repos.enqueue(new Callback<Translation>() {
+            @Override
+            public void onResponse(Call<Translation> call, Response<Translation> response) {
+                Log.i("debug", "response: " + response.body().getTranslation().toString());
+            }
+
+            @Override
+            public void onFailure(Call<Translation> call, Throwable t) {
+                Log.i("debug", "onFailure: " + t.getMessage());
+            }
+        });
+
     }
 }
