@@ -61,6 +61,12 @@ import java.util.List;
  */
 public class MainActivity extends AppCompatActivity implements CustomDialogFragment.OnFragmentInteractionListener {
 
+
+    // Used to load the 'native-lib' library on application startup.
+    static {
+        System.loadLibrary("native-lib");
+    }
+
     private static final String TAG = "MainActivityTag";
     private List<TestItem> testItemList = new ArrayList<>();
     private static final int REQUEST_CODE = 10;
@@ -161,7 +167,8 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         }
         switch (testItem.getName()) {
             case Constant.TEST_STRING_FORMAT:
-                TestString.testStringFormat();
+                // TestString.testStringFormat();
+                Toast.makeText(this, stringFromJNI(), Toast.LENGTH_SHORT).show();
                 break;
             case Constant.TEST_START_ACTIVITY_FOR_RESULT:
                 startSecondActivityForResult();
@@ -225,4 +232,10 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         boolean result = bundle != null && bundle.getBoolean(method);
         Log.d(MyContentProvider.TAG, "contentProvider test end with result: " + result + " cost time: " + String.valueOf(System.currentTimeMillis() - currentTime));
     }
+
+    /**
+     * A native method that is implemented by the 'native-lib' native library,
+     * which is packaged with this application.
+     */
+    public native String stringFromJNI();
 }
