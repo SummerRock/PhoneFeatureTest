@@ -16,7 +16,6 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.annotation.BindView;
 import com.example.yanxia.phonefeaturetest.dataModel.People;
 import com.example.yanxia.phonefeaturetest.dialog.CustomDialogFragment;
 import com.example.yanxia.phonefeaturetest.doublerecyclerview.DoubleRecyclerViewActivity;
@@ -71,7 +70,6 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
     private static final String TAG = "MainActivityTag";
     private List<TestItem> testItemList = new ArrayList<>();
     private static final int REQUEST_CODE = 10;
-    @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
 
     private People person = new People(System.currentTimeMillis(), "Summer", "BJ", "none");
