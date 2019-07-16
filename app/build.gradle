@@ -79,4 +79,9 @@ dependencies {
     implementation 'me.everything:overscroll-decor-android:1.0.4'
 
     implementation project(path: ':pluginlibrary')
+    implementation project(path: ':componentlib')
+
+    if (!loginRunAlone.toBoolean()) {
+        implementation project(path: ':loginapp')
+    }
 }

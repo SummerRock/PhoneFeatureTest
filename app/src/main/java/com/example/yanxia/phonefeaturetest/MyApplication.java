@@ -10,6 +10,8 @@ import android.util.Log;
 
 import androidx.multidex.MultiDex;
 
+import com.example.componentlib.AppConfig;
+import com.example.componentlib.IAppInterface;
 import com.example.yanxia.phonefeaturetest.utils.MultiThreadDemoManager;
 import com.example.yanxia.phonefeaturetest.utils.ScreenStatusManager;
 import com.example.yanxia.phonefeaturetest.utils.SingletonDemo;
@@ -77,6 +79,22 @@ public class MyApplication extends Application {
         SingletonDemo.getInstance();
         initThirdService();
         ScreenStatusManager.getInstance();
+
+        init();
+    }
+
+    private void init() {
+        for (String component : AppConfig.COMPNENTS) {
+            try {
+                Class<?> clazz = Class.forName(component);
+                Object object = clazz.newInstance();
+                if (object instanceof IAppInterface) {
+                    ((IAppInterface) object).initialize(this);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public static Context getContext() {
