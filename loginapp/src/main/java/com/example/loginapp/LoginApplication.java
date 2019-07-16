@@ -16,6 +16,12 @@ public class LoginApplication extends Application implements IAppInterface {
     }
 
     @Override
+    public void onCreate() {
+        super.onCreate();
+        application = this;
+    }
+
+    @Override
     public void initialize(@NonNull Application app) {
         application = app;
         ServiceFactory.getInstance().setiLoginInterface(new LoginService());
