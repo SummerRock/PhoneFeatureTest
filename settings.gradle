@@ -1,1 +1,1 @@
-include ':app', ':annotation', ':myplugin', ':pluginlibrary', ':libArithmetic', ':libJava', ':butterknifelibrary', ':butterknifeProcessor', ':loginapp'
+include ':app', ':myplugin', ':pluginlibrary', ':libArithmetic', ':libJava', ':loginapp'
