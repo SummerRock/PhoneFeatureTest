@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * 代理Activity, 管理插件Activity的生命周期
@@ -32,7 +31,7 @@ public class ProxyActivity extends Activity {
         }
 
         try {
-            Class<?> clazz = pluginApk.dexClassLoader.loadClass(mClassName);
+            Class<?> clazz = pluginApk.getDexClassLoader().loadClass(mClassName);
             Object object = clazz.newInstance();
             if (object instanceof IPlugin) {
                 mIplugin = (IPlugin) object;
@@ -51,16 +50,16 @@ public class ProxyActivity extends Activity {
      */
     @Override
     public Resources getResources() {
-        return pluginApk != null ? pluginApk.resources : super.getResources();
+        return pluginApk != null ? pluginApk.getResources() : super.getResources();
     }
 
     @Override
     public AssetManager getAssets() {
-        return pluginApk != null ? pluginApk.assetManager : super.getAssets();
+        return pluginApk != null ? pluginApk.getAssetManager() : super.getAssets();
     }
 
     @Override
     public ClassLoader getClassLoader() {
-        return pluginApk != null ? pluginApk.dexClassLoader : super.getClassLoader();
+        return pluginApk != null ? pluginApk.getDexClassLoader() : super.getClassLoader();
     }
 }
