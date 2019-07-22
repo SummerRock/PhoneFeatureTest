@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.net.Uri;
 import android.text.TextUtils;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -40,11 +39,9 @@ public class FileUtils {
                     fos.flush();
                     is.close();
                     fos.close();
-                    Toast.makeText(context, "下载成功", Toast.LENGTH_SHORT).show();
                     return outFile.getAbsolutePath();
                 }
             } else {
-                Toast.makeText(context, "文件已存在", Toast.LENGTH_SHORT).show();
                 return outFile.getAbsolutePath();
             }
         } catch (IOException e) {

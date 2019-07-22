@@ -1,7 +1,9 @@
 package com.example.yanxia.phonefeaturetest.testFragment;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import com.example.pluginlibrary.PluginManager;
 import com.example.pluginlibrary.ProxyActivity;
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.utils.FileUtils;
+import com.example.yanxia.phonefeaturetest.utils.ToastUtils;
 
 public class PluginTestFragment extends BaseTestFragment {
 
@@ -34,11 +37,7 @@ public class PluginTestFragment extends BaseTestFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_plugin_dialog, container, false);
         Button loadButton = rootView.findViewById(R.id.plugin_load_apk_button);
-        loadButton.setOnClickListener(v -> {
-            String apkPath = FileUtils.copyAssetAndWrite(getContext(), PLUG_IN_APK_PATH);
-            Log.i("xiayan", "apkPath: " + apkPath);
-            PluginManager.getInstance().loadApk(apkPath);
-        });
+        loadButton.setOnClickListener(v -> new CopyApkToCacheDirTask().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR));
 
         Button jumpButton = rootView.findViewById(R.id.plugin_jump_button);
         jumpButton.setOnClickListener(v -> {
@@ -50,4 +49,22 @@ public class PluginTestFragment extends BaseTestFragment {
         return rootView;
     }
 
+    private class CopyApkToCacheDirTask extends AsyncTask<Void, Void, String> {
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            return FileUtils.copyAssetAndWrite(getContext(), PLUG_IN_APK_PATH);
+        }
+
+        @Override
+        protected void onPostExecute(String apkPath) {
+            Log.i("xiayan", "apkPath: " + apkPath);
+            if (!TextUtils.isEmpty(apkPath)) {
+                ToastUtils.showToast("拷贝成功！");
+                PluginManager.getInstance().loadApk(apkPath);
+            } else {
+                ToastUtils.showToast("拷贝错误！");
+            }
+        }
+    }
 }
