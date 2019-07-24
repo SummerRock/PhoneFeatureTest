@@ -1,10 +1,12 @@
 package com.example.pluginlibrary;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.widget.Toast;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -31,7 +33,12 @@ public class PluginManager {
     private PluginApk pluginApk;
 
     public void init(Context context) {
-        this.context = context;
+        if (context instanceof Activity) {
+            Toast.makeText(context, "Memory leak!!!", Toast.LENGTH_LONG).show();
+            this.context = context.getApplicationContext();
+        } else {
+            this.context = context;
+        }
     }
 
     //加载apk文件
