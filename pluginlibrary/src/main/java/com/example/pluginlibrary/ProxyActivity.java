@@ -17,10 +17,12 @@ public class ProxyActivity extends Activity {
     private PluginApk pluginApk;
     private IPlugin mIplugin;
 
+    public static final String EXTRA_KEY_STRING_CLASSNAME = "className";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mClassName = getIntent().getStringExtra("className");
+        mClassName = getIntent().getStringExtra(EXTRA_KEY_STRING_CLASSNAME);
         pluginApk = PluginManager.getInstance().getPluginApk();
         launchPluginActivity();
     }

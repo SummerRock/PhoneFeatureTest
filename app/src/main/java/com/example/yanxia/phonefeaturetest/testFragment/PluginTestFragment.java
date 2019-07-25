@@ -22,6 +22,7 @@ import com.example.yanxia.phonefeaturetest.utils.ToastUtils;
 public class PluginTestFragment extends BaseTestFragment {
 
     public static final String PLUG_IN_APK_PATH = "myplugin.apk";
+
     public static PluginTestFragment newInstance() {
         return new PluginTestFragment();
     }
@@ -43,7 +44,7 @@ public class PluginTestFragment extends BaseTestFragment {
         jumpButton.setOnClickListener(v -> {
             Intent intent = new Intent();
             intent.setClass(getActivity(), ProxyActivity.class);
-            intent.putExtra("className", "com.example.myplugin.MyPluginActivity");
+            intent.putExtra(ProxyActivity.EXTRA_KEY_STRING_CLASSNAME, "com.example.myplugin.MyPluginActivity");
             startActivity(intent);
         });
         return rootView;
