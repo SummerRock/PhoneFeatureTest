@@ -53,6 +53,7 @@ import com.example.yanxia.phonefeaturetest.testactivity.StorageTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ThreadPoolActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ViewFeatureActivity;
 import com.example.yanxia.phonefeaturetest.utils.Constant;
+import com.example.yanxia.phonefeaturetest.utils.SingletonEnum;
 import com.example.yanxia.phonefeaturetest.viewpager.ViewPagerActivity;
 
 import java.util.ArrayList;
@@ -93,6 +94,8 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             MyJobService.startJob(this);
         }
+
+        SingletonEnum.INSTANCE.demoMethod();
     }
 
     @Override
