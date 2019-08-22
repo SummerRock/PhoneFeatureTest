@@ -7,6 +7,7 @@ import android.app.job.JobService;
 import android.content.ComponentName;
 import android.content.Context;
 import android.os.Build;
+import android.text.format.DateUtils;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
@@ -26,9 +27,9 @@ public class MyJobService extends JobService {
                 MyJobService.class.getName())).setPersisted(true);
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            builder.setPeriodic(1000);
+            builder.setPeriodic(DateUtils.MINUTE_IN_MILLIS);
         } else {
-            builder.setMinimumLatency(1000);
+            builder.setMinimumLatency(DateUtils.MINUTE_IN_MILLIS);
         }
 
         jobScheduler.schedule(builder.build());

@@ -90,9 +90,9 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         TestItemAdapter adapter = new TestItemAdapter(testItemList, this::startTest);
         recyclerView.setAdapter(adapter);
 
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            MyJobService.startJob(this);
-//        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            MyJobService.startJob(this);
+        }
     }
 
     @Override
