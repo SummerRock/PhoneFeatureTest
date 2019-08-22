@@ -2,6 +2,7 @@ package com.example.yanxia.phonefeaturetest;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -21,6 +22,7 @@ import com.example.yanxia.phonefeaturetest.dialog.CustomDialogFragment;
 import com.example.yanxia.phonefeaturetest.doublerecyclerview.DoubleRecyclerViewActivity;
 import com.example.yanxia.phonefeaturetest.download.test.DownloadTestActivity;
 import com.example.yanxia.phonefeaturetest.horizonRv.HorizonRvTestActivity;
+import com.example.yanxia.phonefeaturetest.keepalive.MyJobService;
 import com.example.yanxia.phonefeaturetest.multiProcess.BookAIDLTestActivity;
 import com.example.yanxia.phonefeaturetest.multiProcess.MessengerActivity;
 import com.example.yanxia.phonefeaturetest.multiProcess.MyContentProvider;
@@ -63,9 +65,9 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
 
 
     // Used to load the 'native-lib' library on application startup.
-    static {
-        System.loadLibrary("native-lib");
-    }
+//    static {
+//        System.loadLibrary("native-lib");
+//    }
 
     private static final String TAG = "MainActivityTag";
     private List<TestItem> testItemList = new ArrayList<>();
@@ -87,6 +89,10 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         recyclerView.setLayoutManager(layoutManager);
         TestItemAdapter adapter = new TestItemAdapter(testItemList, this::startTest);
         recyclerView.setAdapter(adapter);
+
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            MyJobService.startJob(this);
+//        }
     }
 
     @Override

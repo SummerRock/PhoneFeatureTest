@@ -3,19 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.yanxia.phonefeaturetest">
 
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.location.gps" />
-
     <application
         android:name=".MyApplication"
         android:allowBackup="false"
@@ -27,6 +14,7 @@
         <activity
             android:name=".retrofit.RetrofitActivity"
             android:launchMode="singleTop" />
+
         <activity
             android:name=".doublerecyclerview.DoubleRecyclerViewActivity"
             android:launchMode="singleTop"
@@ -54,46 +42,25 @@
             android:name=".testactivity.JavaQueueActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
-
-        <service
-            android:name=".DemoIntentService"
-            android:exported="false" />
-
         <activity
             android:name=".multiProcess.MessengerActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
-
-        <service
-            android:name=".multiProcess.MessengerService"
-            android:enabled="true"
-            android:exported="true"
-            android:process=":messenger" />
 
         <activity
             android:name=".testactivity.RemoteDemoActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
 
-        <service
-            android:name=".multiProcess.RemoteDemoService"
-            android:enabled="true"
-            android:exported="true"
-            android:process=":remote">
-            <intent-filter>
-                <action android:name="summer.remote.server.action" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </service>
-
         <activity
             android:name=".multiProcess.BookAIDLTestActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".testactivity.ViewFeatureActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -104,9 +71,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name="com.example.pluginlibrary.ProxyActivity"
             android:launchMode="singleTop" />
+
         <activity
             android:name=".testactivity.SecondTestActivity"
             android:label="@string/title_activity_second" />
@@ -158,6 +127,44 @@
             android:name=".testactivity.AnimationTestActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".multiProcess.socket.TCPClientActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+
+        <provider
+            android:name=".multiProcess.MyContentProvider"
+            android:authorities="otherwork"
+            android:enabled="true"
+            android:exported="true"
+            android:process=".secondProcess" />
+
+        <service
+            android:name=".keepalive.MyJobService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".DemoIntentService"
+            android:exported="false" />
+
+        <service
+            android:name=".multiProcess.MessengerService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":messenger" />
+
+        <service
+            android:name=".multiProcess.RemoteDemoService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="summer.remote.server.action" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
 
         <service
             android:name=".multiProcess.AIDLService"
@@ -171,23 +178,29 @@
             </intent-filter>
         </service>
 
-        <provider
-            android:name=".multiProcess.MyContentProvider"
-            android:authorities="otherwork"
-            android:enabled="true"
-            android:exported="true"
-            android:process=".secondProcess" />
-
         <service
             android:name=".multiProcess.socket.TCPServerService"
             android:enabled="true"
             android:process=":remote" />
-
-        <activity
-            android:name=".multiProcess.socket.TCPClientActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
     </application>
+
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.location.gps" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.BIND_JOB_SERVICE" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
 
 </manifest>
