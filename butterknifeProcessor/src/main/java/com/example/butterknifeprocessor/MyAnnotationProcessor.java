@@ -2,10 +2,22 @@ package com.example.butterknifeprocessor;
 
 import com.example.annotation.BindView;
 import com.google.auto.service.AutoService;
+import com.squareup.javapoet.ClassName;
+import com.squareup.javapoet.JavaFile;
+import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.ParameterizedTypeName;
+import com.squareup.javapoet.TypeName;
+import com.squareup.javapoet.TypeSpec;
+import com.squareup.javapoet.TypeVariableName;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.processing.AbstractProcessor;
@@ -16,30 +28,38 @@ import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
+import javax.lang.model.element.ElementKind;
+import javax.lang.model.element.Modifier;
 import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.VariableElement;
+import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
 import javax.tools.JavaFileObject;
 
 @AutoService(Processor.class)
 public class MyAnnotationProcessor extends AbstractProcessor {
-    private Filer mFiler;//用来创建新的源文件， class文件以及其他
-    private Messager mMessager;
-    private Elements mElementUtils;//Elements 中包含用于操作的工具
+
+    private Elements elementUtils;
+    private Filer filer;
+    private Types typeUtils;
+    private Messager messager;
 
     @Override
-    public synchronized void init(ProcessingEnvironment processingEnvironment) {
-        super.init(processingEnvironment);
-        mFiler = processingEnvironment.getFiler();
-        mMessager = processingEnvironment.getMessager();
-        mElementUtils = processingEnvironment.getElementUtils();
+    public synchronized void init(ProcessingEnvironment processingEnv) {
+        super.init(processingEnv);
+        elementUtils = processingEnv.getElementUtils();
+        filer = processingEnv.getFiler();
+        typeUtils = processingEnv.getTypeUtils();
+        messager = processingEnv.getMessager();
     }
 
     @Override
     public Set<String> getSupportedAnnotationTypes() {
-        Set<String> annotations = new LinkedHashSet<>();
+        //可处理的注解的集合
+        HashSet<String> annotations = new HashSet<>();
         annotations.add(BindView.class.getCanonicalName());
         return annotations;
     }
@@ -50,87 +70,156 @@ public class MyAnnotationProcessor extends AbstractProcessor {
     }
 
     @Override
-    public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
-        Set<? extends Element> bindViewElements = roundEnvironment.getElementsAnnotatedWith(BindView.class);
-        for (Element element : bindViewElements) {
-            //1.获取包名
-            PackageElement packageElement = mElementUtils.getPackageOf(element);
-            String pkName = packageElement.getQualifiedName().toString();
-            note(String.format("package = %s", pkName));
+    public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
+        System.err.println("process");
+        //key为一个类（typeElement），value为这个类里被BindView注解的view的信息
+        Map<TypeElement, List<BindViewInfo>> bindViewMap = new HashMap<>();
+        for (Element element : roundEnv.getElementsAnnotatedWith(BindView.class)) {
+            if (element.getKind() != ElementKind.FIELD) {
+                error("注解必须要在field上", element);
+                return false;
+            }
 
-            //2.获取包装类类型
-            TypeElement enclosingElement = (TypeElement) element.getEnclosingElement();
-            String enclosingName = enclosingElement.getQualifiedName().toString();
-            note(String.format("enclosindClass = %s", enclosingElement));
+            //注解上的viewId
+            int viewId = element.getAnnotation(BindView.class).value();
+            VariableElement viewElement = (VariableElement) element;
+            //该注解所属的类
+            TypeElement typeElement = ((TypeElement) viewElement.getEnclosingElement());
 
 
-            //因为BindView只作用于filed，所以这里可直接进行强转
-            VariableElement bindViewElement = (VariableElement) element;
-            //3.获取注解的成员变量名
-            String bindViewFiledName = bindViewElement.getSimpleName().toString();
-            //3.获取注解的成员变量类型
-            String bindViewFiledClassType = bindViewElement.asType().toString();
+            if (!bindViewMap.containsKey(typeElement)) {
+                bindViewMap.put(typeElement, new ArrayList<>());
+            }
 
-            //4.获取注解元数据
-            BindView bindView = element.getAnnotation(BindView.class);
-            int id = bindView.value();
-            note(String.format("%s %s = %d", bindViewFiledClassType, bindViewFiledName, id));
-
-            //4.生成文件
-            createFile(enclosingElement, bindViewFiledClassType, bindViewFiledName, id);
-            return true;
+            List<BindViewInfo> bindViewInfos = bindViewMap.get(typeElement);
+            bindViewInfos.add(new BindViewInfo(viewId, viewElement.getSimpleName().toString(), viewElement.asType()));
         }
+        bindViewMap.forEach((typeElement, bindViewInfos) -> {
+            System.err.println("↓↓↓↓↓↓↓↓" + typeElement);
+            for (BindViewInfo bindViewInfo : bindViewInfos) {
+                System.err.println("bindViewInfo" + bindViewInfo);
+            }
+        });
+
+        //        generateCodeByStringBuffer(bindViewMap);
+        generateCodeByJavaPoet(bindViewMap);
         return false;
     }
 
-    private void createFile(TypeElement enclosingElement, String bindViewFiledClassType, String bindViewFiledName, int id) {
-        String pkName = mElementUtils.getPackageOf(enclosingElement).getQualifiedName().toString();
+    private void generateCodeByStringBuffer(Map<TypeElement, List<BindViewInfo>> bindViewMap) {
+        bindViewMap.forEach((typeElement, bindViewInfos) -> {
+            generateJavaClassBySb(typeElement, bindViewInfos);
+        });
+    }
+
+    private void generateJavaClassBySb(TypeElement typeElement, List<BindViewInfo> bindViewInfos) {
         try {
-            JavaFileObject jfo = mFiler.createSourceFile(pkName + "$ViewBinder", new Element[]{});
-            Writer writer = jfo.openWriter();
-            writer.write(brewCode(pkName, bindViewFiledClassType, bindViewFiledName, id));
-            writer.flush();
+            StringBuffer sb = new StringBuffer();
+            sb.append("package ");
+            sb.append(elementUtils.getPackageOf(typeElement).getQualifiedName() + ";\n");
+            sb.append("import com.example.butterknifelibrary;\n");
+            sb.append("public class " + typeElement.getSimpleName() + "$$ViewBinder<T extends " + typeElement.getSimpleName() + "> implements ViewBinder<T> {\n");
+            sb.append("@Override\n");
+            sb.append("public void bind(T activity) {\n");
+
+            for (BindViewInfo bindViewInfo : bindViewInfos) {
+                sb.append("activity." + bindViewInfo.name + "=activity.findViewById(" + bindViewInfo.id + ");\n");
+
+            }
+            sb.append("}\n}");
+
+
+            JavaFileObject sourceFile = filer.createSourceFile(typeElement.getQualifiedName().toString() + "$$ViewBinder");
+            Writer writer = sourceFile.openWriter();
+            writer.write(sb.toString());
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private String brewCode(String pkName, String bindViewFiledClassType, String bindViewFiledName, int id) {
-        StringBuilder builder = new StringBuilder();
-        builder.append("package " + pkName + ";\n\n");
-        builder.append("//Auto generated by apt,do not modify!!\n\n");
-        builder.append("public class ViewBinding { \n\n");
-        builder.append("public static void main(String[] args){ \n");
-        String info = String.format("%s %s = %d", bindViewFiledClassType, bindViewFiledName, id);
-        builder.append("System.out.println(\"" + info + "\");\n");
-        builder.append("}\n");
-        builder.append("}");
-        return builder.toString();
+    private void generateCodeByJavaPoet(Map<TypeElement, List<BindViewInfo>> bindViewMap) {
+        bindViewMap.forEach((typeElement, bindViewInfos) -> {
+            generateJavaClassByJavaPoet(typeElement, bindViewInfos);
+        });
     }
 
-    private void demo() {
+
+    //    public class AutoSampleCode<T extends MainActivity> implements ViewBinder<T>{
+    //        @Override
+    //        public void bind(T activity) {
+    //            activity.textView=activity.findViewById(R.id.textView);
+    //        }
+    //    }
+
+    /**
+     * @param typeElement   类的节点（MainActivity那个节点）
+     * @param bindViewInfos
+     */
+    private void generateJavaClassByJavaPoet(TypeElement typeElement, List<BindViewInfo> bindViewInfos) {
+        String packageName = elementUtils.getPackageOf(typeElement).getQualifiedName().toString();
+
+        ClassName t = ClassName.bestGuess("T");
+        ClassName viewBinder = ClassName.bestGuess("com.example.butterknifelibrary.ViewBinder");
+        //        ParameterSpec.builder(Typen)
+        //方法
+        MethodSpec.Builder methodSpecBuilder = MethodSpec.methodBuilder("bind")
+                .addAnnotation(Override.class)
+                .addModifiers(Modifier.PUBLIC)
+                .returns(void.class)
+                .addParameter(t, "activity");
+        MethodSpec methodSpec;
+        for (BindViewInfo bindViewInfo : bindViewInfos) {
+            methodSpecBuilder.addStatement("activity.$L=activity.findViewById($L)", bindViewInfo.name,bindViewInfo.id);
+        }
+        methodSpec = methodSpecBuilder.build();
+        //类
+        TypeSpec typeSpec = TypeSpec.classBuilder(typeElement.getSimpleName() + "$$ViewBinder")//设置类名
+                .addModifiers(Modifier.PUBLIC)//添加修饰符
+                .addTypeVariable(TypeVariableName.get("T", TypeName.get(typeElement.asType())))//添加泛型声明
+                .addMethod(methodSpec)//添加方法
+                .addSuperinterface(ParameterizedTypeName.get(viewBinder, t))//添加实现接口
+                .build();
+
+
+        //通过包名和TypeSpec（类）生成一个java文件
+        JavaFile build = JavaFile.builder(packageName, typeSpec).build();
         try {
-            JavaFileObject javaFileObject = mFiler.createSourceFile("ColorMatrixTestActivity$ViewBinder");
-            Writer writer = javaFileObject.openWriter();
-            writer.write("package com.example.yanxia.phonefeaturetest.testactivity;");
-            writer.write("\n");
-            writer.write("import com.example.butterknifelibrary.ViewBinder;");
-            writer.write("\n");
-            writer.write("public class ColorMatrixTestActivity$ViewBinder implements ViewBinder<ColorMatrixTestActivity> {");
-            writer.write("\n");
-            writer.write("}");
-            writer.close();
+            //写入到filer中
+            build.writeTo(filer);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void note(String msg) {
-        mMessager.printMessage(Diagnostic.Kind.NOTE, msg);
+    private void error(String msg, Element e) {
+        messager.printMessage(
+                Diagnostic.Kind.ERROR,
+                String.format(msg),
+                e);
     }
 
-    private void note(String format, Object... args) {
-        mMessager.printMessage(Diagnostic.Kind.NOTE, String.format(format, args));
+    /**
+     * 一个被bindview注解的view字段的信息
+     */
+    class BindViewInfo {
+        int id;
+        String name;
+        TypeMirror typeMirror;
+
+        public BindViewInfo(int id, String name, TypeMirror typeMirror) {
+            this.id = id;
+            this.name = name;
+            this.typeMirror = typeMirror;
+        }
+
+        @Override
+        public String toString() {
+            return "BindViewInfo{" +
+                    "id=" + id +
+                    ", name='" + name + '\'' +
+                    ", typeMirror=" + typeMirror +
+                    '}';
+        }
     }
 }

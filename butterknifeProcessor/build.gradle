@@ -2,8 +2,13 @@ apply plugin: 'java-library'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.google.auto.service:auto-service:1.0-rc3'
     implementation project(path: ':annotation')
+
+    //在编译时为该module生成注解处理器的声明文件。
+    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc5'
+    compileOnly 'com.google.auto.service:auto-service:1.0-rc5'
+    //用来方便生成java代码
+    implementation 'com.squareup:javapoet:1.10.0'
 }
 
 sourceCompatibility = "8"

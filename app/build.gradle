@@ -84,4 +84,9 @@ dependencies {
     if (!loginRunAlone.toBoolean()) {
         implementation project(path: ':loginapp')
     }
+
+    //自定义 ButterKnife
+    implementation project(':annotation')
+    implementation project(':butterknifelibrary')
+    annotationProcessor project(':butterknifeProcessor')
 }
