@@ -5,7 +5,7 @@ import android.app.Activity;
 public class ButterKnife {
 
     public static void bind(Activity activity) {
-        String className = activity.getClass().getName() + "$ViewBinder";
+        String className = activity.getClass().getName() + "$$ViewBinder";
         try {
             //如果确实有这个类
             Class<?> viewBindClass = Class.forName(className);
