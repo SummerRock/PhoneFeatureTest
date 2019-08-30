@@ -16,6 +16,8 @@ import com.example.yanxia.phonefeaturetest.utils.MultiThreadDemoManager;
 import com.example.yanxia.phonefeaturetest.utils.ScreenStatusManager;
 import com.example.yanxia.phonefeaturetest.utils.SingletonDemo;
 
+import org.greenrobot.eventbus.EventBus;
+
 /**
  * @author yanxia
  * @date 2017/2/10
@@ -81,6 +83,8 @@ public class MyApplication extends Application {
         ScreenStatusManager.getInstance();
 
         init();
+
+        EventBus.builder().addIndex(new MyEventBusIndex()).installDefaultEventBus();
     }
 
     private void init() {
