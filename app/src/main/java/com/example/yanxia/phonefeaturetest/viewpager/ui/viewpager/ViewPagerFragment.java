@@ -43,7 +43,7 @@ public class ViewPagerFragment extends Fragment {
         textView.setText("position: " + String.valueOf(groupPosition));
         final RecyclerView recyclerView = rootView.findViewById(R.id.test_fragment_position_rv);
         recyclerView.setAdapter(new ViewPagerTestRvAdapter());
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayout.HORIZONTAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
