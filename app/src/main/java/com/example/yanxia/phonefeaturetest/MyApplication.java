@@ -2,10 +2,12 @@ package com.example.yanxia.phonefeaturetest;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Process;
+import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.multidex.MultiDex;
@@ -17,6 +19,12 @@ import com.example.yanxia.phonefeaturetest.utils.ScreenStatusManager;
 import com.example.yanxia.phonefeaturetest.utils.SingletonDemo;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author yanxia
@@ -117,4 +125,35 @@ public class MyApplication extends Application {
         }.start();
     }
 
+    private static String searchProcessName(Context context) {
+        String processName = null;
+
+        try {
+            File file = new File("/proc/" + Process.myPid() + "/cmdline");
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+            processName = bufferedReader.readLine().trim();
+            bufferedReader.close();
+        } catch (Exception var7) {
+            var7.printStackTrace();
+        }
+
+        if (TextUtils.isEmpty(processName)) {
+            ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+            List<ActivityManager.RunningAppProcessInfo> processInfos = activityManager.getRunningAppProcesses();
+            if (processInfos != null) {
+                int pid = Process.myPid();
+                Iterator iterator = processInfos.iterator();
+
+                while (iterator.hasNext()) {
+                    ActivityManager.RunningAppProcessInfo appProcess = (ActivityManager.RunningAppProcessInfo) iterator.next();
+                    if (appProcess.pid == pid) {
+                        processName = appProcess.processName;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return processName;
+    }
 }
