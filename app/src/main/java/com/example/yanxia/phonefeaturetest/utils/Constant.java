@@ -5,6 +5,7 @@ package com.example.yanxia.phonefeaturetest.utils;
  */
 public class Constant {
     public static final String TEST_RECYCLER = "RV选中状态";
+    public static final String TEST_LONG_IMAGE = "长图加载";
     public static final String TEST_INPUT_METHOD = "输入法测试";
     public static final String TEST_DIALOG = "Dialog样式";
     public static final String TEST_HANDLER_THREAD = "HandlerThread测试";

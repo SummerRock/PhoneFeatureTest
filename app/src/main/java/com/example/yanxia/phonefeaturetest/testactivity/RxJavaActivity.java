@@ -1,7 +1,10 @@
 package com.example.yanxia.phonefeaturetest.testactivity;
 
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 
@@ -11,8 +14,10 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class RxJavaActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -27,35 +32,40 @@ public class RxJavaActivity extends AppCompatActivity implements View.OnClickLis
     public void rxJavaTest1(View view) {
         Observable.create(new ObservableOnSubscribe<String>() {
             @Override
-            public void subscribe(ObservableEmitter<String> e) throws Exception {
+            public void subscribe(ObservableEmitter<String> e) {
+                Log.i(TAG, "开始制作，线程名称: " + Thread.currentThread().getName());
                 e.onNext("烤鸡一份");
+                SystemClock.sleep(1000);
                 e.onNext("薯条一份");
+                SystemClock.sleep(1000);
                 e.onNext("可乐一杯");
                 // e.onError(new NullPointerException());
                 e.onComplete();
             }
-        }).subscribe(new Observer<String>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-                Log.i(TAG, "onSubscribe : 订阅成功");
-            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        Log.i(TAG, "onSubscribe : 订阅成功");
+                    }
 
-            @Override
-            public void onNext(String s) {
-                Log.i(TAG, "onNext : 接收事件  " + s);
-                //按顺序得到：烤鸡一份、薯条一份、可乐一杯
-            }
+                    @Override
+                    public void onNext(String s) {
+                        Log.i(TAG, "onNext : 接收事件  " + s + " 线程: " + Thread.currentThread().getName());
+                        //按顺序得到：烤鸡一份、薯条一份、可乐一杯
+                    }
 
-            @Override
-            public void onError(Throwable e) {
-                Log.i(TAG, "onError : 事件异常  " + e.toString());
-            }
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i(TAG, "onError : 事件异常  " + e.toString());
+                    }
 
-            @Override
-            public void onComplete() {
-                Log.i(TAG, "onComplete : 事件执行完毕  ");
-            }
-        });
+                    @Override
+                    public void onComplete() {
+                        Log.i(TAG, "onComplete : 事件执行完毕  ");
+                    }
+                });
     }
 
     public void rxJavaTest2(View view) {

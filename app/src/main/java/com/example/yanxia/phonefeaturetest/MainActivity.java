@@ -17,6 +17,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.OnLifecycleEvent;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,6 +49,7 @@ import com.example.yanxia.phonefeaturetest.testactivity.FullscreenActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.HandlerThreadActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.InputMethodTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.JavaQueueActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.LongImageActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.PeopleEditActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.PermissionTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ProgressBarTestActivity;
@@ -104,12 +108,14 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
 
         SingletonEnum.INSTANCE.demoMethod();
 
-//        Looper.getMainLooper().setMessageLogging(new Printer() {
-//            @Override
-//            public void println(String x) {
-//                Log.i("xiayan", "x: " + x);
-//            }
-//        });
+        //        Looper.getMainLooper().setMessageLogging(new Printer() {
+        //            @Override
+        //            public void println(String x) {
+        //                Log.i("xiayan", "x: " + x);
+        //            }
+        //        });
+
+        getLifecycle().addObserver(new MyObserver());
     }
 
     @Override
@@ -147,6 +153,7 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
 
     private void initTestItems() {
         testItemList.add(new TestItem(Constant.TEST_RECYCLER, R.drawable.ic_lock_24dp, RecyclerViewTestActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_LONG_IMAGE, R.drawable.ic_lock_24dp, LongImageActivity.class));
         testItemList.add(new TestItem(Constant.TEST_PEOPLE_DATA, R.drawable.ic_lock_24dp, PeopleEditActivity.class));
         testItemList.add(new TestItem(Constant.TEST_INPUT_METHOD, R.drawable.ic_lock_24dp, null));
         testItemList.add(new TestItem(Constant.TEST_DOUBLE_RV, R.drawable.ic_lock_24dp, DoubleRecyclerViewActivity.class));
@@ -254,6 +261,18 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         Bundle bundle = getContentResolver().call(Uri.parse(uri), method, null, null);
         boolean result = bundle != null && bundle.getBoolean(method);
         Log.d(MyContentProvider.TAG, "contentProvider test end with result: " + result + " cost time: " + String.valueOf(System.currentTimeMillis() - currentTime));
+    }
+
+    public class MyObserver implements LifecycleObserver {
+        @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+        void onResumeNext() {
+            Log.i("LifecycleObserver", "onResumeNext");
+        }
+
+        @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+        void onPauseNext() {
+            Log.i("LifecycleObserver", "onPauseNext");
+        }
     }
 
     /**
