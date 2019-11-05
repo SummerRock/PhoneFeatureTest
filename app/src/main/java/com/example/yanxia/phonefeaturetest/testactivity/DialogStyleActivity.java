@@ -5,17 +5,20 @@ import android.app.Dialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.LayoutInflater;
 import android.view.View;
 
 import com.example.yanxia.phonefeaturetest.R;
+import com.example.yanxia.phonefeaturetest.dialog.BottomDialogFragment;
 import com.example.yanxia.phonefeaturetest.dialog.CustomProgressDialogFragment;
 import com.example.yanxia.phonefeaturetest.dialog.CustomWidthDialogFragment;
 import com.example.yanxia.phonefeaturetest.dialog.FullScreenDialogFragment;
 import com.example.yanxia.phonefeaturetest.dialog.TermsDialogFragment;
 
-public class DialogStyleActivity extends AppCompatActivity implements View.OnClickListener {
+public class DialogStyleActivity extends AppCompatActivity {
 
     private CustomProgressDialogFragment customProgressDialogFragment;
 
@@ -23,11 +26,6 @@ public class DialogStyleActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dialog_style);
-    }
-
-    @Override
-    public void onClick(View v) {
-
     }
 
     public void showNormalDialog(View view) {
@@ -64,6 +62,10 @@ public class DialogStyleActivity extends AppCompatActivity implements View.OnCli
 
     public void showProgressDialogFragment(View view) {
         new ShowProgressDialogTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    public void showBottomFragment(View view) {
+        BottomDialogFragment.newInstance().show(getSupportFragmentManager(), BottomDialogFragment.class.getSimpleName());
     }
 
     private class ShowProgressDialogTask extends AsyncTask {
