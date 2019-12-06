@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.yanxia.phonefeaturetest.R;
+import com.example.yanxia.phonefeaturetest.utils.RxJavaDemo;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -19,7 +20,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class RxJavaActivity extends AppCompatActivity implements View.OnClickListener {
+public class RxJavaActivity extends AppCompatActivity {
 
     private static final String TAG = "RxJavaTest";
 
@@ -114,8 +115,11 @@ public class RxJavaActivity extends AppCompatActivity implements View.OnClickLis
         });
     }
 
-    @Override
-    public void onClick(View v) {
+    public void rxTestStart(View view) {
+        RxJavaDemo.getInstance().loopSequence();
+    }
 
+    public void rxTestCancel(View view) {
+        RxJavaDemo.getInstance().cancel();
     }
 }
