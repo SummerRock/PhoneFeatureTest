@@ -9,10 +9,12 @@ import java.util.concurrent.TimeUnit;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 public class RxJavaDemo {
@@ -49,9 +51,15 @@ public class RxJavaDemo {
                         Log.d(TAG, "loopSequence doOnError: " + throwable.getMessage());
                     }
                 })
-                .delay(5, TimeUnit.SECONDS, true) // 设置delayError为true，表示出现错误的时候也需要延迟5s进行通知，达到无论是请求正常还是请求失败，都是5s后重新订阅，即重新请求。
+                // .delay(5, TimeUnit.SECONDS, true) // 设置delayError为true，表示出现错误的时候也需要延迟5s进行通知，达到无论是请求正常还是请求失败，都是5s后重新订阅，即重新请求。
                 .subscribeOn(Schedulers.io())
-                .repeat()   // repeat保证请求成功后能够重新订阅。
+                .repeatWhen(new Function<Observable<Object>, ObservableSource<?>>() {
+                    @Override
+                    public ObservableSource<?> apply(Observable<Object> objectObservable) throws Exception {
+                        Log.d(TAG, "延迟两秒");
+                        return objectObservable.delay(2, TimeUnit.SECONDS);
+                    }
+                })
                 .retry()    // retry保证请求失败后能重新订阅
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Integer>() {
