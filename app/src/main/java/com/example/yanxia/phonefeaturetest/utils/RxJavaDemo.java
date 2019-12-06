@@ -10,6 +10,7 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
@@ -18,6 +19,8 @@ public class RxJavaDemo {
     private static final RxJavaDemo ourInstance = new RxJavaDemo();
     private String TAG = RxJavaDemo.class.getSimpleName();
 
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+
     public static RxJavaDemo getInstance() {
         return ourInstance;
     }
@@ -25,11 +28,9 @@ public class RxJavaDemo {
     private RxJavaDemo() {
     }
 
-    private Disposable mDisposable;
-
     // 按照顺序loop，意味着第一次结果请求完成后，再考虑下次请求
     public void loopSequence() {
-        mDisposable = getDataFromServer()
+        Disposable disposable = getDataFromServer()
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
@@ -56,15 +57,15 @@ public class RxJavaDemo {
                 .subscribe(new Consumer<Integer>() {
                     @Override
                     public void accept(Integer integer) throws Exception {
-                        Log.i(TAG, "Consumer accept: " + integer);
+                        Log.i(TAG, "消费者接收到了数字: " + integer);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        Log.i(TAG, "Consumer accept throwable: " + throwable.getMessage());
+                        Log.i(TAG, "消费者出现问题: " + throwable.getMessage());
                     }
                 });
-        // compositeDisposable.add(disposable);
+        compositeDisposable.add(disposable);
     }
 
     private Observable<Integer> getDataFromServer() {
@@ -94,9 +95,7 @@ public class RxJavaDemo {
      * 取消订阅
      */
     public void cancel() {
-        if (mDisposable != null && !mDisposable.isDisposed()) {
-            mDisposable.dispose();
-            Log.i(TAG, "====Rx定时器取消======");
-        }
+        compositeDisposable.dispose();
+        Log.i(TAG, "====Rx定时器取消======");
     }
 }
