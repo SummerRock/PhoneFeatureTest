@@ -40,6 +40,7 @@ import com.example.yanxia.phonefeaturetest.retrofit.RetrofitActivity;
 import com.example.yanxia.phonefeaturetest.testFragment.BitmapTestFragment;
 import com.example.yanxia.phonefeaturetest.testFragment.PluginTestFragment;
 import com.example.yanxia.phonefeaturetest.testactivity.AnimationTestActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.AutoFocusActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.CameraTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ColorMatrixTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.DialogStyleActivity;
@@ -188,6 +189,7 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         testItemList.add(new TestItem(Constant.TEST_INTENT_SERVICE, R.drawable.ic_lock_24dp, null));
         testItemList.add(new TestItem(Constant.TEST_JAVA_QUEUE, R.drawable.ic_lock_24dp, JavaQueueActivity.class));
         testItemList.add(new TestItem(Constant.TEST_RETROFIT, R.drawable.ic_lock_24dp, RetrofitActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_AUTO_FUCUS, R.drawable.ic_lock_24dp, AutoFocusActivity.class));
     }
 
     private void startTest(@NonNull TestItem testItem) {

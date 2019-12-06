@@ -40,4 +40,5 @@ public class Constant {
     public static final String TEST_DOUBLE_RV = "双重RV";
     public static final String TEST_PLUGIN = "插件化";
     public static final String TEST_RETROFIT = "Retrofit";
+    public static final String TEST_AUTO_FUCUS = "自动焦点";
 }
