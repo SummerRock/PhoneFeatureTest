@@ -1,4 +1,4 @@
-package com.example.yanxia.phonefeaturetest.testactivity;
+package com.example.yanxia.phonefeaturetest.rxjava;
 
 import android.os.Bundle;
 
@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.yanxia.phonefeaturetest.R;
-import com.example.yanxia.phonefeaturetest.utils.RxJavaDemo;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;

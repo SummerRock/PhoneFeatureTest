@@ -53,7 +53,7 @@
             android:name=".testactivity.PermissionTestActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".testactivity.RxJavaActivity"
+            android:name=".rxjava.RxJavaActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity

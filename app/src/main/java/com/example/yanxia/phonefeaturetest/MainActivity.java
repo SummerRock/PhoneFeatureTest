@@ -1,13 +1,10 @@
 package com.example.yanxia.phonefeaturetest;
 
 import android.content.Intent;
-import android.graphics.BitmapRegionDecoder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Looper;
 import android.util.Log;
-import android.util.Printer;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -55,7 +52,7 @@ import com.example.yanxia.phonefeaturetest.testactivity.PeopleEditActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.PermissionTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.ProgressBarTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.RemoteDemoActivity;
-import com.example.yanxia.phonefeaturetest.testactivity.RxJavaActivity;
+import com.example.yanxia.phonefeaturetest.rxjava.RxJavaActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SVGTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SecondTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SettingsActivity;
