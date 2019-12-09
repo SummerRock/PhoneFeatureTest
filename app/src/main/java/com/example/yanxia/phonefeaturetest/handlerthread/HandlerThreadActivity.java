@@ -1,4 +1,4 @@
-package com.example.yanxia.phonefeaturetest.testactivity;
+package com.example.yanxia.phonefeaturetest.handlerthread;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,7 +19,7 @@ import java.util.Locale;
  * @author yanxia-Mac
  * https://blog.csdn.net/lmj623565791/article/details/47079737
  */
-public class HandlerThreadActivity extends AppCompatActivity implements View.OnClickListener {
+public class HandlerThreadActivity extends AppCompatActivity {
 
     private TextView mTvServiceInfo;
 
@@ -55,11 +55,6 @@ public class HandlerThreadActivity extends AppCompatActivity implements View.OnC
         //停止查询
         isUpdateInfo = false;
         mCheckMsgHandler.removeMessages(MSG_UPDATE_INFO);
-
-    }
-
-    @Override
-    public void onClick(View v) {
 
     }
 

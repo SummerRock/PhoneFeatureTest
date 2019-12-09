@@ -44,7 +44,7 @@ import com.example.yanxia.phonefeaturetest.testactivity.DialogStyleActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.EasyDrawableActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.EventBusTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.FullscreenActivity;
-import com.example.yanxia.phonefeaturetest.testactivity.HandlerThreadActivity;
+import com.example.yanxia.phonefeaturetest.handlerthread.HandlerThreadActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.InputMethodTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.JavaQueueActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.LongImageActivity;

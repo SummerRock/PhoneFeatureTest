@@ -1,4 +1,4 @@
-package com.example.yanxia.phonefeaturetest.utils;
+package com.example.yanxia.phonefeaturetest.handlerthread;
 
 import android.annotation.SuppressLint;
 import android.os.Handler;
@@ -17,14 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class SingletonDemo {
+public class HandlerThreadSingletonDemo {
     public interface OnDataLoadedInterface {
         void onDataLoadFinish(@NonNull List<String> dataList);
     }
 
-    private static final String TAG = SingletonDemo.class.getSimpleName();
+    private static final String TAG = HandlerThreadSingletonDemo.class.getSimpleName();
     private static final int MESSAGE_UPDATE_DATA = 0;
-    private static volatile SingletonDemo ourInstance;
+    private static volatile HandlerThreadSingletonDemo ourInstance;
     private List<String> stringList;
     private volatile boolean isUpdating;
     private Random random = new Random();
@@ -33,18 +33,18 @@ public class SingletonDemo {
     @SuppressLint("HandlerLeak")
     private Handler updateDataHandler;
 
-    public static SingletonDemo getInstance() {
+    public static HandlerThreadSingletonDemo getInstance() {
         if (ourInstance == null) {
-            synchronized (SingletonDemo.class) {
+            synchronized (HandlerThreadSingletonDemo.class) {
                 if (ourInstance == null) {
-                    ourInstance = new SingletonDemo();
+                    ourInstance = new HandlerThreadSingletonDemo();
                 }
             }
         }
         return ourInstance;
     }
 
-    private SingletonDemo() {
+    private HandlerThreadSingletonDemo() {
         Log.d(TAG, "init!");
         stringList = new ArrayList<>();
         dataLoadedInterfaceList = new ArrayList<>();

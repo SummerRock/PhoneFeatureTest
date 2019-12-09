@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.utils.DisplayUtils;
-import com.example.yanxia.phonefeaturetest.utils.SingletonDemo;
+import com.example.yanxia.phonefeaturetest.handlerthread.HandlerThreadSingletonDemo;
 import com.noober.background.BackgroundLibrary;
 
 import java.util.List;
@@ -51,11 +51,11 @@ public class EasyDrawableActivity extends AppCompatActivity implements View.OnCl
     }
 
     public void testOne(View view) {
-        SingletonDemo.getInstance().updateList();
+        HandlerThreadSingletonDemo.getInstance().updateList();
     }
 
     public void testTwo(View view) {
-        List<String> list = SingletonDemo.getInstance().getList();
+        List<String> list = HandlerThreadSingletonDemo.getInstance().getList();
         Toast.makeText(this, "item size: " + list.size(), Toast.LENGTH_SHORT).show();
         list.add("temp new one!");
     }

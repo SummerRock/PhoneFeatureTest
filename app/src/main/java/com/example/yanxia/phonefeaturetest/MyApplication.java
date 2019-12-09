@@ -16,7 +16,7 @@ import com.example.componentlib.AppConfig;
 import com.example.componentlib.IAppInterface;
 import com.example.yanxia.phonefeaturetest.utils.MultiThreadDemoManager;
 import com.example.yanxia.phonefeaturetest.utils.ScreenStatusManager;
-import com.example.yanxia.phonefeaturetest.utils.SingletonDemo;
+import com.example.yanxia.phonefeaturetest.handlerthread.HandlerThreadSingletonDemo;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -86,7 +86,7 @@ public class MyApplication extends Application {
         Log.d(TAG, "onCreate");
         context = getApplicationContext();
         registerActivityLifecycleCallbacks(activityLifecycleCallbacks);
-        SingletonDemo.getInstance();
+        HandlerThreadSingletonDemo.getInstance();
         initThirdService();
         ScreenStatusManager.getInstance();
 

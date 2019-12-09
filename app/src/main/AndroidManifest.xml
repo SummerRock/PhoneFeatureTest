@@ -104,7 +104,7 @@
             android:name=".notifyitemtest.RecyclerViewTestActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".testactivity.HandlerThreadActivity"
+            android:name=".handlerthread.HandlerThreadActivity"
             android:label="@string/title_activity_handler_thread"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
