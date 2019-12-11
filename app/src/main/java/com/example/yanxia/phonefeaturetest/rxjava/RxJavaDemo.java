@@ -122,6 +122,30 @@ public class RxJavaDemo {
         retrofit.create(WanAndroidDemoService.class).listData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                // .doOnNext(new Consumer<WanAndroidItem>() {
+                //     @Override
+                //     public void accept(WanAndroidItem wanAndroidItem) throws Exception {
+                //         Log.d(TAG, "打印 doOnNext accept: " + wanAndroidItem.toString());
+                //     }
+                // })
+                // .doOnComplete(new Action() {
+                //     @Override
+                //     public void run() throws Exception {
+                //         Log.d(TAG, "打印 doOnComplete");
+                //     }
+                // })
+                // .repeatWhen(new Function<Observable<Object>, ObservableSource<?>>() {
+                //     @Override
+                //     public ObservableSource<?> apply(Observable<Object> objectObservable) throws Exception {
+                //         return objectObservable;
+                //     }
+                // })
+                // .repeatWhen(new Function<Observable<Object>, ObservableSource<?>>() {
+                //     @Override
+                //     public ObservableSource<?> apply(Observable<Object> objectObservable) throws Exception {
+                //         return null;
+                //     }
+                // })
                 .subscribe(new Observer<WanAndroidItem>() {
                     @Override
                     public void onSubscribe(Disposable d) {
