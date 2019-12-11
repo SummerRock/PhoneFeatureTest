@@ -3,6 +3,7 @@ package com.example.yanxia.phonefeaturetest.rxjava;
 import android.os.SystemClock;
 import android.util.Log;
 
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -10,18 +11,22 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RxJavaDemo {
     private static final RxJavaDemo ourInstance = new RxJavaDemo();
     private String TAG = RxJavaDemo.class.getSimpleName();
 
-    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    // private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private Disposable disposable;
 
     public static RxJavaDemo getInstance() {
         return ourInstance;
@@ -32,7 +37,7 @@ public class RxJavaDemo {
 
     // 按照顺序loop，意味着第一次结果请求完成后，再考虑下次请求
     public void loopSequence() {
-        Disposable disposable = getDataFromServer()
+        disposable = getDataFromServer()
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
@@ -73,7 +78,7 @@ public class RxJavaDemo {
                         Log.i(TAG, "消费者出现问题: " + throwable.getMessage());
                     }
                 });
-        compositeDisposable.add(disposable);
+        // compositeDisposable.add(disposable);
     }
 
     private Observable<Integer> getDataFromServer() {
@@ -103,7 +108,40 @@ public class RxJavaDemo {
      * 取消订阅
      */
     public void cancel() {
-        compositeDisposable.dispose();
+        disposable.dispose();
         Log.i(TAG, "====Rx定时器取消======");
+    }
+
+    public void testNetwork() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://wanandroid.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+
+        retrofit.create(WanAndroidDemoService.class).listData("json")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<List<WanAndroidItem>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        Log.d(TAG, "打印 onSubscribe");
+                    }
+
+                    @Override
+                    public void onNext(List<WanAndroidItem> repos) {
+                        Log.d(TAG, "打印 onNext:" + repos.size());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d(TAG, "打印 onError");
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.d(TAG, "打印 onComplete");
+                    }
+                });
     }
 }

@@ -30,4 +30,10 @@
         android:layout_height="wrap_content"
         android:onClick="rxTestCancel"
         android:text="rxTestCancel" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="rxTestNetwork"
+        android:text="rxNetwork" />
 </LinearLayout>

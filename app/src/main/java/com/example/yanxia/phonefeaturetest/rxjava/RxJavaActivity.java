@@ -121,4 +121,8 @@ public class RxJavaActivity extends AppCompatActivity {
     public void rxTestCancel(View view) {
         RxJavaDemo.getInstance().cancel();
     }
+
+    public void rxTestNetwork(View view) {
+        RxJavaDemo.getInstance().testNetwork();
+    }
 }
