@@ -3,7 +3,6 @@ package com.example.yanxia.phonefeaturetest.rxjava;
 import android.os.SystemClock;
 import android.util.Log;
 
-import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -119,23 +118,24 @@ public class RxJavaDemo {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
 
-        retrofit.create(WanAndroidDemoService.class).listData("json")
+        Log.d(TAG, "开始网络请求!");
+        retrofit.create(WanAndroidDemoService.class).listData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<List<WanAndroidItem>>() {
+                .subscribe(new Observer<WanAndroidItem>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         Log.d(TAG, "打印 onSubscribe");
                     }
 
                     @Override
-                    public void onNext(List<WanAndroidItem> repos) {
-                        Log.d(TAG, "打印 onNext:" + repos.size());
+                    public void onNext(WanAndroidItem repos) {
+                        Log.d(TAG, "打印 onNext:" + repos.toString());
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.d(TAG, "打印 onError");
+                        Log.d(TAG, "打印 onError:" + e.getMessage());
                     }
 
                     @Override
