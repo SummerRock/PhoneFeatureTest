@@ -16,6 +16,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
+import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -112,6 +113,8 @@ public class RxJavaDemo {
         Log.i(TAG, "====Rx定时器取消======");
     }
 
+    private int i = 0;
+
     public void testNetwork() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://wanandroid.com/")
@@ -119,13 +122,14 @@ public class RxJavaDemo {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
 
+        i = 0;
         Log.d(TAG, "开始网络请求!");
         retrofit.create(WanAndroidDemoService.class).listData()
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
                 .repeatWhen(new Function<Observable<Object>, ObservableSource<?>>() {
                     @Override
                     public ObservableSource<?> apply(Observable<Object> objectObservable) throws Exception {
+                        Log.d(TAG, "打印 repeatWhen: " + Thread.currentThread().getName());
                         return objectObservable.delay(500, TimeUnit.MILLISECONDS)
                                 .doOnComplete(new Action() {
                                     @Override
@@ -135,25 +139,45 @@ public class RxJavaDemo {
                                 });
                     }
                 })
+                // .takeUntil(new Predicate<WanAndroidItem>() {
+                //     @Override
+                //     public boolean test(WanAndroidItem wanAndroidItem) throws Exception {
+                //         Log.d(TAG, "打印 takeUntil: " + wanAndroidItem.toString());
+                //         return false;
+                //     }
+                // })
+                .filter(new Predicate<WanAndroidItem>() {
+                    @Override
+                    public boolean test(WanAndroidItem wanAndroidItem) throws Exception {
+                        Log.d(TAG, "打印 filter: " + wanAndroidItem.toString() + " thread: " + Thread.currentThread().getName());
+                        i++;
+                        if (i > 10) {
+                            //只有返回true才会回调onNext
+                            return true;
+                        }
+                        return false;
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<WanAndroidItem>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                        Log.d(TAG, "打印 onSubscribe");
+                        Log.d(TAG, "打印 onSubscribe" + " thread: " + Thread.currentThread().getName());
                     }
 
                     @Override
                     public void onNext(WanAndroidItem repos) {
-                        Log.d(TAG, "打印 onNext:" + repos.toString());
+                        Log.d(TAG, "打印 onNext:" + repos.toString() + " thread: " + Thread.currentThread().getName());
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.d(TAG, "打印 onError:" + e.getMessage());
+                        Log.d(TAG, "打印 onError:" + e.getMessage() + " thread: " + Thread.currentThread().getName());
                     }
 
                     @Override
                     public void onComplete() {
-                        Log.d(TAG, "打印 onComplete");
+                        Log.d(TAG, "打印 onComplete" + " thread: " + Thread.currentThread().getName());
                     }
                 });
     }
