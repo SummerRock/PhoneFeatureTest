@@ -13,6 +13,7 @@ import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
@@ -122,30 +123,18 @@ public class RxJavaDemo {
         retrofit.create(WanAndroidDemoService.class).listData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                // .doOnNext(new Consumer<WanAndroidItem>() {
-                //     @Override
-                //     public void accept(WanAndroidItem wanAndroidItem) throws Exception {
-                //         Log.d(TAG, "打印 doOnNext accept: " + wanAndroidItem.toString());
-                //     }
-                // })
-                // .doOnComplete(new Action() {
-                //     @Override
-                //     public void run() throws Exception {
-                //         Log.d(TAG, "打印 doOnComplete");
-                //     }
-                // })
-                // .repeatWhen(new Function<Observable<Object>, ObservableSource<?>>() {
-                //     @Override
-                //     public ObservableSource<?> apply(Observable<Object> objectObservable) throws Exception {
-                //         return objectObservable;
-                //     }
-                // })
-                // .repeatWhen(new Function<Observable<Object>, ObservableSource<?>>() {
-                //     @Override
-                //     public ObservableSource<?> apply(Observable<Object> objectObservable) throws Exception {
-                //         return null;
-                //     }
-                // })
+                .repeatWhen(new Function<Observable<Object>, ObservableSource<?>>() {
+                    @Override
+                    public ObservableSource<?> apply(Observable<Object> objectObservable) throws Exception {
+                        return objectObservable.delay(500, TimeUnit.MILLISECONDS)
+                                .doOnComplete(new Action() {
+                                    @Override
+                                    public void run() throws Exception {
+                                        Log.d(TAG, "打印 doOnComplete");
+                                    }
+                                });
+                    }
+                })
                 .subscribe(new Observer<WanAndroidItem>() {
                     @Override
                     public void onSubscribe(Disposable d) {
