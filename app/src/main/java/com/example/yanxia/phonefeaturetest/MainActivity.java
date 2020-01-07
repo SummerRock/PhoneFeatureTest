@@ -62,6 +62,7 @@ import com.example.yanxia.phonefeaturetest.testactivity.ViewFeatureActivity;
 import com.example.yanxia.phonefeaturetest.utils.Constant;
 import com.example.yanxia.phonefeaturetest.utils.SingletonEnum;
 import com.example.yanxia.phonefeaturetest.viewpager.ViewPagerActivity;
+import com.example.yanxia.phonefeaturetest.viewpager2.ViewPager2Activity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -187,6 +188,7 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         testItemList.add(new TestItem(Constant.TEST_JAVA_QUEUE, R.drawable.ic_lock_24dp, JavaQueueActivity.class));
         testItemList.add(new TestItem(Constant.TEST_RETROFIT, R.drawable.ic_lock_24dp, RetrofitActivity.class));
         testItemList.add(new TestItem(Constant.TEST_AUTO_FUCUS, R.drawable.ic_lock_24dp, AutoFocusActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_VP2, R.drawable.ic_lock_24dp, ViewPager2Activity.class));
     }
 
     private void startTest(@NonNull TestItem testItem) {

@@ -41,4 +41,5 @@ public class Constant {
     public static final String TEST_PLUGIN = "插件化";
     public static final String TEST_RETROFIT = "Retrofit";
     public static final String TEST_AUTO_FUCUS = "自动焦点";
+    public static final String TEST_VP2 = "ViewPager2";
 }

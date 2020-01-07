@@ -26,6 +26,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".viewpager2.ViewPager2Activity"/>
         <activity android:name=".testactivity.AutoFocusActivity" />
         <activity
             android:name=".testactivity.LongImageActivity"
