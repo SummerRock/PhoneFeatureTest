@@ -5,16 +5,14 @@ import android.app.Dialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.LayoutInflater;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.dialog.BottomDialogFragment;
 import com.example.yanxia.phonefeaturetest.dialog.CustomProgressDialogFragment;
-import com.example.yanxia.phonefeaturetest.dialog.CustomWidthDialogFragment;
 import com.example.yanxia.phonefeaturetest.dialog.FullScreenDialogFragment;
 import com.example.yanxia.phonefeaturetest.dialog.TermsDialogFragment;
 
@@ -57,7 +55,7 @@ public class DialogStyleActivity extends AppCompatActivity {
     }
 
     public void showCustomWidthDialogFragment(View view) {
-        CustomWidthDialogFragment.newInstance().show(getSupportFragmentManager(), CustomWidthDialogFragment.class.getSimpleName());
+
     }
 
     public void showProgressDialogFragment(View view) {

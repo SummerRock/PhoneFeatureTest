@@ -1,12 +1,12 @@
 package com.example.yanxia.phonefeaturetest.testactivity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.yanxia.phonefeaturetest.R;
-import com.example.yanxia.phonefeaturetest.dialog.CustomWidthDialogFragment;
+import com.example.yanxia.phonefeaturetest.dialog.BottomDialogFragment;
 
 public class AutoFocusActivity extends AppCompatActivity {
 
@@ -17,6 +17,6 @@ public class AutoFocusActivity extends AppCompatActivity {
     }
 
     public void showLastThing(View view) {
-        CustomWidthDialogFragment.newInstance().show(getSupportFragmentManager(), CustomWidthDialogFragment.class.getSimpleName());
+        BottomDialogFragment.newInstance().show(getSupportFragmentManager(), BottomDialogFragment.class.getSimpleName());
     }
 }
