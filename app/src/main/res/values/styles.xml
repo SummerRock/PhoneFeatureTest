@@ -14,6 +14,12 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <style name="activity_theme_custom_color" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@android:color/holo_orange_light</item>
+        <item name="colorPrimaryDark">@android:color/holo_green_light</item>
+        <item name="colorAccent">@android:color/holo_purple</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -64,7 +70,7 @@
         <item name="android:windowNoTitle">true</item>
 
         <!-- Set this to true if you want Full Screen without status bar -->
-        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowFullscreen">true</item>
 
         <item name="android:windowIsFloating">false</item>
 
@@ -76,6 +82,15 @@
         <!-- Additionally if you want animations when dialog opening -->
         <!--<item name="android:windowEnterAnimation">@anim/slide_up</item>-->
         <!--<item name="android:windowExitAnimation">@anim/slide_down</item>-->
+    </style>
+
+    <style name="full_screen_with_status_bar" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
     </style>
 
     <style name="FullscreenActivityThemeNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">

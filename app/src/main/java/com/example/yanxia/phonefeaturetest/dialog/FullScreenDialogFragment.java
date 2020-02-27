@@ -1,11 +1,12 @@
 package com.example.yanxia.phonefeaturetest.dialog;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 
 import com.example.yanxia.phonefeaturetest.R;
 

@@ -1,10 +1,12 @@
 package com.example.yanxia.phonefeaturetest.testactivity;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.SeekBar;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.widget.CircleProgressBar;
@@ -51,5 +53,8 @@ public class ProgressBarTestActivity extends AppCompatActivity {
                 progressButton.setBackgroundResource(R.drawable.button_bg_selector);
             }
         });
+
+        ProgressBar progressBar = findViewById(R.id.test_progress_bar_01);
+        progressBar.setIndeterminateDrawable(getResources().getDrawable(R.drawable.rotate_loading_circle));
     }
 }

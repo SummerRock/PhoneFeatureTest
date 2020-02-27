@@ -9,4 +9,4 @@
     android:repeatCount="-1"
     android:repeatMode="restart"
     android:startOffset="-1"
-    android:toDegrees="720" />
+    android:toDegrees="1080" />

@@ -26,7 +26,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".viewpager2.ViewPager2Activity"/>
+        <activity android:name=".viewpager2.ViewPager2Activity" />
         <activity android:name=".testactivity.AutoFocusActivity" />
         <activity
             android:name=".testactivity.LongImageActivity"
@@ -114,7 +114,10 @@
             android:label="@string/title_activity_color_matrix"
             android:launchMode="singleTop" />
         <activity android:name=".viewpager.ViewPagerActivity" />
-        <activity android:name=".testactivity.ProgressBarTestActivity" />
+        <activity
+            android:name=".testactivity.ProgressBarTestActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/activity_theme_custom_color" />
         <activity
             android:name=".horizonRv.HorizonRvTestActivity"
             android:label="@string/title_activity_horizon_rv_test"
