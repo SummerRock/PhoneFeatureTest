@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.percentlayout.widget.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clipChildren="false"
     tools:context=".notifyitemtest.RecyclerViewTestActivity">
 
     <LinearLayout
+        android:id="@+id/top_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -47,20 +46,13 @@
             tools:ignore="HardcodedText" />
     </LinearLayout>
 
-    <com.example.yanxia.phonefeaturetest.widget.CustomRelativeLayout
-        android:id="@+id/custom_relative_layout"
-        android:layout_alignParentBottom="true"
-        android:clipChildren="false"
-        app:layout_heightPercent="40%"
-        app:layout_widthPercent="100%">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/test_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/top_content"
+        android:layout_marginTop="40dp"
+        android:background="@android:color/holo_purple"
+        android:paddingTop="5dp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/test_rv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/holo_purple"
-            android:clipToPadding="false"
-            android:paddingTop="5dp" />
-    </com.example.yanxia.phonefeaturetest.widget.CustomRelativeLayout>
-
-</androidx.percentlayout.widget.PercentRelativeLayout>
+</RelativeLayout>

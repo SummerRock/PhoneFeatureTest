@@ -24,12 +24,12 @@ public class ViewPagerTestAdapter extends FragmentStatePagerAdapter {
      */
     @Override
     public int getCount() {
-        return 6;
+        return 9;
     }
 
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return String.valueOf(position);
+        return "ITEM_" + String.valueOf(position);
     }
 }

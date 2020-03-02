@@ -11,12 +11,15 @@
         android:id="@+id/view_pager_indicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingLeft="12dp"
         app:tabBackground="@android:color/white"
-        app:tabIndicatorColor="@android:color/holo_blue_light"
-        app:tabIndicatorGravity="bottom"
-        app:tabIndicatorHeight="4dp"
-        app:tabPaddingStart="0dp"
-        app:tabSelectedTextColor="@android:color/holo_green_light" />
+        app:tabIndicatorHeight="0dp"
+        app:tabMaxWidth="200dp"
+        app:tabMinWidth="10dp"
+        app:tabMode="scrollable"
+        app:tabPaddingEnd="4dp"
+        app:tabPaddingStart="4dp" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/test_view_pager"

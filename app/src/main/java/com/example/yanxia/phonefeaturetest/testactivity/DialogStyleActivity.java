@@ -19,6 +19,7 @@ import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.dialog.BottomDialogFragment;
 import com.example.yanxia.phonefeaturetest.dialog.CustomProgressDialogFragment;
 import com.example.yanxia.phonefeaturetest.dialog.FullScreenDialogFragment;
+import com.example.yanxia.phonefeaturetest.dialog.NormalDialogFragment;
 import com.example.yanxia.phonefeaturetest.dialog.TermsDialogFragment;
 
 public class DialogStyleActivity extends AppCompatActivity {
@@ -95,6 +96,10 @@ public class DialogStyleActivity extends AppCompatActivity {
 
     public void showBottomFragment(View view) {
         BottomDialogFragment.newInstance().show(getSupportFragmentManager(), BottomDialogFragment.class.getSimpleName());
+    }
+
+    public void showNormalFragment(View view) {
+        NormalDialogFragment.newInstance().show(getSupportFragmentManager(), NormalDialogFragment.class.getSimpleName());
     }
 
     private class ShowProgressDialogTask extends AsyncTask {

@@ -13,23 +13,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.utils.DisplayUtils;
-import com.example.yanxia.phonefeaturetest.widget.CustomRelativeLayout;
 
 /**
  * @author yanxia-Mac
  */
 public class RecyclerViewTestActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private CustomRelativeLayout customRelativeLayout;
     private TestSelectAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view_test);
-        customRelativeLayout = findViewById(R.id.custom_relative_layout);
         RecyclerView recyclerView = findViewById(R.id.test_rv);
-        GridLayoutManager layout = new GridLayoutManager(this, 2, RecyclerView.VERTICAL, false);
+        GridLayoutManager layout = new GridLayoutManager(this, 1, RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(layout);
         adapter = new TestSelectAdapter();
         recyclerView.setAdapter(adapter);
@@ -48,18 +45,6 @@ public class RecyclerViewTestActivity extends AppCompatActivity implements View.
                         + " VerticalScrollOffset: " + recyclerView.computeVerticalScrollOffset()
                         + " VerticalScrollExtent: " + recyclerView.computeVerticalScrollExtent()
                         + " VerticalScrollRange: " + recyclerView.computeVerticalScrollRange());
-
-                if (dy > 0) {
-                    if (Math.abs(dy) > 3) {
-                        Log.d("kobe", "should expand");
-                        customRelativeLayout.expand();
-                    }
-                } else {
-                    if (Math.abs(dy) > 0 && !recyclerView.canScrollVertically(-1)) {
-                        Log.d("kobe", "should shrink");
-                        customRelativeLayout.shrink();
-                    }
-                }
             }
         });
 

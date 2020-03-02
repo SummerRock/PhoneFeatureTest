@@ -74,4 +74,11 @@
         android:onClick="showBottomFragment"
         android:text="Bottom Dialog Fragment"
         tools:ignore="HardcodedText" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="showNormalFragment"
+        android:text="Normal Dialog Fragment"
+        tools:ignore="HardcodedText" />
 </LinearLayout>

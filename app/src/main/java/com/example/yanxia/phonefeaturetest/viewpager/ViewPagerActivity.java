@@ -1,12 +1,14 @@
 package com.example.yanxia.phonefeaturetest.viewpager;
 
 import android.os.Bundle;
-import com.google.android.material.tabs.TabLayout;
-import androidx.viewpager.widget.ViewPager;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.viewpager.ui.viewpager.ViewPagerTestAdapter;
+import com.google.android.material.tabs.TabLayout;
 
 public class ViewPagerActivity extends AppCompatActivity {
 
@@ -19,5 +21,16 @@ public class ViewPagerActivity extends AppCompatActivity {
 
         TabLayout tabLayout = findViewById(R.id.view_pager_indicator);
         tabLayout.setupWithViewPager(viewPager);
+
+        for (int i = 0; i < viewPager.getAdapter().getCount(); i++) {
+            TabLayout.Tab tab = tabLayout.getTabAt(i);//获得每一个tab
+            tab.setCustomView(R.layout.tab_item);//给每一个tab设置view
+            TextView textView = tab.getCustomView().findViewById(R.id.tab_text);
+            if (i == 0) {
+                // 设置第一个tab的TextView是被选择的样式
+                tab.getCustomView().findViewById(R.id.tab_text).setSelected(true);//第一个tab被选中
+            }
+            textView.setText(viewPager.getAdapter().getPageTitle(i));//设置tab上的文字
+        }
     }
 }

@@ -4,17 +4,17 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.yanxia.phonefeaturetest.R;
-import com.example.yanxia.phonefeaturetest.utils.CommonLog;
-import com.example.yanxia.phonefeaturetest.utils.DisplayUtils;
 
 import java.util.List;
 
@@ -30,8 +30,8 @@ public final class TestSelectAdapter extends RecyclerView.Adapter<TestSelectAdap
     @NonNull
     @Override
     public TestViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Log.d("TestSelectAdapter", "onCreateViewHolder viewType: " + viewType);
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.test_item_layout, parent, false);
-        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, DisplayUtils.dpToPx(44)));
         return new TestViewHolder(view);
     }
 
@@ -55,18 +55,14 @@ public final class TestSelectAdapter extends RecyclerView.Adapter<TestSelectAdap
             holder.playSimpleAnimation();
             return;
         }
+        Log.d("TestSelectAdapter", "onBindViewHolder position: " + position);
         holder.textView.setText("position: " + position);
         if (position == selectPosition) {
             holder.textView.setSelected(true);
         } else {
             holder.textView.setSelected(false);
         }
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeSelectPosition(holder.getAdapterPosition());
-            }
-        });
+        holder.itemView.setOnClickListener(v -> changeSelectPosition(holder.getAdapterPosition()));
     }
 
     public void changeSelectPosition(int position) {
@@ -77,14 +73,26 @@ public final class TestSelectAdapter extends RecyclerView.Adapter<TestSelectAdap
 
     @Override
     public void onViewRecycled(@NonNull TestViewHolder holder) {
-        CommonLog.d("onViewRecycled holder: " + holder.getAdapterPosition());
+        Log.d("TestSelectAdapter", "onViewRecycled holder: " + holder.getAdapterPosition());
         super.onViewRecycled(holder);
     }
 
     @Override
     public boolean onFailedToRecycleView(@NonNull TestViewHolder holder) {
-        CommonLog.d("onFailedToRecycleView holder: " + holder.getAdapterPosition());
+        Log.d("TestSelectAdapter", "onFailedToRecycleView holder: " + holder.getAdapterPosition());
         return super.onFailedToRecycleView(holder);
+    }
+
+    @Override
+    public void onViewAttachedToWindow(@NonNull TestViewHolder holder) {
+        Log.d("TestSelectAdapter", "onViewAttachedToWindow position: " + holder.getAdapterPosition());
+        super.onViewAttachedToWindow(holder);
+    }
+
+    @Override
+    public void onViewDetachedFromWindow(@NonNull TestViewHolder holder) {
+        Log.d("TestSelectAdapter", "onViewDetachedFromWindow position: " + holder.getAdapterPosition());
+        super.onViewDetachedFromWindow(holder);
     }
 
     @Override
