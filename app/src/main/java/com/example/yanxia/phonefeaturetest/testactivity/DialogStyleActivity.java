@@ -2,6 +2,7 @@ package com.example.yanxia.phonefeaturetest.testactivity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -19,6 +20,7 @@ import com.example.yanxia.phonefeaturetest.dialog.TermsDialogFragment;
 public class DialogStyleActivity extends AppCompatActivity {
 
     private CustomProgressDialogFragment customProgressDialogFragment;
+    private AlertDialog alertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +56,23 @@ public class DialogStyleActivity extends AppCompatActivity {
         FullScreenDialogFragment.newInstance().show(getSupportFragmentManager(), FullScreenDialogFragment.class.getSimpleName());
     }
 
-    public void showCustomWidthDialogFragment(View view) {
-
+    public void showAlertDialog(View view) {
+        if (alertDialog != null) {
+            alertDialog.show();
+            return;
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                .setTitle("title")
+                .setMessage("message")
+                .setCancelable(true)
+                .setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog = builder.create();
+        alertDialog.show();
     }
 
     public void showProgressDialogFragment(View view) {

@@ -41,8 +41,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="showCustomWidthDialogFragment"
-        android:text="Custom Width Dialog Fragment"
+        android:onClick="showAlertDialog"
+        android:text="showAlertDialog"
         tools:ignore="HardcodedText" />
 
     <Button
