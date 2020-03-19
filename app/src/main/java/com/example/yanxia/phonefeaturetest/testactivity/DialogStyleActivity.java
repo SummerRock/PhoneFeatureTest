@@ -6,10 +6,14 @@ import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.dialog.BottomDialogFragment;
@@ -26,6 +30,16 @@ public class DialogStyleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dialog_style);
+        Toolbar toolbar = findViewById(R.id.custom_toolbar);
+        toolbar.setNavigationOnClickListener(v -> finish());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            item.getActionView();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void showNormalDialog(View view) {

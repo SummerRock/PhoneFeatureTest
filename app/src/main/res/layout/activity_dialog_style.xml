@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".testactivity.DialogStyleActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/custom_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@android:color/holo_orange_light"
+        app:collapseIcon="@drawable/ic_menu_camera"
+        app:logo="@drawable/ic_dialpad_black_48dp"
+        app:maxButtonHeight="50dp"
+        app:menu="@menu/main"
+        app:navigationIcon="@drawable/ic_info_black_24dp"
+        app:subtitle="子标题"
+        app:title="标题">
+
+    </androidx.appcompat.widget.Toolbar>
 
     <Button
         android:id="@+id/dialog_test_btn_1"
