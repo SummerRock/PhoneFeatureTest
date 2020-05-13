@@ -33,7 +33,7 @@ public class ViewPagerTestRvAdapter extends RecyclerView.Adapter<ViewPagerTestRv
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CommonLog.d("click!!!");
+                CommonLog.logAsOne("click!!!");
             }
         });
     }

@@ -55,13 +55,13 @@ public final class HorizonRvTestAdapter extends RecyclerView.Adapter<HorizonRvTe
 
     @Override
     public void onViewRecycled(@NonNull HorizonTestViewHolder holder) {
-        CommonLog.d("onViewRecycled holder: " + holder.getAdapterPosition());
+        CommonLog.logAsOne("onViewRecycled holder: " + holder.getAdapterPosition());
         super.onViewRecycled(holder);
     }
 
     @Override
     public boolean onFailedToRecycleView(@NonNull HorizonTestViewHolder holder) {
-        CommonLog.d("onFailedToRecycleView holder: " + holder.getAdapterPosition());
+        CommonLog.logAsOne("onFailedToRecycleView holder: " + holder.getAdapterPosition());
         return super.onFailedToRecycleView(holder);
     }
 

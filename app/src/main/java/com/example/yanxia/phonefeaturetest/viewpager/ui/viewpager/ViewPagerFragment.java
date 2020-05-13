@@ -49,7 +49,7 @@ public class ViewPagerFragment extends Fragment {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                CommonLog.d("onScrolled dx: " + dx +
+                CommonLog.logAsOne("onScrolled dx: " + dx +
                         " dy: " + dy +
                         " canScrollLeft: " + recyclerView.canScrollHorizontally(-1) +
                         " canScrollRight: " + recyclerView.canScrollHorizontally(1));
@@ -58,7 +58,7 @@ public class ViewPagerFragment extends Fragment {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                CommonLog.d("onScrollStateChanged newState: " + newState +
+                CommonLog.logAsOne("onScrollStateChanged newState: " + newState +
                         " canScrollLeft: " + recyclerView.canScrollHorizontally(-1) +
                         " canScrollRight: " + recyclerView.canScrollHorizontally(1));
             }

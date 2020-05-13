@@ -18,8 +18,70 @@ allprojects {
         jcenter()
         google()
     }
+
+    apply plugin: 'checkstyle'
+    checkstyle {
+        toolVersion '8.17'
+        ignoreFailures false
+        showViolations true
+    }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+task checkstyle(type: Checkstyle) {
+    source 'app/src/main/java'
+
+    exclude '**/gen/**'
+    exclude '**/R.java'
+    exclude '**/BuildConfig.java'
+    exclude '**/build/**'
+    if (project.hasProperty('checkCommit') && project.property("checkCommit")) {
+        def ft = filterCommitter(getChangeFiles());
+        def includeList = new ArrayList<String>()
+        for (int i = 0; i < ft.size(); i++) {
+            String spliter = ft.getAt(i)
+            String[] spliterlist = spliter.split("/")
+            String fileName = spliterlist[spliterlist.length - 1]
+            includeList.add("**/" + fileName)
+        }
+        if (includeList.size() == 0) {
+            exclude '**/*.java'
+        } else {
+            println("includeList=="+includeList)
+            include includeList
+        }
+    } else {
+        exclude 'annotation/build/**'
+//        include '**/src/main/*.java'
+    }
+    configFile rootProject.file('checkstyle.xml')
+    classpath = files()
+}
+
+def getChangeFiles() {
+    try {
+        String changeInfo = 'git status -s'.execute(null, project.rootDir).text.trim()
+        return changeInfo == null ? "" : changeInfo
+    } catch (Exception e) {
+        return e.printStackTrace()
+    }
+}
+
+def filterCommitter(String gitstatusinfo) {
+    ArrayList<String> filterList = new ArrayList<String>();
+    String[] lines = gitstatusinfo.split("\\n")
+    for (String line : lines) {
+        if (line.contains(".java")) {
+            String[] spliters = line.trim().split(" ");
+            for (String str : spliters) {
+                if (str.contains(".java")) {
+                    filterList.add(str)
+                }
+            }
+        }
+    }
+    return filterList;
 }

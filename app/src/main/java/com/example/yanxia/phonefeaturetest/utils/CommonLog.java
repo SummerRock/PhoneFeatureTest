@@ -6,7 +6,7 @@ import android.util.Log;
  * @author yanxia-Mac
  */
 public final class CommonLog {
-    public static void d(String s) {
+    public static void logAsOne(String s) {
         Log.d("xiayan", s);
     }
 }

@@ -23,7 +23,7 @@ import java.util.Arrays;
  */
 public final class ColorMatrixTestActivity extends AppCompatActivity {
     static {
-        CommonLog.d("static field.");
+        CommonLog.logAsOne("static field.");
     }
 
     private ColorMatrix mColorMatrix = new ColorMatrix();
@@ -37,12 +37,12 @@ public final class ColorMatrixTestActivity extends AppCompatActivity {
     private ImageView imageView3;
 
     public ColorMatrixTestActivity() {
-        CommonLog.d("construct init!");
+        CommonLog.logAsOne("construct init!");
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        CommonLog.d("onCreate!");
+        CommonLog.logAsOne("onCreate!");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_color_matrix_test);
         testImageView = findViewById(R.id.color_matrix_test_image);

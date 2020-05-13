@@ -37,7 +37,7 @@ public class BitmapTestFragment extends BaseTestFragment implements View.OnClick
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 2;
         originBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.girl_1, options);
-        CommonLog.d("");
+        CommonLog.logAsOne("");
     }
 
     @Nullable

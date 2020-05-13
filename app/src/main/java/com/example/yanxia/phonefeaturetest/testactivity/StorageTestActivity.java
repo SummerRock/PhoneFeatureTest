@@ -51,7 +51,7 @@ public class StorageTestActivity extends AppCompatActivity {
     private void createFile1() throws IOException {
         File file = new File(getFilesDir() + File.separator + "test.zip");
         boolean result = file.createNewFile();
-        CommonLog.d("create file result: " + result);
+        CommonLog.logAsOne("create file result: " + result);
     }
 
     private File createNewFile(String path) throws IOException {
@@ -59,7 +59,7 @@ public class StorageTestActivity extends AppCompatActivity {
         if (!file.exists()) {
             if (file.getParentFile().mkdirs()) {
                 boolean result = file.createNewFile();
-                CommonLog.d("createNewFile result: " + result);
+                CommonLog.logAsOne("createNewFile result: " + result);
             }
         }
         return file;
@@ -69,6 +69,6 @@ public class StorageTestActivity extends AppCompatActivity {
         File file = createNewFile(getFilesDir() + File.separator + "testDirectoryTemp");
         File dstFile = new File(getFilesDir() + File.separator + "testDirectory");
         boolean result = file.renameTo(dstFile);
-        CommonLog.d("rename file result: " + result);
+        CommonLog.logAsOne("rename file result: " + result);
     }
 }
