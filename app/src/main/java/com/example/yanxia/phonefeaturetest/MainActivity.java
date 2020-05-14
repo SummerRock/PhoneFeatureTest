@@ -74,9 +74,9 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
 
 
     // Used to load the 'native-lib' library on application startup.
-    //    static {
-    //        System.loadLibrary("native-lib");
-    //    }
+    static {
+        System.loadLibrary("native-lib");
+    }
 
     private static final String TAG = "MainActivityTag";
     private List<TestItem> testItemList = new ArrayList<>();
