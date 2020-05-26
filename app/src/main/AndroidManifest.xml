@@ -27,9 +27,12 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".testactivity.ScrollingCustomActivity"
+            android:label="@string/title_activity_scrolling_custom" />
+        <activity
             android:name=".testactivity.ScrollingDemoActivity"
             android:label="@string/title_activity_scrolling"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".viewpager2.ViewPager2Activity" />
         <activity android:name=".testactivity.AutoFocusActivity" />
         <activity

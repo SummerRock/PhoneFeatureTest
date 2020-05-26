@@ -19,13 +19,16 @@ import com.example.yanxia.phonefeaturetest.utils.CommonLog;
 public class ViewPagerFragment extends Fragment {
 
     private static final String KEY_GROUP_POSITION = "group_position";
+    private static final String KEY_listOrientation = "KEY_listOrientation";
 
     private int groupPosition;
+    private int orientation;
 
-    public static ViewPagerFragment newInstance(int position) {
+    public static ViewPagerFragment newInstance(int position, int listOrientation) {
         ViewPagerFragment viewPagerFragment = new ViewPagerFragment();
         Bundle args = new Bundle();
         args.putInt(KEY_GROUP_POSITION, position);
+        args.putInt(KEY_listOrientation, listOrientation);
         viewPagerFragment.setArguments(args);
         return viewPagerFragment;
     }
@@ -34,6 +37,7 @@ public class ViewPagerFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         groupPosition = getArguments().getInt(KEY_GROUP_POSITION, 0);
+        orientation = getArguments().getInt(KEY_listOrientation, 0);
     }
 
     @Nullable
@@ -44,7 +48,7 @@ public class ViewPagerFragment extends Fragment {
         textView.setText("position: " + String.valueOf(groupPosition));
         final RecyclerView recyclerView = rootView.findViewById(R.id.test_fragment_position_rv);
         recyclerView.setAdapter(new ViewPagerTestRvAdapter());
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), orientation, false));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {

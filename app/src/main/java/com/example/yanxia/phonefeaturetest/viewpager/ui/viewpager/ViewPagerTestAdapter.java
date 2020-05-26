@@ -7,8 +7,19 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 public class ViewPagerTestAdapter extends FragmentStatePagerAdapter {
 
+    private int orientation;
+    private int count = 9;
+
     public ViewPagerTestAdapter(FragmentManager fm) {
         super(fm);
+    }
+
+    public void setOrientation(int orientation) {
+        this.orientation = orientation;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
     /**
@@ -16,7 +27,7 @@ public class ViewPagerTestAdapter extends FragmentStatePagerAdapter {
      */
     @Override
     public Fragment getItem(int position) {
-        return ViewPagerFragment.newInstance(position);
+        return ViewPagerFragment.newInstance(position, orientation);
     }
 
     /**
@@ -24,7 +35,7 @@ public class ViewPagerTestAdapter extends FragmentStatePagerAdapter {
      */
     @Override
     public int getCount() {
-        return 9;
+        return count;
     }
 
     @Nullable
