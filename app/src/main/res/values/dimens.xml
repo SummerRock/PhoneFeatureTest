@@ -8,4 +8,6 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <dimen name="double_rv_item_size">44dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>

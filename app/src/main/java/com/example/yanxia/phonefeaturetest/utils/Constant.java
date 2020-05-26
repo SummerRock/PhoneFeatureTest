@@ -42,4 +42,5 @@ public class Constant {
     public static final String TEST_RETROFIT = "Retrofit";
     public static final String TEST_AUTO_FUCUS = "自动焦点";
     public static final String TEST_VP2 = "ViewPager2";
+    public static final String TEST_SCROLLING = "滚动测试";
 }

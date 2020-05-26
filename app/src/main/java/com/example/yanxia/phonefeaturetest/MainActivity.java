@@ -54,6 +54,7 @@ import com.example.yanxia.phonefeaturetest.testactivity.ProgressBarTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.RemoteDemoActivity;
 import com.example.yanxia.phonefeaturetest.rxjava.RxJavaActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SVGTestActivity;
+import com.example.yanxia.phonefeaturetest.testactivity.ScrollingDemoActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SecondTestActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.SettingsActivity;
 import com.example.yanxia.phonefeaturetest.testactivity.StorageTestActivity;
@@ -189,6 +190,7 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         testItemList.add(new TestItem(Constant.TEST_RETROFIT, R.drawable.ic_lock_24dp, RetrofitActivity.class));
         testItemList.add(new TestItem(Constant.TEST_AUTO_FUCUS, R.drawable.ic_lock_24dp, AutoFocusActivity.class));
         testItemList.add(new TestItem(Constant.TEST_VP2, R.drawable.ic_lock_24dp, ViewPager2Activity.class));
+        testItemList.add(new TestItem(Constant.TEST_SCROLLING, R.drawable.ic_lock_24dp, ScrollingDemoActivity.class));
     }
 
     private void startTest(@NonNull TestItem testItem) {
