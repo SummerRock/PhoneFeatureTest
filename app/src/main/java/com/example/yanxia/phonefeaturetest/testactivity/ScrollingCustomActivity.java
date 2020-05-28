@@ -1,9 +1,11 @@
 package com.example.yanxia.phonefeaturetest.testactivity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.viewpager.ui.viewpager.ViewPagerTestAdapter;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,5 +27,13 @@ public class ScrollingCustomActivity extends AppCompatActivity {
 
         TabLayout tabLayout = findViewById(R.id.vp_tab_layout);
         tabLayout.setupWithViewPager(viewPager);
+
+        AppBarLayout appBarLayout = findViewById(R.id.app_bar);
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
+                Log.i("tab_test", "i= " + i);
+            }
+        });
     }
 }

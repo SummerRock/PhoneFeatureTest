@@ -8,6 +8,7 @@ import com.example.yanxia.phonefeaturetest.callback.CommonCallBack;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MultiThreadDemoManager {
     private static final String TAG = "MultiThreadDemoManager";
@@ -42,5 +43,19 @@ public class MultiThreadDemoManager {
         for (CommonCallBack commonCallBack : commonCallBackList) {
             commonCallBack.onResult(true);
         }
+    }
+
+    private Random random = new Random();
+
+    public List<String> getStringListWithRandomLength() {
+        List<String> stringList = new ArrayList<>();
+        for (int i = 0; i < random.nextInt(10) + 15; i++) {
+            StringBuilder stringBuilder = new StringBuilder("AA");
+            for (int j = 0; j < random.nextInt(22) + 2; j++) {
+                stringBuilder.append("B");
+            }
+            stringList.add(stringBuilder.toString());
+        }
+        return stringList;
     }
 }
