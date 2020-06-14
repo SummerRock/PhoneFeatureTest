@@ -34,6 +34,7 @@ import com.example.yanxia.phonefeaturetest.multiProcess.MyContentProvider;
 import com.example.yanxia.phonefeaturetest.multiProcess.socket.TCPClientActivity;
 import com.example.yanxia.phonefeaturetest.notifyitemtest.RecyclerViewTestActivity;
 import com.example.yanxia.phonefeaturetest.retrofit.RetrofitActivity;
+import com.example.yanxia.phonefeaturetest.rvData.RecyclerViewDataActivity;
 import com.example.yanxia.phonefeaturetest.testFragment.BitmapTestFragment;
 import com.example.yanxia.phonefeaturetest.testFragment.PluginTestFragment;
 import com.example.yanxia.phonefeaturetest.testactivity.AnimationTestActivity;
@@ -153,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
     }
 
     private void initTestItems() {
-        testItemList.add(new TestItem(Constant.TEST_RECYCLER, R.drawable.ic_lock_24dp, RecyclerViewTestActivity.class));
+        testItemList.add(new TestItem(Constant.TEST_RECYCLER, R.drawable.ic_lock_24dp, RecyclerViewDataActivity.class));
         testItemList.add(new TestItem(Constant.TEST_LONG_IMAGE, R.drawable.ic_lock_24dp, LongImageActivity.class));
         testItemList.add(new TestItem(Constant.TEST_PEOPLE_DATA, R.drawable.ic_lock_24dp, PeopleEditActivity.class));
         testItemList.add(new TestItem(Constant.TEST_INPUT_METHOD, R.drawable.ic_lock_24dp, null));
