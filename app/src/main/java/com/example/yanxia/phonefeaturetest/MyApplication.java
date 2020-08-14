@@ -16,6 +16,9 @@ import com.example.componentlib.AppConfig;
 import com.example.componentlib.IAppInterface;
 import com.example.yanxia.phonefeaturetest.utils.MultiThreadDemoManager;
 import com.example.yanxia.phonefeaturetest.utils.ScreenStatusManager;
+import com.tencent.matrix.Matrix;
+import com.tencent.matrix.iocanary.IOCanaryPlugin;
+import com.tencent.matrix.iocanary.config.IOConfig;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -106,6 +109,26 @@ public class MyApplication extends Application {
                 e.printStackTrace();
             }
         }
+        initMatrix();
+    }
+
+    private void initMatrix() {
+        Matrix.Builder builder = new Matrix.Builder(this); // build matrix
+        builder.patchListener(new TestPluginListener(this)); // add general pluginListener
+        DynamicConfigImplDemo dynamicConfig = new DynamicConfigImplDemo(); // dynamic config
+
+        // init plugin
+        IOCanaryPlugin ioCanaryPlugin = new IOCanaryPlugin(new IOConfig.Builder()
+                .dynamicConfig(dynamicConfig)
+                .build());
+        //add to matrix
+        builder.plugin(ioCanaryPlugin);
+
+        //init matrix
+        Matrix.init(builder.build());
+
+        // start plugin
+        ioCanaryPlugin.start();
     }
 
     public static Context getContext() {
