@@ -44,6 +44,17 @@
         app:autoSizeStepGranularity="1sp"
         app:autoSizeTextType="uniform" />
 
+    <RatingBar
+        style="@style/myRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/auto_size_test_tv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:numStars="5"
+        android:rating="3"
+        android:stepSize="1" />
+
     <SeekBar
         android:id="@+id/seekBar_02"
         android:layout_width="match_parent"

@@ -71,7 +71,7 @@ def getChangeFiles() {
     }
 }
 
-def filterCommitter(String gitstatusinfo) {
+static def filterCommitter(String gitstatusinfo) {
     ArrayList<String> filterList = new ArrayList<String>();
     String[] lines = gitstatusinfo.split("\\n")
     for (String line : lines) {
