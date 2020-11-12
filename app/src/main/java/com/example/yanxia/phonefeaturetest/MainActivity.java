@@ -118,6 +118,12 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         //        });
 
         getLifecycle().addObserver(new MyObserver());
+        getWindow().getDecorView().post(new Runnable() {
+            @Override
+            public void run() {
+                Log.d(TAG, "getDecorView post done.");
+            }
+        });
     }
 
     @Override

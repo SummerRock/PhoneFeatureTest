@@ -2,8 +2,10 @@ package com.example.yanxia.phonefeaturetest.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.FrameLayout;
@@ -42,5 +44,11 @@ public final class CustomViewGroup extends FrameLayout {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         Log.d(TAG, "onDraw");
+    }
+
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        Log.d(TAG, "dispatchDraw");
     }
 }

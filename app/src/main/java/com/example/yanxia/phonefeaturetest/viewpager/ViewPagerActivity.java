@@ -1,6 +1,8 @@
 package com.example.yanxia.phonefeaturetest.viewpager;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,5 +34,33 @@ public class ViewPagerActivity extends AppCompatActivity {
             }
             textView.setText(viewPager.getAdapter().getPageTitle(i));//设置tab上的文字
         }
+
+        Log.i("CustomViewGroup", "onCreate");
+
+        getWindow().getDecorView().post(new Runnable() {
+            @Override
+            public void run() {
+                Log.i("CustomViewGroup", "getDecorView post hasWindowFocus: " + hasWindowFocus());
+            }
+        });
+        getWindow().getDecorView().getViewTreeObserver().addOnDrawListener(new ViewTreeObserver.OnDrawListener() {
+            @Override
+            public void onDraw() {
+                Log.i("CustomViewGroup", "getDecorView onDraw!!!");
+            }
+        });
+        getWindow().getDecorView().getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                Log.i("CustomViewGroup", "getDecorView onPreDraw!!!");
+                return true;
+            }
+        });
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        Log.i("CustomViewGroup", "onWindowFocusChanged: " + hasFocus + " hasWindowFocus: " + hasWindowFocus());
     }
 }

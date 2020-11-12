@@ -117,6 +117,13 @@ public class HorizonRvTestActivity extends BaseLoadingActivity implements View.O
 
         // Horizontal  阻尼效果
         OverScrollDecoratorHelper.setUpOverScroll(recyclerView, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL);
+        Log.d("summer", "OnCreate");
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        Log.d("summer", "onWindowFocusChanged: " + hasFocus);
     }
 
     private class GetDataAsync extends AsyncTask<Void, Void, List<String>> {
@@ -125,6 +132,7 @@ public class HorizonRvTestActivity extends BaseLoadingActivity implements View.O
         protected void onPreExecute() {
             super.onPreExecute();
             showLoading();
+            Log.d("summer", "showLoading");
         }
 
         @Override
@@ -139,6 +147,7 @@ public class HorizonRvTestActivity extends BaseLoadingActivity implements View.O
         @Override
         protected void onPostExecute(List<String> list) {
             super.onPostExecute(list);
+            Log.d("summer", "hideLoading");
             hideLoading();
             adapter.notifyDataSetChanged();
         }
