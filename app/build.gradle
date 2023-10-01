@@ -59,6 +59,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    ndkVersion "20.0.5594570"
 //    externalNativeBuild {
 //        cmake {
 //            path "src/main/cpp/CMakeLists.txt"
