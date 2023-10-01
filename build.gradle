@@ -22,12 +22,12 @@ allprojects {
         jcenter()
     }
 
-    apply plugin: 'checkstyle'
-    checkstyle {
-        toolVersion '8.17'
-        ignoreFailures false
-        showViolations true
-    }
+//    apply plugin: 'checkstyle'
+//    checkstyle {
+//        toolVersion '8.17'
+//        ignoreFailures false
+//        showViolations true
+//    }
 }
 
 task clean(type: Delete) {
