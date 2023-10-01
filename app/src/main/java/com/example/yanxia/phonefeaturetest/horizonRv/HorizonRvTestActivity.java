@@ -75,7 +75,7 @@ public class HorizonRvTestActivity extends BaseLoadingActivity implements View.O
             }
         });
         recyclerView.setAdapter(adapter);
-        linearLayoutManager = new LinearLayoutManager(this, LinearLayout.HORIZONTAL, false);
+        linearLayoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
         numberPicker = findViewById(R.id.test_scroll_to_position);
         numberPicker.setMinValue(0);
         numberPicker.setMaxValue(39);
