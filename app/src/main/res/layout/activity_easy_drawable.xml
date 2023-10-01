@@ -10,19 +10,6 @@
     tools:context=".testactivity.EasyDrawableActivity">
 
     <Button
-        android:id="@+id/easy_drawable_test_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:onClick="testOne"
-        android:text="TEST ONE"
-        app:bl_corners_radius="4dp"
-        app:bl_solid_color="#E3B666"
-        app:bl_stroke_color="#8c6822"
-        app:bl_stroke_width="2dp"
-        tools:ignore="HardcodedText,MissingPrefix" />
-
-    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -58,33 +45,9 @@
         android:src="@drawable/ic_dialpad_black_48dp"
         android:tint="@color/selector_color_demo" />
 
-    <com.example.yanxia.phonefeaturetest.widget.TextViewOutline
-        android:id="@+id/font_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/balboa_w01_extra_bold"
-        android:letterSpacing="0.1"
-        android:padding="4dp"
-        android:text="TEST 100% FONT"
-        android:textColor="@android:color/black"
-        android:textSize="32sp"
-        app:outlineColor="@android:color/white"
-        app:outlineSize="3dp" />
-
     <View
         android:layout_width="2dp"
         android:layout_height="100dp"
         android:background="@drawable/shape_line_divider"
         android:layerType="software" />
-
-    <com.example.yanxia.phonefeaturetest.widget.DividerView
-        android:layout_width="2dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="30dp"
-        android:layerType="software"
-        app:color="@android:color/holo_red_light"
-        app:dashGap="4dp"
-        app:dashLength="6dp"
-        app:orientation="vertical" />
 </LinearLayout>

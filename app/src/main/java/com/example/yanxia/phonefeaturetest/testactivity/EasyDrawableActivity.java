@@ -20,7 +20,6 @@ import android.widget.Toast;
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.utils.DisplayUtils;
 import com.example.yanxia.phonefeaturetest.handlerthread.HandlerThreadSingletonDemo;
-import com.noober.background.BackgroundLibrary;
 
 import java.util.List;
 
@@ -29,20 +28,12 @@ public class EasyDrawableActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //https://github.com/JavaNoober/BackgroundLibrary
-        BackgroundLibrary.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_easy_drawable);
         ImageView imageView = findViewById(R.id.drawable_image_view);
         imageView.setBackground(createNewDrawable());
         TextView textView = findViewById(R.id.drawable_text_view);
         textView.setCompoundDrawables(null, null, null, getDrawableFromRes());
-
-        TextView fontTv = findViewById(R.id.font_test);
-        Spannable span = new SpannableString(fontTv.getText());
-        span.setSpan(new AbsoluteSizeSpan(58, true), fontTv.getText().toString().indexOf("1"), fontTv.getText().toString().indexOf("%"), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        // span.setSpan(new ForegroundColorSpan(Color.RED), 11, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        // span.setSpan(new BackgroundColorSpan(Color.YELLOW), 11, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        fontTv.setText(span);
     }
 
     @Override
