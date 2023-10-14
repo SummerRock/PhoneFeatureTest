@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.utils.DisplayUtils;
 import com.example.yanxia.phonefeaturetest.handlerthread.HandlerThreadSingletonDemo;
@@ -34,6 +35,13 @@ public class EasyDrawableActivity extends AppCompatActivity implements View.OnCl
         imageView.setBackground(createNewDrawable());
         TextView textView = findViewById(R.id.drawable_text_view);
         textView.setCompoundDrawables(null, null, null, getDrawableFromRes());
+
+
+        LottieAnimationView lottieAnimationView = findViewById(R.id.lottieAnimationView);
+        // 设置 Lottie 远程 JSON 文件的 URL
+        String remoteJsonUrl = "https://assets-v2.lottiefiles.com/a/58c243b0-65e1-11ee-8eda-dbb22b4eb863/EAC0n56FPV.json";
+        lottieAnimationView.setAnimationFromUrl(remoteJsonUrl);
+        lottieAnimationView.playAnimation();
     }
 
     @Override

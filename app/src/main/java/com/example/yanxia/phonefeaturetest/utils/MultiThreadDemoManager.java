@@ -1,7 +1,5 @@
 package com.example.yanxia.phonefeaturetest.utils;
 
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 
 import com.example.yanxia.phonefeaturetest.callback.CommonCallBack;
@@ -12,8 +10,7 @@ import java.util.Random;
 
 public class MultiThreadDemoManager {
     private static final String TAG = "MultiThreadDemoManager";
-    private static MultiThreadDemoManager ourInstance;
-    private Handler handler = new Handler(Looper.getMainLooper());
+    private static volatile MultiThreadDemoManager ourInstance;
     private List<CommonCallBack> commonCallBackList = new ArrayList<>();
 
     public static MultiThreadDemoManager getInstance() {
@@ -45,7 +42,7 @@ public class MultiThreadDemoManager {
         }
     }
 
-    private Random random = new Random();
+    private final Random random = new Random();
 
     public List<String> getStringListWithRandomLength() {
         List<String> stringList = new ArrayList<>();

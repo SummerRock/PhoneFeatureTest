@@ -9,6 +9,13 @@
     android:orientation="vertical"
     tools:context=".testactivity.EasyDrawableActivity">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
