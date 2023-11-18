@@ -21,6 +21,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.example.yanxia.phonefeaturetest.R;
 import com.example.yanxia.phonefeaturetest.utils.DisplayUtils;
 import com.example.yanxia.phonefeaturetest.handlerthread.HandlerThreadSingletonDemo;
+import com.example.yanxia.phonefeaturetest.widget.TextWithExtraView;
 
 import java.util.List;
 
@@ -42,6 +43,14 @@ public class EasyDrawableActivity extends AppCompatActivity implements View.OnCl
         String remoteJsonUrl = "https://assets-v2.lottiefiles.com/a/58c243b0-65e1-11ee-8eda-dbb22b4eb863/EAC0n56FPV.json";
         lottieAnimationView.setAnimationFromUrl(remoteJsonUrl);
         lottieAnimationView.playAnimation();
+
+        TextWithExtraView text = findViewById(R.id.text_with_extra_view);
+        TextView temp = new TextView(this);
+        temp.setText("你好");
+        temp.setTextSize(16);
+        temp.setBackgroundColor(Color.CYAN);
+        text.setText("一二三四一二三四一二三四一二三四一二三四一二三四一二三四一二三四");
+        text.setExtraView(temp, null, 40);
     }
 
     @Override

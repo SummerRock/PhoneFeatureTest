@@ -30,6 +30,11 @@
         android:layout_height="100dp"
         android:scaleType="centerInside" />
 
+    <com.example.yanxia.phonefeaturetest.widget.TextWithExtraView
+        android:id="@+id/text_with_extra_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/drawable_text_view"
         android:layout_width="wrap_content"
