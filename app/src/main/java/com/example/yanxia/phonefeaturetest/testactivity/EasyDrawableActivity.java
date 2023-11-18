@@ -47,10 +47,10 @@ public class EasyDrawableActivity extends AppCompatActivity implements View.OnCl
         TextWithExtraView text = findViewById(R.id.text_with_extra_view);
         TextView temp = new TextView(this);
         temp.setText("你好");
-        temp.setTextSize(16);
+        temp.setTextSize(9);
         temp.setBackgroundColor(Color.CYAN);
         text.setText("一二三四一二三四一二三四一二三四一二三四一二三四一二三四一二三四");
-        text.setExtraView(temp, null, 40);
+        text.setExtraView(temp, null, DisplayUtils.spToPx(9));
     }
 
     @Override

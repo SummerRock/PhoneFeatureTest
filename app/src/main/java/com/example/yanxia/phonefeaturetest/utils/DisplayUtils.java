@@ -33,6 +33,11 @@ public class DisplayUtils {
         return Math.round(dp * density);
     }
 
+    public static int spToPx(float sp) {
+        float density = MyApplication.getContext().getResources().getDisplayMetrics().scaledDensity;
+        return (int) (sp * density + 0.5f);
+    }
+
     public static int getResourceIdByName(@NonNull Context context, String resourceName, String type) {
         if (TextUtils.isEmpty(resourceName)) {
             return 0;
